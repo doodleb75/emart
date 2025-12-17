@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-Club Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/styles/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="header mb-4">
+
+        <!-- 1. Top Info Bar -->
+        <div class="header-top py-3">
+            <div class="container-fluid d-flex justify-content-between align-items-center">
+                <!-- User Info -->
+                <div class="d-flex align-items-center gap-4">
+                    <span
+                        class="badge rounded-1 fw-bold d-flex align-items-center justify-content-center badge-gold">GOLD</span>
+
+                    <div class="d-flex gap-5">
+                        <div class="d-flex flex-column lh-sm">
+                            <span class="text-secondary small">골드파트너</span>
+                            <strong class="text-dark fs-6">이신선님</strong>
+                        </div>
+                        <div class="d-flex flex-column lh-sm">
+                            <span class="text-secondary small">회원코드</span>
+                            <strong class="text-dark fs-6 number-font">554731</strong>
+                        </div>
+                        <div class="d-flex flex-column lh-sm">
+                            <span class="text-secondary small">영업담당자</span>
+                            <strong class="text-dark fs-6">이클럽 프로님</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Metrics -->
+                <div class="d-flex gap-5 text-end">
+                    <div class="d-flex flex-column lh-sm">
+                        <span class="text-secondary mb-1 small">이번 달 누적 구매액</span>
+                        <strong class="text-dark fs-5 number-font">35,400</strong>
+                    </div>
+                    <div class="d-flex flex-column lh-sm">
+                        <span class="text-secondary mb-1 small">오늘 주문 총액</span>
+                        <strong class="text-dark fs-5 number-font">428,200</strong>
+                    </div>
+                    <div class="d-flex flex-column lh-sm">
+                        <span class="text-secondary mb-1 small">배송 예정 금액</span>
+                        <strong class="text-dark fs-5 number-font">112,800</strong>
+                    </div>
+                    <div class="d-flex flex-column lh-sm">
+                        <span class="text-secondary mb-1 small">
+                            <img src="assets/icons/search.svg" width="12" class="icon-muted">사용 가능
+                            포인트
+                        </span>
+                        <strong class="text-dark fs-5 number-font">215,300</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Main Action Bar -->
+        <div class="header-main py-4">
+            <div class="container-fluid d-flex align-items-center">
+                <!-- Logo -->
+                <a href="/" class="d-flex align-items-center text-decoration-none gap-1 header-col">
+                    <span class="fw-bold logo-text-e">e</span>
+                    <span class="fw-bold logo-text-club">클럽</span>
+                </a>
+
+                <!-- Search -->
+                <div class="search-container">
+                    <div class="position-relative w-100 search-input-wrap">
+                        <input type="text" class="form-control border-0 rounded-1 px-4 search-input"
+                            placeholder="원하시는 상품을 검색해보세요.">
+                        <button type="button"
+                            class="btn position-absolute top-50 end-0 translate-middle-y me-3 border-0 bg-transparent">
+                            <img src="assets/icons/search.svg" alt="검색" width="24">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Icons -->
+                <div class="d-flex align-items-center gap-4 ms-4 justify-content-end header-col">
+                    <a href="#"><img src="assets/icons/cart.svg" width="24"></a>
+                    <a href="#"><img src="assets/icons/heart.svg" width="24"></a>
+                    <a href="#"><img src="assets/icons/user.svg" width="24"></a>
+                    <div class="vr bg-secondary opacity-25 vr-custom"></div>
+                    <a href="#"><img src="assets/icons/logout.svg" width="24"></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Navigation Bar -->
+        <nav class="header-nav mt-2">
+            <div class="container-fluid d-flex align-items-center justify-content-between">
+                <!-- Category -->
+                <div class="category-area d-flex align-items-center cursor-pointer me-4">
+                    <div class="category-box">
+                        <img src="assets/icons/menu.svg" width="24">
+                    </div>
+                    <span class="category-label">전체 카테고리</span>
+                </div>
+
+                <!-- GNB -->
+                <div class="gnb-nav">
+                    <ul class="nav gap-5">
+                        <li class="nav-item"><a href="#" class="gnb-link active">홈</a></li>
+                        <li class="nav-item"><a href="#" class="gnb-link">오늘의 특가</a></li>
+                        <li class="nav-item"><a href="#" class="gnb-link">MD추천</a></li>
+                        <li class="nav-item"><a href="#" class="gnb-link">인기상품</a></li>
+                        <li class="nav-item"><a href="#" class="gnb-link">신상품</a></li>
+                        <li class="nav-item"><a href="#" class="gnb-link">금주 HOT 프로모션</a></li>
+                    </ul>
+                </div>
+
+                <!-- Order Info -->
+                <div class="order-info-area d-flex align-items-center gap-3">
+                    <span class="text-secondary small d-flex align-items-center gap-1 opacity-75">
+                        <img src="assets/icons/search.svg" width="14" class="icon-muted-simple">
+                        <!-- Placeholder for info -->
+                        최소 주문 금액
+                    </span>
+                    <span class="badge rounded-1 fw-normal d-flex align-items-center px-3 gap-1 badge-order-red">
+                        <img src="assets/icons/temp_hot.svg" class="icon-mini">
+                        상온 : 30만원
+                    </span>
+                    <span class="badge rounded-1 fw-normal d-flex align-items-center px-3 gap-1 badge-order-blue">
+                        <img src="assets/icons/temp_cold.svg" class="icon-mini">
+                        저온 : 20만원
+                    </span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main>
+
+        <!-- Main Slider Section -->
+        <section class="main-slider-wrapper">
+            <div class="slider-track">
+
+                <!-- Card 1: Coffee -->
+                <div class="slider-card card-coffee">
+                    <div class="slider-card-img-wrap">
+                        <img src="assets/images/slider/coffee.png" alt="Coffee">
+                    </div>
+                    <div class="slider-card-body">
+                        <div class="text-group">
+                            <h3 class="slider-title">안정적 품질 원컴 솔루션</h3>
+                            <p class="slider-desc">가능한 데일리 음료 베이스</p>
+                        </div>
+                        <div class="slider-arrow">
+                            <img src="assets/icons/search.svg" class="icon-invert">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Snack -->
+                <div class="slider-card card-snack">
+                    <div class="slider-card-img-wrap">
+                        <img src="assets/images/slider/snack.png" alt="Snack">
+                    </div>
+                    <div class="slider-card-body">
+                        <div class="text-group">
+                            <h3 class="slider-title">만족도를 높이는 스테디 셀러</h3>
+                            <p class="slider-desc">포만감/기호성 모두 검증된 제품</p>
+                        </div>
+                        <div class="slider-arrow">
+                            <img src="assets/icons/search.svg" class="icon-invert">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Pasta -->
+                <div class="slider-card card-pasta">
+                    <div class="slider-card-img-wrap">
+                        <img src="assets/images/slider/pasta.png" alt="Pasta">
+                    </div>
+                    <div class="slider-card-body">
+                        <div class="text-group">
+                            <h3 class="slider-title">믿을 수 있는 맛, 안정 품질</h3>
+                            <p class="slider-desc">식사 품질을 일정하게 유지하는 레시피</p>
+                        </div>
+                        <div class="slider-arrow">
+                            <img src="assets/icons/search.svg" class="icon-invert">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Beverage -->
+                <div class="slider-card card-beverage">
+                    <div class="slider-card-img-wrap">
+                        <img src="assets/images/slider/beverage.png" alt="Beverage">
+                    </div>
+                    <div class="slider-card-body">
+                        <div class="text-group">
+                            <h3 class="slider-title">바쁜 현장에 최적화된 솔루션</h3>
+                            <p class="slider-desc">휴먼 퍼포먼스를 끌어올리는 즉시 섭취</p>
+                        </div>
+                        <div class="slider-arrow">
+                            <img src="assets/icons/search.svg" class="icon-invert">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Juice -->
+                <div class="slider-card card-juice">
+                    <div class="slider-card-img-wrap">
+                        <img src="assets/images/slider/juice.png" alt="Juice">
+                    </div>
+                    <div class="slider-card-body">
+                        <div class="text-group">
+                            <h3 class="slider-title">순수한 원물의 힘을 그대로</h3>
+                            <p class="slider-desc">매일 제공하기 좋은 일관된 품질</p>
+                        </div>
+                        <div class="slider-arrow">
+                            <img src="assets/icons/search.svg" class="icon-invert">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pagination -->
+            <div class="d-flex justify-content-center align-items-center py-4 gap-3">
+                <span class="text-secondary small fw-bold">&lt;</span>
+                <span class="text-dark fw-bold">01</span>
+                <span class="text-secondary opacity-50">–</span>
+                <span class="text-secondary small">05</span>
+                <span class="text-secondary small fw-bold">&gt;</span>
+            </div>
+        </section>
+
+        <!-- Step 2: Today's Special & MD Recommendation -->
+        <!-- Today's Special -->
+        <section class="section-container">
+            <header class="section-header">
+                <h2 class="section-title">오늘의 특가 상품</h2>
+                <a href="#" class="section-link">전체 특가 보기</a>
+            </header>
+            <div class="product-grid-4">
+                <!-- Product 1: Gourmet Burger -->
+                <article class="product-card">
+                    <div class="card-thumb">
+                        <img src="assets/images/products/burger.png" alt="Product">
+                        <div class="badge-corner">
+                            <img src="assets/icons/thumbs_up.svg" alt="Icon"> 강력 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-frozen">냉동</span>
+                            <span class="tag tag-ambient">직납</span>
+                            <span class="tag tag-green">소비기한 9개월</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="product-name">고메 치즈버거 105g</h3>
+                        <div class="unit-info">
+                            <span class="strike">9,980</span>
+                            <span class="unit-highlight">7,980</span>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">20</span>
+                            <span class="price">95,760</span>
+                        </div>
+                    </div>
+                    <div class="card-control">
+                        <div class="qty-box">
+                            <button>−</button>
+                            <span>0</span>
+                            <button>+</button>
+                        </div>
+                        <button class="btn-icon">
+                            <img src="assets/icons/heart_btn.svg" width="20">
+                        </button>
+                        <button class="btn-icon">
+                            <img src="assets/icons/cart_sm.svg" width="20">
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row highlight">
+                            <img src="assets/icons/product-tag.svg" class="icon-micro"> 오늘만 프로모션 적용
+                        </div>
+                        <div class="info-row">
+                            <img src="assets/icons/product-time.svg" class="icon-micro"> 오늘 14:00 이후 주문 가능
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 2: Richam -->
+                <article class="product-card">
+                    <div class="card-thumb">
+                        <img src="assets/images/products/richam.png" alt="Product">
+                        <div class="badge-corner">
+                            <img src="assets/icons/smile.svg" alt="Icon"> MD 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-ambient">상온</span>
+                            <span class="tag tag-ambient tag-outline">DC</span>
+                            <span class="tag tag-green">소비기한 24개월</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="product-name">리챔 오리지널 200g</h3>
+                        <div class="unit-info">
+                            <span class="strike">1,120</span>
+                            <span class="unit-highlight">980</span>
+                            <span class="unit-desc">입수 24 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">12</span>
+                            <span class="price">23,520</span>
+                        </div>
+                    </div>
+                    <div class="card-control">
+                        <div class="qty-box">
+                            <button>−</button>
+                            <span>0</span>
+                            <button>+</button>
+                        </div>
+                        <button class="btn-icon">
+                            <img src="assets/icons/heart_btn.svg" width="20">
+                        </button>
+                        <button class="btn-icon">
+                            <img src="assets/icons/cart_sm.svg" width="20">
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row highlight">
+                            <img src="assets/icons/product-tag.svg" class="icon-micro"> 오늘만 프로모션 적용
+                        </div>
+                        <div class="info-row">
+                            <img src="assets/icons/product-time.svg" class="icon-micro"> 오늘 14:00 이후 주문 가능
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 3: Baeksansu -->
+                <article class="product-card">
+                    <div class="card-thumb">
+                        <img src="assets/images/products/water.png" alt="Product">
+                        <div class="badge-corner">
+                            <img src="assets/icons/thumbs_up.svg" alt="Icon"> 강력 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-frozen">냉장</span>
+                            <span class="tag tag-ambient tag-outline">TC</span>
+                            <span class="tag tag-green">소비기한 9개월</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="product-name">농심 백산수 2L</h3>
+                        <div class="unit-info">
+                            <span class="strike">1,250</span>
+                            <span class="unit-highlight">1,030</span>
+                            <span class="unit-desc">입수 6 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">18</span>
+                            <span class="price">6,180</span>
+                        </div>
+                    </div>
+                    <div class="card-control">
+                        <div class="qty-box">
+                            <button>−</button>
+                            <span>0</span>
+                            <button>+</button>
+                        </div>
+                        <button class="btn-icon">
+                            <img src="assets/icons/heart_btn.svg" width="20">
+                        </button>
+                        <button class="btn-icon">
+                            <img src="assets/icons/cart_sm.svg" width="20">
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <img src="assets/icons/product-tag.svg" class="icon-micro"> 쿠폰 미적용 상품
+                        </div>
+                        <div class="info-row">
+                            <img src="assets/icons/product-tag.svg" class="icon-micro"> 최대 3BOX 구매 가능
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 4: Ramen -->
+                <article class="product-card">
+                    <div class="card-thumb">
+                        <img src="assets/images/products/ramen.png" alt="Product">
+                        <div class="badge-corner">☺ MD 추천</div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-frozen">냉동</span>
+                            <span class="tag tag-ambient tag-outline">직납</span>
+                            <span class="tag tag-green">소비기한 50일</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="product-name">이마트 민생라면 컵 우동맛 56.7g</h3>
+                        <div class="unit-info">
+                            <span class="strike">720</span>
+                            <span class="unit-highlight">630</span>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">13</span>
+                            <span class="price">7,560</span>
+                        </div>
+                    </div>
+                    <div class="card-control">
+                        <div class="qty-box">
+                            <button>−</button>
+                            <span>0</span>
+                            <button>+</button>
+                        </div>
+                        <button class="btn-icon">
+                            <img src="assets/icons/heart_btn.svg" width="20">
+                        </button>
+                        <button class="btn-icon">
+                            <img src="assets/icons/cart_sm.svg" width="20">
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row highlight">
+                            <img src="assets/icons/product-tag.svg" class="icon-micro"> 오늘만 프로모션 적용
+                        </div>
+                        <div class="info-row">
+                            <img src="assets/icons/product-time.svg" class="icon-micro"> 오늘 14:00 이후 주문 가능
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- MD Recommendation -->
+        <section class="section-container">
+            <header class="section-header">
+                <h2 class="section-title">MD추천</h2>
+                <a href="#" class="section-link">전체 특가 보기</a>
+            </header>
+            <!-- Tab Menu -->
+            <nav class="tab-menu">
+                <div class="tab-item active">조미료 · 대용식</div>
+                <div class="tab-item">과자</div>
+                <div class="tab-item">냉장 · 냉동</div>
+                <div class="tab-item">커피 · 음료</div>
+                <div class="tab-item">생활잡화</div>
+                <div class="tab-item">신선식품</div>
+            </nav>
+
+            <!-- Tab Content Grid -->
+            <div class="product-grid-4">
+                <!-- Product 1 -->
+                <article class="product-card">
+                    <div class="card-thumb">
+                        <img src="assets/images/slider/juice.png" alt="Product">
+                        <div class="delivery-tags">
+                            <span class="tag tag-ambient">상온</span>
+                            <span class="tag tag-ambient tag-outline">TC</span>
+                            <span class="tag tag-green">소비기한 12개월</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="product-name">법누스 탐차크림빵 150g</h3>
+                        <div class="unit-info">
+                            <span class="strike">2,800</span>
+                            <span class="unit-highlight">2,500</span>
+                            <span class="unit-desc">입수 10 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">10</span>
+                            <span class="price">25,200</span>
+                        </div>
+                    </div>
+                    <div class="card-control">
+                        <div class="qty-box">
+                            <button>−</button>
+                            <span>0</span>
+                            <button>+</button>
+                        </div>
+                        <button class="btn-icon">
+                            <img src="assets/icons/heart_btn.svg" width="20">
+                        </button>
+                        <button class="btn-icon">
+                            <img src="assets/icons/cart_sm.svg" width="20">
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <img src="assets/icons/product-tag.svg" class="icon-micro"> 최대 5BOX 구매 가능
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 2 -->
+                <article class="product-card">
+                    <div class="card-thumb">
+                        <img src="assets/images/slider/coffee.png" alt="Product">
+                        <div class="delivery-tags">
+                            <span class="tag tag-ambient">상온</span>
+                            <span class="tag tag-ambient tag-outline">TC</span>
+                            <span class="tag tag-green">소비기한 24개월</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="product-name">모짜치즈과일샐러드</h3>
+                        <div class="unit-info">
+                            <span class="strike">2,600</span>
+                            <span class="unit-highlight">2,200</span>
+                            <span class="unit-desc">입수 8 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">12</span>
+                            <span class="price">22,900</span>
+                        </div>
+                    </div>
+                    <div class="card-control">
+                        <div class="qty-box">
+                            <button>−</button>
+                            <span>0</span>
+                            <button>+</button>
+                        </div>
+                        <button class="btn-icon">
+                            <img src="assets/icons/heart_btn.svg" width="20">
+                        </button>
+                        <button class="btn-icon">
+                            <img src="assets/icons/cart_sm.svg" width="20">
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <!-- Empty for alignment -->
+                    </div>
+                </article>
+
+                <!-- Product 3 -->
+                <article class="product-card">
+                    <div class="card-thumb">
+                        <img src="assets/images/slider/snack.png" alt="Product">
+                        <div class="badge-corner">MD 추천</div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-frozen">냉동</span>
+                            <span class="tag tag-ambient tag-outline">TC</span>
+                            <span class="tag tag-green">소비기한 9개월</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="product-name">영진 운문산 소불고기비빔밥</h3>
+                        <div class="unit-info">
+                            <span class="strike">3,110</span>
+                            <span class="unit-highlight">2,500</span>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">20</span>
+                            <span class="price">24,900</span>
+                        </div>
+                    </div>
+                    <div class="card-control">
+                        <div class="qty-box">
+                            <button>−</button>
+                            <span>0</span>
+                            <button>+</button>
+                        </div>
+                        <button class="btn-icon">
+                            <img src="assets/icons/heart_btn.svg" width="20">
+                        </button>
+                        <button class="btn-icon">
+                            <img src="assets/icons/cart_sm.svg" width="20">
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <!-- Empty for alignment -->
+                    </div>
+                </article>
+
+                <!-- Product 4 -->
+                <article class="product-card">
+                    <div class="card-thumb">
+                        <img src="assets/images/slider/pasta.png" alt="Product">
+                        <div class="delivery-tags">
+                            <span class="tag tag-ambient">상온</span>
+                            <span class="tag tag-ambient tag-outline">TC</span>
+                            <span class="tag tag-green">소비기한 50일</span>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="product-name">추석보름달송편</h3>
+                        <div class="unit-info">
+                            <span class="strike">2,800</span>
+                            <span class="unit-highlight">2,500</span>
+                            <span class="unit-desc">입수 20 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">10</span>
+                            <span class="price">25,200</span>
+                        </div>
+                    </div>
+                    <div class="card-control">
+                        <div class="qty-box">
+                            <button>−</button>
+                            <span>0</span>
+                            <button>+</button>
+                        </div>
+                        <button class="btn-icon">
+                            <img src="assets/icons/heart_btn.svg" width="20">
+                        </button>
+                        <button class="btn-icon">
+                            <img src="assets/icons/cart_sm.svg" width="20">
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <!-- Empty for alignment -->
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- E-Club Weekly Ranking -->
+        <section class="section-container weekly-ranking">
+            <header class="section-header d-flex justify-content-between align-items-center mb-4">
+                <div class="d-flex align-items-baseline gap-3">
+                    <h2 class="section-title">이클럽 주간 최대 검색</h2>
+                    <span class="text-secondary small">2025. 11. 14 (금) ~ 2025. 11. 20 (목) 기준</span>
+                </div>
+                <!-- Controls -->
+                <div class="d-flex align-items-center gap-2">
+                    <div class="d-flex align-items-center justify-content-center border rounded-1 bg-white"
+                        style="width: 32px; height: 32px; border-color: #ddd !important;">
+                        <span class="text-secondary small">&lt;</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 px-2">
+                        <span class="fw-bold text-dark">01</span>
+                        <span class="text-secondary opacity-50">–</span>
+                        <span class="text-secondary small">05</span>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center border rounded-1 bg-white"
+                        style="width: 32px; height: 32px; border-color: #ddd !important;">
+                        <span class="text-secondary small">&gt;</span>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center border rounded-1 bg-white ms-2"
+                        style="width: 32px; height: 32px; border-color: #ddd !important;">
+                        <img src="assets/icons/pause.svg" alt="Pause">
+                    </div>
+                </div>
+            </header>
+
+            <ul class="ranking-list list-unstyled m-0 border-top border-dark">
+                <!-- Rank 1 (Expanded) -->
+                <li class="ranking-item border-bottom">
+                    <div class="ranking-header py-3 px-2 d-flex align-items-center cursor-pointer">
+                        <span class="rank-num fs-4 fw-bold me-4" style="width: 20px;">1</span>
+                        <img src="assets/icons/rank-dash.svg" class="me-4" alt="-">
+                        <strong class="fs-5 me-3">와인 750ml</strong>
+                        <span class="text-secondary small">생수 · 음료 · 주류</span>
+                        <button class="btn btn-dark ms-auto d-flex align-items-center justify-content-center"
+                            style="width: 32px; height: 32px; padding: 0;">
+                            <img src="assets/icons/chevron-up.svg" style="filter: invert(1); width: 14px;">
+                        </button>
+                    </div>
+                    <!-- Expanded Body -->
+                    <div class="ranking-body">
+                        <!-- Product Grid -->
+                        <div class="product-grid-4">
+                            <!-- Product 1 -->
+                            <article class="product-card">
+                                <div class="card-thumb">
+                                    <img src="assets/images/products/wine_relax.png" alt="Product">
+                                    <div class="badge-corner">
+                                        <img src="assets/icons/thumbs_up.svg" alt="Icon"> 강력 추천
+                                    </div>
+                                    <div class="delivery-tags">
+                                        <span class="tag tag-ambient">상온</span>
+                                        <span class="tag tag-ambient tag-outline">TC</span>
+                                        <span class="tag tag-green">소비기한 해당 없음</span>
+                                    </div>
+                                </div>
+                                <div class="card-info">
+                                    <h3 class="product-name">RELAX 리슬링 750ml</h3>
+                                    <div class="unit-info">
+                                        <span class="strike">13,600</span>
+                                        <span class="unit-highlight">9,980</span>
+                                        <span class="unit-desc">입수 12 / BOX</span>
+                                    </div>
+                                    <div class="total-price-area">
+                                        <span class="discount">15</span>
+                                        <span class="price">9,980</span>
+                                    </div>
+                                </div>
+                                <div class="card-control">
+                                    <div class="qty-box">
+                                        <button>−</button>
+                                        <span>0</span>
+                                        <button>+</button>
+                                    </div>
+                                    <button class="btn-icon">
+                                        <img src="assets/icons/heart_btn.svg" width="20">
+                                    </button>
+                                    <button class="btn-icon">
+                                        <img src="assets/icons/cart_sm.svg" width="20">
+                                    </button>
+                                </div>
+                                <div class="bottom-info">
+                                    <div class="info-row highlight">
+                                        <img src="assets/icons/product-tag.svg" class="icon-micro"> 오늘만 프로모션 적용
+                                    </div>
+                                    <div class="info-row">
+                                        <img src="assets/icons/product-time.svg" class="icon-micro"> 오늘 14:00 이후 주문 가능
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Product 2 -->
+                            <article class="product-card">
+                                <div class="card-thumb">
+                                    <img src="assets/images/products/wine_bonterra_white.png" alt="Product">
+                                    <div class="delivery-tags">
+                                        <span class="tag tag-ambient">상온</span>
+                                        <span class="tag tag-ambient tag-outline">TC</span>
+                                        <span class="tag tag-green">소비기한 해당 없음</span>
+                                    </div>
+                                </div>
+                                <div class="card-info">
+                                    <h3 class="product-name">Bonterra Sauvignon Blanc 750ml</h3>
+                                    <div class="unit-info">
+                                        <span class="strike">26,000</span>
+                                        <span class="unit-highlight">22,900</span>
+                                        <span class="unit-desc">입수 12 / BOX</span>
+                                    </div>
+                                    <div class="total-price-area">
+                                        <span class="discount">12</span>
+                                        <span class="price">22,900</span>
+                                    </div>
+                                </div>
+                                <div class="card-control">
+                                    <div class="qty-box">
+                                        <button>−</button>
+                                        <span>0</span>
+                                        <button>+</button>
+                                    </div>
+                                    <button class="btn-icon">
+                                        <img src="assets/icons/heart_btn.svg" width="20">
+                                    </button>
+                                    <button class="btn-icon">
+                                        <img src="assets/icons/cart_sm.svg" width="20">
+                                    </button>
+                                </div>
+                                <div class="bottom-info">
+                                    <div class="info-row highlight">
+                                        <img src="assets/icons/product-tag.svg" class="icon-micro"> 오늘만 프로모션 적용
+                                    </div>
+                                    <div class="info-row">
+                                        <img src="assets/icons/product-time.svg" class="icon-micro"> 오늘 14:00 이후 주문 가능
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Product 3 -->
+                            <article class="product-card">
+                                <div class="card-thumb">
+                                    <img src="assets/images/products/wine_bonterra_red.png" alt="Product">
+                                    <div class="badge-corner">
+                                        <img src="assets/icons/smile.svg" alt="Icon"> MD 추천
+                                    </div>
+                                    <div class="delivery-tags">
+                                        <span class="tag tag-ambient">상온</span>
+                                        <span class="tag tag-ambient tag-outline">TC</span>
+                                        <span class="tag tag-green">소비기한 해당 없음</span>
+                                    </div>
+                                </div>
+                                <div class="card-info">
+                                    <h3 class="product-name">Bonterra Cabernet Sauvignon 750ml</h3>
+                                    <div class="unit-info">
+                                        <span class="strike">28,000</span>
+                                        <span class="unit-highlight">24,900</span>
+                                        <span class="unit-desc">입수 12 / BOX</span>
+                                    </div>
+                                    <div class="total-price-area">
+                                        <span class="discount">20</span>
+                                        <span class="price">24,900</span>
+                                    </div>
+                                </div>
+                                <div class="card-control">
+                                    <div class="qty-box">
+                                        <button>−</button>
+                                        <span>0</span>
+                                        <button>+</button>
+                                    </div>
+                                    <button class="btn-icon">
+                                        <img src="assets/icons/heart_btn.svg" width="20">
+                                    </button>
+                                    <button class="btn-icon">
+                                        <img src="assets/icons/cart_sm.svg" width="20">
+                                    </button>
+                                </div>
+                                <div class="bottom-info">
+                                    <div class="info-row">
+                                        <img src="assets/icons/product-tag.svg" class="icon-micro"> 쿠폰 미적용 상품
+                                    </div>
+                                    <div class="info-row">
+                                        <img src="assets/icons/product-tag.svg" class="icon-micro"> 최대 3BOX 구매 가능
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Product 4 -->
+                            <article class="product-card">
+                                <div class="card-thumb">
+                                    <img src="assets/images/products/wine_kendall.png" alt="Product">
+                                    <div class="delivery-tags">
+                                        <span class="tag tag-ambient">상온</span>
+                                        <span class="tag tag-ambient tag-outline">TC</span>
+                                        <span class="tag tag-green">소비기한 해당 없음</span>
+                                    </div>
+                                </div>
+                                <div class="card-info">
+                                    <h3 class="product-name">Kendall-Jackson Vintner's Reserve Way Chardonnay 750ml</h3>
+                                    <div class="unit-info">
+                                        <span class="strike">28,000</span>
+                                        <span class="unit-highlight">25,200</span>
+                                        <span class="unit-desc">입수 9 / BOX</span>
+                                    </div>
+                                    <div class="total-price-area">
+                                        <span class="discount">10</span>
+                                        <span class="price">25,200</span>
+                                    </div>
+                                </div>
+                                <div class="card-control">
+                                    <div class="qty-box">
+                                        <button>−</button>
+                                        <span>0</span>
+                                        <button>+</button>
+                                    </div>
+                                    <button class="btn-icon">
+                                        <img src="assets/icons/heart_btn.svg" width="20">
+                                    </button>
+                                    <button class="btn-icon">
+                                        <img src="assets/icons/cart_sm.svg" width="20">
+                                    </button>
+                                </div>
+                                <div class="bottom-info">
+                                    <div class="info-row highlight">
+                                        <img src="assets/icons/product-tag.svg" class="icon-micro"> 오늘만 프로모션 적용
+                                    </div>
+                                    <div class="info-row">
+                                        <img src="assets/icons/product-time.svg" class="icon-micro"> 오늘 14:00 이후 주문 가능
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+
+                        <!-- Show More Link -->
+                        <div class="text-center mt-4">
+                            <a href="#"
+                                class="btn border border-secondary rounded-1 px-4 py-2 bg-white fw-bold d-inline-flex align-items-center gap-2"
+                                style="font-size: 14px;">
+                                상품 더보기 <img src="assets/icons/fullview-arrow.svg" width="16" alt="Arrow">
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Rank 2 -->
+                <li class="ranking-item border-bottom">
+                    <div class="ranking-header py-3 px-2 d-flex align-items-center cursor-pointer">
+                        <span class="rank-num fs-4 fw-bold me-4" style="width: 20px;">2</span>
+                        <img src="assets/icons/rank-up.svg" class="me-4" alt="Up">
+                        <strong class="fs-5 me-3">섬유유연제</strong>
+                        <span class="text-secondary small">청소 · 생활용품</span>
+                        <button class="btn border ms-auto d-flex align-items-center justify-content-center bg-white"
+                            style="width: 32px; height: 32px; padding: 0;">
+                            <img src="assets/icons/chevron-down.svg" style="width: 14px;">
+                        </button>
+                    </div>
+                </li>
+
+                <!-- Rank 3 -->
+                <li class="ranking-item border-bottom">
+                    <div class="ranking-header py-3 px-2 d-flex align-items-center cursor-pointer">
+                        <span class="rank-num fs-4 fw-bold me-4" style="width: 20px;">3</span>
+                        <img src="assets/icons/rank-down.svg" class="me-4" alt="Down">
+                        <strong class="fs-5 me-3">초코머핀</strong>
+                        <span class="text-secondary small">베이커리 · 잼</span>
+                        <button class="btn border ms-auto d-flex align-items-center justify-content-center bg-white"
+                            style="width: 32px; height: 32px; padding: 0;">
+                            <img src="assets/icons/chevron-down.svg" style="width: 14px;">
+                        </button>
+                    </div>
+                </li>
+
+                <!-- Rank 4 -->
+                <li class="ranking-item border-bottom">
+                    <div class="ranking-header py-3 px-2 d-flex align-items-center cursor-pointer">
+                        <span class="rank-num fs-4 fw-bold me-4" style="width: 20px;">4</span>
+                        <strong class="fs-5 me-3">제주삼다수</strong>
+                        <span class="text-secondary small">생수 · 음료 · 주류</span>
+                        <button class="btn border ms-auto d-flex align-items-center justify-content-center bg-white"
+                            style="width: 32px; height: 32px; padding: 0;">
+                            <img src="assets/icons/chevron-down.svg" style="width: 14px;">
+                        </button>
+                    </div>
+                </li>
+
+                <!-- Rank 5 -->
+                <li class="ranking-item border-bottom">
+                    <div class="ranking-header py-3 px-2 d-flex align-items-center cursor-pointer">
+                        <span class="rank-num fs-4 fw-bold me-4" style="width: 20px;">5</span>
+                        <img src="assets/icons/rank-up.svg" class="me-4" alt="Up">
+                        <strong class="fs-5 me-3">Blanc 750ml</strong>
+                        <span class="text-secondary small">생수 · 음료 · 주류</span>
+                        <button class="btn border ms-auto d-flex align-items-center justify-content-center bg-white"
+                            style="width: 32px; height: 32px; padding: 0;">
+                            <img src="assets/icons/chevron-down.svg" style="width: 14px;">
+                        </button>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Banner Shortcut (Div based, not section) -->
+            <div class="banner-shortcut-wrapper section-container">
+                <div class="banner-content">
+                    <img src="assets/images/banner/banner_text_product_crop.png" alt="팝콘 시리즈, 고객 반응이 빠른 스낵 라인업."
+                        style="height: 90%; width: auto;">
+                    <div class="action-group">
+                        <span class="ad-badge">AD</span>
+                        <a href="#" class="btn-shortcut">
+                            바로가기 <img src="assets/icons/arrow-right.svg" alt="->">
+                        </a>
+                    </div>
+                </div>
+                <!-- Slider Controller -->
+                <div class="slider-controller">
+                    <button class="control-btn prev">
+                        <img src="assets/icons/chevron-left-sm.svg" alt="Prev">
+                    </button>
+                    <div class="page-info">
+                        <span class="current">01</span>
+                        <span class="divider">—</span>
+                        <span class="total">20</span>
+                    </div>
+                    <button class="control-btn next">
+                        <img src="assets/icons/chevron-right-sm.svg" alt="Next">
+                    </button>
+                    <button class="control-btn pause">
+                        <img src="assets/icons/pause.svg" alt="Pause">
+                    </button>
+                </div>
+            </div>
+
+
+        </section>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

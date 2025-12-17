@@ -1,0 +1,825 @@
+@import 'variables';
+
+// Global Layout
+body {
+    min-width: 1400px;
+    font-family: $font-family-base;
+    background-color: $white;
+    margin: 0;
+    overflow-x: auto;
+}
+
+// Utils
+.number-font {
+    font-family: $font-family-number;
+    letter-spacing: -0.5px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.text-gold {
+    color: $primary-gold !important;
+}
+
+// Layout Utils (Refactor Inline Styles)
+.header-col {
+    min-width: 250px;
+}
+
+.search-input-wrap {
+    max-width: 680px;
+}
+
+.icon-muted {
+    opacity: 0.5;
+    margin-right: 4px;
+}
+
+.icon-muted-simple {
+    opacity: 0.5;
+}
+
+.vr-custom {
+    height: 20px;
+}
+
+.icon-invert {
+    filter: invert(1);
+    width: 20px;
+}
+
+.icon-mini {
+    width: 12px;
+}
+
+.icon-micro {
+    width: 13px;
+    height: 13px;
+}
+
+// Header
+.header {
+    width: 100%;
+    min-width: 1400px;
+    background-color: $white;
+    box-shadow: none;
+}
+
+// Container
+.container-fluid {
+    width: 100%;
+    max-width: none; // Full fluid
+    padding: 0 48px;
+    margin: 0 auto;
+}
+
+// Components
+.badge-gold {
+    background-color: $primary-gold;
+    color: $white;
+    width: 44px;
+    height: 32px;
+    font-size: 11px;
+}
+
+.logo-text-e {
+    font-size: $font-size-xl;
+    color: $primary-gold;
+    font-family: sans-serif;
+}
+
+.logo-text-club {
+    font-size: $font-size-xxl;
+    color: #333;
+}
+
+// Search
+.search-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.search-input {
+    background-color: $gray-100;
+    height: 50px;
+    font-size: $font-size-base;
+    width: 100%;
+    max-width: 680px; // Match GNB width approx
+
+    &:focus {
+        background-color: $gray-100; // Maintain BG
+        border: 1px solid #666666 !important; // Darker border
+        box-shadow: none;
+    }
+}
+
+// Category
+.category-area {
+    min-width: 250px; // Balance Layout
+
+    .category-box {
+        width: 44px;
+        height: 44px;
+        background-color: $gray-800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+    }
+
+    .category-label {
+        font-size: $font-size-md;
+        color: $black;
+        font-weight: 700;
+        margin-left: 12px;
+    }
+
+    &:hover .category-label {
+        color: $primary-gold;
+    }
+}
+
+// GNB
+.gnb-nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.gnb-link {
+    font-size: $font-size-md;
+    font-weight: 700;
+    color: $black;
+    padding-bottom: 22px;
+    text-decoration: none;
+    display: block;
+
+    &.active {
+        border-bottom: 3px solid $primary-gold;
+    }
+
+    &:hover {
+        color: $primary-gold;
+    }
+}
+
+// Order Badges
+.badge-order-red {
+    background-color: $badge-red-bg;
+    color: $badge-red-text;
+    border: 1px solid $badge-red-border;
+    height: 32px;
+}
+
+.badge-order-blue {
+    background-color: $badge-blue-bg;
+    color: $badge-blue-text;
+    border: 1px solid $badge-blue-border;
+    height: 32px;
+}
+
+.order-info-area {
+    min-width: 250px; // Balance Layout
+    justify-content: flex-end;
+}
+
+// Main Slider
+.main-slider-wrapper {
+    width: 100%;
+    overflow-x: hidden;
+    padding-left: 48px; // Match container padding
+    margin-top: 40px;
+
+    .slider-track {
+        display: flex;
+        gap: 20px;
+        width: max-content;
+    }
+
+    .slider-card {
+        width: 440px;
+        height: 440px;
+        border-radius: 4px;
+        overflow: hidden;
+        position: relative;
+        transition: transform 0.2s;
+        background-color: $gray-100;
+
+        // Card Variations (Matching seamless bg)
+        &.card-coffee {
+            background-color: #7A9B86;
+        }
+
+        &.card-snack {
+            background-color: #D68F4D;
+        }
+
+        &.card-pasta {
+            background-color: #3B72A8;
+        }
+
+        &.card-beverage {
+            background-color: #C1A88B;
+        }
+
+        &.card-juice {
+            background-color: #A93E3E;
+        }
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+
+        .slider-card-img-wrap {
+            height: 70%;
+            width: 100%;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center bottom;
+            }
+        }
+
+        .slider-card-body {
+            height: 30%;
+            padding: 0 24px 24px 24px;
+            display: flex;
+            align-items: center; // Align center vertically
+            justify-content: space-between; // Text left, arrow right
+            color: $white;
+
+            .text-group {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .slider-title {
+                font-size: 20px;
+                font-weight: 700;
+                margin-bottom: 4px;
+                line-height: 1.2;
+            }
+
+            .slider-desc {
+                font-size: 13px;
+                opacity: 0.9;
+            }
+
+            .slider-arrow {
+                // Now relative to flex container
+                background-color: rgba(255, 255, 255, 0.2);
+                width: 32px;
+                height: 32px;
+                min-width: 32px; // Prevent shrink
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: 12px;
+            }
+        }
+    }
+}
+
+// Section Container
+.section-container {
+    width: 1360px;
+    margin: 80px auto;
+}
+
+// Section Header
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    .section-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: $black;
+    }
+
+    .section-link {
+        font-family: "Pretendard", sans-serif;
+        font-size: 16px; // Visually looks larger in reference, adjusting to 16px
+        color: #333;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 12px; // Gap between Text and Box
+        font-weight: 600; // SemiBold
+
+        // Reset previous button styles on the container
+        height: auto;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+
+        // The Arrow Box (Square Button)
+        &:after {
+            content: "";
+            display: block;
+            width: 48px; // User specified width
+            height: 48px; // User specified height
+            border: 1px solid #333; // User image shows dark border, likely #333 or #222
+            border-radius: 4px; // User specified radius
+            background: url('../icons/fullview-arrow.svg') no-repeat center center;
+            background-size: 24px 24px; // Icon size
+            box-sizing: border-box;
+            transition: all 0.2s;
+        }
+
+        // Optional hover effect
+        &:hover:after {
+            background-color: #f4f4f4;
+        }
+    }
+}
+
+// Product Grid
+.product-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+// Product Card Component (Ultra High Fidelity)
+.product-card {
+    background-color: $white;
+    width: 100%;
+    display: flex; // Flex container
+    flex-direction: column; // Vertical layout
+    height: 100%; // Stretch to fill grid cell
+
+    .card-thumb {
+        width: 100%;
+        position: relative;
+        background-color: #f4f4f4; // Requested BG
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 20px;
+
+        // Square aspect ratio wrapper
+        &:before {
+            content: "";
+            display: block;
+            padding-bottom: 100%;
+        }
+
+        img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 75%; // Padding effect (image is smaller than box)
+            height: 75%;
+            object-fit: contain; // Contain to show whitespace
+        }
+
+        // Top Left Badge
+        .badge-corner {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: #ffffe0;
+            padding: 6px 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #333;
+
+            img {
+                position: relative;
+                width: 14px;
+                height: 14px;
+                object-fit: contain;
+                top: auto;
+                left: auto;
+                transform: none;
+            }
+        }
+
+        // Bottom Delivery Tags Container
+        .delivery-tags {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            display: flex;
+            gap: 6px;
+
+            .tag {
+                font-size: 12px;
+                font-weight: 600;
+                padding: 4px 8px;
+                border-radius: 2px;
+                display: flex;
+                align-items: center;
+            }
+
+            .tag-frozen {
+                background-color: #E8F3FF;
+                color: #007AFF;
+
+                &:before {
+                    content: '❄';
+                    margin-right: 4px;
+                    font-size: 10px;
+                }
+            }
+
+            .tag-ambient {
+                background-color: #FFF9C4;
+                color: #FBC02D;
+
+                &:before {
+                    content: '🌡';
+                    margin-right: 4px;
+                    font-size: 10px;
+                    color: #F9A825;
+                }
+            }
+
+            .tag-green {
+                background-color: #E8F5E9;
+                color: #00C853;
+            }
+        }
+    }
+
+    .card-info {
+        padding: 0;
+        margin-bottom: 39px;
+
+        // Line 1: Name
+        .product-name {
+            font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; // User specified Pretendard
+            font-size: 20px; // Figma: 20px
+            font-weight: 600; // Figma: SemiBold (600)
+            color: #333;
+            margin-bottom: 4px;
+            line-height: 1.5; // Figma: 150%
+            letter-spacing: -0.02em; // Figma: -2%
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        // Line 2: Unit Price Info
+        .unit-info {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            .strike {
+                text-decoration: line-through;
+                color: #999;
+                font-size: 14px; // Slightly smaller than main
+            }
+
+            .unit-highlight {
+                font-weight: 700;
+            }
+
+            .unit-desc {
+                color: #333;
+                font-size: 14px;
+                font-weight: 400;
+            }
+        }
+
+        // Line 3: Total Price
+        .total-price-area {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            font-size: 24px;
+            font-weight: 800;
+            color: #333;
+
+            .discount {
+                color: #FF531D;
+                font-weight: 700;
+
+                &:after {
+                    content: '%';
+                    font-size: 22px;
+                    margin-left: 1px;
+                }
+            }
+
+            .price {
+                font-weight: 800; // Extra bold
+            }
+        }
+    }
+
+    // Controls (Qty, Heart, Cart)
+    .card-control {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 12px;
+        margin-top: auto; // Push to bottom of flex container (Vertical Alignment Fix)
+
+        .qty-box {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 40px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 0 10px;
+
+            button {
+                background: none;
+                border: none;
+                font-size: 18px;
+                color: #333;
+                cursor: pointer;
+                padding: 0 8px;
+            }
+
+            span {
+                font-size: 14px;
+                font-weight: 600;
+            }
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: $white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #f9f9f9;
+            }
+        }
+    }
+
+    // Bottom Info Text
+    // Bottom Info Text
+    .bottom-info {
+        font-size: 11px;
+        color: #888;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        min-height: 40px; // Ensure consistent height for alignment
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            color: #888;
+            font-weight: 500;
+
+            img {
+                width: 13px;
+                height: 13px;
+                opacity: 0.6;
+                margin-right: 4px;
+            }
+
+            &.highlight {
+                color: #FF531D;
+
+                img {
+                    filter: invert(47%) sepia(66%) saturate(3015%) hue-rotate(338deg) brightness(101%) contrast(101%);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+// Tab Menu (Block Style) matching image
+.tab-menu {
+    display: flex;
+    gap: 8px;
+    border-bottom: none;
+    margin-bottom: 30px;
+
+    .tab-item {
+        flex: 1;
+        text-align: center;
+        padding: 14px 0;
+        font-size: 15px;
+        color: #333;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: 4px;
+        background-color: #F8F8F8; // Light grey
+        // border: 1px solid #ddd;
+        // border-right: none;
+
+        &:last-child {
+            // border-right: 1px solid #ddd;
+        }
+
+        &.active {
+            background-color: #333; // Dark active state
+            color: $white;
+            border-color: #333;
+        }
+    }
+}
+
+// Weekly Ranking (Accordion)
+.ranking-list {
+    margin-top: 20px;
+    border-top: 2px solid #333 !important; // Top border thickness
+
+    .ranking-item {
+        border-bottom: 1px solid #eee;
+
+        // Expanded state style
+        &:first-child {
+            // Assuming first is expanded for now, or use .active class if JS was managing
+            // border-bottom: 1px solid #333; 
+        }
+
+        .ranking-header {
+            padding: 24px 10px; // Spacing matches image
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: #f9f9f9;
+            }
+
+            .rank-num {
+                font-family: 'Pretendard', sans-serif;
+            }
+        }
+
+        .ranking-body {
+            background-color: $white; // It looks white in image, not gray. But standard accordion body often differs. 
+            // In the image, the expanded area seems to default white, but enclosed? 
+            // Let's keep it clean.
+            padding-top: 10px;
+            padding-bottom: 40px;
+        }
+    }
+}
+
+// Banner Shortcut (Div Wrapper)
+.banner-shortcut-wrapper {
+    margin-bottom: 80px;
+
+    .banner-content {
+        background-color: #FFF59D; // Yellow background
+        border-radius: 4px; // Slight radius?? Image looks rectangular mostly but let's do 0 if full width, or 4px if card. Screenshot shows distinct sharp corners or very slight radius.
+        height: 180px; // Approx height
+        display: flex;
+        align-items: center;
+        padding: 0 60px;
+        position: relative;
+        justify-content: space-between;
+        align-items: center; // Ensure vertical centering
+
+        .text-group {
+            z-index: 1;
+
+            h3 {
+                font-family: "Pretendard", sans-serif;
+                font-size: 24px;
+                font-weight: 700;
+                color: #222;
+                line-height: 1.3;
+                margin-bottom: 8px;
+            }
+
+            p {
+                font-size: 14px;
+                color: #555;
+                margin: 0;
+            }
+        }
+
+        .image-group {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 100%;
+            bottom: 0;
+
+            img {
+                height: 90%; // Fit within container
+                width: auto;
+                object-fit: contain;
+                margin-top: 10px; // Push down slightly
+            }
+        }
+
+        .action-group {
+            display: flex;
+            align-items: center;
+
+            .ad-badge {
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                font-size: 10px;
+                color: #999;
+                border: 1px solid #ddd;
+                padding: 2px 4px;
+                border-radius: 2px;
+                background: rgba(255, 255, 255, 0.5);
+            }
+
+            .btn-shortcut {
+                background-color: $white;
+                padding: 10px 20px;
+                border-radius: 4px;
+                text-decoration: none;
+                color: #333;
+                font-weight: 700;
+                font-size: 14px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+                img {
+                    width: 16px;
+                }
+            }
+        }
+    }
+}
+
+// Custom Slider Controller (Pagination)
+.slider-controller {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 30px 0;
+    margin-bottom: 50px;
+
+    .control-btn {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+
+        img {
+            width: 14px;
+            height: 14px;
+        }
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    .page-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: 'Pretendard', sans-serif;
+        font-size: 15px;
+
+        .current {
+            font-weight: 700;
+            color: #333;
+        }
+
+        .divider {
+            color: #ccc;
+            margin: 0 8px;
+        }
+
+        .total {
+            color: #999;
+            font-weight: 500;
+        }
+    }
+}

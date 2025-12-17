@@ -1,0 +1,85 @@
+// _header.scss - Header Styles for Step 1
+// Colors (Local overrides to ensure yellow branding)
+$emart-yellow: #FFC000;
+$emart-black: #222222;
+
+.header {
+    background-color: $white;
+
+    // 1. Utility Bar
+    .header-util {
+        font-size: 13px;
+
+        .nav-link {
+            color: $gray-600;
+
+            &:hover {
+                color: $emart-black;
+            }
+        }
+    }
+
+    // 2. Main Header
+    .header-main {
+        .logo {
+            i {
+                color: $emart-yellow;
+            }
+
+            span {
+                letter-spacing: -0.5px;
+            }
+        }
+
+        .search-form {
+            .input-group {
+                border-color: $emart-yellow !important;
+
+                input:focus {
+                    box-shadow: none;
+                    border-color: $emart-yellow;
+                }
+
+                .btn-warning {
+                    background-color: $emart-yellow;
+                    color: $emart-black;
+                }
+            }
+        }
+
+        .nav-item {
+            .nav-link {
+                color: $emart-black;
+
+                &:hover i {
+                    color: $emart-yellow;
+                }
+            }
+        }
+    }
+
+    // 3. GNB
+    .header-gnb {
+        .category-toggle {
+            cursor: pointer;
+
+            &:hover span {
+                color: $primary-gold;
+            }
+        }
+
+        .gnb-menu {
+            .nav-link {
+                color: $emart-black;
+                font-size: 16px;
+                letter-spacing: -0.5px;
+
+                &.active,
+                &:hover {
+                    color: $primary-gold;
+                    // border-bottom-color: $primary-gold !important;
+                }
+            }
+        }
+    }
+}

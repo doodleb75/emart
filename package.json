@@ -1,0 +1,22 @@
+{
+  "name": "emart-everyday-pos",
+  "version": "1.0.0",
+  "description": "Figma to HTML implementation",
+  "main": "index.html",
+  "scripts": {
+    "sass": "node node_modules/sass/sass.js assets/styles:assets/styles",
+    "watch": "node node_modules/sass/sass.js --watch assets/styles:assets/styles --no-source-map",
+    "dev": "concurrently \"npm run watch\" \"live-server\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "live-server": "^1.2.2",
+    "sass": "^1.69.0"
+  }
+}
