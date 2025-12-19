@@ -1,0 +1,208 @@
+// Header
+.header {
+    width: 100%;
+    padding: 0 rem(48); // Removed padding from here as it seems to be handled by container or inner padding in Figma
+    // Figma shows container padding px-48, py-32.
+    // Let's keep general header background
+    background-color: $white;
+}
+
+// 1. Top Info Bar
+.header-top {
+    padding: rem(32) rem(0);
+
+    .header-left-group {
+        gap: rem(24);
+    }
+
+    .info-group-container {
+        gap: rem(48);
+    }
+
+    .header-right-group {
+        gap: rem(48);
+    }
+
+    .badge-gold {
+        background-color: $primary-gold;
+        color: $white;
+        font-size: rem(14);
+        font-weight: 600;
+        padding: rem(10) rem(12);
+        border-radius: rem(4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: rem(48); // Figma height
+        min-width: rem(68); // Estimate based on visual/text
+    }
+
+    .info-label {
+        font-size: rem(14);
+        color: $gray-200; // #CCCCCC as per Figma
+        font-weight: 600;
+        margin-bottom: 0;
+        line-height: 1.5;
+        white-space: nowrap;
+    }
+
+    .info-value {
+        font-size: rem(20); // Figma says 20px for text? Re-checking context... 
+        // "이신선님" is 20px in Figma context ("text-[20px]").
+        font-weight: 600;
+        color: $black;
+        line-height: 1.5;
+        white-space: nowrap;
+
+        &.number-font {
+            font-family: $font-family-number;
+        }
+    }
+
+    .metric-value {
+        font-size: rem(24); // Figma says 24px for numbers ("text-[24px]")
+        font-weight: 600;
+        color: $black;
+        line-height: 1.5;
+
+        &.number-font {
+            font-family: $font-family-number;
+            letter-spacing: -0.48px;
+        }
+    }
+
+    .icon-muted {
+        filter: invert(86%) sepia(0%) saturate(0%) hue-rotate(160deg) brightness(87%) contrast(85%); // #CCCCCC approximation
+    }
+
+}
+
+
+.logo-text-e {
+    font-size: rem(32);
+    color: $primary-gold;
+    font-family: sans-serif;
+    line-height: 1;
+}
+
+.logo-text-club {
+    font-size: rem(32);
+    color: $black;
+    line-height: 1;
+}
+
+// Search (Node 29:2541)
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    height: rem(48);
+    background-color: $gray-50; // #F4F4F4
+    border-radius: rem(4);
+    padding: 0; // Reset padding
+    position: relative;
+    margin: 0 auto; // Center it
+}
+
+.search-input {
+    flex-grow: 1;
+    height: 100%;
+    border: none;
+    background: transparent;
+    padding: rem(10) 0 rem(10) rem(16); // Figma Padding
+    font-size: rem(16);
+    font-weight: 600;
+    font-family: 'Pretendard', sans-serif;
+    color: $black; // Text Color
+    outline: none;
+
+    &::placeholder {
+        color: $gray-400; // #CCCCCC
+        font-weight: 600;
+    }
+}
+
+.btn-search {
+    width: rem(48);
+    height: rem(48);
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 0 rem(4) rem(4) 0;
+}
+
+// Category
+.category-area {
+    flex: 0.8;
+    min-width: rem(160);
+
+    .category-box {
+        width: rem(40);
+        height: rem(40);
+        background-color: $gray-800; // #333 replace
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: rem(4);
+    }
+
+    .category-label {
+        font-size: rem(20);
+        color: $black;
+        font-weight: 700;
+        margin-left: rem(10);
+    }
+}
+
+// GNB
+.gnb-nav {
+    flex: 1;
+    flex-grow: 1;
+}
+
+.gnb-link {
+    font-size: rem(20);
+    font-weight: 700;
+    color: $black; // Was #333
+    padding-bottom: rem(9);
+    text-decoration: none;
+    display: block;
+    position: relative;
+
+    &.active {
+        color: $primary-gold;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: rem(3);
+            background-color: $primary-gold;
+        }
+    }
+
+    &:hover {
+        color: $primary-gold;
+    }
+}
+
+.order-info-area {
+    min-width: rem(400);
+    flex: 0.8;
+    justify-content: flex-end;
+
+    .icon-mini {
+        width: rem(20);
+        height: rem(20);
+    }
+}
+
+.header-nav {
+    padding: rem(24) rem(0);
+}

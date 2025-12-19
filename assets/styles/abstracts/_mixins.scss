@@ -1,0 +1,13 @@
+// Mixins
+// -----------------------------------------------------------------------------
+
+@mixin icon-mask($url, $size: rem(13), $color: currentColor) {
+    display: inline-block;
+    width: $size;
+    height: $size;
+    background-color: $color;
+    -webkit-mask: url($url) no-repeat 50% 50%;
+    mask: url($url) no-repeat 50% 50%;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}

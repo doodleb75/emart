@@ -6,7 +6,7 @@
   "scripts": {
     "sass": "node node_modules/sass/sass.js assets/styles:assets/styles",
     "watch": "node node_modules/sass/sass.js --watch assets/styles:assets/styles --no-source-map",
-    "dev": "concurrently \"npm run watch\" \"live-server\""
+    "dev": "concurrently \"npm run watch\" \"live-server --browser=chrome\""
   },
   "keywords": [],
   "author": "",

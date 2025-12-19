@@ -1,23 +1,19 @@
-// PC Main Stylesheet
+// Mobile Stylesheet
 // -----------------------------------------------------------------------------
 
-// 1. Abstracts
+// 1. Abstracts (Shared)
 @import 'abstracts/functions';
 @import 'abstracts/variables';
 @import 'abstracts/mixins';
 
-// 2. Base
+// 2. Base (Shared)
 @import 'base/typography';
 @import 'base/common';
 
-// 3. Components
+// 3. Components (Shared)
 @import 'components/badges';
 @import 'components/cards';
-// @import 'components/buttons'; // Created when needed
 
-// 4. Layout (PC)
-@import 'layout/pc/header';
-@import 'layout/pc/footer';
-
-// 5. Pages (PC)
-@import 'pages/pc/home';
+// 4. Layout (Mobile)
+@import 'layout/mobile/header';
+@import 'layout/mobile/footer';

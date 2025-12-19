@@ -1,0 +1,173 @@
+// Footer
+.footer {
+    margin-top: rem(60);
+
+    .footer-top {
+        background-color: $white; // Clean white bg
+        padding: rem(24) 0; // Add spacing above/below links
+        padding-top: 0;
+
+        .footer-link-grid {
+            display: flex;
+            gap: rem(8); // Space between blocks
+
+            a {
+                color: $black;
+                font-size: rem(14);
+                font-weight: 700;
+                text-decoration: none;
+                flex: 1; // Equal width columns
+                height: rem(48); // Fixed height blocks
+                background-color: #F4F4F4; // Gray background
+                border-radius: rem(4); // Rounded corners
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: rem(4);
+                border: none; // No separators lines
+
+                &:hover {
+                    background-color: #EAEAEA; // Hover state
+                }
+
+                img {
+                    position: relative;
+                    top: rem(-1);
+                    width: rem(16);
+                    height: rem(16);
+                    margin-left: rem(2);
+                }
+            }
+        }
+    }
+
+    .footer-bottom {
+        padding: rem(40) 0 rem(60);
+        background-color: $white;
+
+        .logo-row {
+            margin-bottom: rem(24);
+
+            img.footer-logo {
+                height: rem(24); // Fitted size
+            }
+        }
+
+        .info-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .company-info {
+            .info-row {
+                display: flex;
+                align-items: center;
+                gap: rem(8);
+                margin-bottom: rem(8);
+                flex-wrap: wrap;
+
+                span,
+                a {
+                    font-size: rem(14);
+                    color: #888888; // Muted text
+                    line-height: 1.5;
+                    font-weight: 500;
+                }
+
+                // Dividers
+                .divider {
+                    width: 1px;
+                    height: rem(10);
+                    background-color: #DDDDDD;
+                    display: inline-block;
+                }
+
+                .dot-divider {
+                    width: rem(3);
+                    height: rem(3);
+                    background-color: #DDDDDD;
+                    border-radius: 50%;
+                }
+            }
+
+            .copyright {
+                margin-top: rem(24);
+                font-size: rem(13);
+                color: #AAAAAA;
+            }
+        }
+
+        .contact-info-area {
+            display: flex;
+            gap: rem(40);
+            justify-content: space-between;
+
+            // App Install Box
+            .app-install-box {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: rem(12);
+
+                .title {
+                    font-size: rem(15);
+                    font-weight: 700;
+                    color: $black;
+                }
+
+                .qr-box {
+                    width: rem(80);
+                    height: rem(80);
+                    border: 1px solid #EEEEEE;
+                    padding: rem(4);
+                    border-radius: rem(4);
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+
+            // Contact List
+            .cs-list {
+                display: flex;
+                flex-direction: column;
+                gap: rem(12);
+
+                .cs-item {
+                    display: flex;
+                    align-items: center;
+                    gap: rem(8);
+
+                    img {
+                        width: rem(24);
+                        height: rem(24);
+                        opacity: 0.6; // Muted icons
+                    }
+
+                    .label {
+                        font-size: rem(14);
+                        font-weight: 600;
+                        color: #666;
+                    }
+
+                    .value {
+                        font-size: rem(14);
+                        color: #222;
+                        font-weight: 600;
+                    }
+
+                    .value-lg {
+                        font-size: rem(24); // Increased to 24px to match image visually (it's big)
+                        font-weight: 800; // Extra bold number
+                        font-family: "Pretendard", sans-serif; // Ensure standard font, numbers look standard
+                        color: $black;
+                        letter-spacing: 0; // Reset spacing
+                    }
+                }
+            }
+        }
+    }
+}
