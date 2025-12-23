@@ -11,3 +11,16 @@
     -webkit-mask-size: contain;
     mask-size: contain;
 }
+
+@mixin btn-active-styles($bg-color: $gray-100, $border-color: $gray-500) {
+    background-color: $bg-color;
+    border-color: $border-color;
+}
+
+@mixin btn-hover-effect($bg-color: $gray-100, $border-color: $gray-500) {
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        @include btn-active-styles($bg-color, $border-color);
+    }
+}

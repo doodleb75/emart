@@ -1,13 +1,17 @@
 // Slider Card
 .slider-card {
-    width: rem(440);
-    height: rem(480);
+    flex: 0 0 auto; // Prevent resizing
+    width: rem(440); // User requested 440px
+    height: rem(440); // User requested 440px
     border-radius: rem(4);
     overflow: hidden;
     position: relative;
     transition: transform 0.2s;
     display: flex;
     flex-direction: column;
+    text-decoration: none; // Reset anchor styles
+    color: inherit; // Use card-specific color logic
+    // aspect-ratio: 440 / 480; // REMOVED: aspect-ratio on container causes clipping.
 
     // Card Variations (Background Colors)
     &.card-coffee {
@@ -30,20 +34,21 @@
         background-color: #e83a31;
     }
 
-    // &:hover {
-    //     transform: translateY(rem(-5));
-    // }
-
-    // Hover Effect: Zoom Image
+    // Hover Effects
     &:hover {
         .slider-card-img-wrap img {
             transform: scale(1.1);
         }
+
+        .slider-title {
+            text-decoration: underline;
+            text-underline-offset: rem(4);
+        }
     }
 
     .slider-card-img-wrap {
-        height: 360px; // User explicitly requested 320px
         width: 100%;
+        aspect-ratio: 440 / 360; // Maintain image ratio (approx 75% of original card)
         background-color: #f8f7f0; // Light beige bg for image area
         overflow: hidden;
         position: relative;
@@ -51,7 +56,7 @@
         img {
             width: 100%;
             height: 100%;
-            object-fit: cover; // or contain? Figma had cover-like behavior
+            object-fit: cover; // Cover to fill area
             object-position: center bottom;
             transition: transform 0.3s ease;
         }
@@ -101,10 +106,10 @@
             background-color: rgba(0, 0, 0, 0.1); // Semi-transparent box
             border-radius: rem(4); // Rounded corners
 
-            img {
+            svg {
                 width: rem(20);
                 height: rem(20);
-                filter: brightness(0) invert(1); // Make white
+                color: $white; // Replaces filter: brightness(0) invert(1)
             }
         }
     }
@@ -141,13 +146,20 @@
             width: 75%; // Padding effect (image is smaller than box)
             height: 75%;
             object-fit: contain; // Contain to show whitespace
+            transition: transform 0.3s ease;
+        }
+
+        &:hover {
+            >img {
+                transform: translate(-50%, -50%) scale(1.05);
+            }
         }
 
         // Top Left Badge
         .badge-corner {
             position: absolute;
-            top: rem(12);
-            left: rem(12);
+            top: rem(10);
+            left: rem(10);
             background-color: #ffffe0;
             padding: rem(10) rem(12);
             border-radius: rem(4);
@@ -158,11 +170,11 @@
             font-weight: 700;
             color: #333;
 
-            img {
+            svg {
                 position: relative;
                 width: rem(14);
                 height: rem(14);
-                object-fit: contain;
+                // object-fit: contain; // Not needed for SVG
                 top: auto;
                 left: auto;
                 transform: none;
@@ -172,10 +184,10 @@
         // Bottom Delivery Tags Container
         .delivery-tags {
             position: absolute;
-            bottom: rem(12);
-            left: rem(12);
+            bottom: rem(10);
+            left: rem(10);
             display: flex;
-            gap: rem(6);
+            gap: rem(10);
 
             .tag {
                 font-size: rem(14);
@@ -186,10 +198,10 @@
                 align-items: center;
                 background-color: #FFFFE0; // Unified BG
 
-                img {
+                svg {
                     width: rem(16);
                     height: rem(16);
-                    object-fit: contain;
+                    // object-fit: contain;
                     margin-right: rem(4);
                 }
             }
@@ -231,6 +243,16 @@
     .card-info {
         padding: 0;
         margin-bottom: rem(39);
+        display: block; // Changed to block for anchor tag
+        text-decoration: none; // Remove default link underline
+        color: inherit; // Inherit text color
+
+        &:hover {
+            .product-name {
+                text-decoration: underline;
+                text-underline-offset: rem(2);
+            }
+        }
 
         // Line 1: Name
         .product-name {
@@ -262,6 +284,7 @@
                 text-decoration: line-through;
                 color: #999;
                 font-size: rem(14); // Slightly smaller than main
+                font-weight: 600;
             }
 
             .unit-highlight {
@@ -271,7 +294,7 @@
             .unit-desc {
                 color: #333;
                 font-size: rem(14);
-                font-weight: 400;
+                font-weight: 600;
             }
         }
 
@@ -313,14 +336,16 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border: 1px solid #ddd;
+            border: 1px solid $black;
             border-radius: rem(4);
-            padding: 0 rem(10);
+
+            overflow: hidden;
 
             button {
                 background: none;
                 border: none;
                 padding: 0;
+                width: rem(48);
                 height: rem(48);
                 cursor: pointer;
                 display: flex;
@@ -331,10 +356,12 @@
                     width: rem(18);
                     height: rem(18);
                 }
+
+                @include btn-hover-effect;
             }
 
             span {
-                font-size: rem(14);
+                font-size: rem(16);
                 font-weight: 600;
             }
         }
@@ -342,7 +369,7 @@
         .btn-icon {
             width: rem(48);
             height: rem(48);
-            border: 1px solid #ddd;
+            border: 1px solid $black;
             border-radius: rem(4);
             background: $white;
             display: flex;
@@ -350,9 +377,7 @@
             justify-content: center;
             cursor: pointer;
 
-            &:hover {
-                background-color: #f9f9f9;
-            }
+            @include btn-hover-effect;
         }
     }
 
@@ -535,5 +560,26 @@
             // I will set color #999 for now to match typical unselected state.
             color: #999;
         }
+    }
+}
+
+// Main Carousel Multi-Item Styling
+#eclubMainSlider {
+    overflow: hidden;
+}
+
+.carousel-inner {
+    overflow: visible; // Allow items to slide in from outside the box
+    gap: rem(20);
+
+    .carousel-item.active,
+    .carousel-item-next,
+    .carousel-item-prev {
+        display: flex; // Align clones horizontally
+        gap: rem(24);
+    }
+
+    .slider-card {
+        flex-shrink: 0;
     }
 }

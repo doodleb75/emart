@@ -1,0 +1,331 @@
+@charset "utf-8";
+
+// Weekly Ranking Section
+.weekly-ranking {
+    padding-bottom: rem(60);
+
+    .section-header {
+        margin-bottom: rem(20);
+
+        // Ensure header aligns to bottom if text sizes differ
+        align-items: flex-end !important;
+        padding-bottom: rem(12); // Spacing between content and line
+    }
+
+    .section-title-group {
+        display: flex;
+        align-items: center;
+        gap: rem(16); // Gap between title and divider
+    }
+
+    .section-title {
+        font-size: rem(24);
+        font-weight: 700;
+        color: $black;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        margin: 0;
+    }
+
+    .title-divider {
+        width: 1px;
+        height: rem(16);
+        background-color: #ddd; // Vertical line
+        display: block;
+    }
+
+    .date-text {
+        font-size: rem(14);
+        color: $gray-300; // Lighter gray
+        letter-spacing: -0.01em;
+    }
+}
+
+// Controls (Top Right)
+.ranking-control-area {
+    display: flex;
+    align-items: center;
+    gap: rem(16); // Spacing between Prev, Count, and Group
+    height: rem(48);
+
+    .control-btn {
+        width: rem(48);
+        height: rem(48);
+        border: 1px solid $black; // Maintains consistent border color
+        background-color: $white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: rem(4);
+        cursor: pointer;
+        @include btn-hover-effect;
+        transition: background-color 0.2s;
+
+        img {
+            width: rem(18);
+            height: rem(18);
+            display: block;
+        }
+    }
+
+    // Specific adjustments if needed for pause
+    .btn-pause img {
+        // Pause icon might need different aspect ratio? 
+        // slider_pause.svg size is 192 bytes. 
+        // Let's assume 14x14 fits or is close enough.
+        // Actually, let's just make it encompass
+    }
+
+    .btn-prev {
+        // Standalone Previous Button
+    }
+
+    .page-count {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: rem(8); // Spacing around dash
+        font-family: 'Pretendard', sans-serif;
+        min-width: rem(60);
+
+        .current {
+            font-size: rem(16);
+            font-weight: 600; // Bold for current
+            color: $black;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: rem(12); // Approximate width for dash area
+
+            img {
+                width: 100%; // Fill the container
+                height: auto;
+            }
+        }
+
+        .total {
+            font-size: rem(16); // Matched Figma 16px
+            font-weight: 400; // Figma showed 600 (style_EUOXWX) for '01' but '20' was gray AA. 
+            // Usually total is lighter/thinner.
+            color: #aaa;
+        }
+    }
+
+    .control-group {
+        display: flex;
+        align-items: center;
+        gap: rem(8);
+
+    }
+}
+
+// Ranking List
+// Carousel Container
+.ranking-carousel-view {
+    width: 100%;
+    overflow: hidden;
+}
+
+.ranking-carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+
+// Ranking List
+.ranking-list {
+    flex: 0 0 100%;
+    width: 100%;
+    border-top: none; // Managed by header border
+}
+
+.ranking-item {
+    border-bottom: 1px solid #eee;
+
+    &.active {
+        border-bottom: 2px solid $black !important;
+        border-top: 2px solid $black;
+        position: relative;
+        z-index: 10;
+
+        .ranking-header {
+            border-bottom: none; // Remove header separator when active
+        }
+    }
+
+
+
+    .ranking-header {
+        display: flex;
+        align-items: center;
+        padding: rem(24) rem(0); // Vertical spacing 24px
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+
+    }
+
+    // Rank Number
+    .rank-num {
+        display: inline-block;
+        width: rem(40); // Slightly wider to breathe
+        text-align: center;
+        font-family: 'Pretendard', sans-serif;
+        font-size: rem(24); // Larger as per design
+        font-weight: 700;
+        color: $black;
+        margin-right: rem(10); // Reduced margin to icon
+        line-height: 1;
+    }
+
+    // Rank Change Icon (Up/Down/Dash)
+    .rank-change {
+        width: rem(24);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: rem(30);
+
+        .icon-rank-dash {
+            color: $gray-500;
+        }
+
+        .icon-rank-up {
+            color: $accent-base;
+        }
+
+        .icon-rank-down {
+            color: $system-info;
+        }
+
+        img {
+            display: block;
+        }
+    }
+
+    // Title & Category
+    .rank-info {
+        display: flex;
+        align-items: center;
+        gap: rem(12);
+
+        .rank-title {
+            font-size: rem(18);
+            font-weight: 700;
+            color: $black;
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            // Vertical separator
+            &::after {
+                content: '';
+                display: block;
+                width: 1px;
+                height: rem(12);
+                background-color: #eee; // Light separator
+                margin-left: rem(12); // Spacing after title
+            }
+        }
+
+        .rank-category {
+            font-size: rem(14);
+            color: #999;
+            font-weight: 400;
+        }
+    }
+
+    // Toggle Button (Right)
+    .btn-toggle-rank {
+        width: rem(44);
+        height: rem(44);
+        border: 1px solid $black; // Slightly darker than eee
+        background-color: $white;
+        border-radius: rem(4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        cursor: pointer;
+        padding: 0;
+        transition: all 0.2s;
+
+        svg {
+            width: rem(10); // Larger icon
+            height: rem(6);
+            transition: transform 0.3s;
+            // -webkit-mask: none; // Not needed for inline SVG
+            // mask: none;
+            background-color: transparent;
+
+            // Default Inactive: Source is 'chevron-down.svg'.
+            // So 0deg = Down.
+            transform: rotate(0deg);
+            color: $black; // Default color
+        }
+
+        // Active state (filled dark)
+        &.active {
+            background-color: $black; // Dark background
+            border-color: $black;
+
+            svg {
+                // Active: Rotate 180 to point UP.
+                transform: rotate(180deg);
+                opacity: 1;
+                color: $white; // Replaces filter: brightness(0) invert(1)
+            }
+        }
+    }
+
+    // Expanded Body
+    .ranking-body {
+        padding: rem(30) 0 rem(40) 0;
+        display: none;
+
+        &.show {
+            display: block;
+        }
+    }
+}
+
+// Product Grid in Ranking
+.ranking-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: rem(20);
+}
+
+// Show More Button Area
+.ranking-more-link {
+    display: flex;
+    justify-content: center;
+    padding-top: rem(40);
+
+    .btn-more {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: rem(4); // Closer arrow
+        height: rem(48); // Taller button
+        padding: rem(10) rem(24);
+        border: 1px solid $black;
+        border-radius: rem(4); // Square
+        background-color: $white;
+        font-size: rem(14); // Clear text
+        font-weight: 500;
+        color: $black;
+        text-decoration: none;
+        transition: all 0.2s;
+
+        @include btn-hover-effect;
+
+        svg {
+            width: rem(16); // Arrow size
+            margin-top: rem(1); // Optical adjustment
+        }
+    }
+}
