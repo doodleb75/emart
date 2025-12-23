@@ -530,7 +530,7 @@
             font-family: 'Pretendard', sans-serif;
             font-weight: 600;
             font-size: rem(16);
-            color: #222;
+            color: $black;
         }
 
         .divider {
@@ -558,7 +558,7 @@
             // 29:2670 (05) was likely lighter. 
             // Previous code had text-secondary small opacity-50.
             // I will set color #999 for now to match typical unselected state.
-            color: #999;
+            color: $gray-500;
         }
     }
 }

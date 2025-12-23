@@ -1,0 +1,194 @@
+<header class="header">
+    <!-- 1. Top Info Bar  -->
+    <div class="header-top">
+        <div class="container-fluid d-flex justify-content-between align-items-center h-100">
+            <!-- User Info -->
+            <div class="d-flex align-items-center header-left-group">
+                <span class="badge-gold">GOLD</span>
+
+                <div class="d-flex align-items-center info-group-container">
+                    <!-- User Name -->
+                    <div class="d-flex flex-column justify-content-center">
+                        <div class="d-flex align-items-center">
+                            <span class="info-label">골드마트</span>
+                        </div>
+                        <strong class="info-value">이신선님</strong>
+                    </div>
+
+                    <!-- Member Code -->
+                    <div class="d-flex flex-column justify-content-center">
+                        <span class="info-label">회원코드</span>
+                        <strong class="info-value number-font">554731</strong>
+                    </div>
+
+                    <!-- Sales Manager -->
+                    <div class="d-flex flex-column justify-content-center">
+                        <span class="info-label">영업담당자</span>
+                        <strong class="info-value">이클럽 프로님</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metrics -->
+            <div class="d-flex align-items-center justify-content-end header-right-group">
+                <!-- Monthly Purchase -->
+                <div class="d-flex flex-column align-items-end justify-content-center">
+                    <span class="info-label mb-1">이번 달 누적 구매액</span>
+                    <strong class="metric-value number-font">35,400</strong>
+                </div>
+
+                <!-- Today Order -->
+                <div class="d-flex flex-column align-items-end justify-content-center">
+                    <span class="info-label mb-1">오늘 주문 총액</span>
+                    <strong class="metric-value number-font">428,200</strong>
+                </div>
+
+                <!-- Expected Delivery -->
+                <div class="d-flex flex-column align-items-end justify-content-center">
+                    <span class="info-label mb-1">배송 예정 금액</span>
+                    <strong class="metric-value number-font">112,800</strong>
+                </div>
+
+                <!-- Available Points -->
+                <div class="d-flex flex-column align-items-end justify-content-center">
+                    <span class="info-label mb-1 d-flex align-items-center gap-1">
+                        <svg class="icon-muted-simple" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M7.33203 4.66536H8.66536V5.9987H7.33203V4.66536ZM7.33203 7.33203H8.66536V11.332H7.33203V7.33203ZM7.9987 1.33203C4.3187 1.33203 1.33203 4.3187 1.33203 7.9987C1.33203 11.6787 4.3187 14.6654 7.9987 14.6654C11.6787 14.6654 14.6654 11.6787 14.6654 7.9987C14.6654 4.3187 11.6787 1.33203 7.9987 1.33203ZM7.9987 13.332C5.0587 13.332 2.66536 10.9387 2.66536 7.9987C2.66536 5.0587 5.0587 2.66536 7.9987 2.66536C10.9387 2.66536 13.332 5.0587 13.332 7.9987C13.332 10.9387 10.9387 13.332 7.9987 13.332Z"
+                                fill="currentColor"></path>
+                        </svg>
+                        사용 가능 포인트
+                    </span>
+                    <strong class="metric-value number-font">215,300</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Main Action Bar -->
+    <div class="header-main py-4">
+        <div class="container-fluid d-flex align-items-center">
+            <!-- Logo -->
+            <div class="d-flex align-items-center justify-content-start header-col">
+                <a href="/" class="text-decoration-none">
+                    <span class="fw-bold logo-text-e">e</span>
+                    <span class="fw-bold logo-text-club">클럽</span>
+                </a>
+            </div>
+
+            <!-- Search -->
+            <div class="search-container" style="max-width: 650.766px; width: 100%;">
+                <input type="text" class="search-input" placeholder="원하시는 상품을 검색해보세요.">
+                <button type="button" class="btn-search">
+                    <svg class="icon-search" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z"
+                            fill="currentColor"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Icons -->
+            <div class="category-group d-flex align-items-center gap-lg-custom justify-content-end header-col">
+                <a href="#">
+                    <span class="cart-count">100</span>
+                    <svg class="icon-header" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M15.55 13C16.3 13 16.96 12.59 17.3 11.97L20.88 5.48C21.25 4.82 20.77 4 20.01 4H5.21L4.27 2H1V4H3L6.6 11.59L5.25 14.03C4.52 15.37 5.48 17 7 17H19V15H7L8.1 13H15.55ZM6.16 6H18.31L15.55 11H8.53L6.16 6ZM7 18C5.9 18 5.01 18.9 5.01 20C5.01 21.1 5.9 22 7 22C8.1 22 9 21.1 9 20C9 18.9 8.1 18 7 18ZM17 18C15.9 18 15.01 18.9 15.01 20C15.01 21.1 15.9 22 17 22C18.1 22 19 21.1 19 20C19 18.9 18.1 18 17 18Z"
+                            fill="currentColor"></path>
+                    </svg></a>
+                <a href="#"><svg class="icon-header" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 20.9984L10.55 19.6984C8.86667 18.1818 7.475 16.8734 6.375 15.7734C5.275 14.6734 4.4 13.6859 3.75 12.8109C3.1 11.9359 2.64583 11.1318 2.3875 10.3984C2.12917 9.6651 2 8.9151 2 8.14844C2 6.58177 2.525 5.27344 3.575 4.22344C4.625 3.17344 5.93333 2.64844 7.5 2.64844C8.36667 2.64844 9.19167 2.83177 9.975 3.19844C10.7583 3.5651 11.4333 4.08177 12 4.74844C12.5667 4.08177 13.2417 3.5651 14.025 3.19844C14.8083 2.83177 15.6333 2.64844 16.5 2.64844C18.0667 2.64844 19.375 3.17344 20.425 4.22344C21.475 5.27344 22 6.58177 22 8.14844C22 8.9151 21.8708 9.6651 21.6125 10.3984C21.3542 11.1318 20.9 11.9359 20.25 12.8109C19.6 13.6859 18.725 14.6734 17.625 15.7734C16.525 16.8734 15.1333 18.1818 13.45 19.6984L12 20.9984ZM12 18.2984C13.6 16.8651 14.9167 15.6359 15.95 14.6109C16.9833 13.5859 17.8 12.6943 18.4 11.9359C19 11.1776 19.4167 10.5026 19.65 9.91094C19.8833 9.31927 20 8.73177 20 8.14844C20 7.14844 19.6667 6.3151 19 5.64844C18.3333 4.98177 17.5 4.64844 16.5 4.64844C15.7167 4.64844 14.9917 4.86927 14.325 5.31094C13.6583 5.7526 13.2 6.3151 12.95 6.99844H11.05C10.8 6.3151 10.3417 5.7526 9.675 5.31094C9.00833 4.86927 8.28333 4.64844 7.5 4.64844C6.5 4.64844 5.66667 4.98177 5 5.64844C4.33333 6.3151 4 7.14844 4 8.14844C4 8.73177 4.11667 9.31927 4.35 9.91094C4.58333 10.5026 5 11.1776 5.6 11.9359C6.2 12.6943 7.01667 13.5859 8.05 14.6109C9.08333 15.6359 10.4 16.8651 12 18.2984Z"
+                            fill="currentColor" />
+                    </svg></a>
+                <a href="#">
+                    <svg class="icon-header" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM7.35 18.5C8.66 17.56 10.26 17 12 17C13.74 17 15.34 17.56 16.65 18.5C15.34 19.44 13.74 20 12 20C10.26 20 8.66 19.44 7.35 18.5ZM18.14 17.12C16.45 15.8 14.32 15 12 15C9.68 15 7.55 15.8 5.86 17.12C4.7 15.73 4 13.95 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 13.95 19.3 15.73 18.14 17.12Z"
+                            fill="currentColor"></path>
+                        <path
+                            d="M12 6C10.07 6 8.5 7.57 8.5 9.5C8.5 11.43 10.07 13 12 13C13.93 13 15.5 11.43 15.5 9.5C15.5 7.57 13.93 6 12 6ZM12 11C11.17 11 10.5 10.33 10.5 9.5C10.5 8.67 11.17 8 12 8C12.83 8 13.5 8.67 13.5 9.5C13.5 10.33 12.83 11 12 11Z"
+                            fill="currentColor"></path>
+                    </svg>
+                </a>
+                <div class="vr bg-secondary opacity-25 vr-custom"></div>
+                <a href="#"><svg class="icon-header" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Navigation Bar -->
+    <nav class="header-nav">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+            <!-- Category -->
+            <div class="category-area d-flex align-items-center cursor-pointer">
+                <div class="category-box">
+                    <svg class="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </div>
+                <span class="category-label">전체 카테고리</span>
+            </div>
+
+            <!-- GNB -->
+            <div class="gnb-nav">
+                <ul class="nav gap-5 justify-content-center">
+                    <li class="nav-item"><a href="#" class="gnb-link active">홈</a></li>
+                    <li class="nav-item"><a href="#" class="gnb-link">오늘의 특가</a></li>
+                    <li class="nav-item"><a href="#" class="gnb-link">MD추천</a></li>
+                    <li class="nav-item"><a href="#" class="gnb-link">인기상품</a></li>
+                    <li class="nav-item"><a href="#" class="gnb-link">신상품</a></li>
+                    <li class="nav-item"><a href="#" class="gnb-link">금주 HOT 프로모션</a></li>
+                </ul>
+            </div>
+
+            <!-- Order Info -->
+            <div class="order-info-area d-flex align-items-center gap-2 text-nowrap">
+                <span class="small d-flex align-items-center me-2 gap-1">
+                    <svg class="icon-muted-simple" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M7.33203 4.66536H8.66536V5.9987H7.33203V4.66536ZM7.33203 7.33203H8.66536V11.332H7.33203V7.33203ZM7.9987 1.33203C4.3187 1.33203 1.33203 4.3187 1.33203 7.9987C1.33203 11.6787 4.3187 14.6654 7.9987 14.6654C11.6787 14.6654 14.6654 11.6787 14.6654 7.9987C14.6654 4.3187 11.6787 1.33203 7.9987 1.33203ZM7.9987 13.332C5.0587 13.332 2.66536 10.9387 2.66536 7.9987C2.66536 5.0587 5.0587 2.66536 7.9987 2.66536C10.9387 2.66536 13.332 5.0587 13.332 7.9987C13.332 10.9387 10.9387 13.332 7.9987 13.332Z"
+                            fill="currentColor"></path>
+                    </svg>
+                    최소 주문 금액
+                </span>
+                <span class="badge rounded-1 d-flex align-items-center gap-1 badge-order-red">
+                    <svg class="icon-mini" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M14.1336 8.95703V6.45703H11.6336V5.20703H14.1336V2.70703H15.3836V5.20703H17.8836V6.45703H15.3836V8.95703H14.1336ZM6.98383 17.082C5.94702 17.082 5.0632 16.7172 4.33237 15.9874C3.60168 15.2577 3.23633 14.3726 3.23633 13.332C3.23633 12.6974 3.3848 12.1106 3.68174 11.5716C3.97883 11.0326 4.38591 10.5831 4.90299 10.2231V4.9987C4.90299 4.41648 5.10466 3.9237 5.50799 3.52036C5.91119 3.11703 6.40397 2.91536 6.98633 2.91536C7.56855 2.91536 8.06133 3.11703 8.46466 3.52036C8.86786 3.9237 9.06945 4.41648 9.06945 4.9987V10.2231C9.58654 10.5831 9.9923 11.0326 10.2867 11.5716C10.581 12.1106 10.7308 12.6974 10.7361 13.332C10.7308 14.3726 10.3633 15.2577 9.63362 15.9874C8.9039 16.7172 8.02063 17.082 6.98383 17.082ZM6.15299 8.33203H7.81966V4.9987C7.81966 4.76259 7.7398 4.56467 7.58008 4.40495C7.42036 4.24523 7.22244 4.16536 6.98633 4.16536C6.75022 4.16536 6.5523 4.24523 6.39258 4.40495C6.23286 4.56467 6.15299 4.76259 6.15299 4.9987V8.33203Z"
+                            fill="currentColor"></path>
+                    </svg>
+                    상온 : 30만원
+                </span>
+                <span class="badge rounded-1 d-flex align-items-center gap-1 badge-order-blue">
+                    <svg class="icon-mini" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M11.6336 6.45964V5.20964H17.8836V6.45964H11.6336ZM6.98299 17.0846C5.94452 17.0846 5.06049 16.7198 4.33091 15.9901C3.60119 15.2603 3.23633 14.3752 3.23633 13.3346C3.23633 12.7001 3.3848 12.1132 3.68174 11.5742C3.97883 11.0352 4.38591 10.5857 4.90299 10.2257V5.0013C4.90299 4.41908 5.10466 3.9263 5.50799 3.52297C5.91119 3.11963 6.40397 2.91797 6.98633 2.91797C7.56855 2.91797 8.06133 3.11963 8.46466 3.52297C8.86786 3.9263 9.06945 4.41908 9.06945 5.0013V10.2257C9.58654 10.5857 9.99362 11.0352 10.2907 11.5742C10.5876 12.1132 10.7361 12.7001 10.7361 13.3346C10.7361 14.3752 10.3702 15.2603 9.63841 15.9901C8.90647 16.7198 8.02133 17.0846 6.98299 17.0846ZM4.48633 13.3346H9.48633C9.48633 12.9319 9.39952 12.5569 9.22591 12.2096C9.0523 11.8624 8.80577 11.5707 8.48633 11.3346L7.81966 10.8346V5.0013C7.81966 4.76519 7.7398 4.56727 7.58008 4.40755C7.42036 4.24783 7.22244 4.16797 6.98633 4.16797C6.75022 4.16797 6.5523 4.24783 6.39258 4.40755C6.23286 4.56727 6.15299 4.76519 6.15299 5.0013V10.8346L5.48633 11.3346C5.16688 11.5707 4.92036 11.8624 4.74674 12.2096C4.57313 12.5569 4.48633 12.9319 4.48633 13.3346Z"
+                            fill="currentColor"></path>
+                    </svg>
+                    저온 : 20만원
+                </span>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- End of Header -->

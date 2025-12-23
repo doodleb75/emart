@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장바구니 - e-Club</title>
+    <!-- Use relative paths for assets -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/styles/style.css" rel="stylesheet">
+    <script src="../assets/js/main.js"></script>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <div id="header-placeholder"></div>
+    <script>
+        // Fetch header from ../components/ since we are in /page/
+        fetch('../components/header.component.txt?v=' + new Date().getTime())
+            .then(response => response.text())
+            .then(data => {
+                // We need to adjust image/link paths in the fetched header if they are relative
+                // But for now, let's just insert it. The header uses absolute paths "/" for home 
+                // and "#" for links, so it should be mostly fine or might need tweaking.
+                // NOTE: Images in header might break if they use relative paths "assets/...".
+                // We'll fix that if observed.
+                let headerContent = data;
+                // Simple fix for relative asset paths in header if any exists:
+                // headerContent = headerContent.replace(/src="assets\//g, 'src="../assets/');
+                document.getElementById('header-placeholder').innerHTML = headerContent;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+
+    <!-- Cart Page Content -->
+    <main class="cart-page">
+        <div class="section-container"> <!-- Fixed width 1360px -->
+
+            <!-- Page Header -->
+            <div class="page-header">
+                <h2 class="page-title">
+                    장바구니 <span class="count">150</span>
+                </h2>
+                <div class="page-steps">
+                    <svg class="icon-step-arrow" width="9" height="14" viewBox="0 0 9 14" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.5 1.5L7 7L1.5 12.5" stroke="#CCCCCC" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <span class="step">주문결제</span>
+                    <svg class="icon-step-arrow" width="9" height="14" viewBox="0 0 9 14" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.5 1.5L7 7L1.5 12.5" stroke="#CCCCCC" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <span class="step">주문완료</span>
+                </div>
+            </div>
+
+            <!-- Layout Grid -->
+            <div class="row">
+                <!-- Left Content -->
+                <div class="col-lg-9">
+
+                    <!-- Control Bar -->
+                    <div class="control-bar">
+                        <div class="left-controls">
+                            <label class="custom-checkbox-wrap">
+                                <input type="checkbox" class="hidden-checkbox" id="selectAll" checked>
+                                <div class="custom-checkbox">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none">
+                                        <!-- Unchecked State (User Provided) -->
+                                        <g clip-path="url(#clip0_168_17943_1)">
+                                            <path class="outline"
+                                                d="M19 5V19H5V5H19ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z"
+                                                fill="#CCCCCC" />
+                                        </g>
+                                        <!-- Checked State (Blue Box + White Check) -->
+                                        <g class="checked-icon">
+                                            <path
+                                                d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z"
+                                                fill="#1f95ff" />
+                                            <path d="M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z"
+                                                fill="white" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_168_17943_1">
+                                                <rect width="24" height="24" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <span class="label-text">전체 선택</span>
+                            </label>
+
+                            <button class="btn-delete">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 6L6 18M6 6L18 18" stroke="#444444" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                선택 삭제
+                            </button>
+                        </div>
+                        <div class="right-controls">
+                            <button class="btn-excel-upload">
+                                <!-- Excel Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <path
+                                        d="M5.5 20.0001H14.4899C16.1467 20.0001 17.4899 18.657 17.4899 17.0001V5.84305L12.0769 0.0136719H5.5C3.84315 0.0136719 2.5 1.35682 2.5 3.01367V17.0001C2.5 18.657 3.84315 20.0001 5.5 20.0001Z"
+                                        fill="#00733B" />
+                                    <path
+                                        d="M12.1339 4.85499L12.0776 0L17.5 5.8434H13.1339C12.5861 5.8434 12.1403 5.40272 12.1339 4.85499Z"
+                                        fill="#4D9D76" />
+                                    <path
+                                        d="M6.31787 12.3047H5.48291L6.57178 14.0723L5.46338 15.8398H6.30811L7.04053 14.624H7.06494L7.79736 15.8398H8.64697L7.54346 14.0723L8.62256 12.3047H7.79248L7.06494 13.5205H7.04053L6.31787 12.3047Z"
+                                        fill="white" />
+                                    <path d="M9.0669 15.8398H11.3228V15.2344H9.79932V12.3047H9.0669V15.8398Z"
+                                        fill="white" />
+                                    <path
+                                        d="M13.7153 13.3154H14.4185C14.4087 12.6904 13.8936 12.2559 13.1099 12.2559C12.3359 12.2559 11.7695 12.6831 11.772 13.3252C11.772 13.8428 12.1382 14.1406 12.7339 14.2871L13.1196 14.3799C13.5054 14.4751 13.7251 14.5874 13.7251 14.8291C13.7251 15.0928 13.4761 15.2734 13.0903 15.2734C12.6997 15.2734 12.4165 15.0928 12.3921 14.7363H11.6792C11.7012 15.4956 12.2456 15.8911 13.1001 15.8887C13.9619 15.8911 14.4648 15.4761 14.4673 14.8291C14.4648 14.2407 14.0132 13.9331 13.4077 13.7939L13.0903 13.7158C12.7852 13.6475 12.5215 13.5327 12.5239 13.2764C12.5264 13.042 12.7339 12.8711 13.105 12.8711C13.4639 12.8711 13.686 13.0347 13.7153 13.3154Z"
+                                        fill="white" />
+                                </svg>
+                                엑셀 업로드
+                                <!-- Upload Arrow -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <g clip-path="url(#clip0_168_17926)">
+                                        <path
+                                            d="M7.50008 13.3333H12.5001V8.33333H15.8334L10.0001 2.5L4.16675 8.33333H7.50008V13.3333ZM4.16675 15H15.8334V16.6667H4.16675V15Z"
+                                            fill="#444444" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_168_17926">
+                                            <rect width="20" height="20" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Category Tabs -->
+                    <div class="category-tabs">
+                        <div class="tab-item active">
+                            상온 <span class="count highlight">100</span>
+                        </div>
+                        <div class="tab-item">
+                            저온 <span class="count">47</span>
+                        </div>
+                        <div class="tab-item">
+                            직납 <span class="count">2</span>
+                        </div>
+                        <div class="tab-item">
+                            가전 <span class="count">1</span>
+                        </div>
+                    </div>
+
+                    <!-- Cart Section: Ambient -->
+                    <div class="cart-section">
+                        <label class="custom-checkbox-wrap section-title-checkbox">
+                            <input type="checkbox" class="hidden-checkbox section-check" checked>
+                            <div class="custom-checkbox">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
+                                    <g clip-path="url(#clip0_168_17943_2)">
+                                        <path class="outline"
+                                            d="M19 5V19H5V5H19ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z"
+                                            fill="#CCCCCC" />
+                                    </g>
+                                    <g class="checked-icon">
+                                        <path
+                                            d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z"
+                                            fill="#1f95ff" />
+                                        <path d="M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="white" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_168_17943_2">
+                                            <rect width="24" height="24" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <span class="label-text">상온 상품</span>
+                        </label>
+
+                        <!-- Item 1: Evian -->
+                        <div class="cart-item">
+                            <div class="item-checkbox-col">
+                                <label class="custom-checkbox-wrap">
+                                    <input type="checkbox" class="hidden-checkbox item-check" name="cartItem" checked>
+                                    <div class="custom-checkbox">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <g clip-path="url(#clip0_168_17943_2)">
+                                                <path class="outline"
+                                                    d="M19 5V19H5V5H19ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z"
+                                                    fill="#CCCCCC"></path>
+                                            </g>
+                                            <g class="checked-icon">
+                                                <path
+                                                    d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z"
+                                                    fill="#1f95ff"></path>
+                                                <path d="M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z"
+                                                    fill="white"></path>
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_168_17943_2">
+                                                    <rect width="24" height="24" fill="white"></rect>
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="item-image">
+                                <img src="../assets/images/cart/Product Image.png" alt="에비앙 500ml"
+                                    onerror="this.src='https://via.placeholder.com/150x150?text=Evian'">
+                            </div>
+
+                            <div class="item-info">
+                                <div class="delivery-bottom-base">
+                                    <div class="product-name">에비앙 500ml</div>
+                                    <div class="brand-name">입수 24 · BOX</div>
+                                    <div class="promo-text">
+                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10.5 5.5L6.5 1.5H2V6L6 10L10.5 5.5Z" fill="#ff5447" />
+                                        </svg> 프로모션
+                                    </div>
+                                </div>
+                                <div class="delivery-tags">
+                                    <span class="tag tag-outline">
+                                        <svg class="icon-thermometer" width="16" height="16" viewBox="0 0 16 16"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M11.3077 7.16797V5.16797H9.30768V4.16797H11.3077V2.16797H12.3077V4.16797H14.3077V5.16797H12.3077V7.16797H11.3077ZM5.58784 13.668C4.7584 13.668 4.05134 13.3761 3.46668 12.7923C2.88212 12.2085 2.58984 11.5004 2.58984 10.668C2.58984 10.1603 2.70862 9.69086 2.94618 9.25964C3.18384 8.82841 3.50951 8.4688 3.92318 8.1808V4.0013C3.92318 3.53552 4.08451 3.1413 4.40718 2.81864C4.72973 2.49597 5.12396 2.33464 5.58984 2.33464C6.05562 2.33464 6.44984 2.49597 6.77251 2.81864C7.09507 3.1413 7.25634 3.53552 7.25634 4.0013V8.1808C7.67001 8.4688 7.99462 8.82841 8.23018 9.25964C8.46562 9.69086 8.58545 10.1603 8.58968 10.668C8.58545 11.5004 8.29146 12.2085 7.70768 12.7923C7.1239 13.3761 6.41729 13.668 5.58784 13.668ZM4.92318 6.66797H6.25651V4.0013C6.25651 3.81241 6.19262 3.65408 6.06484 3.5263C5.93707 3.39852 5.77873 3.33464 5.58984 3.33464C5.40096 3.33464 5.24262 3.39852 5.11484 3.5263C4.98707 3.65408 4.92318 3.81241 4.92318 4.0013V6.66797Z"
+                                                fill="currentColor" />
+                                        </svg> 상온
+                                    </span>
+                                    <span class="tag">TC</span>
+                                    <span class="tag tag-green">소비기한 50일</span>
+                                </div>
+                            </div>
+
+                            <div class="item-middle">
+                                <div class="unit-box">
+                                    <div>낱개환산 24개</div>
+                                    <div>개당 925 <span class="old">2,490</span></div>
+                                    <div class="relay-text">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 16 16" fill="none">
+                                            <g clip-path="url(#clip0_168_18051)">
+                                                <path
+                                                    d="M12.666 6.0013L13.4994 4.16797L15.3327 3.33464L13.4994 2.5013L12.666 0.667969L11.8327 2.5013L9.99935 3.33464L11.8327 4.16797L12.666 6.0013ZM7.66602 6.33464L5.99935 2.66797L4.33268 6.33464L0.666016 8.0013L4.33268 9.66797L5.99935 13.3346L7.66602 9.66797L11.3327 8.0013L7.66602 6.33464ZM12.666 10.0013L11.8327 11.8346L9.99935 12.668L11.8327 13.5013L12.666 15.3346L13.4994 13.5013L15.3327 12.668L13.4994 11.8346L12.666 10.0013Z"
+                                                    fill="#AAAAAA" />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_168_18051">
+                                                    <rect width="16" height="16" fill="white" />
+                                                </clipPath>
+                                            </defs>
+                                        </svg> 릴레이 적용
+                                    </div>
+                                </div>
+
+                                <div class="quantity-control-sm">
+                                    <button class="btn-minus">&minus;</button>
+                                    <input type="text" value="2">
+                                    <button class="btn-plus">&plus;</button>
+                                </div>
+                            </div>
+
+                            <div class="item-right">
+                                <div class="price-box">
+                                    <div class="main-price">
+                                        <span class="rate">20<span class="percent">%</span></span>
+                                        <span class="val">95,760</span>
+                                    </div>
+                                    <div class="sub-price">
+                                        7,980
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 20 20" fill="none">
+                                            <g clip-path="url(#clip0_168_18006)">
+                                                <path
+                                                    d="M12.5665 7.99297L9.99984 10.5596L7.43317 7.99297L6.24984 9.16797L9.99984 12.918L13.7498 9.16797L12.5665 7.99297ZM9.99984 1.66797C5.39984 1.66797 1.6665 5.4013 1.6665 10.0013C1.6665 14.6013 5.39984 18.3346 9.99984 18.3346C14.5998 18.3346 18.3332 14.6013 18.3332 10.0013C18.3332 5.4013 14.5998 1.66797 9.99984 1.66797ZM9.99984 16.668C6.3165 16.668 3.33317 13.6846 3.33317 10.0013C3.33317 6.31797 6.3165 3.33464 9.99984 3.33464C13.6832 3.33464 16.6665 6.31797 16.6665 10.0013C16.6665 13.6846 13.6832 16.668 9.99984 16.668Z"
+                                                    fill="#CCCCCC" />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_168_18006">
+                                                    <rect width="20" height="20" fill="white" />
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="btn-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#FF5447"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                        </svg>
+                                    </button>
+                                    <button class="btn-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666666"
+                                            stroke-width="2">
+                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                            <path
+                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 2: Actz -->
+                        <div class="cart-item">
+                            <div class="item-checkbox-col">
+                                <label class="custom-checkbox-wrap">
+                                    <input type="checkbox" class="hidden-checkbox item-check" name="cartItem" checked>
+                                    <div class="custom-checkbox">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <g clip-path="url(#clip0_168_17943_2)">
+                                                <path class="outline"
+                                                    d="M19 5V19H5V5H19ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z"
+                                                    fill="#CCCCCC"></path>
+                                            </g>
+                                            <g class="checked-icon">
+                                                <path
+                                                    d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z"
+                                                    fill="#1f95ff"></path>
+                                                <path d="M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z"
+                                                    fill="white"></path>
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_168_17943_2">
+                                                    <rect width="24" height="24" fill="white"></rect>
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="item-image">
+                                <img src="../assets/images/cart/Product Image-1.png" alt="애경 엑츠"
+                                    onerror="this.src='https://via.placeholder.com/150x150?text=Actz'">
+                            </div>
+
+                            <div class="item-info">
+
+                                <div class="delivery-bottom-base">
+                                    <div class="product-name">애경 엑츠 드럼세탁세제 2.5L</div>
+                                    <div class="brand-name">입수 12 · BOX</div>
+                                </div>
+                                <div class="delivery-tags mt-2">
+                                    <span class="tag tag-outline">
+                                        <svg class="icon-thermometer" width="16" height="16" viewBox="0 0 16 16"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M11.3077 7.16797V5.16797H9.30768V4.16797H11.3077V2.16797H12.3077V4.16797H14.3077V5.16797H12.3077V7.16797H11.3077ZM5.58784 13.668C4.7584 13.668 4.05134 13.3761 3.46668 12.7923C2.88212 12.2085 2.58984 11.5004 2.58984 10.668C2.58984 10.1603 2.70862 9.69086 2.94618 9.25964C3.18384 8.82841 3.50951 8.4688 3.92318 8.1808V4.0013C3.92318 3.53552 4.08451 3.1413 4.40718 2.81864C4.72973 2.49597 5.12396 2.33464 5.58984 2.33464C6.05562 2.33464 6.44984 2.49597 6.77251 2.81864C7.09507 3.1413 7.25634 3.53552 7.25634 4.0013V8.1808C7.67001 8.4688 7.99462 8.82841 8.23018 9.25964C8.46562 9.69086 8.58545 10.1603 8.58968 10.668C8.58545 11.5004 8.29146 12.2085 7.70768 12.7923C7.1239 13.3761 6.41729 13.668 5.58784 13.668ZM4.92318 6.66797H6.25651V4.0013C6.25651 3.81241 6.19262 3.65408 6.06484 3.5263C5.93707 3.39852 5.77873 3.33464 5.58984 3.33464C5.40096 3.33464 5.24262 3.39852 5.11484 3.5263C4.98707 3.65408 4.92318 3.81241 4.92318 4.0013V6.66797Z"
+                                                fill="currentColor" />
+                                        </svg> 상온
+                                    </span>
+                                    <span class="tag">TC</span>
+                                    <span class="tag tag-green">소비기한 50일</span>
+                                </div>
+                            </div>
+
+                            <div class="item-middle">
+                                <div class="unit-box">
+                                    <div>낱개환산 12개</div>
+                                    <div>개당 925 <span class="old">2,490</span></div>
+                                    <div class="relay-text">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 16 16" fill="none">
+                                            <g clip-path="url(#clip0_168_18051)">
+                                                <path
+                                                    d="M12.666 6.0013L13.4994 4.16797L15.3327 3.33464L13.4994 2.5013L12.666 0.667969L11.8327 2.5013L9.99935 3.33464L11.8327 4.16797L12.666 6.0013ZM7.66602 6.33464L5.99935 2.66797L4.33268 6.33464L0.666016 8.0013L4.33268 9.66797L5.99935 13.3346L7.66602 9.66797L11.3327 8.0013L7.66602 6.33464ZM12.666 10.0013L11.8327 11.8346L9.99935 12.668L11.8327 13.5013L12.666 15.3346L13.4994 13.5013L15.3327 12.668L13.4994 11.8346L12.666 10.0013Z"
+                                                    fill="#AAAAAA" />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_168_18051">
+                                                    <rect width="16" height="16" fill="white" />
+                                                </clipPath>
+                                            </defs>
+                                        </svg> 릴레이 적용
+                                    </div>
+                                </div>
+
+                                <div class="quantity-control-sm">
+                                    <button class="btn-minus">&minus;</button>
+                                    <input type="text" value="2">
+                                    <button class="btn-plus">&plus;</button>
+                                </div>
+                            </div>
+
+                            <div class="item-right">
+                                <div class="price-box">
+                                    <div class="main-price">
+                                        <span class="rate">20<span class="percent">%</span></span>
+                                        <span class="val">95,760</span>
+                                    </div>
+                                    <div class="sub-price">
+                                        7,980
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 20 20" fill="none">
+                                            <g clip-path="url(#clip0_168_18006)">
+                                                <path
+                                                    d="M12.5665 7.99297L9.99984 10.5596L7.43317 7.99297L6.24984 9.16797L9.99984 12.918L13.7498 9.16797L12.5665 7.99297ZM9.99984 1.66797C5.39984 1.66797 1.6665 5.4013 1.6665 10.0013C1.6665 14.6013 5.39984 18.3346 9.99984 18.3346C14.5998 18.3346 18.3332 14.6013 18.3332 10.0013C18.3332 5.4013 14.5998 1.66797 9.99984 1.66797ZM9.99984 16.668C6.3165 16.668 3.33317 13.6846 3.33317 10.0013C3.33317 6.31797 6.3165 3.33464 9.99984 3.33464C13.6832 3.33464 16.6665 6.31797 16.6665 10.0013C16.6665 13.6846 13.6832 16.668 9.99984 16.668Z"
+                                                    fill="#CCCCCC" />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_168_18006">
+                                                    <rect width="20" height="20" fill="white" />
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="btn-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path
+                                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                    <button class="btn-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666666"
+                                            stroke-width="2">
+                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                            <path
+                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Cart Section: Low Temp -->
+                    <div class="cart-section mt-5">
+                        <h3 class="section-title">
+                            <input type="checkbox" class="form-check-input me-1" checked>
+                            저온 상품
+                        </h3>
+                        <!-- Repeating similar items for visual completeness just with different titles -->
+                        <div class="cart-item">
+                            <div class="item-checkbox">
+                                <input type="checkbox" class="form-check-input" checked>
+                            </div>
+                            <div class="item-image">
+                                <img src="https://via.placeholder.com/100x100?text=LowTemp" alt="Product">
+                            </div>
+                            <div class="item-info">
+                                <div class="brand-name">애경 엑츠 드럼세탁세제 2.5L</div>
+                                <div class="product-name">입수 12 · BOX</div>
+                                <div class="option-text">
+                                    낱개환산 12개 · 개당 925
+                                </div>
+                                <div class="tags">
+                                    <span class="tag promo">★ 상온</span>
+                                    <span class="tag">TC</span>
+                                    <span class="tag">소비기한 50일</span>
+                                </div>
+                            </div>
+                            <div class="item-meta">
+                                <div class="quantity-control">
+                                    <button>-</button>
+                                    <input type="text" value="2">
+                                    <button>+</button>
+                                </div>
+                                <div class="price-info">
+                                    <div class="text-end">
+                                        <span class="discount-badge">20%</span>
+                                        <span class="current-price">95,760</span>
+                                    </div>
+                                    <span class="original-price">7,980 ~</span>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="action-btn">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path
+                                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                    <button class="action-btn">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                            <path
+                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Info Section -->
+                    <div class="cart-info">
+                        <div class="info-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                            </svg>
+                            장바구니 안내
+                        </div>
+                        <ul class="info-list">
+                            <li>장바구니에는 최근 담은 상품이 90개까지 보관되며 90일 이후 삭제됩니다.</li>
+                            <li>공주문가능 상품은 장바구니에 담을 수 있으며, 주문가능일에 주문 가능합니다.</li>
+                            <li>수량을 변경하고 결제예정금액을 확인하고, '주문결제' 단계에서 추가할인 받을 수 있습니다.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar (Summary) -->
+                <div class="col-lg-3">
+                    <div class="summary-sidebar">
+                        <div class="summary-box">
+                            <div class="summary-header">
+                                <div class="location-row">
+                                    <span class="location-title">배송지: 골드마트</span>
+                                    <button class="btn-change-addr">배송지변경</button>
+                                </div>
+                                <div class="address-text">
+                                    [12345] 서울 성동구 성수동 116길 11, 1층
+                                </div>
+                            </div>
+                            <div class="summary-body">
+                                <div class="price-row mb-4">
+                                    <span>선택상품 <span class="text-primary fw-bold">25</span></span>
+                                    <span class="price-val fs-5">497,760</span>
+                                </div>
+                                <div class="price-row">
+                                    <span>상온 10</span>
+                                    <span class="price-val">31,000</span>
+                                </div>
+                                <div class="price-row">
+                                    <span>저온 15</span>
+                                    <span class="price-val">21,000</span>
+                                </div>
+                                <div class="price-row mt-3 pt-3 border-top">
+                                    <span>배송비</span>
+                                    <span>무료배송</span>
+                                </div>
+                                <div class="price-row">
+                                    <span>할인내역</span>
+                                    <span>- 50,000</span>
+                                </div>
+                                <div class="price-row text-secondary" style="font-size: 0.85rem;">
+                                    <span>프로모션 에누리</span>
+                                    <span>5,000</span>
+                                </div>
+                                <div class="price-row text-secondary" style="font-size: 0.85rem;">
+                                    <span>L.일반특가(냉수) 적용1건</span>
+                                    <span>5,000</span>
+                                </div>
+                                <div class="price-row text-secondary" style="font-size: 0.85rem;">
+                                    <span>쿠폰</span>
+                                    <span>45,000</span>
+                                </div>
+                                <div class="price-row text-secondary" style="font-size: 0.85rem;">
+                                    <span>L.결제할인 5%</span>
+                                    <span>45,000</span>
+                                </div>
+
+                                <div class="price-row total">
+                                    <span>결제예정금액</span>
+                                    <span class="total-val">540,380</span>
+                                </div>
+                            </div>
+                            <div class="summary-footer">
+                                <button class="btn-submit">상품을 선택해주세요</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Footer placeholder (Layout mimic) -->
+            <!-- Footer Section -->
+            <div id="footer-placeholder"></div>
+            <script>
+                // Fetch footer from ../components/ since we are in /page/
+                fetch('../components/footer.component.txt?v=' + new Date().getTime())
+                    .then(response => response.text())
+                    .then(data => {
+                        let footerContent = data;
+                        // Simple fix for relative asset paths in footer if any exists:
+                        footerContent = footerContent.replace(/src="assets\//g, 'src="../assets/');
+                        document.getElementById('footer-placeholder').innerHTML = footerContent;
+                    })
+                    .catch(error => console.error('Error loading footer:', error));
+            </script>
+
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Checkbox Logic
+        document.addEventListener('DOMContentLoaded', function () {
+            const selectAll = document.getElementById('selectAll');
+            // Section checkboxes
+            const sectionCheckboxes = document.querySelectorAll('.section-check');
+
+            function updateSelectAllState() {
+                // Check if ALL sections and ALL items are checked?
+                // Actually, if we just check based on all .item-check
+                const allItems = document.querySelectorAll('.item-check');
+                const allChecked = Array.from(allItems).every(cb => cb.checked);
+
+                if (selectAll) {
+                    selectAll.checked = allChecked;
+                    // Also verify sections? Usually sections sync with their items. 
+                    // Let's ensure section checkboxes reflect their children too.
+                }
+            }
+
+            // Global Select All
+            if (selectAll) {
+                selectAll.addEventListener('change', function () {
+                    const isChecked = this.checked;
+                    // Toggle ALL checkboxes on page
+                    document.querySelectorAll('.item-check, .section-check').forEach(cb => {
+                        cb.checked = isChecked;
+                    });
+                });
+            }
+
+            // Section Level Logic
+            sectionCheckboxes.forEach(sectionCb => {
+                // Find parent section container
+                const sectionContainer = sectionCb.closest('.cart-section'); // Assumes wrapper exists
+                if (!sectionContainer) return;
+
+                const itemsInSection = sectionContainer.querySelectorAll('.item-check');
+
+                // Update section CB when items change
+                itemsInSection.forEach(itemCb => {
+                    itemCb.addEventListener('change', function () {
+                        const allSectionItemsChecked = Array.from(itemsInSection).every(cb => cb.checked);
+                        sectionCb.checked = allSectionItemsChecked;
+                        // updateSelectAllState(); // REMOVED: Clicking item shouldn't force global check logic if we want strict separation, 
+                        // BUT user said "Ambient product checkbox click" -> "Global checkbox not toggle".
+                        // This corresponds to the `sectionCb` listener above.
+                        // For ITEM clicks, standard logic applies (auto-update parents).
+
+                        // User specifically said: "When clicking Ambient Product checkbox (Section Header), Select All should not toggle."
+                        // That logic is in the `sectionCb` listener. 
+
+                        // HOWEVER, if checking an item makes *everything* checked, usually Select All *should* check.
+                        // I will leave this here for items.
+                        // User now requested: "Normally if items are checked, do not toggle Select All?"
+                        // Request: "Even if all item checkboxes are checked, Select All checkbox should NOT be checked."
+                        // Strictly interpret: "Only checkbox logic modification required."
+                        // "Adjust logic so Select All doesn't toggle."
+
+                        // updateSelectAllState(); // DISABLED to meet requirement "Don't toggle Select All when items checked"
+                    });
+                });
+
+                // Section toggle logic:
+                // User requirement: "Clicking Ambient Product checkbox (Section) should NOT toggle Select All."
+                // This means when we click the section header, we update children, but we do NOT call updateSelectAllState().
+                sectionCb.addEventListener('change', function () {
+                    const isChecked = this.checked;
+                    itemsInSection.forEach(cb => cb.checked = isChecked);
+                    // updateSelectAllState(); // DISABLE THIS to satisfy "Don't toggle Select All" requirement
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

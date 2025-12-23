@@ -109,8 +109,24 @@
 }
 
 .category-group {
+
     a {
+        position: relative;
         color: $black;
+
+        .cart-count {
+            position: absolute;
+            font-size: rem(12);
+            top: rem(-14);
+            right: rem(-20);
+            background-color: $accent-75;
+            color: $white;
+            border-radius: rem(20);
+            display: flex;
+            align-items: center;
+            padding: rem(2) rem(6);
+            justify-content: center;
+        }
     }
 }
 
@@ -146,13 +162,14 @@
 
 // Category
 .category-area {
+    gap: rem(16); // Figma gap 16px
     flex: 0.8;
     min-width: rem(160);
 
     .category-box {
-        width: rem(40);
-        height: rem(40);
-        background-color: $gray-800; // #333 replace
+        width: rem(48); // Figma 48px
+        height: rem(48); // Figma 48px
+        background-color: #444444; // Figma #444
         display: flex;
         align-items: center;
         justify-content: center;
@@ -162,9 +179,9 @@
 
     .category-label {
         font-size: rem(20);
-        color: $black;
-        font-weight: 700;
-        margin-left: rem(10);
+        color: $black; // #222
+        font-weight: 600; // SemiBold
+        margin-left: 0; // Handled by gap
     }
 }
 
@@ -177,7 +194,7 @@
 .gnb-link {
     font-size: rem(20);
     font-weight: 700;
-    color: $black; // Was #333
+    color: $black;
     padding-bottom: rem(9);
     text-decoration: none;
     display: block;
@@ -218,7 +235,7 @@
 }
 
 .header-nav {
-    padding: rem(24) rem(0);
+    padding: rem(24) rem(0); // Figma 32px vertical padding
 }
 
 .gap-lg-custom {

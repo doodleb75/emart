@@ -30,7 +30,7 @@
     .title-divider {
         width: 1px;
         height: rem(16);
-        background-color: #ddd; // Vertical line
+        background-color: $gray-200; // Vertical line
         display: block;
     }
 
@@ -109,8 +109,8 @@
         .total {
             font-size: rem(16); // Matched Figma 16px
             font-weight: 400; // Figma showed 600 (style_EUOXWX) for '01' but '20' was gray AA. 
-            // Usually total is lighter/thinner.
-            color: #aaa;
+            // usually total is lighter/thinner.
+            color: $gray-300;
         }
     }
 
@@ -143,7 +143,7 @@
 }
 
 .ranking-item {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid $gray-100;
 
     &.active {
         border-bottom: 2px solid $black !important;
@@ -225,15 +225,16 @@
                 content: '';
                 display: block;
                 width: 1px;
+                width: 1px;
                 height: rem(12);
-                background-color: #eee; // Light separator
+                background-color: $gray-100; // Light separator
                 margin-left: rem(12); // Spacing after title
             }
         }
 
         .rank-category {
             font-size: rem(14);
-            color: #999;
+            color: $gray-500;
             font-weight: 400;
         }
     }

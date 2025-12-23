@@ -42,7 +42,7 @@
 // Section Wrapper (Full Width with Border)
 .section-wrapper {
     width: 100%;
-    border-bottom: 1px solid #F4F4F4;
+    border-bottom: 1px solid $gray-50;
     margin-bottom: rem(80);
     padding-bottom: rem(80);
 }
@@ -137,9 +137,9 @@
         }
 
         &.active {
-            background-color: #333; // Dark active state
+            background-color: $gray-800; // Dark active state
             color: $white;
-            border-color: #333;
+            border-color: $gray-800;
         }
     }
 }
@@ -149,14 +149,14 @@
     margin-top: rem(20);
 
     .ranking-item {
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid $gray-100;
 
         .ranking-header {
             padding: rem(24) rem(10); // Spacing matches image
             transition: background-color 0.2s;
 
             &:hover {
-                background-color: #f9f9f9;
+                background-color: $gray-10; // #f9f9f9
             }
 
             .rank-num {
@@ -208,7 +208,7 @@
 
                 h3,
                 p {
-                    color: #222;
+                    color: $black;
                 }
             }
 
@@ -347,7 +347,7 @@
 
         .current {
             font-weight: 700;
-            color: #333;
+            color: $gray-800;
         }
 
         .divider {
@@ -356,7 +356,7 @@
         }
 
         .total {
-            color: #999;
+            color: $gray-500;
             font-weight: 500;
         }
     }
@@ -390,7 +390,7 @@
             height: rem(48);
             padding: 0 rem(16); // Horizontal padding from Figma
             background-color: $white;
-            border: 1px solid #222222; // stroke_C5M6KF
+            border: 1px solid $black; // stroke_C5M6KF
             border-radius: rem(4);
             cursor: pointer;
             transition: all 0.2s;
@@ -399,7 +399,7 @@
                 font-family: 'Pretendard', sans-serif;
                 font-size: rem(14); // style_69UL32
                 font-weight: 600;
-                color: #222222; // fill_K4HJEM
+                color: $black; // fill_K4HJEM
                 line-height: 1.5;
                 letter-spacing: -0.02em;
             }

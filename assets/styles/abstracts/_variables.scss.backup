@@ -6,7 +6,6 @@ $white: #ffffff;
 $black: #222222; // Gray-222222-80
 
 // Gray Scale
-$gray-20: #FAFAFA;
 $gray-50: #f4f4f4; // Gray-F4F4F4-30
 $gray-100: #eeeeee; // Gray-EEEEEE-40
 $gray-200: #cccccc; // Gray-CCCCCC-50
@@ -16,36 +15,20 @@ $gray-600: #888888; // Preserved
 $gray-700: #444444; // Gray-444444-70
 $gray-900: #222222; // Gray-222222-80
 
-// Brand Colors (Figma Updated)
+// Brand Colors
 $primary-gold: #ffbb33; // primary-75-base
-$primary-100: #ffaa00;
-$primary-50: #fddb96;
-$primary-25: #fbeac8;
-
 $accent-base: #ff5447; // Accent-75-base
-$accent-100: #b81f14;
-$accent-75: #FF5447;
-$accent-50: #fcb7b3;
-$accent-25: #fae9e8;
-
 $secondary-bg: #ffffe0; // Secondary-25
-$secondary-100: #e9d10c;
-$secondary-75: #ffe400;
-$secondary-50: #fdef7d;
 
 // System Colors
 $system-info: #1f95ff; // System-information-75-base
 $system-success: #00b87a; // System-success-75-base
-$system-danger: #e03e3e; // System-danger-75-base
-$system-warning: #ffaa00; // System-warning-75-base
 
 // Semantic Aliases & Legacy Support
 $primary-text: $black;
 $secondary-text: $gray-300;
 $gray-400: $gray-200; // Alias for #CCCCCC
 $gray-800: #333333; // Added for legacy support
-$gray-10: #fafafa; // Gray-FAFAFA-20
-$black-pure: #000000; // Gray-000000-100
 
 // Badge Colors (Refined from Figma/Puppeteer)
 $badge-red-bg: #FAEBDB;
@@ -66,20 +49,6 @@ $font-size-md: 16px;
 $font-size-lg: 20px;
 $font-size-xl: 32px; // Logo 'e'
 $font-size-xxl: 28px; // Logo 'Club'
-
-// Figma Typography
-$font-display-lg: 60px;
-$font-display-md: 44px;
-$font-display-sm: 36px;
-$font-heading-lg: 28px;
-$font-heading-md: 24px;
-$font-heading-sm: 19px;
-$font-heading-xs: 17px;
-$font-heading-xxs: 15px;
-$font-body-lg: 19px;
-$font-body-md: 17px;
-$font-body-sm: 15px;
-$font-body-xs: 13px;
 
 
 // 3. Spacing & Layout (Preserved)
