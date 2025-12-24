@@ -3,8 +3,8 @@
 /* Cart Page Styles */
 .cart-page {
     padding-top: rem(40);
-    padding-bottom: rem(80);
     border-top: 1px solid $gray-100;
+    font-weight: 600;
 
     .page-header {
         display: flex;
@@ -14,7 +14,8 @@
         .page-title {
             display: flex;
             align-items: baseline;
-            font-size: rem(32); // Increased to 32px to match visual importance
+            font-size: rem(32); // 시각적 강조: 32px
+
             font-weight: 700;
             color: $black;
             margin-bottom: 0;
@@ -34,7 +35,7 @@
             gap: rem(12);
 
             .step {
-                font-size: rem(32); // Matching scale of Figma design (approx)
+                font-size: rem(32); // Figma 디자인 스케일 반영
                 color: $gray-200; // $gray-200
                 font-weight: 300;
                 letter-spacing: -0.02em;
@@ -51,12 +52,32 @@
         }
     }
 
+    // 레이아웃 그리드 설정
+    .custom-cart-layout {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch; // 사이드바 sticky 적용을 위해 stretch
+        // .container 기준 전체 너비 1360px (980 + 332 + 48)
+    }
+
+    .cart-content {
+        width: rem(980);
+        flex-shrink: 0;
+    }
+
+    .cart-sidebar {
+        width: rem(332);
+        flex-shrink: 0;
+        // 간격은 justify-content: space-between으로 자동 처리
+    }
+
+
     .control-bar {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding-bottom: rem(12);
-        border-bottom: 1px solid $black; // Matches thick line in design (usually 1px or 2px black)
+        border-bottom: 1px solid $black; // 디자인 굵은 라인 (Black)
         margin-bottom: rem(0);
 
 
@@ -65,16 +86,16 @@
             gap: rem(24);
             align-items: center;
 
-            // .custom-checkbox-wrap MOVED TO GLOBAL SCOPE .cart-page below
+            // .custom-checkbox-wrap -> 글로벌 스코프로 이동
         }
 
         .btn-delete {
             display: flex;
             align-items: center;
             gap: rem(4);
-            font-size: rem(14);
+            font-size: rem(16);
             font-weight: 600;
-            color: #444;
+            color: $gray-700;
             background: transparent;
             border: none;
             cursor: pointer;
@@ -92,20 +113,20 @@
             background-color: $white;
             border: 1px solid $gray-200;
             border-radius: rem(4);
-            font-size: rem(14);
+            font-size: rem(16);
             font-weight: 600;
-            color: #444; // Matches text
+            color: $gray-700; // 텍스트 색상 일치
             cursor: pointer;
+            @include btn-hover-effect;
         }
     }
 }
 
-// Global Checkbox Styles within Cart Page (moved out of control-bar scope)
-// Global Checkbox Styles within Cart Page
+// 글로벌 체크박스 스타일 (control-bar 외부로 이동)
 .custom-checkbox-wrap {
     display: flex;
     align-items: center;
-    gap: rem(8);
+    // gap: rem(8);
     cursor: pointer;
 
     .hidden-checkbox {
@@ -133,27 +154,32 @@
 
         svg {
             .outline {
-                display: block; // Default
+                display: block; // 기본
             }
 
             .checked-icon {
-                display: none; // Default hidden
+                display: none; // 기본 숨김
             }
         }
     }
 
     .label-text {
-        font-size: rem(14);
-        font-weight: 600;
-        color: #444;
+        font-size: rem(16);
+        color: $gray-700;
     }
 }
 
 .category-tabs {
     display: flex;
     gap: rem(8);
-    margin-top: rem(24);
-    margin-bottom: rem(24);
+    // Sticky 추가
+
+    // Sticky Styles
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: $white;
+    padding: rem(24) 0; // Sticky 배경 커버를 위해 Margin을 Padding으로 통합
 
     .tab-item {
         flex: 1;
@@ -161,16 +187,26 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #F5F5F5;
-        color: #888;
+        background-color: $gray-50;
+        color: $gray-700;
         font-size: rem(20);
         font-weight: 600;
         cursor: pointer;
         border-radius: rem(4);
+        text-decoration: none; // a 태그용
+
+        &:hover {
+            color: $gray-800;
+        }
 
         &.active {
-            background-color: #444;
+            background-color: $gray-700;
             color: $white;
+
+            .count {
+                // 필요 시 카운트 색상 지정
+                color: $system-info;
+            }
         }
 
         .count {
@@ -189,13 +225,16 @@
     margin-bottom: rem(40);
     margin-top: rem(40);
 
+    .section-title-group {
+        padding-bottom: rem(10);
+        border-bottom: 1px solid $gray-100;
+    }
+
     .section-title-checkbox {
         display: flex;
         align-items: center;
+        width: fit-content;
         gap: rem(8);
-        margin-bottom: rem(20);
-        padding-bottom: rem(10);
-        border-bottom: 1px solid #EEEEEE;
 
         .label-text {
             font-size: rem(18);
@@ -207,30 +246,34 @@
 
 .cart-item {
     display: flex;
-    align-items: stretch; // Ensure columns stretch to fill height for borders
+    align-items: stretch; // 높이 채움 (Border 정렬)
     padding: rem(24) 0;
-    border-bottom: 1px solid #EEEEEE;
 
-    &:last-child {
-        border-bottom: none;
+    &:not(:last-of-type) {
+        border-bottom: 1px solid $gray-100;
+    }
+
+    >div:not(:first-of-type) {
+        padding-top: rem(6) !important;
+        padding-bottom: rem(6) !important;
     }
 
     .item-checkbox-col {
         margin-right: rem(20);
-        padding-top: rem(60); // Align with valid content center approximately
+        padding-top: rem(60); // 콘텐츠 중앙 정렬 보정
     }
 
     .item-image {
-        width: rem(140);
-        height: rem(140);
-        background-color: #F8F9FA;
+        width: rem(160);
+        height: rem(160);
+        background-color: $gray-50;
         border-radius: rem(8);
         flex-shrink: 0;
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        // Separator via image removed as per improved layout instructions
+        // 레이아웃 개선으로 이미지 구분선 제거
 
         img {
             width: 80%;
@@ -245,19 +288,18 @@
         flex-direction: column;
         justify-content: space-between;
         padding: 0 rem(24);
-        border-right: 1px solid #EEEEEE; // Separator between info and middle
+        border-right: 1px solid $gray-100; // 구분선 (Info - Middle)
 
         .brand-name {
             font-size: rem(14);
-            color: #666666;
+            color: $gray-700;
             margin-bottom: rem(4);
             line-height: 1.4;
         }
 
         .product-name {
             font-size: rem(16);
-            font-weight: 600;
-            color: $black;
+            color: $gray-700;
             margin-bottom: rem(8);
             line-height: 1.4;
         }
@@ -266,7 +308,7 @@
             display: flex;
             align-items: center;
             gap: rem(4);
-            font-size: rem(13);
+            font-size: rem(14);
             color: $accent-75;
             font-weight: 700;
             margin-bottom: rem(16);
@@ -276,6 +318,7 @@
             display: flex;
             gap: rem(6);
             height: rem(40);
+            margin-top: rem(8);
 
             .tag {
                 font-size: rem(14);
@@ -285,7 +328,7 @@
                 display: flex;
                 align-items: center;
                 gap: rem(4);
-                background-color: $secondary-bg; // Unified light yellow background for all tags
+                background-color: $secondary-bg; // 태그 배경 (연한 노란색)
 
                 &.tag-outline {
                     color: $accent-75;
@@ -293,11 +336,11 @@
                 }
 
                 &:not(.tag-outline):not(.tag-green) {
-                    color: $black; // TC style
+                    color: $black; // TC 스타일
                 }
 
                 &.tag-green {
-                    color: #00B87A;
+                    color: $system-success;
                 }
             }
         }
@@ -306,16 +349,20 @@
     .item-middle {
         flex: 0.8;
         padding: rem(0) rem(24) rem(0);
-        border-right: 1px solid #EEEEEE; // Separator between middle and right
+        border-right: 1px solid $gray-100; // 구분선 (Middle - Right)
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        // height: rem(120); // Let it stretch naturally with align-items: stretch on parent
+        // 부모 stretch 속성으로 자연스럽게 확장
 
         .unit-box {
-            font-size: rem(13);
+            font-size: rem(14);
             color: $black;
             line-height: 1.6;
+
+            >div {
+                margin-bottom: rem(6);
+            }
 
             .old {
                 text-decoration: line-through;
@@ -327,30 +374,33 @@
                 display: flex;
                 align-items: center;
                 gap: rem(4);
-                color: #AAAAAA;
+                color: $gray-300;
                 margin-top: rem(4);
-                font-size: rem(12);
+                font-size: rem(14);
             }
         }
 
-        .quantity-control-sm {
+        .qty-box {
             display: flex;
             align-items: center;
             border: 1px solid $gray-200;
-            border-radius: rem(4);
             height: rem(40);
+            flex: none;
+            /* 세로 확장 방지 */
 
             button {
-                width: rem(32);
+                width: rem(48);
                 height: 100%;
                 border: none;
                 background: transparent;
                 font-size: rem(18);
-                color: #666666;
+                color: $gray-700;
                 cursor: pointer;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+
+                @include btn-hover-effect;
             }
 
             input {
@@ -392,7 +442,7 @@
                 align-items: center;
                 justify-content: flex-end;
                 gap: rem(4);
-                font-size: rem(14); // Smaller
+                font-size: rem(14); // 작게
                 color: $gray-700;
                 font-weight: 600;
                 text-decoration: none;
@@ -430,12 +480,13 @@
     top: rem(20);
 
     .summary-box {
-        border: 1px solid $gray-200;
-        border-radius: rem(8);
+        border: 1px solid $gray-200; // #CCCCCC
+        border-radius: rem(4);
         overflow: hidden;
+        background-color: $white;
 
         .summary-header {
-            padding: rem(20);
+            padding: rem(24);
             background-color: $gray-50;
 
             .location-row {
@@ -445,76 +496,167 @@
                 margin-bottom: rem(8);
 
                 .location-title {
-                    font-weight: 600;
+                    font-size: rem(16);
+                    font-weight: 700;
+                    color: $gray-700; // #444444
                 }
 
                 .btn-change-addr {
-                    font-size: rem(14);
-                    padding: rem(8) rem(16);
-                    border: 1px solid $gray-300;
+                    height: rem(40);
+                    padding: 0 rem(16);
+                    font-size: rem(16);
+                    font-weight: 600;
+                    color: $gray-700;
+                    border: 1px solid $gray-200; // #CCCCCC
                     background: $white;
                     border-radius: rem(4);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    @include btn-hover-effect;
                 }
             }
 
             .address-text {
                 font-size: rem(13);
-                color: $gray-600;
-                line-height: 1.4;
+                color: $black;
+                line-height: 1.5;
             }
         }
 
         .summary-body {
-            padding: rem(20);
+            padding: rem(16) rem(24);
 
             .price-row {
                 display: flex;
                 justify-content: space-between;
-                margin-bottom: rem(12);
+                align-items: center;
+                margin-bottom: rem(16);
                 font-size: rem(14);
                 color: $gray-700;
+                font-weight: 600;
+                line-height: 1.4;
 
-                .price-val {
-                    font-weight: 600;
-                }
+                // 1. 선택 상품 수
 
-                &.discount {
-                    color: $accent-100;
-                }
-
-                &.total {
-                    margin-top: rem(20);
-                    padding-top: rem(20);
-                    border-top: 1px solid $gray-200;
+                &.first-row {
+                    margin-bottom: rem(20);
+                    padding-bottom: rem(20);
+                    border-bottom: 1px solid $gray-100;
                     font-size: rem(20);
                     font-weight: 700;
-                    color: $accent-75;
-                    align-items: center;
+
+                    .sel-count {
+                        color: $system-info;
+                        margin-left: rem(6);
+                    }
+
+                    .price-val {
+                        font-size: rem(24);
+                        color: $gray-700;
+                    }
+                }
+
+                // 일반 가격 정보
+                .price-val {
+                    font-size: rem(16);
+                }
+
+                // 배송비 (상단 구분선)
+                &.border-top {
+                    margin-top: rem(20);
+                    padding-top: rem(20);
+                    border-top: 1px solid $gray-100;
+                }
+
+                // 최종 결제 금액
+                &.total {
+                    margin-top: rem(8);
+                    margin-bottom: 0;
+                    padding-top: 0;
+
+                    span:first-child {
+                        font-size: rem(20);
+                        font-weight: 700;
+                        color: $accent-75; // Red
+                    }
 
                     .total-val {
-                        font-size: rem(24);
-                        // color: $accent-100;
+                        font-size: rem(28);
+                        font-weight: 700;
+                        color: $accent-75; // Red
                     }
+                }
+
+                // 보조 텍스트 (회색 박스 내부)
+                &.text-secondary {
+                    margin-bottom: rem(8);
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+
+                    span {
+                        font-size: rem(14);
+                        color: $gray-500; // #999999
+                        font-weight: 400;
+                    }
+                }
+
+                &.c-group {
+                    &>span:first-of-type {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        gap: rem(4);
+                    }
+
+                    .sel-count-sm {
+                        color: $system-info-75;
+                    }
+
+                }
+            }
+
+            // 할인 내역 박스
+            .discount-details-box {
+                margin-top: rem(16);
+                // margin-bottom: rem(20);
+                padding: rem(16) rem(24);
+                margin-left: rem(-24);
+                margin-right: rem(-24);
+                background-color: $gray-20; // #FAFAFA
+                border-radius: rem(4); // 내부 라운딩
+
+                .price-row {
+                    font-size: rem(14);
+                    color: $gray-300;
                 }
             }
         }
 
         .summary-footer {
-            // padding: rem(20);
-            background-color: $white;
+            background-color: $gray-200; // 기본 비활성 색상
+            height: rem(72);
+            line-height: rem(72);
             overflow: hidden;
 
             .btn-submit {
                 width: 100%;
-                height: rem(56);
-                background-color: $gray-200;
+                background: transparent;
                 color: $white;
                 font-size: rem(24);
                 font-weight: 600;
                 border: none;
+                cursor: default;
 
                 &.active {
-                    background-color: $accent-100; // Expected to be active when items selected
+                    cursor: pointer;
+                    background-color: $accent-75;
+
+                    &:hover {
+                        background-color: $accent-100;
+                    }
                 }
             }
         }
@@ -522,7 +664,7 @@
 }
 
 .cart-info {
-    margin-top: rem(40);
+    margin-top: rem(48);
     padding: rem(24);
     border-radius: rem(8);
 
@@ -530,10 +672,9 @@
         display: flex;
         align-items: center;
         gap: rem(6);
-        font-size: rem(14);
-        font-weight: 700;
+        font-size: rem(16);
         margin-bottom: rem(12);
-        color: $gray-800;
+        color: $gray-700;
     }
 
     .info-list {
@@ -542,7 +683,7 @@
 
         li {
             font-size: rem(13);
-            color: $gray-600;
+            color: $gray-300;
             margin-bottom: rem(6);
             line-height: 1.5;
         }

@@ -1,26 +1,69 @@
 // Header
 .header {
     width: 100%;
-    padding: 0 rem(48); // Removed padding from here as it seems to be handled by container or inner padding in Figma
+    // padding: 0 rem(48); // Removed padding from here as it seems to be handled by container or inner padding in Figma
     // Figma shows container padding px-48, py-32.
     // Let's keep general header background
     background-color: $white;
+}
+
+// Common Layout Helpers for Header
+.header-inner {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    // container-fluid behavior + padding
+    padding-left: rem(48);
+    padding-right: rem(48);
+    box-sizing: border-box;
 }
 
 // 1. Top Info Bar
 .header-top {
     padding: rem(32) rem(0);
 
+    .header-top-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+    }
+
     .header-left-group {
+        display: flex;
+        align-items: center;
         gap: rem(24);
     }
 
     .info-group-container {
+        display: flex;
+        align-items: center;
         gap: rem(48);
     }
 
+    .user-info-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .user-info-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
     .header-right-group {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
         gap: rem(48);
+    }
+
+    .metric-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
     }
 
     .badge-gold {
@@ -41,16 +84,22 @@
         font-size: rem(14);
         color: $gray-200; // #CCCCCC as per Figma
         font-weight: 600;
-        margin-bottom: 0;
+        margin-bottom: rem(4); // mb-1 approx
         line-height: 1.5;
         white-space: nowrap;
+
+        &.label-with-icon {
+            display: flex;
+            align-items: center;
+            gap: rem(4); // gap-1 approx
+        }
     }
 
     .info-value {
         font-size: rem(20); // Figma says 20px for text? Re-checking context... 
         // "이신선님" is 20px in Figma context ("text-[20px]").
         font-weight: 600;
-        color: $black;
+        color: $gray-700;
         line-height: 1.5;
         white-space: nowrap;
 
@@ -62,7 +111,7 @@
     .metric-value {
         font-size: rem(24); // Figma says 24px for numbers ("text-[24px]")
         font-weight: 600;
-        color: $black;
+        color: $gray-700;
         line-height: 1.5;
 
         &.number-font {
@@ -73,7 +122,7 @@
 
     .header-col {
         a {
-            color: $black;
+            color: $gray-700;
             display: flex;
             align-items: center;
         }
@@ -90,9 +139,61 @@
 
 .logo-text-club {
     font-size: rem(32);
-    color: $black;
+    color: $gray-700;
     line-height: 1;
 }
+
+// 2. Main Action Bar
+.header-main {
+    padding-top: rem(24); // py-4 approx 1.5rem = 24px
+    padding-bottom: rem(24);
+
+    .header-main-inner {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.header-logo-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    // width handled by flexbox context or specific width if needed
+}
+
+.header-icon-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: rem(20); // gap-lg-custom
+
+    // Category Group context
+    a {
+        position: relative;
+        color: $gray-700;
+        text-decoration: none;
+
+        &>svg:not(.cart-count) {
+            padding: rem(10);
+            box-sizing: content-box;
+        }
+
+        .cart-count {
+            position: absolute;
+            font-size: rem(12);
+            top: rem(-5);
+            right: rem(-10);
+            background-color: $accent-75;
+            color: $white;
+            border-radius: rem(20);
+            display: flex;
+            align-items: center;
+            padding: rem(2) rem(6);
+            justify-content: center;
+        }
+    }
+}
+
 
 // Search (Node 29:2541)
 .search-container {
@@ -108,28 +209,6 @@
     margin: 0 auto; // Center it
 }
 
-.category-group {
-
-    a {
-        position: relative;
-        color: $black;
-
-        .cart-count {
-            position: absolute;
-            font-size: rem(12);
-            top: rem(-14);
-            right: rem(-20);
-            background-color: $accent-75;
-            color: $white;
-            border-radius: rem(20);
-            display: flex;
-            align-items: center;
-            padding: rem(2) rem(6);
-            justify-content: center;
-        }
-    }
-}
-
 .search-input {
     flex-grow: 1;
     height: 100%;
@@ -138,13 +217,13 @@
     padding: rem(10) 0 rem(10) rem(16); // Figma Padding
     font-size: rem(16);
     font-weight: 600;
+    letter-spacing: rem(-0.32);
     font-family: 'Pretendard', sans-serif;
-    color: $black; // Text Color
+    color: $gray-700; // Text Color
     outline: none;
 
     &::placeholder {
         color: $gray-400; // #CCCCCC
-        font-weight: 600;
     }
 }
 
@@ -156,15 +235,38 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: $gray-700;
     cursor: pointer;
     border-radius: 0 rem(4) rem(4) 0;
 }
 
+// 3. Navigation Bar
+.header-nav {
+    padding: rem(24) rem(0); // Figma 32px vertical padding
+
+    .header-nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
 // Category
 .category-area {
-    gap: rem(16); // Figma gap 16px
+    display: flex;
+    align-items: center;
     flex: 0.8;
     min-width: rem(160);
+
+    .category-link {
+        display: flex;
+        align-items: center;
+        gap: rem(16); // Figma gap 16px
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+        width: 100%;
+    }
 
     .category-box {
         width: rem(48); // Figma 48px
@@ -179,7 +281,7 @@
 
     .category-label {
         font-size: rem(20);
-        color: $black; // #222
+        color: $gray-700; // #222
         font-weight: 600; // SemiBold
         margin-left: 0; // Handled by gap
     }
@@ -191,17 +293,27 @@
     flex-grow: 1;
 }
 
+.gnb-list {
+    display: flex;
+    gap: rem(40); // gap-5 (3rem) = 48px
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
 .gnb-link {
     font-size: rem(20);
-    font-weight: 700;
-    color: $black;
+    font-weight: 600;
+    color: $gray-700;
     padding-bottom: rem(9);
     text-decoration: none;
+    letter-spacing: rem(-0.4);
     display: block;
     position: relative;
 
     &.active {
-        color: $primary-gold;
+        // color: $primary-gold;
 
         &::after {
             content: '';
@@ -220,13 +332,46 @@
 }
 
 .order-info-area {
-
     min-width: rem(400);
     flex: 0.8;
+    display: flex;
+    align-items: center;
+    gap: rem(8); // gap-2
+    white-space: nowrap; // text-nowrap
+
     justify-content: flex-end;
     color: $gray-400;
     font-size: rem(14);
     font-weight: 600;
+
+    .min-order-text {
+        font-size: rem(14); // small
+        display: flex;
+        align-items: center;
+        margin-right: rem(8); // me-2
+        gap: rem(4); // gap-1
+    }
+
+    .badge {
+        // rounded-1 d-flex align-items-center gap-1
+        border-radius: rem(4);
+        display: flex;
+        align-items: center;
+        gap: rem(4);
+        padding: rem(5) rem(10); // Standard badge padding
+        letter-spacing: rem(-0.28);
+        color: $white;
+    }
+
+    .badge-order-red {
+        color: $accent-75;
+        background-color: $accent-25; // Example color
+    }
+
+    .badge-order-blue {
+        color: $system-info-75;
+        background-color: $system-info-25;
+    }
 
     .icon-mini {
         width: rem(20);
@@ -234,10 +379,10 @@
     }
 }
 
-.header-nav {
-    padding: rem(24) rem(0); // Figma 32px vertical padding
-}
-
-.gap-lg-custom {
-    gap: rem(40) !important;
+.vr-custom {
+    width: 1px;
+    height: rem(16); // Fixed height
+    background-color: $gray-100;
+    display: block; // Override .vr inline-block
+    align-self: center; // Ensure centering explicitly
 }

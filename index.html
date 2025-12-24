@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/styles/style.css" rel="stylesheet">
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/components/checkbox.js"></script>
 </head>
 
 <body>
@@ -36,7 +37,7 @@
         <!-- Main Slider Section -->
         <section class="main-slider-wrapper">
             <div id="eclubMainSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-                <div class="carousel-inner d-flex gap-4">
+                <div class="carousel-inner slider-track">
                     <!-- Item 1: Coffee -->
                     <a href="#" class="slider-card card-coffee">
                         <div class="slider-card-img-wrap">
@@ -184,7 +185,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="d-flex justify-content-center align-items-center py-4 pagination-container">
+                <div class="pagination-container">
                     <div class="pagination-control">
                         <!-- Prev Button -->
                         <button type="button" class="btn-control btn-prev">
@@ -233,7 +234,7 @@
             <aside class="floating-menu">
                 <!-- Cart Section -->
                 <div class="menu-cart-section">
-                    <a href="#" class="btn-cart">
+                    <a href="/page/cart.html" class="btn-cart">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                             <g clip-path="url(#clip0_165_2980)">
                                 <path
@@ -264,7 +265,7 @@
                         <span class="label">주문내역</span>
                         <span class="count">100</span>
                     </a>
-                    <a href="#" class="menu-item">
+                    <a href="#" class="menu-item my-coupon">
                         <span class="label">나의쿠폰</span>
                         <span class="count">100</span>
                     </a>
@@ -339,7 +340,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -431,7 +432,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -516,7 +517,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -605,7 +606,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -697,7 +698,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -789,7 +790,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -874,7 +875,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -966,7 +967,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -1066,7 +1067,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -1143,7 +1144,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -1220,7 +1221,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -1294,7 +1295,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -1379,7 +1380,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -1456,7 +1457,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -1541,7 +1542,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -1633,7 +1634,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -1708,7 +1709,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -1785,7 +1786,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -1862,7 +1863,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -1936,7 +1937,7 @@
                                         <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z"
                                             fill="currentColor" />
                                     </svg></button>
-                                <span>0</span>
+                                <input type="number" value="0">
                                 <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path

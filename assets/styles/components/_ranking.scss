@@ -1,21 +1,21 @@
 @charset "utf-8";
 
-// Weekly Ranking Section
+// 주간 랭킹 섹션 (Weekly Ranking Section)
 .weekly-ranking {
     padding-bottom: rem(60);
 
     .section-header {
         margin-bottom: rem(20);
 
-        // Ensure header aligns to bottom if text sizes differ
+
         align-items: flex-end !important;
-        padding-bottom: rem(12); // Spacing between content and line
+        padding-bottom: rem(12);
     }
 
     .section-title-group {
         display: flex;
         align-items: center;
-        gap: rem(16); // Gap between title and divider
+        gap: rem(16);
     }
 
     .section-title {
@@ -28,30 +28,30 @@
     }
 
     .title-divider {
-        width: 1px;
+        width: rem(1);
         height: rem(16);
-        background-color: $gray-200; // Vertical line
+        background-color: $gray-200;
         display: block;
     }
 
     .date-text {
         font-size: rem(14);
-        color: $gray-300; // Lighter gray
+        color: $gray-300;
         letter-spacing: -0.01em;
     }
 }
 
-// Controls (Top Right)
+// 컨트롤 (Controls)
 .ranking-control-area {
     display: flex;
     align-items: center;
-    gap: rem(16); // Spacing between Prev, Count, and Group
+    gap: rem(16);
     height: rem(48);
 
     .control-btn {
         width: rem(48);
         height: rem(48);
-        border: 1px solid $black; // Maintains consistent border color
+        border: rem(1) solid $black;
         background-color: $white;
         display: flex;
         align-items: center;
@@ -69,28 +69,21 @@
     }
 
     // Specific adjustments if needed for pause
-    .btn-pause img {
-        // Pause icon might need different aspect ratio? 
-        // slider_pause.svg size is 192 bytes. 
-        // Let's assume 14x14 fits or is close enough.
-        // Actually, let's just make it encompass
-    }
+    .btn-pause img {}
 
-    .btn-prev {
-        // Standalone Previous Button
-    }
+    .btn-prev {}
 
     .page-count {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: rem(8); // Spacing around dash
+        gap: rem(8);
         font-family: 'Pretendard', sans-serif;
         min-width: rem(60);
 
         .current {
             font-size: rem(16);
-            font-weight: 600; // Bold for current
+            font-weight: 600;
             color: $black;
         }
 
@@ -98,18 +91,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: rem(12); // Approximate width for dash area
+            width: rem(12);
 
             img {
-                width: 100%; // Fill the container
+                width: 100%;
                 height: auto;
             }
         }
 
         .total {
-            font-size: rem(16); // Matched Figma 16px
-            font-weight: 400; // Figma showed 600 (style_EUOXWX) for '01' but '20' was gray AA. 
-            // usually total is lighter/thinner.
+            font-size: rem(16);
+            font-weight: 400;
+
             color: $gray-300;
         }
     }
@@ -122,8 +115,8 @@
     }
 }
 
-// Ranking List
-// Carousel Container
+// 랭킹 리스트 (Ranking List)
+
 .ranking-carousel-view {
     width: 100%;
     overflow: hidden;
@@ -135,24 +128,24 @@
     width: 100%;
 }
 
-// Ranking List
+
 .ranking-list {
     flex: 0 0 100%;
     width: 100%;
-    border-top: none; // Managed by header border
+    border-top: none;
 }
 
 .ranking-item {
-    border-bottom: 1px solid $gray-100;
+    border-bottom: rem(1) solid $gray-100;
 
     &.active {
-        border-bottom: 2px solid $black !important;
-        border-top: 2px solid $black;
+        border-bottom: rem(2) solid $black !important;
+        border-top: rem(2) solid $black;
         position: relative;
         z-index: 10;
 
         .ranking-header {
-            border-bottom: none; // Remove header separator when active
+            border-bottom: none;
         }
     }
 
@@ -161,27 +154,27 @@
     .ranking-header {
         display: flex;
         align-items: center;
-        padding: rem(24) rem(0); // Vertical spacing 24px
+        padding: rem(24) rem(0);
         cursor: pointer;
         transition: background-color 0.2s;
 
 
     }
 
-    // Rank Number
+    // 순위 번호 (Rank Number)
     .rank-num {
         display: inline-block;
-        width: rem(40); // Slightly wider to breathe
+        width: rem(40);
         text-align: center;
         font-family: 'Pretendard', sans-serif;
-        font-size: rem(24); // Larger as per design
+        font-size: rem(24);
         font-weight: 700;
         color: $black;
-        margin-right: rem(10); // Reduced margin to icon
+        margin-right: rem(10);
         line-height: 1;
     }
 
-    // Rank Change Icon (Up/Down/Dash)
+    // 순위 변동 아이콘 (Rank Change Icon)
     .rank-change {
         width: rem(24);
         display: flex;
@@ -206,7 +199,7 @@
         }
     }
 
-    // Title & Category
+    // 타이틀 & 카테고리 (Title & Category)
     .rank-info {
         display: flex;
         align-items: center;
@@ -220,15 +213,15 @@
             display: flex;
             align-items: center;
 
-            // Vertical separator
+            // 수직 구분선 (Vertical separator)
             &::after {
                 content: '';
                 display: block;
-                width: 1px;
-                width: 1px;
+                width: rem(1);
+                width: rem(1);
                 height: rem(12);
-                background-color: $gray-100; // Light separator
-                margin-left: rem(12); // Spacing after title
+                background-color: $gray-100;
+                margin-left: rem(12);
             }
         }
 
@@ -239,11 +232,11 @@
         }
     }
 
-    // Toggle Button (Right)
+    // 토글 버튼 (Toggle Button)
     .btn-toggle-rank {
         width: rem(44);
         height: rem(44);
-        border: 1px solid $black; // Slightly darker than eee
+        border: rem(1) solid $black;
         background-color: $white;
         border-radius: rem(4);
         display: flex;
@@ -255,34 +248,30 @@
         transition: all 0.2s;
 
         svg {
-            width: rem(10); // Larger icon
+            width: rem(10);
             height: rem(6);
             transition: transform 0.3s;
-            // -webkit-mask: none; // Not needed for inline SVG
-            // mask: none;
+
             background-color: transparent;
 
-            // Default Inactive: Source is 'chevron-down.svg'.
-            // So 0deg = Down.
             transform: rotate(0deg);
-            color: $black; // Default color
+            color: $black;
         }
 
-        // Active state (filled dark)
+        // 활성 상태 (Active State)
         &.active {
-            background-color: $black; // Dark background
+            background-color: $black;
             border-color: $black;
 
             svg {
-                // Active: Rotate 180 to point UP.
                 transform: rotate(180deg);
                 opacity: 1;
-                color: $white; // Replaces filter: brightness(0) invert(1)
+                color: $white;
             }
         }
     }
 
-    // Expanded Body
+    // 확장 본문 (Expanded Body)
     .ranking-body {
         padding: rem(30) 0 rem(40) 0;
         display: none;
@@ -293,14 +282,14 @@
     }
 }
 
-// Product Grid in Ranking
+// 랭킹 상품 그리드 (Ranking Product Grid)
 .ranking-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: rem(20);
 }
 
-// Show More Button Area
+// 더보기 버튼 영역 (Show More Button Area)
 .ranking-more-link {
     display: flex;
     justify-content: center;
@@ -310,13 +299,13 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: rem(4); // Closer arrow
-        height: rem(48); // Taller button
+        gap: rem(4);
+        height: rem(48);
         padding: rem(10) rem(24);
-        border: 1px solid $black;
-        border-radius: rem(4); // Square
+        border: rem(1) solid $black;
+        border-radius: rem(4);
         background-color: $white;
-        font-size: rem(14); // Clear text
+        font-size: rem(14);
         font-weight: 500;
         color: $black;
         text-decoration: none;
@@ -325,8 +314,8 @@
         @include btn-hover-effect;
 
         svg {
-            width: rem(16); // Arrow size
-            margin-top: rem(1); // Optical adjustment
+            width: rem(16);
+            margin-top: rem(1);
         }
     }
 }

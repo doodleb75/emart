@@ -35,31 +35,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Nav Width Calculation (네비게이션 너비 계산)
-    const navList = document.querySelector('ul.nav.gap-5.justify-content-center');
-    const searchContainer = document.querySelector('.search-container');
+    // Nav Width Calculation (Runs after Header Load)
+    function adjustNavWidth() {
+        const navList = document.querySelector('.gnb-list');
+        const searchContainer = document.querySelector('.search-container');
 
-    if (navList && searchContainer) {
-        const listItems = navList.querySelectorAll('li.nav-item');
-        let totalLiWidth = 0;
+        if (navList && searchContainer) {
+            const listItems = navList.querySelectorAll('li'); // Use universal li selector or specific if class exists
+            if (listItems.length > 0) {
+                const firstRect = listItems[0].getBoundingClientRect();
+                const lastRect = listItems[listItems.length - 1].getBoundingClientRect();
 
-        // Item 너비 합산 (Sum item widths)
-        listItems.forEach(li => {
-            totalLiWidth += li.getBoundingClientRect().width;
-        });
+                // Calculate width from the start of the first item to the end of the last item
+                const finalWidth = lastRect.right - firstRect.left;
 
-        // Gap 스타일 계산 (Calculate gap style)
-        const ulComputedStyle = window.getComputedStyle(navList);
-        const gap = parseFloat(ulComputedStyle.gap) || 0;
-
-        // 전체 Gap 너비 계산 (Calculate total gap width)
-        const totalGapWidth = gap * (listItems.length > 0 ? listItems.length - 1 : 0);
-
-        const finalWidth = totalLiWidth + totalGapWidth;
-
-        searchContainer.style.maxWidth = `${finalWidth}px`;
-        searchContainer.style.width = '100%'; // 최대 너비 설정 (Set max width)
+                searchContainer.style.maxWidth = `${finalWidth}px`;
+                searchContainer.style.width = '100%';
+                // searchContainer.style.margin = '0 auto'; // Centering usually handled by CSS, but ensure it if needed
+            }
+        }
     }
+
+    document.addEventListener('headerLoaded', adjustNavWidth);
+    window.addEventListener('resize', adjustNavWidth);
 
     // Ranking Toggle Logic
     const rankingItems = document.querySelectorAll('.ranking-item');
@@ -128,73 +126,141 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Main Visual Carousel Logic (Custom Infinite Loop)
+    // Main Visual Carousel Logic (Custom Infinite Loop with Centering)
     const mainCarouselEl = document.getElementById('eclubMainSlider');
     if (mainCarouselEl) {
         const track = mainCarouselEl.querySelector('.carousel-inner');
-        const cards = track.querySelectorAll('.slider-card');
         const btnPrev = document.querySelector('.btn-prev');
         const btnNext = document.querySelector('.btn-next');
         const btnPause = document.querySelector('.btn-pause');
         const currentPageEl = document.querySelector('.current-page');
         const totalPageEl = document.querySelector('.total-page');
 
-        let currentIndex = 1;
-        const totalItems = cards.length; // 5 items
-
         // Initial setup
-        const initialCards = Array.from(cards); // Store original items
-
-        function ensureEnoughSlides() {
-            if (!track) return;
-
-            // Re-measure
-            const currentCards = track.querySelectorAll('.slider-card');
-            const firstCard = currentCards[0];
-            if (!firstCard) return;
-
-            const cardWidth = firstCard.offsetWidth || 440; // Fallback to fixed size if 0
-            const trackStyle = window.getComputedStyle(track);
-            const gap = parseFloat(trackStyle.gap) || 20;
-            const itemWidth = cardWidth + gap;
-
-            const totalWidth = currentCards.length * itemWidth;
-            const requiredWidth = window.innerWidth * 3; // Keep 3x buffer
-
-            if (totalWidth < requiredWidth && itemWidth > 0) {
-                let currentTotal = totalWidth;
-                // Append clones of original set until requirement met
-                while (currentTotal < requiredWidth) {
-                    initialCards.forEach(card => {
-                        const clone = card.cloneNode(true);
-                        clone.classList.add('cloned');
-                        track.appendChild(clone);
-                    });
-                    currentTotal += (initialCards.length * itemWidth);
-                }
-            }
-        }
-
-        // Run on load and resize
-        ensureEnoughSlides();
-        window.addEventListener('resize', () => {
-            ensureEnoughSlides();
-        });
-
-        if (totalPageEl) {
-            totalPageEl.textContent = String(totalItems).padStart(2, '0');
-        }
-
-        // Auto Play
+        const initialCards = Array.from(track.querySelectorAll('.slider-card'));
+        const totalItems = initialCards.length;
+        let currentIndex = 1;
         let isPlaying = true;
-        let isAnimating = false; // Prevent rapid clicks breaking the loop
+        let isAnimating = false;
         let autoPlayInterval;
 
+        // Configuration
+        const checkInterval = 3000;
+        const transitionTime = 500;
+        const contentWidth = 1360; // Desired content width
+        const gap = 24; // Gap between slides
+
+        // State for offsets
+        let baseOffset = 0;
+        let cardWidth = 0;
+        let prependCount = 0;
+
+        function initSlider() {
+            if (!track || initialCards.length === 0) return;
+
+            // 1. Measure Card Width (assumes standard desktop size initially if hidden)
+            // Temporarily ensure display block to measure if needed, but flex should be fine
+            const tempCard = initialCards[0];
+            const computedStyle = window.getComputedStyle(tempCard);
+            // Parsing fixed width from CSS or offsetWidth
+            cardWidth = tempCard.offsetWidth || 440;
+            if (cardWidth === 0) cardWidth = 437.33; // Fallback to calculation
+
+            const fullItemWidth = cardWidth + gap;
+
+            // 2. Calculate Offsets
+            const windowWidth = window.innerWidth;
+            // Center calculation: The start of the "active" slide should be at the start of the 1360px grid
+            // Grid Start X = (Window Width - Content Width) / 2
+            let gridStartX = (windowWidth - contentWidth) / 2;
+            if (gridStartX < 0) gridStartX = 0;
+
+            // 3. Determine needed clones
+            // We need to fill the left side (0 to gridStartX) with prepended items
+            // And fill the right side (gridStartX + contentWidth to windowWidth) with appended items
+            // Plus some buffer
+            const neededLeft = Math.ceil(gridStartX / fullItemWidth) + 2; // +2 Buffer
+            const neededRight = Math.ceil((windowWidth - (gridStartX + contentWidth)) / fullItemWidth) + 2;
+
+            // Reset Track
+            track.innerHTML = '';
+
+            // Helper to append clones
+            const appendClone = (item) => {
+                const clone = item.cloneNode(true);
+                clone.classList.add('cloned');
+                track.appendChild(clone);
+            };
+
+            // Prepend Clones (Reverse order for correct flow)
+            // e.g. needed 2. We take last 2 items. [4, 5]. Prepend 4, then 5? No.
+            // Sequence: ... 4, 5, [1, 2, 3, 4, 5], 1, 2 ...
+            prependCount = neededLeft;
+
+            // Create "Left" clones
+            for (let i = 0; i < neededLeft; i++) {
+                // Index from end: -1, -2 ...
+                // modulo logic: (totalItems - 1 - (i % totalItems))
+                let index = (totalItems - 1 - (i % totalItems));
+                // We want to insert them at the BEGINNING. 
+                // But loop 0 should be the one closest to real items?
+                // Visual Order: [C_(-N) ... C_(-1), R_1 ... ]
+                // It's easier to build the array then append.
+            }
+
+            // Let's build a fragment
+            const fragment = document.createDocumentFragment();
+
+            // 1. Add Prepended Clones
+            // We need sequence ... [Last-1] [Last] [Real 1]
+            // If neededLeft = 2. We want [4, 5].
+            for (let i = neededLeft; i > 0; i--) {
+                let index = (totalItems - (i % totalItems)) % totalItems;
+                appendClone(initialCards[index]);
+            }
+
+            // 2. Add Real Items (Keep their event listeners if possible? No, cloning breaks refs usually unless strict move)
+            // But we need to maintain "Original" identity for index tracking if strictly needed. 
+            // Simplifying: Just clone everything or move originals. 
+            // User code moved physical nodes. Let's re-use that strategy for the "Middle".
+            // Actually, simply cloning all is safer for "Reset" logic.
+            initialCards.forEach(card => {
+                track.appendChild(card); // Move original nodes back
+            });
+
+            // 3. Add Appended Clones
+            for (let i = 0; i < neededRight; i++) {
+                let index = i % totalItems;
+                appendClone(initialCards[index]);
+            }
+
+            // 4. Set Initial Position
+            // The "Real Item 1" is at index `prependCount`.
+            // We want it at `gridStartX`.
+            // Position in track = prependCount * fullItemWidth.
+            // Transform = gridStartX - (prependCount * fullItemWidth)
+            baseOffset = gridStartX - (prependCount * fullItemWidth);
+
+            track.style.transition = 'none';
+            track.style.transform = `translateX(${baseOffset}px)`;
+
+            if (totalPageEl) totalPageEl.textContent = String(totalItems).padStart(2, '0');
+            updatePagination();
+        }
+
+        // Run Init
+        initSlider();
+        window.addEventListener('resize', () => { // Debounce could be good
+            initSlider();
+        });
+
+
+        // Auto Play
         function startAutoPlay() {
-            stopAutoPlay(); // Clear existing
+            stopAutoPlay();
             autoPlayInterval = setInterval(() => {
                 if (!isAnimating) moveNext();
-            }, 3000);
+            }, checkInterval);
         }
 
         function stopAutoPlay() {
@@ -203,31 +269,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isPlaying) startAutoPlay();
 
+
         // Move Next
         function moveNext() {
             if (!track || isAnimating) return;
             isAnimating = true;
 
-            // Get current first item width + gap
-            const firstCard = track.firstElementChild;
-            if (!firstCard) {
-                isAnimating = false;
-                return;
-            }
+            const fullItemWidth = cardWidth + gap;
 
-            const cardWidth = firstCard.offsetWidth;
-            const style = window.getComputedStyle(track);
-            const gap = parseFloat(style.gap) || 24; // Default to 24 if not found
-            const moveAmount = cardWidth + gap;
-
-            track.style.transition = 'transform 0.5s ease-in-out';
-            track.style.transform = `translateX(-${moveAmount}px)`;
+            track.style.transition = `transform ${transitionTime}ms ease-in-out`;
+            track.style.transform = `translateX(${baseOffset - fullItemWidth}px)`;
 
             track.addEventListener('transitionend', function () {
                 track.style.transition = 'none';
-                track.style.transform = 'translateX(0)';
-                track.appendChild(firstCard); // Move first to end
-                updatePagination(true);
+
+                // Move first item to end
+                const first = track.firstElementChild;
+                track.appendChild(first);
+
+                // Reset to baseOffset
+                track.style.transform = `translateX(${baseOffset}px)`;
+
+                updateCurrentIndex(true);
                 isAnimating = false;
             }, { once: true });
         }
@@ -237,63 +300,47 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!track || isAnimating) return;
             isAnimating = true;
 
-            const lastCard = track.lastElementChild;
-            if (!lastCard) {
-                isAnimating = false;
-                return;
-            }
+            const fullItemWidth = cardWidth + gap;
 
-            const cardWidth = lastCard.offsetWidth;
-            const style = window.getComputedStyle(track);
-            const gap = parseFloat(style.gap) || 24;
-            const moveAmount = cardWidth + gap;
+            // 1. Move last to first immediately
+            const last = track.lastElementChild;
+            track.insertBefore(last, track.firstElementChild);
 
-            // Prep: Move last to first, set transform to -moveAmount
+            // 2. Adjust transform to match previous visual state
+            // We moved one item to front, so everything shifted right by width.
+            // To keep visual static, shift transform left by width.
             track.style.transition = 'none';
-            track.insertBefore(lastCard, track.firstElementChild);
-            track.style.transform = `translateX(-${moveAmount}px)`;
+            track.style.transform = `translateX(${baseOffset - fullItemWidth}px)`;
 
             // Force reflow
             void track.offsetWidth;
 
-            // Animate to 0
-            track.style.transition = 'transform 0.5s ease-in-out';
-            track.style.transform = 'translateX(0)';
+            // 3. Animate to baseOffset
+            track.style.transition = `transform ${transitionTime}ms ease-in-out`;
+            track.style.transform = `translateX(${baseOffset}px)`;
 
             track.addEventListener('transitionend', function () {
-                updatePagination(false);
+                updateCurrentIndex(false);
                 isAnimating = false;
             }, { once: true });
         }
 
-        function updatePagination(isNext) {
+        function updateCurrentIndex(isNext) {
             if (isNext) {
                 currentIndex = currentIndex >= totalItems ? 1 : currentIndex + 1;
             } else {
                 currentIndex = currentIndex <= 1 ? totalItems : currentIndex - 1;
             }
-            // However, since we are physically moving DOM elements, the "first" element changes identity.
-            // The "currentIndex" logic above is a simple cycle counter, unrelated to the specific card at position 0.
-            // If we want exact mapping (Coffee is 1), we need to track it differently or just loop 1-5.
+            updatePagination();
+        }
+
+        function updatePagination() {
             if (currentPageEl) currentPageEl.textContent = String(currentIndex).padStart(2, '0');
         }
 
         // Event Listeners
-        if (btnNext) {
-            btnNext.addEventListener('click', () => {
-                stopAutoPlay();
-                moveNext();
-                if (isPlaying) startAutoPlay();
-            });
-        }
-
-        if (btnPrev) {
-            btnPrev.addEventListener('click', () => {
-                stopAutoPlay();
-                movePrev();
-                if (isPlaying) startAutoPlay();
-            });
-        }
+        if (btnNext) btnNext.addEventListener('click', () => { stopAutoPlay(); moveNext(); if (isPlaying) startAutoPlay(); });
+        if (btnPrev) btnPrev.addEventListener('click', () => { stopAutoPlay(); movePrev(); if (isPlaying) startAutoPlay(); });
 
         if (btnPause) {
             btnPause.addEventListener('click', () => {
@@ -304,8 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <svg class="icon-slider-play" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
                             <path d="M0 0h24v24H0V0z" fill="none"/>
                             <path d="M8 5v14l11-7z"/>
-                        </svg>
-                    `;
+                        </svg>`;
                 } else {
                     startAutoPlay();
                     isPlaying = true;
@@ -313,8 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <svg class="icon-slider-pause" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
                            <path d="M0 0h24v24H0V0z" fill="none"/>
                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                        </svg>
-                    `;
+                        </svg>`;
                 }
             });
         }
@@ -465,21 +510,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // Assuming first button is minus and second is plus based on DOM order
         const minusBtn = buttons[0];
         const plusBtn = buttons[1];
-        const countSpan = box.querySelector('span');
+        const countInput = box.querySelector('input');
 
-        if (minusBtn && plusBtn && countSpan) {
+        if (minusBtn && plusBtn && countInput) {
             minusBtn.addEventListener('click', (e) => {
                 e.preventDefault(); // Prevent default button behavior
-                let currentCount = parseInt(countSpan.textContent, 10) || 0;
+                let currentCount = parseInt(countInput.value, 10) || 0;
                 if (currentCount > 0) {
-                    countSpan.textContent = currentCount - 1;
+                    countInput.value = currentCount - 1;
                 }
             });
 
             plusBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                let currentCount = parseInt(countSpan.textContent, 10) || 0;
-                countSpan.textContent = currentCount + 1;
+                let currentCount = parseInt(countInput.value, 10) || 0;
+                countInput.value = currentCount + 1;
             });
         }
     });
@@ -487,4 +532,124 @@ document.addEventListener('DOMContentLoaded', () => {
     // Use event delegation for potential dynamically added elements (like future clones if any)
     // However, since we run this AFTER the initial carousel cloning, querySelectorAll captures those.
     // If further dynamic content is added later, consider moving to document-level delegation.
+
+    // ==========================================
+    // Cart Page Logic (Checkbox & Tabs)
+    // ==========================================
+    const selectAll = document.getElementById('selectAll');
+    const cartTabs = document.querySelectorAll('.category-tabs .tab-item');
+    const sectionCheckboxes = document.querySelectorAll('.section-check');
+
+    // Only run if relevant elements exist
+    if (selectAll || document.querySelector('.section-check') || cartTabs.length > 0) {
+
+        // Helper: Get Active Section
+        // Helper: Get Active Section (Refactored for Single Page View)
+        // Now returns the main container so "Select All" applies to ALL visible sections
+        function getActiveSection() {
+            return document.querySelector('.cart-content');
+        }
+
+        // Helper: Update Global Select All State
+        function updateSelectAllState() {
+            if (!selectAll) return;
+
+            const activeSection = getActiveSection();
+            if (!activeSection) return;
+
+            const itemsInActiveSection = activeSection.querySelectorAll('.item-check');
+
+            if (itemsInActiveSection.length === 0) {
+                selectAll.checked = false;
+                return;
+            }
+
+            const allChecked = Array.from(itemsInActiveSection).every(cb => cb.checked);
+            selectAll.checked = allChecked;
+        }
+
+        // 1. Global Select All Click
+        if (selectAll) {
+            selectAll.addEventListener('change', function () {
+                const isChecked = this.checked;
+                const activeSection = getActiveSection();
+                if (activeSection) {
+                    activeSection.querySelectorAll('.item-check, .section-check').forEach(cb => {
+                        cb.checked = isChecked;
+                    });
+                }
+            });
+        }
+
+        // 2. Section & Item Checkbox Logic
+        sectionCheckboxes.forEach(sectionCb => {
+            const sectionContainer = sectionCb.closest('.cart-section');
+            if (!sectionContainer) return;
+
+            const itemsInSection = sectionContainer.querySelectorAll('.item-check');
+
+            itemsInSection.forEach(itemCb => {
+                itemCb.addEventListener('change', function () {
+                    const allSectionItemsChecked = Array.from(itemsInSection).every(cb => cb.checked);
+                    sectionCb.checked = allSectionItemsChecked;
+                    updateSelectAllState();
+                });
+            });
+
+            sectionCb.addEventListener('change', function () {
+                const isChecked = this.checked;
+                itemsInSection.forEach(cb => cb.checked = isChecked);
+                updateSelectAllState();
+            });
+        });
+
+        // 3. Tab Logic
+        // 3. Tab Logic (Scroll Spy & Active State)
+        if (cartTabs.length > 0) {
+            // Click Handler
+            cartTabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    // Remove active from all
+                    cartTabs.forEach(t => t.classList.remove('active'));
+                    // Add active to clicked
+                    tab.classList.add('active');
+                    // Default anchor behavior handles scrolling
+                });
+            });
+
+            // Scroll Spy using IntersectionObserver
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -60% 0px', // Adjust active zone
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        // Find corresponding tab
+                        const activeTab = document.querySelector(`.category-tabs .tab-item[href="#${id}"]`) ||
+                            document.querySelector(`.category-tabs .tab-item[data-target="${id}"]`);
+
+                        if (activeTab) {
+                            cartTabs.forEach(t => t.classList.remove('active'));
+                            activeTab.classList.add('active');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.cart-section').forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        // Initial State Check on Load
+        // Ensure correct initial visibility based on active tab
+        // Initial State Check: Removed to allow all sections to be visible
+        updateSelectAllState();
+    }
+
+
 });

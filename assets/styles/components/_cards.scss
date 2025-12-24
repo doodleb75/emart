@@ -1,19 +1,17 @@
 // Slider Card
 .slider-card {
-    flex: 0 0 auto; // Prevent resizing
-    width: rem(440); // User requested 440px
-    height: rem(440); // User requested 440px
+    flex: 0 0 auto;
+    width: rem(440);
+    height: rem(440);
     border-radius: rem(4);
     overflow: hidden;
     position: relative;
     transition: transform 0.2s;
     display: flex;
     flex-direction: column;
-    text-decoration: none; // Reset anchor styles
-    color: inherit; // Use card-specific color logic
-    // aspect-ratio: 440 / 480; // REMOVED: aspect-ratio on container causes clipping.
+    text-decoration: none;
+    color: inherit;
 
-    // Card Variations (Background Colors)
     &.card-coffee {
         background-color: #59996d;
     }
@@ -48,25 +46,25 @@
 
     .slider-card-img-wrap {
         width: 100%;
-        aspect-ratio: 440 / 360; // Maintain image ratio (approx 75% of original card)
-        background-color: #f8f7f0; // Light beige bg for image area
+        aspect-ratio: 440 / 360;
+        background-color: #f8f7f0;
         overflow: hidden;
         position: relative;
 
         img {
             width: 100%;
             height: 100%;
-            object-fit: cover; // Cover to fill area
+            object-fit: cover;
             object-position: center bottom;
             transition: transform 0.3s ease;
         }
     }
 
     .slider-card-body {
-        flex-grow: 1; // Fill remaining height
-        padding: rem(24); // Spacing
+        flex-grow: 1;
+        padding: rem(24);
         display: flex;
-        align-items: flex-start; // Text top aligned
+        align-items: flex-start;
         justify-content: space-between;
         color: $white;
 
@@ -78,21 +76,26 @@
         }
 
         .slider-title {
-            font-size: rem(22); // Figma 24px, but might break lines. 22px safer.
+            font-size: rem(24);
             font-weight: 700;
             line-height: 1.3;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             color: $white;
+            letter-spacing: -1;
             margin: 0;
         }
 
         .slider-desc {
-            font-size: rem(15); // Figma 16px
+            font-size: rem(16);
             opacity: 0.9;
             font-weight: 400;
             margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            letter-spacing: -1;
             line-height: 1.4;
         }
 
@@ -103,13 +106,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: rgba(0, 0, 0, 0.1); // Semi-transparent box
-            border-radius: rem(4); // Rounded corners
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: rem(4);
 
             svg {
                 width: rem(20);
                 height: rem(20);
-                color: $white; // Replaces filter: brightness(0) invert(1)
+                color: $white;
             }
         }
     }
@@ -119,14 +122,14 @@
 .product-card {
     background-color: $white;
     width: 100%;
-    display: flex; // Flex container
-    flex-direction: column; // Vertical layout
-    height: 100%; // Stretch to fill grid cell
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 
     .card-thumb {
         width: 100%;
         position: relative;
-        background-color: #f4f4f4; // Requested BG
+        background-color: $gray-50;
         border-radius: rem(8);
         overflow: hidden;
         margin-bottom: rem(20);
@@ -143,9 +146,9 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 75%; // Padding effect (image is smaller than box)
+            width: 75%;
             height: 75%;
-            object-fit: contain; // Contain to show whitespace
+            object-fit: contain;
             transition: transform 0.3s ease;
         }
 
@@ -160,7 +163,7 @@
             position: absolute;
             top: rem(10);
             left: rem(10);
-            background-color: #ffffe0;
+            background-color: $secondary-bg;
             padding: rem(10) rem(12);
             border-radius: rem(4);
             display: flex;
@@ -168,13 +171,12 @@
             gap: rem(4);
             font-size: rem(14);
             font-weight: 700;
-            color: #333;
+            color: $gray-700;
 
             svg {
                 position: relative;
                 width: rem(14);
                 height: rem(14);
-                // object-fit: contain; // Not needed for SVG
                 top: auto;
                 left: auto;
                 transform: none;
@@ -196,7 +198,7 @@
                 border-radius: rem(2);
                 display: flex;
                 align-items: center;
-                background-color: #FFFFE0; // Unified BG
+                background-color: $secondary-bg;
 
                 svg {
                     width: rem(16);
@@ -216,15 +218,9 @@
 
             // Outline tag (TC)
             .tag-outline {
-                // background-color: $white !important; // Removed override if we want Yellow
-                // But wait, "Outline" usually implies white/transparent.
-                // Figma TC tag had #FFFFE0 bg. So I remove this override too.
-                background-color: #FFFFE0 !important;
-                border: none; // Remove border if it's supposed to be like the others?
-                // Figma TC tag data: fill_SOQZCH (#FFFFE0). No stroke mentioned in my dump, but React output might have it. 
-                // React output: "border: 1px solid ..." was NOT present in my quick check of Figma data fills. 
-                // I'll stick to the "one background color" rule.
-                color: #222 !important;
+                background-color: $secondary-bg !important;
+                border: none;
+                color: $black !important;
 
                 &:before {
                     display: none !important;
@@ -232,10 +228,7 @@
             }
 
             .tag-green {
-                // background-color: #E8F5E9; // Removed
-                color: #00C853; // Check if this matches #00B87A. Close enough or update?
-                // Figma had #00B87A. 
-                color: #00B87A;
+                color: $system-success;
             }
         }
     }
@@ -243,9 +236,9 @@
     .card-info {
         padding: 0;
         margin-bottom: rem(39);
-        display: block; // Changed to block for anchor tag
-        text-decoration: none; // Remove default link underline
-        color: inherit; // Inherit text color
+        display: block;
+        text-decoration: none;
+        color: inherit;
 
         &:hover {
             .product-name {
@@ -257,13 +250,12 @@
         // Line 1: Name
         .product-name {
             font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; // User specified Pretendard
-            font-size: rem(20); // Figma: 20px
-            font-weight: 600; // Figma: SemiBold (600)
-            color: $gray-800; // #333 -> Keep until explicit change request or move to $black if desired. User said "Fix if different from design". Design usually #222.
-            // Let's stick to $gray-800 (#333) for now as it matches current looking.
+            font-size: rem(20);
+            font-weight: 600;
+            color: $gray-700;
             margin-bottom: rem(4);
-            line-height: 1.5; // Figma: 150%
-            letter-spacing: rem(-1); // Figma: -2%
+            line-height: 1.5;
+            letter-spacing: rem(-1);
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -274,7 +266,7 @@
         // Line 2: Unit Price Info
         .unit-info {
             font-size: rem(14);
-            color: #333;
+            color: $gray-700;
             margin-bottom: rem(2);
             display: flex;
             align-items: center;
@@ -282,7 +274,7 @@
 
             .strike {
                 text-decoration: line-through;
-                color: #999;
+                color: $gray-500;
                 font-size: rem(14); // Slightly smaller than main
                 font-weight: 600;
             }
@@ -292,7 +284,7 @@
             }
 
             .unit-desc {
-                color: #333;
+                color: $gray-700;
                 font-size: rem(14);
                 font-weight: 600;
             }
@@ -305,7 +297,7 @@
             gap: rem(6);
             font-size: rem(24);
             font-weight: 800;
-            color: $gray-800; // #333
+            color: $gray-700; // #333
 
             .discount {
                 color: #FF531D;
@@ -329,42 +321,8 @@
         display: flex;
         gap: rem(6);
         margin-bottom: rem(12);
-        margin-top: auto; // Push to bottom of flex container (Vertical Alignment Fix)
+        margin-top: auto;
 
-        .qty-box {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid $black;
-            border-radius: rem(4);
-
-            overflow: hidden;
-
-            button {
-                background: none;
-                border: none;
-                padding: 0;
-                width: rem(48);
-                height: rem(48);
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                img {
-                    width: rem(18);
-                    height: rem(18);
-                }
-
-                @include btn-hover-effect;
-            }
-
-            span {
-                font-size: rem(16);
-                font-weight: 600;
-            }
-        }
 
         .btn-icon {
             width: rem(48);
@@ -382,14 +340,13 @@
     }
 
     // Bottom Info Text
-    // Bottom Info Text
     .bottom-info {
         font-size: rem(11);
-        color: #888;
+        color: $gray-600;
         display: flex;
         flex-direction: column;
         gap: rem(4);
-        min-height: rem(62); // Ensure consistent height for alignment (2 lines approx 46px + 16px padding)
+        min-height: rem(62);
         padding-bottom: rem(16);
 
         .info-row {
@@ -397,7 +354,7 @@
             align-items: center;
             gap: rem(4);
             font-size: rem(14);
-            color: #aaa;
+            color: $gray-300;
             font-weight: 500;
 
             .icon-tag {
@@ -440,16 +397,16 @@
     transition: transform 0.2s ease;
 
     &:hover {
-        transform: translateY(rem(-4)); // Micro-interaction
+        transform: translateY(rem(-4));
     }
 
     .card-img {
         width: 100%;
         aspect-ratio: 16 / 9;
-        background-color: $gray-50; // Placeholder BG matching var
-        border-radius: rem(8); // Matching product card radius
+        background-color: $gray-50;
+        border-radius: rem(8);
         overflow: hidden;
-        border: 1px solid #eee; // Subtle border definition
+        border: 1px solid $gray-100;
 
         img {
             width: 100%;
@@ -552,12 +509,8 @@
             font-family: 'Pretendard', sans-serif;
             font-weight: 600;
             font-size: rem(16);
-            color: #222; // Use same color as Design implies equl weight
-            opacity: 0.3; // Often total page is lighter? Design screenshot showed light grey text "20"
-            // Let's check React code: 29:2666 (01) was #222.
-            // 29:2670 (05) was likely lighter. 
-            // Previous code had text-secondary small opacity-50.
-            // I will set color #999 for now to match typical unselected state.
+            color: $black;
+            opacity: 0.3;
             color: $gray-500;
         }
     }
@@ -569,13 +522,13 @@
 }
 
 .carousel-inner {
-    overflow: visible; // Allow items to slide in from outside the box
+    overflow: visible;
     gap: rem(20);
 
     .carousel-item.active,
     .carousel-item-next,
     .carousel-item-prev {
-        display: flex; // Align clones horizontally
+        display: flex;
         gap: rem(24);
     }
 

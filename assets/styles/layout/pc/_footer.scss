@@ -18,7 +18,7 @@
                 text-decoration: none;
                 flex: 1; // Equal width columns
                 height: rem(48); // Fixed height blocks
-                background-color: #F4F4F4; // Gray background
+                background-color: $gray-50; // Gray background
                 border-radius: rem(4); // Rounded corners
                 display: flex;
                 align-items: center;
@@ -27,7 +27,7 @@
                 border: none; // No separators lines
 
                 &:hover {
-                    background-color: #EAEAEA; // Hover state
+                    background-color: $gray-200; // Hover state
                 }
 
                 img {
@@ -42,8 +42,9 @@
     }
 
     .footer-bottom {
-        padding: rem(40) 0 rem(60);
+        padding: rem(40) 0 rem(50);
         background-color: $white;
+        font-weight: 600;
 
         .logo-row {
             margin-bottom: rem(24);
@@ -70,9 +71,8 @@
                 span,
                 a {
                     font-size: rem(14);
-                    color: #888888; // Muted text
+                    color: $gray-300; // Muted text
                     line-height: 1.5;
-                    font-weight: 500;
                 }
 
                 // Dividers
@@ -87,7 +87,7 @@
             .copyright {
                 margin-top: rem(24);
                 font-size: rem(13);
-                color: #AAAAAA;
+                color: $gray-300;
             }
         }
 
@@ -105,7 +105,7 @@
             .title {
                 font-size: rem(14);
                 font-weight: 500;
-                color: $black;
+                color: $gray-700;
             }
 
             .qr-box {
@@ -129,23 +129,23 @@
             .cs-item {
                 display: flex;
                 align-items: center;
+                color: $gray-700;
                 gap: rem(8);
 
                 img {
                     width: rem(24);
                     height: rem(24);
-                    opacity: 0.6; // Muted icons
                 }
 
                 .label {
                     font-size: rem(14);
                     font-weight: 600;
-                    color: #666;
+                    color: $gray-700;
                 }
 
                 .value {
                     font-size: rem(14);
-                    color: #222;
+                    color: $gray-700;
                     font-weight: 600;
                 }
 

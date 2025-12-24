@@ -1,28 +1,28 @@
 <header class="header">
     <!-- 1. Top Info Bar  -->
     <div class="header-top">
-        <div class="container-fluid d-flex justify-content-between align-items-center h-100">
+        <div class="header-inner header-top-inner">
             <!-- User Info -->
-            <div class="d-flex align-items-center header-left-group">
+            <div class="header-left-group">
                 <span class="badge-gold">GOLD</span>
 
-                <div class="d-flex align-items-center info-group-container">
+                <div class="info-group-container">
                     <!-- User Name -->
-                    <div class="d-flex flex-column justify-content-center">
-                        <div class="d-flex align-items-center">
+                    <div class="user-info-item">
+                        <div class="user-info-wrapper">
                             <span class="info-label">골드마트</span>
                         </div>
                         <strong class="info-value">이신선님</strong>
                     </div>
 
                     <!-- Member Code -->
-                    <div class="d-flex flex-column justify-content-center">
+                    <div class="user-info-item">
                         <span class="info-label">회원코드</span>
                         <strong class="info-value number-font">554731</strong>
                     </div>
 
                     <!-- Sales Manager -->
-                    <div class="d-flex flex-column justify-content-center">
+                    <div class="user-info-item">
                         <span class="info-label">영업담당자</span>
                         <strong class="info-value">이클럽 프로님</strong>
                     </div>
@@ -30,28 +30,28 @@
             </div>
 
             <!-- Metrics -->
-            <div class="d-flex align-items-center justify-content-end header-right-group">
+            <div class="header-right-group">
                 <!-- Monthly Purchase -->
-                <div class="d-flex flex-column align-items-end justify-content-center">
+                <div class="metric-item">
                     <span class="info-label mb-1">이번 달 누적 구매액</span>
                     <strong class="metric-value number-font">35,400</strong>
                 </div>
 
                 <!-- Today Order -->
-                <div class="d-flex flex-column align-items-end justify-content-center">
+                <div class="metric-item">
                     <span class="info-label mb-1">오늘 주문 총액</span>
                     <strong class="metric-value number-font">428,200</strong>
                 </div>
 
                 <!-- Expected Delivery -->
-                <div class="d-flex flex-column align-items-end justify-content-center">
+                <div class="metric-item">
                     <span class="info-label mb-1">배송 예정 금액</span>
                     <strong class="metric-value number-font">112,800</strong>
                 </div>
 
                 <!-- Available Points -->
-                <div class="d-flex flex-column align-items-end justify-content-center">
-                    <span class="info-label mb-1 d-flex align-items-center gap-1">
+                <div class="metric-item">
+                    <span class="info-label label-with-icon">
                         <svg class="icon-muted-simple" width="16" height="16" viewBox="0 0 16 16" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -67,13 +67,23 @@
     </div>
 
     <!-- 2. Main Action Bar -->
-    <div class="header-main py-4">
-        <div class="container-fluid d-flex align-items-center">
+    <div class="header-main">
+        <div class="header-inner header-main-inner">
             <!-- Logo -->
-            <div class="d-flex align-items-center justify-content-start header-col">
+            <div class="header-col header-logo-group">
                 <a href="/" class="text-decoration-none">
-                    <span class="fw-bold logo-text-e">e</span>
-                    <span class="fw-bold logo-text-club">클럽</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="99" height="41" viewBox="0 0 99 41" fill="none">
+                    <g clip-path="url(#clip0_38_64)">
+                        <path d="M67.0151 18.4844V22.5133L36.9571 22.4661C35.8301 22.4661 34.9258 21.5483 34.9258 20.428V18.4372L57.6144 18.471C57.7696 17.4249 57.9248 16.5004 58.0463 15.5286L39.4068 16.3047C38.8264 16.3317 38.3203 15.9065 38.2393 15.3261L37.8411 12.4378L58.2825 12.0059C58.323 11.3108 58.323 10.6157 58.323 9.95429L40.4393 9.9273C39.562 9.9273 38.8534 9.21195 38.8534 8.33464V5.97266L60.28 6.0064C61.9807 6.0064 63.3574 7.38985 63.3506 9.09048V9.18496C63.3506 11.9316 63.3439 14.874 62.7163 18.471H67.0151V18.4844ZM43.4492 36.1386H63.4923C63.4923 36.1386 63.5193 36.1386 63.5193 36.1589V39.9313C63.5193 39.9313 63.4991 39.9583 63.4856 39.9583H42.7068C40.3381 39.9583 38.4148 38.035 38.4215 35.6662V30.3551L58.4849 30.3889V28.452L40.2234 28.425C39.1976 28.425 38.3608 27.5882 38.3608 26.5557V24.5851L63.5666 24.6256L63.5531 34.0331L43.4627 33.9993V36.1319L43.4492 36.1386Z" fill="#444444"/>
+                        <path d="M88.6976 23.0481C83.7037 23.8107 79.2496 23.9254 72.7508 23.9119H72.6563C71.0839 23.9119 69.8152 22.6297 69.8152 21.064L69.8287 13.0333L80.822 13.0535V10.1921L71.9275 10.1787C70.7465 10.1787 69.7949 9.22036 69.7949 8.03936V6.10928L85.8632 6.13628L85.8429 16.8597L74.8901 16.8395V19.8223C80.1877 19.7953 83.9803 19.6468 88.3601 18.9517L88.7043 23.0549L88.6976 23.0481ZM93.2191 26.0782H98.2535L98.2333 40.0612L79.4791 40.0274C76.6649 40.0274 74.3907 37.7397 74.3907 34.9255L74.4042 26.0445H79.4723V29.1488L93.2123 29.169V26.0715L93.2191 26.0782ZM93.2123 33.0832L79.4723 33.0629V34.5949C79.4723 35.3507 80.0797 35.9648 80.8355 35.9648L93.2056 35.9851V33.0832H93.2123ZM98.2873 7.32402L98.2603 24.6138H93.1516L93.1651 15.7799H87.6313V11.7038H93.1651L93.1786 4.82031H95.797C97.1737 4.82031 98.2873 5.94057 98.2805 7.31727L98.2873 7.32402Z" fill="#444444"/>
+                        <path d="M15.4494 39.9986C4.69894 39.9986 0.00195312 33.4188 0.00195312 25.0843V16.0885C0.00195312 4.50802 7.72228 0 16.7788 0C27.7115 0 32.4894 5.95221 32.4894 11.9044C32.4894 20.5898 23.6016 22.7156 19.6874 23.8561C18.5604 24.18 14.3966 25.4217 13.4518 25.6917C9.79408 26.7512 8.74131 27.9389 8.74131 29.2819C8.74131 31.5764 10.7456 33.574 15.4494 33.574C19.539 33.574 22.5286 32.1838 23.028 27.912H31.5851C30.7011 34.674 26.6384 39.9986 15.4494 39.9986ZM16.4211 6.44485C11.6634 6.44485 8.55235 9.61667 8.55235 15.0425V20.7248C8.55235 20.7248 14.9837 18.8487 17.6696 18.0388C19.9169 17.3572 23.9458 15.9333 23.9458 12.3768C23.9458 9.28599 21.4353 6.44485 16.4211 6.44485Z" fill="#FFBB33"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_38_64">
+                        <rect width="98.2857" height="40.0593" fill="white"/>
+                        </clipPath>
+                    </defs>
+                    </svg>
                 </a>
             </div>
 
@@ -91,8 +101,8 @@
             </div>
 
             <!-- Icons -->
-            <div class="category-group d-flex align-items-center gap-lg-custom justify-content-end header-col">
-                <a href="#">
+            <div class="header-col header-icon-group">
+                <a href="/page/cart.html">
                     <span class="cart-count">100</span>
                     <svg class="icon-header" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -117,7 +127,7 @@
                             fill="currentColor"></path>
                     </svg>
                 </a>
-                <div class="vr bg-secondary opacity-25 vr-custom"></div>
+                <div class="vr-custom"></div>
                 <a href="#"><svg class="icon-header" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         xmlns="http://www.w3.org/2000/svg">
@@ -131,24 +141,26 @@
 
     <!-- 3. Navigation Bar -->
     <nav class="header-nav">
-        <div class="container-fluid d-flex align-items-center justify-content-between">
+        <div class="header-inner header-nav-inner">
             <!-- Category -->
-            <div class="category-area d-flex align-items-center cursor-pointer">
-                <div class="category-box">
-                    <svg class="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                </div>
-                <span class="category-label">전체 카테고리</span>
+            <div class="category-area">
+                <a href="#" class="category-link">
+                    <div class="category-box">
+                        <svg class="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </div>
+                    <span class="category-label">전체 카테고리</span>
+                </a>
             </div>
 
             <!-- GNB -->
             <div class="gnb-nav">
-                <ul class="nav gap-5 justify-content-center">
+                <ul class="gnb-list">
                     <li class="nav-item"><a href="#" class="gnb-link active">홈</a></li>
                     <li class="nav-item"><a href="#" class="gnb-link">오늘의 특가</a></li>
                     <li class="nav-item"><a href="#" class="gnb-link">MD추천</a></li>
@@ -159,8 +171,8 @@
             </div>
 
             <!-- Order Info -->
-            <div class="order-info-area d-flex align-items-center gap-2 text-nowrap">
-                <span class="small d-flex align-items-center me-2 gap-1">
+            <div class="order-info-area">
+                <span class="min-order-text">
                     <svg class="icon-muted-simple" width="16" height="16" viewBox="0 0 16 16" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -169,7 +181,7 @@
                     </svg>
                     최소 주문 금액
                 </span>
-                <span class="badge rounded-1 d-flex align-items-center gap-1 badge-order-red">
+                <span class="badge badge-order-red">
                     <svg class="icon-mini" width="20" height="20" viewBox="0 0 20 20" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -178,7 +190,7 @@
                     </svg>
                     상온 : 30만원
                 </span>
-                <span class="badge rounded-1 d-flex align-items-center gap-1 badge-order-blue">
+                <span class="badge badge-order-blue">
                     <svg class="icon-mini" width="20" height="20" viewBox="0 0 20 20" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path

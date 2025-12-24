@@ -1,60 +1,67 @@
 // _variables.scss
 
-// 1. Color System (Synced with Figma)
+// 1. 색상 시스템 (Color System)
 // -----------------------------------------------------------------------------
 $white: #ffffff;
-$black: #222222; // Gray-222222-80
+$black: #222222;
 
-// Gray Scale
+// 그레이 스케일 (Gray Scale)
 $gray-20: #FAFAFA;
-$gray-50: #f4f4f4; // Gray-F4F4F4-30
-$gray-100: #eeeeee; // Gray-EEEEEE-40
-$gray-200: #cccccc; // Gray-CCCCCC-50
-$gray-300: #aaaaaa; // Gray-AAAAAA-60
-$gray-500: #999999; // Preserved
-$gray-600: #888888; // Preserved
-$gray-700: #444444; // Gray-444444-70
-$gray-900: #222222; // Gray-222222-80
+$gray-50: #f4f4f4;
+$gray-100: #eeeeee;
+$gray-200: #cccccc;
+$gray-300: #aaaaaa;
+$gray-500: #999999;
+$gray-600: #888888;
+$gray-700: #444444;
+$gray-900: #222222;
 
-// Brand Colors (Figma Updated)
-$primary-gold: #ffbb33; // primary-75-base
+// 브랜드 색상 (Brand Colors)
+$primary-gold: #ffbb33;
 $primary-100: #ffaa00;
 $primary-50: #fddb96;
 $primary-25: #fbeac8;
 
-$accent-base: #ff5447; // Accent-75-base
+$accent-base: #ff5447;
 $accent-100: #b81f14;
 $accent-75: #FF5447;
 $accent-50: #fcb7b3;
 $accent-25: #fae9e8;
 
-$secondary-bg: #ffffe0; // Secondary-25
+$secondary-bg: #ffffe0;
 $secondary-100: #e9d10c;
 $secondary-75: #ffe400;
 $secondary-50: #fdef7d;
 
-// System Colors
-$system-info: #1f95ff; // System-information-75-base
-$system-success: #00b87a; // System-success-75-base
-$system-danger: #e03e3e; // System-danger-75-base
-$system-warning: #ffaa00; // System-warning-75-base
+// 시스템 색상 (System Colors)
+$system-info-100: #146BB8;
+$system-info-75: #1f95ff;
+$system-info-50: #A2D2FC;
+$system-info-25: #E4F0FA;
+$system-info: #1f95ff;
 
-// Semantic Aliases & Legacy Support
+
+$system-success: #00b87a;
+$system-danger: #e03e3e;
+$system-warning: #ffaa00;
+$secondary: #6c757d;
+
+// 시맨틱 별칭 & 레거시 지원 (Semantic Aliases & Legacy Support)
 $primary-text: $black;
 $secondary-text: $gray-300;
-$gray-400: $gray-200; // Alias for #CCCCCC
-$gray-800: #333333; // Added for legacy support
-$gray-10: #fafafa; // Gray-FAFAFA-20
-$black-pure: #000000; // Gray-000000-100
+$gray-400: $gray-200;
+$gray-800: #333333;
+$gray-10: #fafafa;
+$black-pure: #000000;
 
-// Badge Colors (Refined from Figma/Puppeteer)
+// 배지 색상 (Badge Colors)
 $badge-red-bg: #FAEBDB;
-$badge-red-text: $accent-base; // #FF5447
+$badge-red-text: $accent-base;
 $badge-blue-bg: #D8ECFD;
-$badge-blue-text: #1876D3; // Distinct from system-info
+$badge-blue-text: #1876D3;
 
 
-// 2. Typography (Preserved)
+// 2. 타이포그래피 (Typography)
 // -----------------------------------------------------------------------------
 $font-family-base: 'Pretendard Variable', sans-serif;
 $font-family-number: 'Roboto', sans-serif;
@@ -64,10 +71,10 @@ $font-size-sm: 13px;
 $font-size-base: 14px;
 $font-size-md: 16px;
 $font-size-lg: 20px;
-$font-size-xl: 32px; // Logo 'e'
-$font-size-xxl: 28px; // Logo 'Club'
+$font-size-xl: 32px;
+$font-size-xxl: 28px;
 
-// Figma Typography
+// 피그마 타이포그래피 (Figma Typography)
 $font-display-lg: 60px;
 $font-display-md: 44px;
 $font-display-sm: 36px;
@@ -82,14 +89,17 @@ $font-body-sm: 15px;
 $font-body-xs: 13px;
 
 
-// 3. Spacing & Layout (Preserved)
+// 3. 여백 & 레이아웃 (Spacing & Layout)
 // -----------------------------------------------------------------------------
 $header-height-top: 50px;
 $header-height-main: 80px;
 $header-height-nav: 60px;
 
+// 새 레이아웃 변수 (New Layout Variables)
+$layout-container-width: 1360px;
 
-// Bootstrap Overrides
+
+// 부트스트랩 오버라이드 (Bootstrap Overrides)
 // -----------------------------------------------------------------------------
 $nav-link-padding-y: 8px;
 $nav-link-padding-x: 16px;

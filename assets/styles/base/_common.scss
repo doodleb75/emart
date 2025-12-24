@@ -3,6 +3,7 @@ body {
     min-width: rem(1400);
     font-family: $font-family-base;
     background-color: $white;
+    color: $gray-700;
     margin: 0;
     overflow-x: auto;
 }
@@ -90,7 +91,7 @@ body {
     width: 100%;
 
     background: $white;
-    border: 1px solid $black;
+    border: 1px solid $gray-700;
     border-radius: rem(4);
     text-align: center;
     overflow: hidden;
@@ -135,13 +136,13 @@ body {
             align-items: center;
             padding: rem(8) 0;
             text-decoration: none;
-            color: $black;
+            color: $gray-700;
 
             .label {
                 font-family: $font-family-base;
                 font-size: rem(13);
                 font-weight: 500;
-                color: $black;
+                color: $gray-700;
                 margin-bottom: 0;
                 letter-spacing: -0.5px;
             }
@@ -153,6 +154,10 @@ body {
                 color: $system-info;
             }
         }
+
+        .my-coupon {
+            background: $secondary-bg;
+        }
     }
 
     .btn-top {
@@ -161,6 +166,8 @@ body {
         border: none;
         border-top: 1px solid $gray-100;
         background: $white;
+
+        color: $gray-700;
         cursor: pointer;
         display: flex;
         flex-direction: column;
@@ -170,10 +177,69 @@ body {
         span {
             font-size: rem(13); // Adjusted to match image
             font-weight: 700;
-            color: $black;
+            color: $gray-700;
             margin-top: rem(-2);
             font-family: $font-family-number;
         }
 
+    }
+}
+
+
+
+// common control 
+.qty-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid $gray-700;
+    border-radius: rem(4);
+
+    overflow: hidden;
+
+    button {
+        background: none;
+        border: none;
+        padding: 0;
+        width: rem(48);
+        height: 100%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: rem(18);
+            height: rem(18);
+        }
+
+        @include btn-hover-effect;
+    }
+
+    input {
+        flex: .8;
+        width: 60%;
+        border: none;
+        background: transparent;
+        text-align: center;
+        font-size: rem(16);
+        font-weight: 600;
+        color: $gray-700;
+        outline: none;
+        padding: 0;
+        height: 90%;
+        border-radius: rem(4);
+        -moz-appearance: textfield;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        &:focus {
+            outline: 2px solid $gray-700;
+        }
     }
 }

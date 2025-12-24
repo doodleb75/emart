@@ -1,7 +1,6 @@
 // _header.scss - Header Styles for Step 1
 // Colors (Local overrides to ensure yellow branding)
 $emart-yellow: #FFC000;
-$emart-black: #222222;
 
 .header {
     background-color: $white;
@@ -14,7 +13,7 @@ $emart-black: #222222;
             color: $gray-600;
 
             &:hover {
-                color: $emart-black;
+                color: $gray-700;
             }
         }
     }
@@ -42,14 +41,14 @@ $emart-black: #222222;
 
                 .btn-warning {
                     background-color: $emart-yellow;
-                    color: $emart-black;
+                    color: $gray-700;
                 }
             }
         }
 
         .nav-item {
             .nav-link {
-                color: $emart-black;
+                color: $gray-700;
 
                 &:hover i {
                     color: $emart-yellow;
@@ -70,7 +69,7 @@ $emart-black: #222222;
 
         .gnb-menu {
             .nav-link {
-                color: $emart-black;
+                color: $gray-700;
                 font-size: 16px;
                 letter-spacing: -0.5px;
 

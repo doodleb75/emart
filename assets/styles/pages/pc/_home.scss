@@ -1,45 +1,45 @@
 // Main HOME Styles
 
 // Main Slider
+// Main Slider
 .main-slider-wrapper {
-    width: 100%;
+    width: 100%; // Full viewport width
     overflow-x: hidden;
-    // padding-left: rem(48);
     margin-bottom: rem(80);
+    // 1360px 그리드 정렬 (JS offset 처리)
+    padding-left: 0;
 
     #eclubMainSlider {
-        .carousel-item {
-            // Ensure transition works with flex
-            transition: transform 0.6s ease-in-out;
 
-            // Should behave like the old slider-track when visible
-            &.active,
-            &-next,
-            &-prev {
-                display: flex;
-                gap: rem(24); // Changed from 20 to 24 based on gap-4 (1.5rem = 24px)
-                flex-wrap: nowrap; // Prevent wrapping!
+        // 구조: .main-slider-track > .slider-card
 
-                // Override card sizing for this specific slider to ensure they fit or overflow correctly
-                .slider-card {
-                    min-width: rem(210); // Keep preferred width
-                    flex-shrink: 0; // Don't shrink below min-width
-                    // If we want them to fit exactly 6, we might need to adjust, but since it's a slider 
-                    // where next/prev slide reveals, flexible width or fixed width?
-                    // User wanted "continuous slide". 
-                    // Standard approach: Fixed width cards that overflow the container if needed (but hidden by overflow-x: hidden on wrapper)
+        .slider-track {
+            display: flex;
+            gap: rem(20); // gap-4 (1.5rem = 24px)
+            // 가로 정렬 & transition 처리
+            width: max-content;
+        }
+
+        .slider-card {
+            // 너비 계산: (1360 - 48) / 3 = 437.333px
+            // width: rem(437.3333); 
+            // min-width: rem(437.3333);
+            flex: 0 0 auto; // 크기 고정
+
+            // 이미지 래퍼 조정
+            .slider-card-img-wrap {
+                width: 100%;
+
+                img {
+                    width: 100%;
+                    height: auto;
                 }
             }
         }
-
-        // This is important: Only the first child (the original card) needs to be sized correct?
-        // No, all children (clones + original) are .slider-card
-        // .slider-card has 'flex: 1' and min/max width in _cards.scss.
-        // That should work fine.
     }
 }
 
-// Section Wrapper (Full Width with Border)
+// Section Wrapper (전체 너비 & 하단 보더)
 .section-wrapper {
     width: 100%;
     border-bottom: 1px solid $gray-50;
@@ -47,10 +47,10 @@
     padding-bottom: rem(80);
 }
 
-// Section Container (Inner Centered)
+// Section Container (중앙 정렬)
 .section-container {
     width: rem(1360);
-    margin: 0 auto; // Centered without vertical margin
+    margin: 0 auto; // 중앙 정렬
     position: relative;
 }
 
@@ -62,43 +62,45 @@
     margin-bottom: rem(24);
 
     .section-title {
-        font-size: rem(28);
+        font-size: rem(32);
         font-weight: 700;
-        color: $black;
+        color: $gray-700;
+        letter-spacing: .6;
+        line-height: 1.5;
     }
 
     .section-link {
         font-family: "Pretendard", sans-serif;
-        font-size: rem(16); // Visually looks larger in reference, adjusting to 16px
-        color: $gray-800; // #333
+        font-size: rem(16); // 디자인 참조하여 16px 조정
+        color: $gray-700; // #333
         text-decoration: none;
         display: flex;
         align-items: center;
-        gap: rem(12); // Gap between Text and Box
+        gap: rem(12); // 텍스트-박스 간격
         font-weight: 600; // SemiBold
 
-        // Reset previous button styles on the container
+        // 컨테이너 스타일 초기화
         height: auto;
         padding: 0;
         border: none;
         border-radius: 0;
         background-color: transparent;
 
-        // The Arrow Box (Square Button)
+        // 화살표 박스 (Square Button)
         &:after {
             content: "";
             display: block;
-            width: rem(48); // User specified width
-            height: rem(48); // User specified height
-            border: 1px solid $gray-800; // #333
-            border-radius: rem(4); // User specified radius
+            width: rem(48);
+            height: rem(48);
+            border: 1px solid $gray-700;
+            border-radius: rem(4);
             background: url('../icons/fullview-arrow.svg') no-repeat center center;
-            background-size: rem(24) rem(24); // Icon size
+            background-size: rem(24) rem(24); // Icon 크기
             box-sizing: border-box;
             transition: all 0.2s;
         }
 
-        // Optional hover effect
+        // Hover 효과
         &:hover:after {
             @include btn-active-styles;
         }
@@ -137,11 +139,22 @@
         }
 
         &.active {
-            background-color: $gray-800; // Dark active state
+            background-color: $gray-700; // Active 상태 (Dark)
             color: $white;
-            border-color: $gray-800;
+            border-color: $gray-700;
         }
     }
+}
+
+// Pagination Container
+// Pagination Container
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // py-4 = 1.5rem = 24px
+    padding-top: rem(24);
+    padding-bottom: rem(24);
 }
 
 // Weekly Ranking (Accordion)
@@ -152,7 +165,7 @@
         border-bottom: 1px solid $gray-100;
 
         .ranking-header {
-            padding: rem(24) rem(10); // Spacing matches image
+            padding: rem(24) rem(10); // 이미지 참조 간격
             transition: background-color 0.2s;
 
             &:hover {
@@ -165,9 +178,8 @@
         }
 
         .ranking-body {
-            background-color: $white; // It looks white in image, not gray. But standard accordion body often differs. 
-            // In the image, the expanded area seems to default white, but enclosed? 
-            // Let's keep it clean.
+            background-color: $white;
+            // 확장 영역 스타일 유지
             padding-top: rem(10);
             padding-bottom: rem(40);
         }
@@ -347,7 +359,7 @@
 
         .current {
             font-weight: 700;
-            color: $gray-800;
+            color: $gray-700;
         }
 
         .divider {
@@ -362,25 +374,25 @@
     }
 }
 
-// Brand Club Zone (Refined)
+// Brand Club Zone (개선됨)
 .brand-club-zone {
     // margin-bottom: 120px; // Handled by section-wrapper
 
     .section-header {
-        // Inherits from global .section-header
+        // 전역 .section-header 상속
     }
 
     .brand-list {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: rem(24); // Refined gap
+        gap: rem(24); // 간격 조정
     }
 
-    // More Button Area
+    // More Button 영역
     .brand-more-wrap {
         display: flex;
         justify-content: center;
-        margin-top: rem(50); // Matches typical section spacing (mt-5 ~ 3rem ~ 48px)
+        margin-top: rem(50); // 기본 섹션 간격 (mt-5 ~ 3rem ~ 48px)
 
         .btn-brand-more {
             display: flex;
@@ -388,7 +400,7 @@
             justify-content: center;
             gap: rem(10);
             height: rem(48);
-            padding: 0 rem(16); // Horizontal padding from Figma
+            padding: 0 rem(16); // Figma 좌우 여백
             background-color: $white;
             border: 1px solid $black; // stroke_C5M6KF
             border-radius: rem(4);
