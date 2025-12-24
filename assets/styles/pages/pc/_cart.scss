@@ -531,7 +531,7 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                margin-bottom: rem(16);
+                margin-bottom: rem(8);
                 font-size: rem(14);
                 color: $gray-700;
                 font-weight: 600;
@@ -540,7 +540,7 @@
                 // 1. 선택 상품 수
 
                 &.first-row {
-                    margin-bottom: rem(20);
+                    margin-bottom: rem(16);
                     padding-bottom: rem(20);
                     border-bottom: 1px solid $gray-100;
                     font-size: rem(20);
