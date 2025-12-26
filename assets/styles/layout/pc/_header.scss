@@ -1,4 +1,4 @@
-// Header
+// 헤더 영역
 .header {
     width: 100%;
     // padding: 0 rem(48); // Removed padding from here as it seems to be handled by container or inner padding in Figma
@@ -7,7 +7,7 @@
     background-color: $white;
 }
 
-// Common Layout Helpers for Header
+// 헤더 공통 레이아웃
 .header-inner {
     width: 100%;
     margin-right: auto;
@@ -18,7 +18,7 @@
     box-sizing: border-box;
 }
 
-// 1. Top Info Bar
+// 상단 정보 바
 .header-top {
     padding: rem(32) rem(0);
 
@@ -76,22 +76,22 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: rem(48); // Figma height
-        min-width: rem(68); // Estimate based on visual/text
+        height: rem(48); // 피그마 기준 높이
+        min-width: rem(68); // 시각적 크기 추정
     }
 
     .info-label {
         font-size: rem(14);
-        color: $gray-200; // #CCCCCC as per Figma
+        color: $gray-200; // 피그마 기준 색상
         font-weight: 600;
-        margin-bottom: rem(4); // mb-1 approx
+        margin-bottom: rem(4); // 간격 조정
         line-height: 1.5;
         white-space: nowrap;
 
         &.label-with-icon {
             display: flex;
             align-items: center;
-            gap: rem(4); // gap-1 approx
+            gap: rem(4); // 간격 조정
         }
     }
 
@@ -143,9 +143,9 @@
     line-height: 1;
 }
 
-// 2. Main Action Bar
+// 메인 액션 바
 .header-main {
-    padding-top: rem(24); // py-4 approx 1.5rem = 24px
+    padding-top: rem(24); // 세로 패딩 24px
     padding-bottom: rem(24);
 
     .header-main-inner {
@@ -165,7 +165,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: rem(20); // gap-lg-custom
+    gap: rem(20); // 간격 20px
 
     // Category Group context
     a {
@@ -195,18 +195,25 @@
 }
 
 
-// Search (Node 29:2541)
+// 검색창 영역
 .search-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex: 1;
     height: rem(48);
-    background-color: $gray-50; // #F4F4F4
+    background-color: $gray-50; // 배경색
+    border: 1px solid transparent;
     border-radius: rem(4);
-    padding: 0; // Reset padding
+    padding: 0; // 패딩 초기화
     position: relative;
-    margin: 0 auto; // Center it
+    margin: 0 auto; // 중앙 정렬
+    transition: all 0.2s;
+
+    &:focus-within {
+        border-color: $gray-800;
+        background-color: $white;
+    }
 }
 
 .search-input {
@@ -214,16 +221,16 @@
     height: 100%;
     border: none;
     background: transparent;
-    padding: rem(10) 0 rem(10) rem(16); // Figma Padding
+    padding: rem(10) 0 rem(10) rem(16); // 피그마 패딩 적용
     font-size: rem(16);
     font-weight: 600;
     letter-spacing: rem(-0.32);
     font-family: 'Pretendard', sans-serif;
-    color: $gray-700; // Text Color
+    color: $gray-700; // 텍스트 색상
     outline: none;
 
     &::placeholder {
-        color: $gray-400; // #CCCCCC
+        color: $gray-400; // 색상 코드
     }
 }
 
@@ -238,11 +245,27 @@
     color: $gray-700;
     cursor: pointer;
     border-radius: 0 rem(4) rem(4) 0;
+    position: relative;
+
+    &:hover {
+        color: $black;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            width: rem(1);
+            height: 50%;
+            background-color: $gray-300;
+        }
+    }
 }
 
-// 3. Navigation Bar
+// 네비게이션 바
 .header-nav {
-    padding: rem(24) rem(0); // Figma 32px vertical padding
+    padding: rem(24) rem(0); // 세로 패딩 32px
 
     .header-nav-inner {
         display: flex;
@@ -261,16 +284,16 @@
     .category-link {
         display: flex;
         align-items: center;
-        gap: rem(16); // Figma gap 16px
+        gap: rem(16); // 간격 16px
         text-decoration: none;
         color: inherit;
         cursor: pointer;
     }
 
     .category-box {
-        width: rem(48); // Figma 48px
-        height: rem(48); // Figma 48px
-        background-color: #444444; // Figma #444
+        width: rem(48); // 너비 48px
+        height: rem(48); // 높이 48px
+        background-color: #444444; // 배경색
         display: flex;
         align-items: center;
         justify-content: center;
@@ -280,13 +303,13 @@
 
     .category-label {
         font-size: rem(20);
-        color: $gray-700; // #222
-        font-weight: 600; // SemiBold
-        margin-left: 0; // Handled by gap
+        color: $gray-700; // 텍스트 색상
+        font-weight: 600; // 세미볼드
+        margin-left: 0; // 갭 설정으로 불필요
     }
 }
 
-// GNB
+// GNB 메뉴
 .gnb-nav {
     flex: 1;
     flex-grow: 1;
@@ -294,7 +317,7 @@
 
 .gnb-list {
     display: flex;
-    gap: rem(40); // gap-5 (3rem) = 48px
+    gap: rem(40); // 갭 설정
     justify-content: center;
     list-style: none;
     padding: 0;
@@ -335,8 +358,8 @@
     flex: 0.8;
     display: flex;
     align-items: center;
-    gap: rem(8); // gap-2
-    white-space: nowrap; // text-nowrap
+    gap: rem(8); // 간격 8px
+    white-space: nowrap; // 줄바꿈 방지
 
     justify-content: flex-end;
     color: $gray-400;
@@ -344,11 +367,11 @@
     font-weight: 600;
 
     .min-order-text {
-        font-size: rem(14); // small
+        font-size: rem(14); // 작게
         display: flex;
         align-items: center;
-        margin-right: rem(8); // me-2
-        gap: rem(4); // gap-1
+        margin-right: rem(8); // 우측 여백
+        gap: rem(4); // 간격 조정
     }
 
     .badge {
@@ -357,7 +380,7 @@
         display: flex;
         align-items: center;
         gap: rem(4);
-        padding: rem(5) rem(10); // Standard badge padding
+        padding: rem(5) rem(10); // 기본 배지 패딩
         letter-spacing: rem(-0.28);
         color: $white;
     }
@@ -380,8 +403,8 @@
 
 .vr-custom {
     width: 1px;
-    height: rem(16); // Fixed height
+    height: rem(16); // 고정 높이
     background-color: $gray-100;
-    display: block; // Override .vr inline-block
-    align-self: center; // Ensure centering explicitly
+    display: block; // 인라인 블록 해제
+    align-self: center; // 중앙 정렬 보장
 }

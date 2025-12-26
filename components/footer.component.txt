@@ -10,7 +10,7 @@
                 <a href="#">설문조사</a>
                 <a href="#" class="d-flex align-items-center gap-1">
                     개인정보처리방침
-                    <img src="assets/icons/footer_arrow_right.svg" alt="Arrow">
+                    <img src="/assets/icons/footer_arrow_right.svg" alt="Arrow">
                 </a>
                 <a href="#">이용약관</a>
             </div>
@@ -22,7 +22,7 @@
         <div class="section-container">
             <!-- Logo Row -->
             <div class="logo-row">
-                <img src="assets/icons/logo_eclub.svg" alt="eClub" class="footer-logo">
+                <img src="/assets/icons/logo_eclub.svg" alt="eClub" class="footer-logo">
             </div>
 
             <!-- Main Grid -->
@@ -58,10 +58,10 @@
 
                 <!-- Center: App Install -->
                 <div class="app-install-box">
-                    <img src="assets/icons/logo_eclub.svg" alt="eClub" class="app-logo">
+                    <img src="/assets/icons/logo_eclub.svg" alt="eClub" class="app-logo">
                     <span class="title">모바일 APP 설치하기</span>
                     <div class="qr-box">
-                        <img src="assets/images/footer/footer_qr_code.png" alt="QR Code">
+                        <img src="/assets/images/footer/footer_qr_code.png" alt="QR Code">
                     </div>
                 </div>
 

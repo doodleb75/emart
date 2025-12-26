@@ -1,11 +1,12 @@
 @charset "UTF-8";
 
-/* Cart Page Styles */
+// 장바구니 페이지 스타일
 .cart-page {
     padding-top: rem(40);
     border-top: 1px solid $gray-100;
     font-weight: 600;
 
+    // 페이지 헤더
     .page-header {
         display: flex;
         align-items: center;
@@ -28,6 +29,7 @@
             }
         }
 
+        // 장바구니 단계 표시
         .page-steps {
             display: flex;
             align-items: center;
@@ -57,7 +59,7 @@
         display: flex;
         justify-content: space-between;
         align-items: stretch; // 사이드바 sticky 적용을 위해 stretch
-        // .container 기준 전체 너비 1360px (980 + 332 + 48)
+        // 장바구니 컨테이너 기준 전체 너비 1360px (980 + 332 + 48)
     }
 
     .cart-content {
@@ -68,7 +70,7 @@
     .cart-sidebar {
         width: rem(332);
         flex-shrink: 0;
-        // 간격은 justify-content: space-between으로 자동 처리
+        // justify-content: space-between으로 자동 처리
     }
 
 
@@ -86,7 +88,7 @@
             gap: rem(24);
             align-items: center;
 
-            // .custom-checkbox-wrap -> 글로벌 스코프로 이동
+            // 상품 정보 (체크박스 + 이미지 + 텍스트)-> 글로벌 스코프로 이동
         }
 
         .btn-delete {
@@ -107,7 +109,6 @@
         .btn-excel-upload {
             display: flex;
             align-items: center;
-            gap: rem(4);
             height: rem(40);
             padding: 0 rem(12);
             background-color: $white;
@@ -174,7 +175,7 @@
     gap: rem(8);
     // Sticky 추가
 
-    // Sticky Styles
+    // 활성 탭 스타일
     position: sticky;
     top: 0;
     z-index: 999;
@@ -224,12 +225,14 @@
 .cart-section {
     margin-bottom: rem(40);
     margin-top: rem(40);
+    scroll-margin-top: 140px;
 
     .section-title-group {
         padding-bottom: rem(10);
         border-bottom: 1px solid $gray-100;
     }
 
+    // 섹션 헤더 (제목 + 체크박스)
     .section-title-checkbox {
         display: flex;
         align-items: center;
@@ -293,10 +296,11 @@
         .brand-name {
             font-size: rem(14);
             color: $gray-700;
-            margin-bottom: rem(4);
+            margin-bottom: rem(20);
             line-height: 1.4;
         }
 
+        // 개별 상품 카드
         .product-name {
             font-size: rem(16);
             color: $gray-700;
@@ -304,6 +308,7 @@
             line-height: 1.4;
         }
 
+        // 프로모션 텍스트
         .promo-text {
             display: flex;
             align-items: center;
@@ -335,6 +340,7 @@
                     border: none;
                 }
 
+                // 우측 버튼 (배송지 변경 등)
                 &:not(.tag-outline):not(.tag-green) {
                     color: $black; // TC 스타일
                 }
@@ -407,6 +413,7 @@
                 flex: 1;
                 width: 100%;
                 border: none;
+                // 텍스트 정보
                 text-align: center;
                 font-size: rem(15);
                 font-weight: 600;
@@ -470,11 +477,17 @@
                 &:hover {
                     background-color: $gray-100;
                 }
+
+                .icon-heart {
+                    width: 18px;
+                    height: 18px;
+                }
             }
         }
     }
 }
 
+// 요약 사이드바 (결제 정보)
 .summary-sidebar {
     position: sticky;
     top: rem(20);
@@ -524,6 +537,7 @@
             }
         }
 
+        // 가격 요약 행
         .summary-body {
             padding: rem(16) rem(24);
 
@@ -628,6 +642,7 @@
                 background-color: $gray-20; // #FAFAFA
                 border-radius: rem(4); // 내부 라운딩
 
+                // 가격 정보
                 .price-row {
                     font-size: rem(14);
                     color: $gray-300;
@@ -650,6 +665,7 @@
                 border: none;
                 cursor: default;
 
+                // 현재 단계 (활성)
                 &.active {
                     cursor: pointer;
                     background-color: $accent-75;
@@ -679,7 +695,8 @@
 
     .info-list {
         margin: 0;
-        padding-left: rem(16);
+        padding-left: 0; // 패딩 초기화
+        // padding-left: rem(16); // Original line, commented out by instruction
 
         li {
             font-size: rem(13);

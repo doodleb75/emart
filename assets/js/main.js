@@ -1,4 +1,4 @@
-// Menu Data
+// 좌측 메뉴 데이터 정의
 const menuData = {
     sales: ['판매등록', '판매TR조회', '저널조회', '무이자정보', '품번매출', '점검', '정산'],
     query: ['매출조회', '영수증조회', '포인트조회', '쿠폰조회'],
@@ -13,12 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sidebarItems && contentList) {
         sidebarItems.forEach(item => {
             item.addEventListener('click', () => {
-                // Remove active class from all items
+                // 기존 선택 해제
                 sidebarItems.forEach(i => i.classList.remove('active'));
-                // Add active class to clicked item
+                // 신규 항목 선택
                 item.classList.add('active');
 
-                // Update content based on menu
+                // 하위 목록 갱신
                 const menuType = item.dataset.menu;
                 if (menuType && menuData[menuType]) {
                     updateContent(menuData[menuType]);
@@ -35,68 +35,85 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Nav Width Calculation (Runs after Header Load)
+    // GNB 및 검색창 너비 조정
     function adjustNavWidth() {
         const navList = document.querySelector('.gnb-list');
         const searchContainer = document.querySelector('.search-container');
 
         if (navList && searchContainer) {
-            const listItems = navList.querySelectorAll('li'); // Use universal li selector or specific if class exists
+            // 스타일 초기화
+            searchContainer.style.width = '';
+            searchContainer.style.marginLeft = '';
+
+            const listItems = navList.querySelectorAll('li');
             if (listItems.length > 0) {
                 const firstRect = listItems[0].getBoundingClientRect();
                 const lastRect = listItems[listItems.length - 1].getBoundingClientRect();
+                const navWidth = lastRect.right - firstRect.left;
 
-                // Calculate width from the start of the first item to the end of the last item
-                const finalWidth = lastRect.right - firstRect.left;
+                // 검색창 위치 계산
+                const searchRect = searchContainer.getBoundingClientRect();
 
-                searchContainer.style.maxWidth = `${finalWidth}px`;
-                searchContainer.style.width = '100%';
-                // searchContainer.style.margin = '0 auto'; // Centering usually handled by CSS, but ensure it if needed
+                // 좌측 여백 계산
+                const offsetLeft = firstRect.left - searchRect.left;
+
+                // 스타일 적용
+                searchContainer.style.width = `${navWidth}px`;
+                searchContainer.style.marginLeft = `${offsetLeft}px`;
             }
         }
     }
 
-    document.addEventListener('headerLoaded', adjustNavWidth);
+    // 초기화 및 리사이즈 이벤트 등록
+    adjustNavWidth();
     window.addEventListener('resize', adjustNavWidth);
 
-    // Ranking Toggle Logic
-    const rankingItems = document.querySelectorAll('.ranking-item');
+    // 주간 랭킹 토글 기능
+    const rankingWrapper = document.querySelector('.weekly-ranking');
 
-    rankingItems.forEach(item => {
-        const toggleBtn = item.querySelector('.btn-toggle-rank');
-        const body = item.querySelector('.ranking-body');
-        const header = item.querySelector('.ranking-header');
+    if (rankingWrapper) {
+        rankingWrapper.addEventListener('click', (e) => {
+            const header = e.target.closest('.ranking-header');
+            if (!header) return;
 
-        if (toggleBtn && body && header) {
-            header.addEventListener('click', (e) => {
+            const item = header.closest('.ranking-item');
+            if (!item) return;
 
+            const toggleBtn = item.querySelector('.btn-toggle-rank');
+            const body = item.querySelector('.ranking-body');
+
+            if (toggleBtn && body) {
                 const isActive = item.classList.contains('active');
 
-                // If already active, do nothing (prevent toggle off)
+                // 중복 클릭 방지
                 if (isActive) {
                     return;
                 }
 
-                // Close all others
-                rankingItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                        const otherBtn = otherItem.querySelector('.btn-toggle-rank');
-                        const otherBody = otherItem.querySelector('.ranking-body');
-                        if (otherBtn) otherBtn.classList.remove('active');
-                        if (otherBody) otherBody.classList.remove('show');
-                    }
-                });
+                // 다른 항목 접기
+                const parentList = item.closest('.ranking-list');
+                if (parentList) {
+                    const siblings = parentList.querySelectorAll('.ranking-item');
+                    siblings.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            const otherBtn = otherItem.querySelector('.btn-toggle-rank');
+                            const otherBody = otherItem.querySelector('.ranking-body');
+                            if (otherBtn) otherBtn.classList.remove('active');
+                            if (otherBody) otherBody.classList.remove('show');
+                        }
+                    });
+                }
 
-                // Open current
+                // 선택 항목 펼치기
                 item.classList.add('active');
                 toggleBtn.classList.add('active');
                 body.classList.add('show');
-            });
-        }
-    });
+            }
+        });
+    }
 
-    // MD Recommendation Tab Logic
+    // MD 추천 상품 탭 기능
     const mdTabItems = document.querySelectorAll('.tab-menu .tab-item');
     const mdTabContents = document.querySelectorAll('.md-rec-content');
 
@@ -105,18 +122,18 @@ document.addEventListener('DOMContentLoaded', () => {
             item.addEventListener('click', () => {
                 const index = item.dataset.tab;
 
-                // Remove active from all tabs
+                // 기존 탭 비활성화
                 mdTabItems.forEach(tab => tab.classList.remove('active'));
-                // Add active to clicked tab
+                // 신규 탭 활성화
                 item.classList.add('active');
 
-                // Hide all contents
+                // 전체 콘텐츠 숨김
                 mdTabContents.forEach(content => {
                     content.style.display = 'none';
                     content.classList.remove('active');
                 });
 
-                // Show corresponding content
+                // 선택 콘텐츠 표시
                 const targetContent = document.getElementById(`md-grid-${index}`);
                 if (targetContent) {
                     targetContent.style.display = 'grid';
@@ -126,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Main Visual Carousel Logic (Custom Infinite Loop with Centering)
+    // 메인 배너 슬라이더 기능
     const mainCarouselEl = document.getElementById('eclubMainSlider');
     if (mainCarouselEl) {
         const track = mainCarouselEl.querySelector('.carousel-inner');
@@ -136,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentPageEl = document.querySelector('.current-page');
         const totalPageEl = document.querySelector('.total-page');
 
-        // Initial setup
+        // 상태 변수 초기화
         const initialCards = Array.from(track.querySelectorAll('.slider-card'));
         const totalItems = initialCards.length;
         let currentIndex = 1;
@@ -144,13 +161,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let isAnimating = false;
         let autoPlayInterval;
 
-        // Configuration
+        // 슬라이더 설정
         const checkInterval = 3000;
         const transitionTime = 500;
-        const contentWidth = 1360; // Desired content width
-        const gap = 24; // Gap between slides
+        const contentWidth = 1360; // 콘텐츠 너비
+        const gap = 24; // 간격
 
-        // State for offsets
+        // 동적 상태 값
         let baseOffset = 0;
         let cardWidth = 0;
         let prependCount = 0;
@@ -158,87 +175,60 @@ document.addEventListener('DOMContentLoaded', () => {
         function initSlider() {
             if (!track || initialCards.length === 0) return;
 
-            // 1. Measure Card Width (assumes standard desktop size initially if hidden)
-            // Temporarily ensure display block to measure if needed, but flex should be fine
+            // 카드 크기 측정
             const tempCard = initialCards[0];
             const computedStyle = window.getComputedStyle(tempCard);
-            // Parsing fixed width from CSS or offsetWidth
             cardWidth = tempCard.offsetWidth || 440;
-            if (cardWidth === 0) cardWidth = 437.33; // Fallback to calculation
+            if (cardWidth === 0) cardWidth = 437.33;
 
             const fullItemWidth = cardWidth + gap;
 
-            // 2. Calculate Offsets
+            // 시작 위치 계산
             const windowWidth = window.innerWidth;
-            // Center calculation: The start of the "active" slide should be at the start of the 1360px grid
-            // Grid Start X = (Window Width - Content Width) / 2
             let gridStartX = (windowWidth - contentWidth) / 2;
             if (gridStartX < 0) gridStartX = 0;
 
-            // 3. Determine needed clones
-            // We need to fill the left side (0 to gridStartX) with prepended items
-            // And fill the right side (gridStartX + contentWidth to windowWidth) with appended items
-            // Plus some buffer
-            const neededLeft = Math.ceil(gridStartX / fullItemWidth) + 2; // +2 Buffer
+            // 필요 복제본 수 계산
+            const neededLeft = Math.ceil(gridStartX / fullItemWidth) + 2;
             const neededRight = Math.ceil((windowWidth - (gridStartX + contentWidth)) / fullItemWidth) + 2;
 
-            // Reset Track
+            // 슬라이더 트랙 초기화
             track.innerHTML = '';
 
-            // Helper to append clones
+            // 요소 복제 함수
             const appendClone = (item) => {
                 const clone = item.cloneNode(true);
                 clone.classList.add('cloned');
                 track.appendChild(clone);
             };
 
-            // Prepend Clones (Reverse order for correct flow)
-            // e.g. needed 2. We take last 2 items. [4, 5]. Prepend 4, then 5? No.
-            // Sequence: ... 4, 5, [1, 2, 3, 4, 5], 1, 2 ...
             prependCount = neededLeft;
 
-            // Create "Left" clones
+            // 좌측 영역 채우기
             for (let i = 0; i < neededLeft; i++) {
-                // Index from end: -1, -2 ...
-                // modulo logic: (totalItems - 1 - (i % totalItems))
                 let index = (totalItems - 1 - (i % totalItems));
-                // We want to insert them at the BEGINNING. 
-                // But loop 0 should be the one closest to real items?
-                // Visual Order: [C_(-N) ... C_(-1), R_1 ... ]
-                // It's easier to build the array then append.
             }
 
-            // Let's build a fragment
             const fragment = document.createDocumentFragment();
 
-            // 1. Add Prepended Clones
-            // We need sequence ... [Last-1] [Last] [Real 1]
-            // If neededLeft = 2. We want [4, 5].
+            // 앞쪽 복제본 추가
             for (let i = neededLeft; i > 0; i--) {
                 let index = (totalItems - (i % totalItems)) % totalItems;
                 appendClone(initialCards[index]);
             }
 
-            // 2. Add Real Items (Keep their event listeners if possible? No, cloning breaks refs usually unless strict move)
-            // But we need to maintain "Original" identity for index tracking if strictly needed. 
-            // Simplifying: Just clone everything or move originals. 
-            // User code moved physical nodes. Let's re-use that strategy for the "Middle".
-            // Actually, simply cloning all is safer for "Reset" logic.
+            // 원본 항목 추가
             initialCards.forEach(card => {
-                track.appendChild(card); // Move original nodes back
+                track.appendChild(card);
             });
 
-            // 3. Add Appended Clones
+            // 뒤쪽 복제본 추가
             for (let i = 0; i < neededRight; i++) {
                 let index = i % totalItems;
                 appendClone(initialCards[index]);
             }
 
-            // 4. Set Initial Position
-            // The "Real Item 1" is at index `prependCount`.
-            // We want it at `gridStartX`.
-            // Position in track = prependCount * fullItemWidth.
-            // Transform = gridStartX - (prependCount * fullItemWidth)
+            // 초기 위치 설정
             baseOffset = gridStartX - (prependCount * fullItemWidth);
 
             track.style.transition = 'none';
@@ -248,14 +238,14 @@ document.addEventListener('DOMContentLoaded', () => {
             updatePagination();
         }
 
-        // Run Init
+        // 초기화
         initSlider();
-        window.addEventListener('resize', () => { // Debounce could be good
+        window.addEventListener('resize', () => {
             initSlider();
         });
 
 
-        // Auto Play
+        // 자동 재생 시작
         function startAutoPlay() {
             stopAutoPlay();
             autoPlayInterval = setInterval(() => {
@@ -263,6 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, checkInterval);
         }
 
+        // 자동 재생 정지
         function stopAutoPlay() {
             clearInterval(autoPlayInterval);
         }
@@ -270,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isPlaying) startAutoPlay();
 
 
-        // Move Next
+        // 다음 슬라이드 이동
         function moveNext() {
             if (!track || isAnimating) return;
             isAnimating = true;
@@ -283,11 +274,11 @@ document.addEventListener('DOMContentLoaded', () => {
             track.addEventListener('transitionend', function () {
                 track.style.transition = 'none';
 
-                // Move first item to end
+                // 첫 번째 항목 뒤로 이동
                 const first = track.firstElementChild;
                 track.appendChild(first);
 
-                // Reset to baseOffset
+                // 위치 재설정
                 track.style.transform = `translateX(${baseOffset}px)`;
 
                 updateCurrentIndex(true);
@@ -295,27 +286,25 @@ document.addEventListener('DOMContentLoaded', () => {
             }, { once: true });
         }
 
-        // Move Prev
+        // 이전 슬라이드 이동
         function movePrev() {
             if (!track || isAnimating) return;
             isAnimating = true;
 
             const fullItemWidth = cardWidth + gap;
 
-            // 1. Move last to first immediately
+            // 마지막 항목 앞으로 이동
             const last = track.lastElementChild;
             track.insertBefore(last, track.firstElementChild);
 
-            // 2. Adjust transform to match previous visual state
-            // We moved one item to front, so everything shifted right by width.
-            // To keep visual static, shift transform left by width.
+            // 위치 조정
             track.style.transition = 'none';
             track.style.transform = `translateX(${baseOffset - fullItemWidth}px)`;
 
-            // Force reflow
+            // 강제 리플로우 (애니메이션 초기화)
             void track.offsetWidth;
 
-            // 3. Animate to baseOffset
+            // 슬라이드 애니메이션
             track.style.transition = `transform ${transitionTime}ms ease-in-out`;
             track.style.transform = `translateX(${baseOffset}px)`;
 
@@ -338,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentPageEl) currentPageEl.textContent = String(currentIndex).padStart(2, '0');
         }
 
-        // Event Listeners
+        // 이벤트 리스너 등록
         if (btnNext) btnNext.addEventListener('click', () => { stopAutoPlay(); moveNext(); if (isPlaying) startAutoPlay(); });
         if (btnPrev) btnPrev.addEventListener('click', () => { stopAutoPlay(); movePrev(); if (isPlaying) startAutoPlay(); });
 
@@ -365,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     // ==========================================
-    // E-Club Weekly Ranking Carousel Logic
+    // 주간 랭킹 슬라이더 기능
     // ==========================================
     const rankingSection = document.querySelector('.weekly-ranking');
     if (rankingSection) {
@@ -378,21 +367,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const rTotalPageEl = rankingSection.querySelector('.page-count .total');
 
         if (rankingTrack && rankingList) {
-            // Setup
+            // 설정
             let rCurrentIndex = 1;
-            const rTotalItems = 5; // Fixed at 5 as per design
+            const rTotalItems = 5;
             let rIsAnimating = false;
             let rIsPlaying = true;
             let rAutoPlayInterval;
 
-            // Clone the list to create 5 items
-            // We already have 1. We need 4 more.
+            // 무한 스크롤용 리스트 복제
             for (let i = 0; i < 4; i++) {
                 const clone = rankingList.cloneNode(true);
                 rankingTrack.appendChild(clone);
             }
 
-            // Update Total Count
+            // 페이지 번호 갱신
             if (rTotalPageEl) rTotalPageEl.textContent = String(rTotalItems).padStart(2, '0');
 
             function rStartAutoPlay() {
@@ -405,13 +393,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (rIsPlaying) rStartAutoPlay();
 
-            // Move Next
+            // 다음 슬라이드 이동
             function rMoveNext() {
                 if (rIsAnimating) return;
                 rIsAnimating = true;
 
                 const firstItem = rankingTrack.firstElementChild;
-                const itemWidth = firstItem.offsetWidth; // Should be 100% of container
+                const itemWidth = firstItem.offsetWidth;
 
                 rankingTrack.style.transition = 'transform 0.5s ease-in-out';
                 rankingTrack.style.transform = `translateX(-${itemWidth}px)`;
@@ -425,7 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, { once: true });
             }
 
-            // Move Prev
+            // 이전 슬라이드 이동
             function rMovePrev() {
                 if (rIsAnimating) return;
                 rIsAnimating = true;
@@ -437,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 rankingTrack.insertBefore(lastItem, rankingTrack.firstElementChild);
                 rankingTrack.style.transform = `translateX(-${itemWidth}px)`;
 
-                // Force reflow
+                // 리플로우
                 void rankingTrack.offsetWidth;
 
                 rankingTrack.style.transition = 'transform 0.5s ease-in-out';
@@ -458,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (rCurrentPageEl) rCurrentPageEl.textContent = String(rCurrentIndex).padStart(2, '0');
             }
 
-            // Listeners
+            // 이벤트 리스너 등록
             if (rBtnNext) {
                 rBtnNext.addEventListener('click', () => {
                     rStopAutoPlay();
@@ -491,8 +479,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         rIsPlaying = true;
                         rBtnPause.innerHTML = `
                             <svg class="icon-slider-pause" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-                               <path d="M0 0h24v24H0V0z" fill="none"/>
-                               <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                                <path d="M0 0h24v24H0V0z" fill="none"/>
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
                             </svg>
                         `;
                     }
@@ -502,19 +490,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // Quantity Counter Logic
+    // 수량 증감 기능
     // ==========================================
     const qtyBoxes = document.querySelectorAll('.qty-box');
     qtyBoxes.forEach(box => {
         const buttons = box.querySelectorAll('button');
-        // Assuming first button is minus and second is plus based on DOM order
         const minusBtn = buttons[0];
         const plusBtn = buttons[1];
         const countInput = box.querySelector('input');
 
         if (minusBtn && plusBtn && countInput) {
             minusBtn.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent default button behavior
+                e.preventDefault(); // 기본 이벤트 차단
                 let currentCount = parseInt(countInput.value, 10) || 0;
                 if (currentCount > 0) {
                     countInput.value = currentCount - 1;
@@ -529,28 +516,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Use event delegation for potential dynamically added elements (like future clones if any)
-    // However, since we run this AFTER the initial carousel cloning, querySelectorAll captures those.
-    // If further dynamic content is added later, consider moving to document-level delegation.
-
     // ==========================================
-    // Cart Page Logic (Checkbox & Tabs)
+    // 장바구니 체크박스 및 탭 기능
     // ==========================================
     const selectAll = document.getElementById('selectAll');
     const cartTabs = document.querySelectorAll('.category-tabs .tab-item');
     const sectionCheckboxes = document.querySelectorAll('.section-check');
 
-    // Only run if relevant elements exist
+    // 필수 요소 확인
     if (selectAll || document.querySelector('.section-check') || cartTabs.length > 0) {
 
-        // Helper: Get Active Section
-        // Helper: Get Active Section (Refactored for Single Page View)
-        // Now returns the main container so "Select All" applies to ALL visible sections
         function getActiveSection() {
             return document.querySelector('.cart-content');
         }
 
-        // Helper: Update Global Select All State
+        // 전체 선택 체크박스 동기화
         function updateSelectAllState() {
             if (!selectAll) return;
 
@@ -568,7 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
             selectAll.checked = allChecked;
         }
 
-        // 1. Global Select All Click
+        // 전체 선택 기능
         if (selectAll) {
             selectAll.addEventListener('change', function () {
                 const isChecked = this.checked;
@@ -581,7 +561,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 2. Section & Item Checkbox Logic
+        // 개별/구역 선택 기능
         sectionCheckboxes.forEach(sectionCb => {
             const sectionContainer = sectionCb.closest('.cart-section');
             if (!sectionContainer) return;
@@ -603,24 +583,23 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // 3. Tab Logic
-        // 3. Tab Logic (Scroll Spy & Active State)
+        // 탭 스크롤 연동 기능
         if (cartTabs.length > 0) {
-            // Click Handler
+            // 탭 클릭 시 이동
             cartTabs.forEach(tab => {
                 tab.addEventListener('click', (e) => {
-                    // Remove active from all
+                    // 기존 탭 비활성화
                     cartTabs.forEach(t => t.classList.remove('active'));
-                    // Add active to clicked
+                    // 신규 탭 활성화
                     tab.classList.add('active');
-                    // Default anchor behavior handles scrolling
+                    // 스크롤은 앵커 기본 동작
                 });
             });
 
-            // Scroll Spy using IntersectionObserver
+            // 스크롤 위치 감지
             const observerOptions = {
                 root: null,
-                rootMargin: '-20% 0px -60% 0px', // Adjust active zone
+                rootMargin: '-20% 0px -60% 0px',
                 threshold: 0
             };
 
@@ -628,7 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const id = entry.target.id;
-                        // Find corresponding tab
+                        // 현재 섹션의 탭 찾기
                         const activeTab = document.querySelector(`.category-tabs .tab-item[href="#${id}"]`) ||
                             document.querySelector(`.category-tabs .tab-item[data-target="${id}"]`);
 
@@ -644,12 +623,137 @@ document.addEventListener('DOMContentLoaded', () => {
                 observer.observe(section);
             });
         }
-
-        // Initial State Check on Load
-        // Ensure correct initial visibility based on active tab
-        // Initial State Check: Removed to allow all sections to be visible
         updateSelectAllState();
     }
+
+    // ==========================================
+    // 검색 결과 전체 선택 기능
+    // ==========================================
+    const searchSelectAll = document.getElementById('searchSelectAll');
+    if (searchSelectAll) {
+        const searchItems = document.querySelectorAll('.product-grid-4 .item-check');
+
+        // 전체 선택/해제
+        searchSelectAll.addEventListener('change', (e) => {
+            const isChecked = searchSelectAll.checked;
+            searchItems.forEach(cb => {
+                cb.checked = isChecked;
+            });
+        });
+
+        // 개별 선택에 따른 전체 선택 상태 갱신
+        searchItems.forEach(cb => {
+            cb.addEventListener('change', () => {
+                const allChecked = Array.from(searchItems).every(c => c.checked);
+                searchSelectAll.checked = allChecked;
+            });
+        });
+    }
+
+    // ==========================================
+    // 보기 옵션 드롭다운 기능
+    // ==========================================
+    const itemsPerPageTrigger = document.getElementById('itemsPerPageTrigger');
+    if (itemsPerPageTrigger) {
+        const dropdownWrapper = itemsPerPageTrigger.closest('.dropdown-wrapper');
+        const optionsList = dropdownWrapper.querySelector('.dropdown-options');
+        const options = optionsList.querySelectorAll('li');
+        const selectedText = itemsPerPageTrigger.querySelector('.selected-value');
+
+        // 드롭다운 토글
+        itemsPerPageTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownWrapper.classList.toggle('active');
+        });
+
+        // 옵션 선택
+        options.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+
+                // 선택값 표시 업데이트
+                const valueText = option.textContent;
+                if (selectedText) selectedText.textContent = valueText;
+
+                // 활성 옵션 변경
+                options.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+
+                // 드롭다운 닫기
+                dropdownWrapper.classList.remove('active');
+
+                // Optional: Trigger Reload/Search here
+                console.log(`Changed to ${option.dataset.value} items per page`);
+            });
+        });
+
+        // 외부 클릭 감지 (닫기)
+        document.addEventListener('click', (e) => {
+            if (!dropdownWrapper.contains(e.target)) {
+                dropdownWrapper.classList.remove('active');
+            }
+        });
+
+        // ---------------------------------------------------------
+        // 드롭다운 너비 자동 조정
+        // ---------------------------------------------------------
+        function adjustDropdownWidth() {
+            // 텍스트 측정용 임시 요소 생성
+            const tempSpan = document.createElement('span');
+            tempSpan.style.visibility = 'hidden';
+            tempSpan.style.position = 'absolute';
+            tempSpan.style.fontSize = '14px'; // Match CSS rem(14)
+            tempSpan.style.fontWeight = '400'; // Standard weight
+            tempSpan.style.whiteSpace = 'nowrap';
+            document.body.appendChild(tempSpan);
+
+            let maxWidth = 0;
+            const texts = Array.from(options).map(o => o.textContent.trim());
+            // 선택된 텍스트 포함
+            if (selectedText) texts.push(selectedText.textContent.trim());
+
+            texts.forEach(text => {
+                tempSpan.textContent = text;
+                const w = tempSpan.offsetWidth;
+                if (w > maxWidth) maxWidth = w;
+            });
+
+            document.body.removeChild(tempSpan);
+
+            // 전체 필요 너비 계산
+            const extraSpace = 32 + 12 + 20 + 4;
+            const requiredWidth = maxWidth + extraSpace;
+
+            // 최소 너비 적용
+            dropdownWrapper.style.width = `${Math.max(requiredWidth, 130)}px`;
+        }
+
+        // 초기 실행
+        adjustDropdownWidth();
+    }
+
+    // 찜하기 버튼 토글 기능
+    document.body.addEventListener('click', (e) => {
+        // 아이콘 버튼 확인
+        const btn = e.target.closest('.btn-icon');
+        if (btn && btn.querySelector('.icon-heart')) {
+            e.preventDefault();
+            btn.classList.toggle('active');
+
+            const path = btn.querySelector('path');
+            if (path) {
+                if (btn.classList.contains('active')) {
+                    // 활성 상태 아이콘 (채워진 하트)
+                    path.setAttribute('d', 'M8.33333 15.2917L7.125 14.1917C2.83333 10.3 0 7.73333 0 4.58333C0 2.01667 2.01667 0 4.58333 0C6.03333 0 7.425 0.675 8.33333 1.74167C9.24166 0.675 10.6333 0 12.0833 0C14.65 0 16.6667 2.01667 16.6667 4.58333C16.6667 7.73333 13.8333 10.3 9.54167 14.2L8.33333 15.2917Z');
+                    path.setAttribute('fill', '#FF5447');
+                } else {
+                    // 비활성 상태 아이콘 (빈 하트)
+                    path.setAttribute('d', 'M8.33333 15.2917L7.125 14.2083C5.72222 12.9444 4.5625 11.8542 3.64583 10.9375C2.72917 10.0208 2 9.19792 1.45833 8.46875C0.916667 7.73958 0.538194 7.06944 0.322917 6.45833C0.107639 5.84722 0 5.22222 0 4.58333C0 3.27778 0.4375 2.1875 1.3125 1.3125C2.1875 0.4375 3.27778 0 4.58333 0C5.30555 0 5.99305 0.152778 6.64583 0.458333C7.29861 0.763889 7.86111 1.19444 8.33333 1.75C8.80555 1.19444 9.36805 0.763889 10.0208 0.458333C10.6736 0.152778 11.3611 0 12.0833 0C13.3889 0 14.4792 0.4375 15.3542 1.3125C16.2292 2.1875 16.6667 3.27778 16.6667 4.58333C16.6667 5.22222 16.559 5.84722 16.3437 6.45833C16.1285 7.06944 15.75 7.73958 15.2083 8.46875C14.6667 9.19792 13.9375 10.0208 13.0208 10.9375C12.1042 11.8542 10.9444 12.9444 9.54167 14.2083L8.33333 15.2917ZM8.33333 13.0417C9.66667 11.8472 10.7639 10.8229 11.625 9.96875C12.4861 9.11458 13.1667 8.37153 13.6667 7.73958C14.1667 7.10764 14.5139 6.54514 14.7083 6.05208C14.9028 5.55903 15 5.06944 15 4.58333C15 3.75 14.7222 3.05556 14.1667 2.5C13.6111 1.94444 12.9167 1.66667 12.0833 1.66667C11.4306 1.66667 10.8264 1.85069 10.2708 2.21875C9.71528 2.58681 9.33333 3.05556 9.125 3.625H7.54167C7.33333 3.05556 6.95139 2.58681 6.39583 2.21875C5.84028 1.85069 5.23611 1.66667 4.58333 1.66667C3.75 1.66667 3.05556 1.94444 2.5 2.5C1.94444 3.05556 1.66667 3.75 1.66667 4.58333C1.66667 5.06944 1.76389 5.55903 1.95833 6.05208C2.15278 6.54514 2.5 7.10764 3 7.73958C3.5 8.37153 4.18055 9.11458 5.04167 9.96875C5.90278 10.8229 7 11.8472 8.33333 13.0417Z');
+                    path.setAttribute('fill', '#444444');
+                }
+            }
+        }
+    });
 
 
 });

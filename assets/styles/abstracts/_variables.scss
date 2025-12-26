@@ -1,11 +1,11 @@
 // _variables.scss
 
-// 1. 색상 시스템 (Color System)
+// 1. 색상 시스템 변수 정의
 // -----------------------------------------------------------------------------
 $white: #ffffff;
 $black: #222222;
 
-// 그레이 스케일 (Gray Scale)
+// 그레이 스케일
 $gray-20: #FAFAFA;
 $gray-50: #f4f4f4;
 $gray-100: #eeeeee;
@@ -16,7 +16,7 @@ $gray-600: #888888;
 $gray-700: #444444;
 $gray-900: #222222;
 
-// 브랜드 색상 (Brand Colors)
+// 브랜드 색상
 $primary-gold: #ffbb33;
 $primary-100: #ffaa00;
 $primary-50: #fddb96;
@@ -33,7 +33,7 @@ $secondary-100: #e9d10c;
 $secondary-75: #ffe400;
 $secondary-50: #fdef7d;
 
-// 시스템 색상 (System Colors)
+// 시스템 색상
 $system-info-100: #146BB8;
 $system-info-75: #1f95ff;
 $system-info-50: #A2D2FC;
@@ -46,7 +46,7 @@ $system-danger: #e03e3e;
 $system-warning: #ffaa00;
 $secondary: #6c757d;
 
-// 시맨틱 별칭 & 레거시 지원 (Semantic Aliases & Legacy Support)
+// 시맨틱 별칭 및 하위 호환
 $primary-text: $black;
 $secondary-text: $gray-300;
 $gray-400: $gray-200;
@@ -54,14 +54,14 @@ $gray-800: #333333;
 $gray-10: #fafafa;
 $black-pure: #000000;
 
-// 배지 색상 (Badge Colors)
+// 배지 컬러
 $badge-red-bg: #FAEBDB;
 $badge-red-text: $accent-base;
 $badge-blue-bg: #D8ECFD;
 $badge-blue-text: #1876D3;
 
 
-// 2. 타이포그래피 (Typography)
+// 2. 타이포그래피 설정
 // -----------------------------------------------------------------------------
 $font-family-base: 'Pretendard Variable', sans-serif;
 $font-family-number: 'Roboto', sans-serif;
@@ -74,7 +74,7 @@ $font-size-lg: 20px;
 $font-size-xl: 32px;
 $font-size-xxl: 28px;
 
-// 피그마 타이포그래피 (Figma Typography)
+// 피그마 정의 폰트
 $font-display-lg: 60px;
 $font-display-md: 44px;
 $font-display-sm: 36px;

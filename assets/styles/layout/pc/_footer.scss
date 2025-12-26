@@ -1,33 +1,33 @@
-// Footer
+// 푸터 영역
 .footer {
     margin-top: rem(60);
 
     .footer-top {
-        background-color: $white; // Clean white bg
-        padding: rem(24) 0; // Add spacing above/below links
+        background-color: $white; // 배경색 설정 (흰색)
+        padding: rem(24) 0; // 링크 상하 간격
         padding-top: 0;
 
         .footer-link-grid {
             display: flex;
-            gap: rem(8); // Space between blocks
+            gap: rem(8); // 블록 간격
 
             a {
                 color: $black;
                 font-size: rem(14);
                 font-weight: 700;
                 text-decoration: none;
-                flex: 1; // Equal width columns
-                height: rem(48); // Fixed height blocks
-                background-color: $gray-50; // Gray background
-                border-radius: rem(4); // Rounded corners
+                flex: 1; // 균등 너비 컬럼
+                height: rem(48); // 고정 높이 블록
+                background-color: $gray-50; // 배경색 (회색)
+                border-radius: rem(4); // 둥근 모서리
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 gap: rem(4);
-                border: none; // No separators lines
+                border: none; // 구분선 없음
 
                 &:hover {
-                    background-color: $gray-200; // Hover state
+                    background-color: $gray-200; // 호버 상태
                 }
 
                 img {
@@ -50,7 +50,7 @@
             margin-bottom: rem(24);
 
             img.footer-logo {
-                height: rem(24); // Fitted size
+                height: rem(24); // 크기 맞춤
             }
         }
 
@@ -71,11 +71,11 @@
                 span,
                 a {
                     font-size: rem(14);
-                    color: $gray-300; // Muted text
+                    color: $gray-300; // 흐린 텍스트
                     line-height: 1.5;
                 }
 
-                // Dividers
+                // 구분점
                 .dot-divider {
                     width: rem(3);
                     height: rem(3);
@@ -91,12 +91,12 @@
             }
         }
 
-        // App Install Box
+        // 앱 설치 박스
         .app-install-box {
             display: flex;
             flex-direction: column;
-            align-items: flex-start; // Align left
-            gap: rem(8); // Gap between elements
+            align-items: flex-start; // 좌측 정렬
+            gap: rem(8); // 요소 간격
 
             .app-logo {
                 height: rem(20);
@@ -120,7 +120,7 @@
             }
         }
 
-        // Contact List
+        // 고객센터 목록
         .cs-list {
             display: flex;
             flex-direction: column;
@@ -150,11 +150,11 @@
                 }
 
                 .value-lg {
-                    font-size: rem(24); // Increased to 24px to match image visually (it's big)
-                    font-weight: 800; // Extra bold number
-                    font-family: "Pretendard", sans-serif; // Ensure standard font, numbers look standard
+                    font-size: rem(24); // 폰트 크기 24px
+                    font-weight: 800; // 굵은 글씨
+                    font-family: "Pretendard", sans-serif; // 폰트 설정
                     color: $black;
-                    letter-spacing: 0; // Reset spacing
+                    letter-spacing: 0; // 자간 초기화
                 }
             }
         }

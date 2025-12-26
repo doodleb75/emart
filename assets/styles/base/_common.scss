@@ -1,4 +1,8 @@
-// Global Layout
+html {
+    scroll-behavior: smooth;
+}
+
+// 공통 레이아웃
 body {
     min-width: rem(1400);
     font-family: $font-family-base;
@@ -8,7 +12,7 @@ body {
     overflow-x: auto;
 }
 
-// Utils
+// 유틸리티 클래스
 .number-font {
     font-family: $font-family-number;
     letter-spacing: -0.5px;
@@ -22,7 +26,7 @@ body {
     color: $primary-gold !important;
 }
 
-// Layout Utils
+// 레이아웃 유틸리티
 .header-col {
     min-width: rem(250);
     flex: 0.8;
@@ -32,7 +36,7 @@ body {
     max-width: rem(680);
 }
 
-// Icons Utils
+// 아이콘 유틸리티
 .icon-muted {
     opacity: 0.5;
     margin-right: rem(4);
@@ -65,29 +69,29 @@ body {
     width: rem(24);
 }
 
-// Container
+// 컨테이너
 .container-fluid {
     width: 100%;
     padding: 0;
     margin: 0 auto;
 }
 
-// Floating Menu
-// Sticky Track
+// 플로팅 메뉴
+// 스티키 트랙
 .sticky-track {
     position: absolute;
-    top: rem(616); // Adjust based on actual height of header + slider
+    top: rem(616); // 헤더 높이 반영 위치 조정
     bottom: 0;
     left: 50%;
-    margin-left: rem(700); // 1360/2 + 20px gap
+    margin-left: rem(700); // 1360/2 + 20px 간격
     width: rem(120);
     z-index: 100;
 }
 
-// Floating Menu
+// 플로팅 메뉴
 .floating-menu {
     position: sticky;
-    top: rem(10); // Sticky top offset
+    top: rem(10); // 상단 여백
     width: 100%;
 
     background: $white;
@@ -185,9 +189,20 @@ body {
     }
 }
 
+.icon-heart {
+    width: rem(18);
+    height: rem(18);
+}
+
+.cart-item {
+    .icon-heart {
+        width: rem(16) !important;
+        height: rem(16) !important;
+    }
+}
 
 
-// common control 
+// 공통 컨트롤 요소 
 .qty-box {
     flex: 1;
     display: flex;
@@ -241,5 +256,38 @@ body {
         &:focus {
             outline: 2px solid $gray-700;
         }
+    }
+}
+
+// 아이콘 버튼
+.btn-icon {
+    width: rem(40);
+    height: rem(40);
+    border: 1px solid $gray-300;
+    border-radius: rem(4);
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    // 호버 효과
+    &:hover {
+        background-color: $gray-50;
+    }
+
+    .icon-heart {
+        // 기본 상태
+    }
+
+    &.active {
+        border-color: $gray-700;
+    }
+}
+
+.custom-checkbox-ui {
+    svg {
+        vertical-align: top;
     }
 }
