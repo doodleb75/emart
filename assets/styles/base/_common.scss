@@ -286,8 +286,9 @@ body {
     }
 }
 
-.custom-checkbox-ui {
-    svg {
-        vertical-align: top;
-    }
+custom-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }

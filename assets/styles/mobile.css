@@ -256,8 +256,10 @@ body {
   border-color: #444444;
 }
 
-.custom-checkbox-ui svg {
-  vertical-align: top;
+custom-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .badge-order-red {

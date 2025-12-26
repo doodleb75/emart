@@ -166,6 +166,7 @@
 
     .label-text {
         font-size: rem(16);
+        margin-left: rem(8);
         color: $gray-700;
     }
 }
@@ -242,6 +243,7 @@
         .label-text {
             font-size: rem(18);
             font-weight: 700;
+            margin-left: rem(8);
             color: $black;
         }
     }

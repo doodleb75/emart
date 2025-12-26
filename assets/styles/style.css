@@ -257,8 +257,10 @@ body {
   border-color: #444444;
 }
 
-.custom-checkbox-ui svg {
-  vertical-align: top;
+custom-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .badge-order-red {
@@ -1979,6 +1981,7 @@ body {
 }
 .custom-checkbox-wrap .label-text {
   font-size: 1rem;
+  margin-left: 0.5rem;
   color: #444444;
 }
 
@@ -2042,6 +2045,7 @@ body {
 .cart-section .section-title-checkbox .label-text {
   font-size: 1.125rem;
   font-weight: 700;
+  margin-left: 0.5rem;
   color: #222222;
 }
 
