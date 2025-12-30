@@ -1,19 +1,36 @@
-// Mobile Stylesheet
-// -----------------------------------------------------------------------------
+@charset "UTF-8";
 
-// 1. Abstracts (Shared)
-@import 'abstracts/functions';
-@import 'abstracts/variables';
-@import 'abstracts/mixins';
+// 1. Abstracts (Variables, Mixins, Functions)
+@function rem($px) {
+    @return #{calc($px / 16)}rem;
+}
 
-// 2. Base (Shared)
-@import 'base/typography';
-@import 'base/common';
+@import "abstracts/variables";
+@import "abstracts/functions";
+@import "abstracts/mixins";
 
-// 3. Components (Shared)
-@import 'components/badges';
-@import 'components/cards';
+// 2. Base (Reset, Typography)
+@import "base/reset";
+@import "base/typography";
+@import "base/common"; // Common classes
 
-// 4. Layout (Mobile)
-@import 'layout/mobile/header';
-@import 'layout/mobile/footer';
+// Reset PC styles for mobile
+body.mobile-body {
+    min-width: 0 !important;
+    width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+// 3. Components (Mobile Specific)
+// @import "mobile/components/buttons"; // Commented out until created
+@import "mobile/components/cards"; // Mobile product cards
+// @import "mobile/components/icons"; // Commented out until created
+
+// 4. Layout
+@import "mobile/layout/header";
+@import "mobile/layout/footer";
+@import "mobile/layout/bottom_nav";
+
+// 5. Pages
+@import "mobile/pages/main";

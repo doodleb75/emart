@@ -1,4 +1,6 @@
-// Slider Card
+@charset "UTF-8";
+
+// 슬라이더 카드 컴포넌트
 .slider-card {
     flex: 0 0 auto;
     width: rem(440);
@@ -32,7 +34,7 @@
         background-color: #e83a31;
     }
 
-    // Hover Effects
+    // 마우스 호버 효과
     &:hover {
         .slider-card-img-wrap img {
             transform: scale(1.1);
@@ -118,7 +120,7 @@
     }
 }
 
-// Product Card Component (Ultra High Fidelity)
+// 상품 카드 컴포넌트
 .product-card {
     background-color: $white;
     width: 100%;
@@ -134,7 +136,7 @@
         overflow: hidden;
         margin-bottom: rem(20);
 
-        // Square aspect ratio wrapper
+        // 1:1 비율 유지
         &:before {
             content: "";
             display: block;
@@ -158,7 +160,7 @@
             }
         }
 
-        // Top Left Badge
+        // 좌측 상단 배지
         .badge-corner {
             position: absolute;
             top: rem(10);
@@ -183,7 +185,7 @@
             }
         }
 
-        // Bottom Delivery Tags Container
+        // 하단 배송 태그 컨테이너
         .delivery-tags {
             position: absolute;
             bottom: rem(10);
@@ -216,7 +218,7 @@
                 color: $accent-base;
             }
 
-            // Outline tag (TC)
+            // 아웃라인 태그
             .tag-outline {
                 background-color: $secondary-bg !important;
                 border: none;
@@ -247,7 +249,7 @@
             }
         }
 
-        // Line 1: Name
+        // 상품명
         .product-name {
             font-size: rem(20);
             font-weight: 600;
@@ -262,7 +264,7 @@
             margin-top: 0;
         }
 
-        // Line 2: Unit Price Info
+        // 단위 정보
         .unit-info {
             font-size: rem(14);
             color: $gray-700;
@@ -289,7 +291,7 @@
             }
         }
 
-        // Line 3: Total Price
+        // 가격 정보
         .total-price-area {
             display: flex;
             align-items: baseline;
@@ -315,7 +317,7 @@
         }
     }
 
-    // Controls (Qty, Heart, Cart)
+    // 컨트롤 버튼 (수량, 하트, 장바구니)
     .card-control {
         display: flex;
         gap: rem(6);
@@ -338,7 +340,7 @@
         }
     }
 
-    // Bottom Info Text
+    // 하단 추가 정보
     .bottom-info {
         font-size: rem(11);
         color: $gray-600;
@@ -357,38 +359,38 @@
             font-weight: 500;
 
             .icon-tag {
-                @include icon-mask('../icons/product-tag.svg');
+                @include icon-mask('/assets/icons/product-tag.svg');
                 margin-right: rem(4);
             }
 
             .icon-time {
-                @include icon-mask('../icons/product-time.svg');
+                @include icon-mask('/assets/icons/product-time.svg');
                 margin-right: rem(4);
             }
 
             .icon-ban {
-                @include icon-mask('../icons/icon-ban.svg');
+                @include icon-mask('/assets/icons/icon-ban.svg');
                 margin-right: rem(4);
             }
 
             .icon-cart-limit {
-                @include icon-mask('../icons/icon-cart-limit.svg');
+                @include icon-mask('/assets/icons/icon-cart-limit.svg');
                 margin-right: rem(4);
             }
 
             .icon-sparkle {
-                @include icon-mask('../icons/sparkling.svg');
+                @include icon-mask('/assets/icons/sparkling.svg');
                 margin-right: rem(4);
             }
 
             .text-highlight {
-                color: #FF531D;
+                color: $accent-75;
             }
         }
     }
 }
 
-// Brand Card
+// 브랜드 카드
 .brand-card {
     display: flex;
     flex-direction: column;
@@ -415,7 +417,7 @@
         }
     }
 
-    // Hover effect on image
+    // 이미지 호버 효과
     &:hover .card-img img {
         transform: scale(1.05);
     }
@@ -442,20 +444,20 @@
     }
 }
 
-// Slide Control (Pagination)
+// 슬라이드 컨트롤 (페이지네이션)
 .pagination-container {
-    // Ensuring centering matches design
+    // 중앙 정렬 유지
 }
 
 .pagination-control {
     display: flex;
     align-items: center;
-    gap: rem(0); // Spacing handled by elements
+    gap: rem(0); // 요소 간격 처리
 
     .btn-control {
         width: rem(48);
         height: rem(48);
-        border-radius: rem(100); // 100px rounded
+        border-radius: rem(100);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -498,7 +500,7 @@
 
             img {
                 width: rem(12);
-                height: rem(2); // approximate for dash
+                height: rem(2); // 대략적인 dash 크기
             }
         }
 
@@ -515,7 +517,7 @@
     }
 }
 
-// Main Carousel Multi-Item Styling
+// 메인 캐러셀 멀티 아이템 스타일링
 #eclubMainSlider {
     overflow: hidden;
 }

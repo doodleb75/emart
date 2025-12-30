@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+// 모바일 헤더
+.mobile-header {
+    width: 100%;
+    background-color: $white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    .header-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: rem(10) rem(16); // 레이아웃 업데이트
+        height: auto;
+    }
+
+    .header-left {
+        display: flex;
+        align-items: center;
+
+        .logo {
+            font-size: rem(20);
+            font-weight: 800;
+            line-height: 1;
+            margin: 0;
+
+            a {
+                display: flex;
+                align-items: center;
+                gap: rem(2); // 로고 텍스트 간격 조정
+            }
+
+            .text-e {
+                color: $primary-gold;
+            }
+
+            .text-club {
+                color: $gray-700; // 색상 매칭
+            }
+        }
+    }
+
+    // 멤버십 정보 영역
+    .membership-info {
+        display: flex;
+        align-items: center;
+        gap: rem(8);
+
+        .badge-grade {
+            background-color: $primary-gold; // 색상 코드
+            color: $white;
+            font-size: rem(14);
+            font-weight: 600;
+            padding: rem(0) rem(8); // 높이 속성으로 제어
+            height: rem(32);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: rem(4);
+            letter-spacing: rem(-0.28);
+        }
+
+        .user-name {
+            font-size: rem(14);
+            font-weight: 600;
+            color: $black;
+            letter-spacing: rem(-0.28);
+        }
+
+        .btn-dropdown {
+            width: rem(20);
+            height: rem(20);
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+    }
+
+    .search-bar-area {
+        padding: rem(8) rem(16) rem(16);
+        background-color: $white;
+
+        .search-input-box {
+            position: relative;
+            background-color: $gray-50;
+            border-radius: rem(4);
+            height: rem(48);
+            display: flex;
+            align-items: center;
+            padding: 0 0 0 rem(16);
+
+            input {
+                flex: 1;
+                border: none;
+                background: transparent;
+                height: 100%;
+                font-size: rem(15);
+                color: $black;
+                outline: none;
+
+                &::placeholder {
+                    color: $gray-300;
+                }
+            }
+
+            .btn-search-icon {
+                border: none;
+                background: transparent;
+                width: rem(48);
+                height: rem(48);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $gray-500;
+            }
+        }
+    }
+
+    // GNB 탭
+    .gnb-scroll {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gnb-list {
+            display: flex;
+            padding: 0 rem(20);
+            gap: rem(24);
+            white-space: nowrap;
+            height: rem(50);
+            align-items: center;
+
+            li {
+                height: 100%;
+                display: flex;
+                align-items: center;
+
+                a {
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
+                    font-size: rem(16);
+                    font-weight: 600;
+                    color: $gray-500;
+                    border-bottom: 3px solid transparent;
+                    transition: all 0.2s;
+                    box-sizing: border-box;
+                }
+
+                &.active a {
+                    color: $black;
+                    border-bottom-color: $primary-gold;
+                }
+            }
+        }
+    }
+}

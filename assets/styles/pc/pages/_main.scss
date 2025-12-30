@@ -1,9 +1,8 @@
 // 메인 홈 스타일
 
 // Main Slider
-// Main Slider
 .main-slider-wrapper {
-    width: 100vw; // 전체 뷰포트 너비
+    width: 100%; // 전체 뷰포트 너비
     overflow-x: hidden;
     margin-bottom: rem(80);
     // 그리드 정렬 기준 (JS 오프셋)
@@ -94,7 +93,7 @@
             height: rem(48);
             border: 1px solid $gray-700;
             border-radius: rem(4);
-            background: url('../icons/fullview-arrow.svg') no-repeat center center;
+            background: url('/assets/icons/fullview-arrow.svg') no-repeat center center;
             background-size: rem(24) rem(24); // Icon 크기
             box-sizing: border-box;
             transition: all 0.2s;

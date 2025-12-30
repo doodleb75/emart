@@ -1,8 +1,8 @@
-// Functions
+// 함수
 // -----------------------------------------------------------------------------
 
-// Unit Conversion
-// Usage: rem(16) -> 1rem
+// px to rem
+// rem(16) -> 1rem
 @function rem($px) {
     @return #{calc($px / 16)}rem;
 }

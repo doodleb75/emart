@@ -350,6 +350,12 @@
                 &.tag-green {
                     color: $system-success;
                 }
+
+            }
+
+            svg {
+                width: rem(14) !important;
+                height: rem(14) !important;
             }
         }
     }

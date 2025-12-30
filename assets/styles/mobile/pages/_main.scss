@@ -1,0 +1,696 @@
+﻿@charset "UTF-8";
+
+// 紐⑤컮??硫붿씤 ?섏씠吏 ?덉씠?꾩썐
+
+.main-page {
+    margin-top: rem(16);
+    padding-bottom: rem(80); // ?섎떒 ?대퉬寃뚯씠???щ갚 ?뺣낫
+    background-color: $white;
+}
+
+.section-wrapper {
+    padding: rem(24) rem(0);
+
+    &.section-divider {
+        border-bottom: rem(8) solid $gray-50;
+    }
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: rem(16);
+    padding: rem(0) rem(16);
+
+    .section-title {
+        font-size: rem(18);
+        font-weight: 700;
+        color: $black;
+        letter-spacing: rem(-0.5px);
+    }
+
+    .section-link {
+        font-family: "Pretendard", sans-serif;
+        color: $gray-700; // #333
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: rem(8); // ?띿뒪??媛꾧꺽
+        font-weight: 600; // SemiBold
+
+        // ?꾩씠肄??ш린??
+        height: auto;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+
+        // ?붿궡??踰꾪듉
+        &:after {
+            content: "";
+            display: block;
+            width: rem(32);
+            height: rem(32);
+            border: 1px solid $gray-700;
+            border-radius: rem(2);
+            background: url('/assets/icons/fullview-arrow.svg') no-repeat center center;
+            background-size: rem(20) rem(20); // Icon ?ш린
+            box-sizing: border-box;
+            transition: all 0.2s;
+        }
+
+        // ?몃쾭 ?④낵
+        &:hover:after {
+            @include btn-active-styles;
+        }
+    }
+}
+
+// PC 洹몃━???ㅻ쾭?쇱씠??
+.product-grid-4,
+.product-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: rem(4) rem(4);
+}
+
+// 二쇨컙 ??궧 ?ㅽ???
+.weekly-ranking {
+    .section-header {
+        align-items: flex-start; // ?쒕ぉ+?좎쭨 硫?곕씪?????
+
+        .title-group {
+            display: flex;
+            flex-direction: column;
+            gap: rem(4);
+
+            .ranking-date {
+                font-size: rem(13);
+                color: $gray-500;
+                font-weight: 400;
+                letter-spacing: -0.02em;
+            }
+        }
+    }
+
+    .product-grid-2 {
+        margin: 0 rem(-16);
+    }
+
+    .ranking-nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 rem(16);
+        margin-bottom: rem(16);
+
+        .nav-btn {
+            width: rem(48); // Increased size
+            height: rem(48); // Increased size
+            border: 1px solid $gray-400;
+            border-radius: rem(2);
+            background: $white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $gray-700;
+            border-color: $gray-700;
+
+            svg {
+                width: rem(24);
+                height: rem(24);
+            }
+
+            &:disabled {
+                color: $gray-300;
+                border-color: $gray-300;
+            }
+        }
+
+        .page-count {
+            display: flex;
+            align-items: center;
+            gap: rem(4);
+            font-size: rem(16); // Increased font size
+            font-weight: 500;
+            color: $gray-500;
+            font-family: $font-family-base;
+
+            .current {
+                color: $black; // Current page in black
+                font-weight: 700;
+            }
+
+            .divider {
+                display: inline-block;
+                margin: 0 rem(2);
+                color: $gray-300;
+            }
+
+            .total {
+                color: $gray-500;
+            }
+        }
+    }
+
+    // Carousel Styles
+    .ranking-carousel-container {
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .ranking-carousel-track {
+        display: flex;
+        width: 100%;
+        align-items: flex-start; // Prevent height stretching
+        touch-action: pan-y;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .ranking-list {
+        width: 100%; // Fixed width to container
+        min-width: 100%;
+        flex-shrink: 0;
+        box-sizing: border-box;
+        // padding removed to prevent double-spacing/overflow with ranking-item margins
+    }
+
+    .ranking-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: rem(16) 0;
+
+        .text-group {
+            display: flex;
+            align-items: center;
+            gap: rem(8);
+
+            .rank-num {
+                font-size: rem(18);
+                font-weight: 700;
+                color: $black;
+                min-width: rem(14);
+            }
+
+            .divider {
+                width: rem(10);
+                height: 1px;
+                background-color: $gray-300;
+            }
+
+            .category-name {
+                font-size: rem(16);
+                font-weight: 700;
+                color: $black;
+            }
+
+            .category-path {
+                font-size: rem(13);
+                color: $gray-500;
+            }
+        }
+
+        .btn-toggle-rank {
+            width: rem(32);
+            height: rem(32);
+            background: $white;
+            border: 1px solid $gray-400;
+            border-radius: rem(2);
+            color: $black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+
+            svg {
+                transition: transform 0.2s;
+            }
+
+            &.active {
+                background: $gray-700;
+                border-color: $gray-700;
+                color: $white;
+
+                svg {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+
+    .ranking-item {
+        margin-left: rem(16);
+        margin-right: rem(16);
+        // padding-bottom: rem(16); // ranking-body???⑤뵫 ?곸슜 沅뚯옣 ?뱀? ?좎?
+
+        // Active (Expanded)
+        &.active {
+            border-top: 2px solid $gray-700;
+            border-bottom: 2px solid $gray-700;
+            padding-bottom: rem(16);
+
+            .ranking-header {
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+        }
+
+        // Inactive (Collapsed) - Default
+        // PC logic removes 'active'. So default styles here.
+        padding-bottom: 0;
+
+        // Remove bottom border from header when NOT active? 
+        // Mobile original: .collapsed .ranking-category-header had border-bottom
+
+        .ranking-header {
+            border-bottom: 1px solid $gray-100;
+        }
+
+        &.active .ranking-header {
+            border-bottom: none;
+        }
+
+        .btn-more {
+            width: 100%;
+        }
+    }
+
+    .ranking-body {
+        display: none;
+
+        &.show {
+            display: block;
+        }
+    }
+
+}
+
+
+// ?붾낫湲?踰꾪듉 怨듯넻 ?ㅽ???
+.btn-more {
+    width: calc(100% - rem(32));
+    margin: rem(24) auto 0;
+    height: rem(40);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(4);
+    border: 1px solid $gray-700;
+    background: $white;
+    border-radius: rem(2);
+    font-size: rem(14);
+    font-weight: 600;
+    color: $gray-700;
+
+    svg {
+        width: rem(20);
+        height: rem(20);
+        fill: currentColor; // ?꾩씠肄??됱긽 ?곸냽
+    }
+
+    &:hover {
+        background-color: $gray-50;
+    }
+
+}
+
+// 紐⑤컮??硫붿씤 ?щ씪?대뜑
+.mobile-main-slider {
+    width: 100%;
+    margin-bottom: rem(24);
+    overflow: hidden;
+    padding-left: rem(16);
+
+    .slider-track {
+        display: flex;
+        gap: rem(8);
+        padding-left: 0; // 醫뚯륫 ?щ갚 ?쒓굅
+        padding-right: rem(20); // ?щ갚 ?뺣낫
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; // ?뚯씠?댄룺??
+
+        &::-webkit-scrollbar {
+            display: none; // ?щ＼/?ы뙆由?
+        }
+    }
+
+    .slide-item {
+        flex: 0 0 85vw; // 諛섏쓳???덈퉬
+        max-width: rem(340); // 理쒕? ?덈퉬 ?쒗븳
+        scroll-snap-align: start; // ?쒖옉???뺣젹
+        border-radius: rem(2);
+        overflow: hidden;
+        position: relative;
+        background-color: $gray-50;
+
+        // 320:411 鍮꾩쑉 ?좎?
+        aspect-ratio: 320/411;
+
+        .slider-card-img-wrap {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        .slider-card-body {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: rem(96); // ?띿뒪???곸뿭 怨좎젙 ?믪씠
+            // 諛곌꼍??吏??
+            padding: rem(16) rem(20);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: $white;
+            background: rgba($black, 0.6); // 湲곕낯 諛곌꼍??
+
+            // ?됱긽 ?대옒??
+            &.bg-blue {
+                background-color: #51BCD3;
+            }
+
+            &.bg-navy {
+                background-color: #151617;
+            }
+
+            .text-group {
+                display: flex;
+                flex-direction: column;
+                gap: rem(4);
+
+                .slider-title {
+                    font-size: rem(18);
+                    font-weight: 700;
+                    margin: 0;
+                    line-height: 1.3;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .slider-desc {
+                    font-size: rem(13);
+                    font-weight: 400;
+                    margin: 0;
+                    opacity: 0.9;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+
+            .slider-arrow {
+                width: rem(32);
+                height: rem(32);
+                background-color: rgba($white, 0.2);
+                border-radius: rem(4);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+
+                svg {
+                    width: rem(20);
+                    height: rem(20);
+                }
+            }
+        }
+    }
+
+    // 而⑦듃濡ㅻ윭 ?곸뿭
+    .slider-controller {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: rem(16);
+        margin-top: rem(16);
+        color: $black;
+        font-family: $font-family-number;
+        font-weight: 500;
+        font-size: rem(14);
+
+        button {
+            background: none;
+            border: none;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            width: rem(24);
+            height: rem(24);
+            color: $gray-300; // 鍮꾪솢???됱긽
+
+            svg {
+                width: rem(24);
+                height: rem(24);
+                fill: currentColor;
+
+                path {
+                    fill: $gray-700;
+                }
+            }
+
+            // ?쒖꽦 ?곹깭 濡쒖쭅
+            &.active {
+                color: $black;
+            }
+        }
+
+        .page-count {
+            display: flex;
+            align-items: center;
+            gap: rem(8);
+
+            .current {
+                color: $black;
+                font-weight: 700;
+            }
+
+            .divider {
+                width: rem(10);
+                height: 1px;
+                background-color: $gray-300;
+            }
+
+            .total {
+                color: $gray-300;
+            }
+        }
+    }
+}
+
+// MD 異붿쿇 ??
+.md-recommendation {
+    .tab-menu {
+        display: flex;
+        gap: rem(8);
+        padding-bottom: rem(12);
+        margin-bottom: rem(16);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; // ?뚯씠?댄룺??
+
+        &::-webkit-scrollbar {
+            display: none; // ?щ＼/?ы뙆由?
+        }
+
+        .tab-btn {
+            padding: rem(8) rem(16);
+            border-radius: rem(999);
+            border: 1px solid $gray-200;
+            background-color: $white;
+            color: $gray-600;
+            font-size: rem(14);
+            font-weight: 500;
+            white-space: nowrap;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all 0.2s;
+
+            &.active {
+                background-color: $black;
+                color: $white;
+                border-color: $black;
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+// 釉뚮옖?쒓?
+.brand-pavilion {
+    .brand-story-list {
+        display: flex;
+        flex-direction: column;
+        gap: rem(24);
+        padding: 0 rem(16);
+    }
+
+    .brand-story-item {
+        display: flex;
+        flex-direction: column;
+        gap: rem(16);
+
+        .story-image {
+            width: 100%;
+            height: rem(240); // Fixed height as per design
+            border-radius: rem(2); // Slightly rounded
+            overflow: hidden;
+            background-color: $gray-50;
+            position: relative; // For badge overlay if needed
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        .story-content {
+            display: flex;
+            flex-direction: column;
+            gap: rem(4);
+
+            .brand-title {
+                font-size: rem(16);
+                font-weight: 700;
+                color: $black;
+            }
+
+            .brand-desc {
+                font-size: rem(14);
+                color: $gray-500;
+                font-weight: 400;
+                line-height: normal;
+                word-break: keep-all; // Korean typography
+
+                // Max 2 lines if needed, but design shows full text usually
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+
+    .btn-more.btn-brand-more {
+        width: 100%; // Full width
+        margin-top: rem(16);
+
+        // Uses standard btn-more styles for height/color but full width
+    }
+}
+
+// 팝콘 배너 (Popcorn Banner)
+.popcorn-banner-wrapper {
+    margin: rem(16) 0;
+    overflow: hidden;
+
+    .slider-track {
+        display: flex;
+        width: 100%;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .slide-item.banner-popcorn {
+        flex: 0 0 100%;
+        max-width: 100%;
+        scroll-snap-align: start;
+        background-color: #FFDE00;
+        overflow: hidden;
+        position: relative;
+        height: rem(120); // Fixed height
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    // Reuse slider controller styles
+    .slider-controller {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: rem(16);
+        margin-top: rem(16);
+        color: $black;
+        font-family: $font-family-number;
+        font-weight: 500;
+        font-size: rem(14);
+
+        button {
+            background: none;
+            border: none;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            width: rem(24);
+            height: rem(24);
+            color: $gray-300;
+
+            svg {
+                width: rem(24);
+                height: rem(24);
+                fill: currentColor;
+
+                path {
+                    fill: $gray-700;
+                }
+            }
+
+            &.active {
+                color: $black;
+            }
+        }
+
+        .page-count {
+            display: flex;
+            align-items: center;
+            gap: rem(8);
+
+            .current {
+                color: $black;
+                font-weight: 700;
+            }
+
+            .divider {
+                width: rem(10);
+                height: 1px;
+                background-color: $gray-300;
+            }
+
+            .total {
+                color: $gray-300;
+            }
+        }
+    }
+}

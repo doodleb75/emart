@@ -191,9 +191,7 @@
                         color: $gray-300;
                         line-height: 1; // 라인 높이 정렬
                         padding-top: rem(0); // 시각적 보정
-
-
-
+                        margin-left: 0;
                     }
                 }
             }
@@ -248,6 +246,7 @@
                 .btn-search {
                     height: rem(48);
                     padding: rem(10) rem(16);
+                    background: $white;
                     border: 1px solid $gray-700;
                     color: $black;
                     font-size: rem(15);
@@ -431,6 +430,10 @@
         custom-checkbox {
             .custom-checkbox-wrap .label-text {
                 color: $gray-700 !important;
+            }
+
+            .label-text {
+                margin-left: 0;
             }
         }
 

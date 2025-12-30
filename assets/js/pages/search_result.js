@@ -21,32 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 난수 생성 함수
     const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-    // 수량 입력 박스 초기화
-    const initQtyBoxes = (container) => {
-        const qtyBoxes = container.querySelectorAll('.qty-box');
-        qtyBoxes.forEach(box => {
-            const buttons = box.querySelectorAll('button');
-            const minusBtn = buttons[0];
-            const plusBtn = buttons[1];
-            const countInput = box.querySelector('input');
 
-            if (minusBtn && plusBtn && countInput) {
-                minusBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    let currentCount = parseInt(countInput.value, 10) || 0;
-                    if (currentCount > 0) {
-                        countInput.value = currentCount - 1;
-                    }
-                });
-
-                plusBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    let currentCount = parseInt(countInput.value, 10) || 0;
-                    countInput.value = currentCount + 1;
-                });
-            }
-        });
-    };
 
     // 상품 그리드 렌더링
     const renderGrid = (limit) => {
@@ -67,6 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // 랜덤 상품 템플릿 선택
             const template = originalCards[getRandomInt(0, originalCards.length - 1)];
             const clone = template.cloneNode(true);
+
+            // 초기화 상태 리셋 (cloneNode는 이벤트를 복사하지 않으므로 dataset 초기화 필요)
+            const qtyBoxes = clone.querySelectorAll('.qty-box');
+            qtyBoxes.forEach(box => {
+                delete box.dataset.initialized;
+                const input = box.querySelector('input');
+                if (input) input.value = 0; // 수량 초기화
+            });
 
             // 체크박스 초기화 및 상태 적용
             const checkboxes = clone.querySelectorAll('custom-checkbox');
@@ -89,7 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
         newCards.forEach(card => productGrid.appendChild(card));
 
         // 수량 박스 이벤트 등록
-        initQtyBoxes(productGrid);
+        if (typeof initQuantityControl === 'function') {
+            initQuantityControl(productGrid);
+        }
 
         // 총 상품 수 갱신
         if (totalCountEl) {
