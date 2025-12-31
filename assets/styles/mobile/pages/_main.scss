@@ -1,10 +1,10 @@
 ﻿@charset "UTF-8";
 
-// 紐⑤컮??硫붿씤 ?섏씠吏 ?덉씠?꾩썐
+// 모바일 메인 페이지 레이아웃 (Mobile Main Page Layout)
 
 .main-page {
-    margin-top: rem(16);
-    padding-bottom: rem(80); // ?섎떒 ?대퉬寃뚯씠???щ갚 ?뺣낫
+    margin-top: rem(8);
+    padding-bottom: rem(80); // 하단 네비게이션 여백 (Bottom nav spacing)
     background-color: $white;
 }
 
@@ -32,21 +32,21 @@
 
     .section-link {
         font-family: "Pretendard", sans-serif;
-        color: $gray-700; // #333
+        color: $gray-700;
         text-decoration: none;
         display: flex;
         align-items: center;
-        gap: rem(8); // ?띿뒪??媛꾧꺽
-        font-weight: 600; // SemiBold
+        gap: rem(8); // 텍스트 간격 (Text gap)
+        font-weight: 600;
 
-        // ?꾩씠肄??ш린??
         height: auto;
         padding: 0;
         border: none;
         border-radius: 0;
         background-color: transparent;
+        @include mobile-touch-effect; // 터치 피드백 추가
 
-        // ?붿궡??踰꾪듉
+        // 전체보기 링크 화살표 (Full view arrow)
         &:after {
             content: "";
             display: block;
@@ -55,19 +55,18 @@
             border: 1px solid $gray-700;
             border-radius: rem(2);
             background: url('/assets/icons/fullview-arrow.svg') no-repeat center center;
-            background-size: rem(20) rem(20); // Icon ?ш린
+            background-size: rem(20) rem(20);
             box-sizing: border-box;
             transition: all 0.2s;
         }
 
-        // ?몃쾭 ?④낵
         &:hover:after {
             @include btn-active-styles;
         }
     }
 }
 
-// PC 洹몃━???ㅻ쾭?쇱씠??
+// 상품 그리드 레이아웃 (Product Grid Layout)
 .product-grid-4,
 .product-grid-2 {
     display: grid;
@@ -75,10 +74,12 @@
     gap: rem(4) rem(4);
 }
 
-// 二쇨컙 ??궧 ?ㅽ???
+// 주간 랭킹 섹션 (Weekly Ranking Section)
 .weekly-ranking {
+    padding-bottom: 0;
+
     .section-header {
-        align-items: flex-start; // ?쒕ぉ+?좎쭨 硫?곕씪?????
+        align-items: flex-start;
 
         .title-group {
             display: flex;
@@ -105,8 +106,8 @@
         margin-bottom: rem(16);
 
         .nav-btn {
-            width: rem(48); // Increased size
-            height: rem(48); // Increased size
+            width: rem(48);
+            height: rem(48);
             border: 1px solid $gray-400;
             border-radius: rem(2);
             background: $white;
@@ -115,6 +116,7 @@
             justify-content: center;
             color: $gray-700;
             border-color: $gray-700;
+            @include mobile-touch-effect; // 터치 피드백 추가
 
             svg {
                 width: rem(24);
@@ -131,13 +133,13 @@
             display: flex;
             align-items: center;
             gap: rem(4);
-            font-size: rem(16); // Increased font size
+            font-size: rem(16);
             font-weight: 500;
             color: $gray-500;
             font-family: $font-family-base;
 
             .current {
-                color: $black; // Current page in black
+                color: $black; // 현재 페이지 (Current page)
                 font-weight: 700;
             }
 
@@ -153,7 +155,7 @@
         }
     }
 
-    // Carousel Styles
+    // 랭킹 캐러셀 (Ranking Carousel)
     .ranking-carousel-container {
         overflow: hidden;
         width: 100%;
@@ -162,17 +164,26 @@
     .ranking-carousel-track {
         display: flex;
         width: 100%;
-        align-items: flex-start; // Prevent height stretching
+        align-items: flex-start;
         touch-action: pan-y;
         transition: transform 0.5s ease-in-out;
     }
 
     .ranking-list {
-        width: 100%; // Fixed width to container
+        width: 100%;
         min-width: 100%;
         flex-shrink: 0;
         box-sizing: border-box;
-        // padding removed to prevent double-spacing/overflow with ranking-item margins
+
+        // 비활성 슬라이드 숨김 (Hide inactive slides to prevent height issues)
+        height: 0;
+        overflow: hidden;
+
+        // 활성 슬라이드 표시 (Show active slide)
+        &.current {
+            height: auto;
+            overflow: visible;
+        }
     }
 
     .ranking-header {
@@ -222,6 +233,7 @@
             align-items: center;
             justify-content: center;
             transition: all 0.2s;
+            @include mobile-touch-effect; // 터치 피드백 추가
 
             svg {
                 transition: transform 0.2s;
@@ -242,9 +254,8 @@
     .ranking-item {
         margin-left: rem(16);
         margin-right: rem(16);
-        // padding-bottom: rem(16); // ranking-body???⑤뵫 ?곸슜 沅뚯옣 ?뱀? ?좎?
 
-        // Active (Expanded)
+        // 아코디언 활성 상태 (Expanded state)
         &.active {
             border-top: 2px solid $gray-700;
             border-bottom: 2px solid $gray-700;
@@ -256,12 +267,7 @@
             }
         }
 
-        // Inactive (Collapsed) - Default
-        // PC logic removes 'active'. So default styles here.
         padding-bottom: 0;
-
-        // Remove bottom border from header when NOT active? 
-        // Mobile original: .collapsed .ranking-category-header had border-bottom
 
         .ranking-header {
             border-bottom: 1px solid $gray-100;
@@ -286,8 +292,7 @@
 
 }
 
-
-// ?붾낫湲?踰꾪듉 怨듯넻 ?ㅽ???
+// 더보기 버튼 공통 스타일 (Load more button common style)
 .btn-more {
     width: calc(100% - rem(32));
     margin: rem(24) auto 0;
@@ -302,11 +307,12 @@
     font-size: rem(14);
     font-weight: 600;
     color: $gray-700;
+    @include mobile-touch-effect; // 더보기 버튼 터치 피드백
 
     svg {
         width: rem(20);
         height: rem(20);
-        fill: currentColor; // ?꾩씠肄??됱긽 ?곸냽
+        fill: currentColor;
     }
 
     &:hover {
@@ -315,39 +321,41 @@
 
 }
 
-// 紐⑤컮??硫붿씤 ?щ씪?대뜑
+// 모바일 메인 슬라이더 (Mobile Main Slider)
 .mobile-main-slider {
     width: 100%;
-    margin-bottom: rem(24);
+    // margin-bottom: rem(24);
     overflow: hidden;
-    padding-left: rem(16);
+    padding-left: 0; // 내부 트랙으로 패딩 이동 (Move padding to track)
+    // margin-left: rem(16);
+    padding-bottom: rem(32);
+    border-bottom: 0.5rem solid $gray-50;
 
     .slider-track {
         display: flex;
         gap: rem(8);
-        padding-left: 0; // 醫뚯륫 ?щ갚 ?쒓굅
-        padding-right: rem(20); // ?щ갚 ?뺣낫
+        margin-left: rem(16);
+        padding-left: rem(16); // 왼쪽 시작 여백 (Left start margin)
+        padding-right: rem(24); // 끝부분 여백 (End margin)
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; // ?뚯씠?댄룺??
+        scrollbar-width: none;
 
         &::-webkit-scrollbar {
-            display: none; // ?щ＼/?ы뙆由?
+            display: none;
         }
     }
 
     .slide-item {
-        flex: 0 0 85vw; // 諛섏쓳???덈퉬
-        max-width: rem(340); // 理쒕? ?덈퉬 ?쒗븳
-        scroll-snap-align: start; // ?쒖옉???뺣젹
+        flex: 0 0 calc(100vw - rem(40)); // 우측 24px 여백 확보 (Secure 24px right margin)
+        scroll-snap-align: start;
         border-radius: rem(2);
         overflow: hidden;
         position: relative;
         background-color: $gray-50;
-
-        // 320:411 鍮꾩쑉 ?좎?
         aspect-ratio: 320/411;
+        @include mobile-touch-effect($gray-50); // 슬라이드 터치 피드백
 
         .slider-card-img-wrap {
             width: 100%;
@@ -369,23 +377,13 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: rem(96); // ?띿뒪???곸뿭 怨좎젙 ?믪씠
-            // 諛곌꼍??吏??
+            height: rem(96); // 텍스트 영역 고정 높이 (Fixed height)
             padding: rem(16) rem(20);
             display: flex;
             align-items: center;
             justify-content: space-between;
             color: $white;
-            background: rgba($black, 0.6); // 湲곕낯 諛곌꼍??
-
-            // ?됱긽 ?대옒??
-            &.bg-blue {
-                background-color: #51BCD3;
-            }
-
-            &.bg-navy {
-                background-color: #151617;
-            }
+            // 배경색은 인라인 스타일로 개별 적용됨
 
             .text-group {
                 display: flex;
@@ -393,8 +391,8 @@
                 gap: rem(4);
 
                 .slider-title {
-                    font-size: rem(18);
-                    font-weight: 700;
+                    font-size: rem(20);
+                    font-weight: 600;
                     margin: 0;
                     line-height: 1.3;
                     white-space: nowrap;
@@ -403,10 +401,9 @@
                 }
 
                 .slider-desc {
-                    font-size: rem(13);
-                    font-weight: 400;
+                    font-size: rem(14);
+                    font-weight: 600;
                     margin: 0;
-                    opacity: 0.9;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -414,6 +411,8 @@
             }
 
             .slider-arrow {
+                position: relative;
+                top: rem(-8);
                 width: rem(32);
                 height: rem(32);
                 background-color: rgba($white, 0.2);
@@ -431,17 +430,34 @@
         }
     }
 
-    // 而⑦듃濡ㅻ윭 ?곸뿭
+    // 컨트롤러 영역 (Controller area)
     .slider-controller {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: rem(16);
         margin-top: rem(16);
         color: $black;
         font-family: $font-family-number;
         font-weight: 500;
         font-size: rem(14);
+
+        &>*:not(.page-count) {
+            width: rem(32) !important;
+            height: rem(32) !important;
+        }
+
+        .page-count {
+            display: flex;
+            align-items: center;
+
+            &>*:not(.divider) {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: rem(32) !important;
+                height: rem(32) !important;
+            }
+        }
 
         button {
             background: none;
@@ -453,11 +469,12 @@
             cursor: pointer;
             width: rem(24);
             height: rem(24);
-            color: $gray-300; // 鍮꾪솢???됱긽
+            color: $gray-300;
+            @include mobile-touch-effect; // 컨트롤러 버튼 터치 피드백
 
             svg {
-                width: rem(24);
-                height: rem(24);
+                width: rem(20);
+                height: rem(20);
                 fill: currentColor;
 
                 path {
@@ -465,7 +482,6 @@
                 }
             }
 
-            // ?쒖꽦 ?곹깭 濡쒖쭅
             &.active {
                 color: $black;
             }
@@ -482,8 +498,9 @@
             }
 
             .divider {
-                width: rem(10);
-                height: 1px;
+                width: rem(12);
+                margin: 0 rem(8);
+                height: 2px;
                 background-color: $gray-300;
             }
 
@@ -494,33 +511,36 @@
     }
 }
 
-// MD 異붿쿇 ??
+// MD 추천 상품 (MD Recommendation)
 .md-recommendation {
     .tab-menu {
         display: flex;
-        gap: rem(8);
+        gap: rem(4);
         padding-bottom: rem(12);
-        margin-bottom: rem(16);
+        // margin-bottom: rem(16);
+        margin: rem(0) rem(16) rem(16);
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; // ?뚯씠?댄룺??
+        scrollbar-width: none;
 
         &::-webkit-scrollbar {
-            display: none; // ?щ＼/?ы뙆由?
+            display: none;
         }
 
         .tab-btn {
             padding: rem(8) rem(16);
-            border-radius: rem(999);
-            border: 1px solid $gray-200;
-            background-color: $white;
+            border-radius: rem(2);
+            border: 0;
+            // border: 1px solid $gray-200;
+            background-color: $gray-50;
             color: $gray-600;
             font-size: rem(14);
-            font-weight: 500;
+            font-weight: 600;
             white-space: nowrap;
             flex-shrink: 0;
             cursor: pointer;
             transition: all 0.2s;
+            @include mobile-touch-effect; // 탭 버튼 터치 피드백
 
             &.active {
                 background-color: $black;
@@ -532,7 +552,7 @@
     }
 }
 
-// 釉뚮옖?쒓?
+// 브랜드관 (Brand Pavilion)
 .brand-pavilion {
     .brand-story-list {
         display: flex;
@@ -548,11 +568,11 @@
 
         .story-image {
             width: 100%;
-            height: rem(240); // Fixed height as per design
-            border-radius: rem(2); // Slightly rounded
+            height: rem(240); // 고정 높이 (Fixed height)
+            border-radius: rem(2);
             overflow: hidden;
             background-color: $gray-50;
-            position: relative; // For badge overlay if needed
+            position: relative;
 
             img {
                 width: 100%;
@@ -578,9 +598,8 @@
                 color: $gray-500;
                 font-weight: 400;
                 line-height: normal;
-                word-break: keep-all; // Korean typography
+                word-break: keep-all;
 
-                // Max 2 lines if needed, but design shows full text usually
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
                 line-clamp: 2;
@@ -592,10 +611,8 @@
     }
 
     .btn-more.btn-brand-more {
-        width: 100%; // Full width
+        width: 100%;
         margin-top: rem(16);
-
-        // Uses standard btn-more styles for height/color but full width
     }
 }
 
@@ -623,7 +640,7 @@
         background-color: #FFDE00;
         overflow: hidden;
         position: relative;
-        height: rem(120); // Fixed height
+        height: rem(120);
 
         img {
             width: 100%;
@@ -633,17 +650,32 @@
         }
     }
 
-    // Reuse slider controller styles
     .slider-controller {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: rem(16);
-        margin-top: rem(16);
         color: $black;
         font-family: $font-family-number;
         font-weight: 500;
         font-size: rem(14);
+
+        &>*:not(.page-count) {
+            width: rem(32) !important;
+            height: rem(32) !important;
+        }
+
+        .page-count {
+            display: flex;
+            align-items: center;
+
+            &>*:not(.divider) {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: rem(32) !important;
+                height: rem(32) !important;
+            }
+        }
 
         button {
             background: none;
@@ -653,13 +685,12 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            width: rem(24);
-            height: rem(24);
             color: $gray-300;
+            @include mobile-touch-effect; // 컨트롤러 버튼 터치 피드백
 
             svg {
-                width: rem(24);
-                height: rem(24);
+                width: rem(20);
+                height: rem(20);
                 fill: currentColor;
 
                 path {
@@ -684,7 +715,7 @@
 
             .divider {
                 width: rem(10);
-                height: 1px;
+                height: 2px;
                 background-color: $gray-300;
             }
 

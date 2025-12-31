@@ -23,6 +23,7 @@
         overflow: hidden;
         border-radius: rem(4);
         background-color: $gray-50;
+        @include mobile-touch-effect($gray-50); // 터치 피드백 추가
 
         img {
             // position: absolute;
@@ -44,7 +45,7 @@
         .badge-corner {
             position: absolute;
             top: rem(8);
-            left: rem(8);
+            left: rem(12);
             background-color: $secondary-bg;
             padding: rem(4) rem(8);
             border-radius: rem(2);
@@ -64,7 +65,7 @@
         .delivery-tags {
             position: absolute;
             bottom: rem(8);
-            left: rem(8);
+            left: rem(12);
             display: flex;
             align-items: center;
             gap: rem(4);
@@ -79,6 +80,11 @@
                 padding: rem(2) rem(6);
                 border-radius: rem(2);
                 background-color: $secondary-bg;
+
+                & svg {
+                    width: rem(12) !important;
+                    height: rem(12) !important;
+                }
 
                 &.tag-frozen {
                     color: $system-info;
@@ -108,6 +114,7 @@
         display: flex;
         flex-direction: column;
         flex: 1;
+        @include mobile-touch-effect; // 터치 피드백 추가
 
         .product-name {
             font-size: rem(14);
@@ -129,7 +136,7 @@
             align-content: flex-start;
             flex-wrap: wrap;
             gap: rem(6);
-            margin-bottom: rem(4);
+            margin-bottom: rem(8);
             font-size: rem(10);
             height: rem(34);
             justify-content: center;
@@ -172,7 +179,7 @@
 
     // 수량 조절 및 버튼 영역
     .card-control {
-        padding: 0 rem(16) rem(16);
+        padding: 0 rem(16) rem(8);
         display: flex;
         align-items: center;
         gap: rem(4);
@@ -192,6 +199,7 @@
             justify-content: center;
             background: $white;
             color: $black;
+            @include mobile-touch-effect; // 터치 피드백 추가
 
             &:first-child {
                 // Heart icon if it's first
@@ -237,6 +245,7 @@
                 justify-content: center;
                 cursor: pointer;
                 color: $black;
+                @include mobile-touch-effect; // 터치 피드백 추가
 
                 svg {
                     width: rem(12);

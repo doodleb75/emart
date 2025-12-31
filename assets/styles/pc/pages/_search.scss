@@ -34,7 +34,7 @@
         // 총 상품 수
         .total-count-row {
             padding-bottom: rem(24);
-            border-bottom: 2px solid #444;
+            border-bottom: 2px solid $gray-700;
             font-size: rem(16);
             color: $gray-700;
             font-weight: 600;
@@ -444,11 +444,11 @@
             height: rem(48);
             padding: rem(10) rem(16);
             background-color: $white;
-            border: 1px solid #222;
+            border: 1px solid $gray-700;
             border-radius: rem(4);
             font-size: rem(16);
             font-weight: 600;
-            color: #444;
+            color: $gray-700;
             cursor: pointer;
             letter-spacing: rem(-0.32);
 
@@ -699,7 +699,7 @@
                     height: rem(40);
                     display: flex;
                     align-items: center;
-                    background-color: #fff;
+                    background-color: $white;
                     border: 1px solid $gray-200;
                     border-radius: rem(4);
 
@@ -727,7 +727,7 @@
                     width: rem(40);
                     height: rem(40);
                     margin: 0;
-                    background-color: #fff;
+                    background-color: $white;
                 }
 
                 // 대체 상품 버튼 유지
@@ -830,11 +830,11 @@
             padding: 0;
 
             &:hover {
-                background-color: #f5f5f5;
+                background-color: $gray-50;
             }
 
             &.active {
-                background-color: #444;
+                background-color: $gray-700;
                 color: $white;
             }
 

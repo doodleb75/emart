@@ -116,6 +116,7 @@
             border-radius: rem(4);
             font-size: rem(16);
             font-weight: 600;
+            gap: rem(4);
             color: $gray-700; // 텍스트 색상 일치
             cursor: pointer;
             @include btn-hover-effect;

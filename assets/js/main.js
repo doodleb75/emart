@@ -478,6 +478,9 @@ document.addEventListener('DOMContentLoaded', () => {
             for (let i = 0; i < totalClones; i++) {
                 const clone = mobileRankingList.cloneNode(true);
 
+                mobileRankingTrack.appendChild(clone);
+
+                // DOM에 추가 후 초기화 실행 (Fix: Init after append to ensure events work and offsetHeight is calcable)
                 // 복제 아이템 더보기 로직 초기화
                 const clonedItems = clone.querySelectorAll('.ranking-item');
                 clonedItems.forEach(item => {
@@ -486,15 +489,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     initRankingItem(item);
                 });
 
-                mobileRankingTrack.appendChild(clone);
+                // 수량 조절 버튼 기능 재연결 (Fix: Re-init quantity control for clones)
+                const qtyBoxes = clone.querySelectorAll('.qty-box');
+                qtyBoxes.forEach(box => {
+                    delete box.dataset.initialized;
+                });
+                if (typeof initQuantityControl === 'function') {
+                    initQuantityControl(clone);
+                }
             }
 
             // 페이지네이션 초기화
             if (totalPageEl) totalPageEl.textContent = String(totalItems).padStart(2, '0');
             if (currentPageEl) currentPageEl.textContent = String(currentIndex).padStart(2, '0');
 
+            // 초기 current 클래스 설정 (Set initial current class)
+            Array.from(mobileRankingTrack.children).forEach((slide, index) => {
+                if (index === currentIndex - 1) slide.classList.add('current');
+                else slide.classList.remove('current');
+            });
+
             const updateCarousel = () => {
                 if (currentPageEl) currentPageEl.textContent = String(currentIndex).padStart(2, '0');
+
+                // 활성 슬라이드 클래스 업데이트 (Update active slide class)
+                Array.from(mobileRankingTrack.children).forEach((slide, index) => {
+                    if (index === currentIndex - 1) slide.classList.add('current');
+                    else slide.classList.remove('current');
+                });
 
                 // 트랙 이동
                 mobileRankingTrack.style.transform = `translateX(-${(currentIndex - 1) * 100}%)`;
@@ -525,11 +547,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    if (typeof initQuantityControl === 'function') {
-        initQuantityControl(document);
-    } else {
-        console.warn('initQuantityControl function not found. Please load quantity-control.js');
-    }
     // ==========================================
     // 수량 증감 기능 (Shared Quantity Control)
     // ==========================================
@@ -538,6 +555,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.warn('initQuantityControl function not found. Please load quantity-control.js');
     }
+
 
     // ==========================================
     // 장바구니 체크박스 및 탭 기능
@@ -924,7 +942,7 @@ document.addEventListener('headerLoaded', function () {
         const searchInput = searchContainer.querySelector('.search-input');
         const btnClose = searchContainer.querySelector('.btn-close-search');
         const btnDeleteAll = searchContainer.querySelector('.btn-delete-all');
-        const btnsDeleteItem = searchContainer.querySelectorAll('.btn-delete-item');
+        const btnsDeleteItem = searchContainer.querySelectorAll('.btn-delete-item, .recent-delete-btn');
 
         const btnClear = searchContainer.querySelector('.btn-clear');
 
@@ -941,12 +959,31 @@ document.addEventListener('headerLoaded', function () {
                 btnClear.style.display = hasText ? 'flex' : 'none';
             }
 
+            const isSearchActive = searchContainer.classList.contains('active');
+            const dropdownMain = searchContainer.querySelector('.search-dropdown');
+
+            if (dropdownMain) {
+                dropdownMain.style.display = isSearchActive ? 'block' : 'none';
+            }
+
             if (hasText) {
                 dropdownDefaultView.style.display = 'none';
                 dropdownAutocomplete.style.display = 'flex';
             } else {
                 dropdownDefaultView.style.display = 'block';
                 dropdownAutocomplete.style.display = 'none';
+                if (dropdownMain && isSearchActive) dropdownMain.style.display = 'block';
+            }
+            // 헤더 z-index 및 바디 스크롤 제어
+            const mobileHeader = searchContainer.closest('.mobile-header');
+            if (mobileHeader) {
+                if (isSearchActive) {
+                    mobileHeader.classList.add('search-active');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    mobileHeader.classList.remove('search-active');
+                    document.body.style.overflow = '';
+                }
             }
         };
 
@@ -976,6 +1013,18 @@ document.addEventListener('headerLoaded', function () {
                 e.preventDefault();
                 e.stopPropagation();
                 searchContainer.classList.remove('active');
+                updateDropdownView();
+            });
+        }
+
+        const btnBackSearch = searchContainer.querySelector('.btn-back-search');
+        if (btnBackSearch) {
+            btnBackSearch.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                searchContainer.classList.remove('active');
+                searchInput.blur(); // 키보드 닫기
+                updateDropdownView();
             });
         }
 
@@ -1237,10 +1286,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const grid = btnLoadMoreSpecial.previousElementSibling; // .product-grid-2
         if (grid) {
             const items = grid.querySelectorAll('.product-card');
-            const itemsPerView = 4;
+            const itemsPerView = 2; // 초기 노출 개수 변경 (Change initial visible count)
             let visibleCount = itemsPerView;
 
-            // 초기 상태: 4개만 표시
+            // 초기 상태: 2개만 표시
             items.forEach((item, index) => {
                 if (index >= visibleCount) {
                     item.style.display = 'none';
@@ -1302,7 +1351,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 } else {
                     // 더보기 동작
-                    const nextCount = visibleCount + 4;
+                    const nextCount = visibleCount + 2; // 2개씩 추가 노출 (Show 2 more items)
                     for (let i = visibleCount; i < nextCount && i < allItems.length; i++) {
                         allItems[i].style.display = 'flex';
                     }

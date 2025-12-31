@@ -9,85 +9,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Mobile CSS -->
     <link href="../assets/styles/mobile.css" rel="stylesheet">
-    <!-- Scripts -->
-    <script src="../assets/js/components/quantity-control.js"></script>
-    <script src="../assets/js/main.js"></script>
 </head>
 
 <body class="mobile-body">
 
     <!-- 모바일 헤더 -->
-    <header class="mobile-header">
-        <div class="header-top">
-            <div class="header-left">
-                <h1 class="logo">
-                    <a href="#" class="d-flex align-items-center text-decoration-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="58" height="24" viewBox="0 0 99 41" fill="none">
-                            <g clip-path="url(#clip0_38_64)">
-                                <path
-                                    d="M67.0151 18.4844V22.5133L36.9571 22.4661C35.8301 22.4661 34.9258 21.5483 34.9258 20.428V18.4372L57.6144 18.471C57.7696 17.4249 57.9248 16.5004 58.0463 15.5286L39.4068 16.3047C38.8264 16.3317 38.3203 15.9065 38.2393 15.3261L37.8411 12.4378L58.2825 12.0059C58.323 11.3108 58.323 10.6157 58.323 9.95429L40.4393 9.9273C39.562 9.9273 38.8534 9.21195 38.8534 8.33464V5.97266L60.28 6.0064C61.9807 6.0064 63.3574 7.38985 63.3506 9.09048V9.18496C63.3506 11.9316 63.3439 14.874 62.7163 18.471H67.0151V18.4844ZM43.4492 36.1386H63.4923C63.4923 36.1386 63.5193 36.1386 63.5193 36.1589V39.9313C63.5193 39.9313 63.4991 39.9583 63.4856 39.9583H42.7068C40.3381 39.9583 38.4148 38.035 38.4215 35.6662V30.3551L58.4849 30.3889V28.452L40.2234 28.425C39.1976 28.425 38.3608 27.5882 38.3608 26.5557V24.5851L63.5666 24.6256L63.5531 34.0331L43.4627 33.9993V36.1319L43.4492 36.1386Z"
-                                    fill="#444444"></path>
-                                <path
-                                    d="M88.6976 23.0481C83.7037 23.8107 79.2496 23.9254 72.7508 23.9119H72.6563C71.0839 23.9119 69.8152 22.6297 69.8152 21.064L69.8287 13.0333L80.822 13.0535V10.1921L71.9275 10.1787C70.7465 10.1787 69.7949 9.22036 69.7949 8.03936V6.10928L85.8632 6.13628L85.8429 16.8597L74.8901 16.8395V19.8223C80.1877 19.7953 83.9803 19.6468 88.3601 18.9517L88.7043 23.0549L88.6976 23.0481ZM93.2191 26.0782H98.2535L98.2333 40.0612L79.4791 40.0274C76.6649 40.0274 74.3907 37.7397 74.3907 34.9255L74.4042 26.0445H79.4723V29.1488L93.2123 29.169V26.0715L93.2191 26.0782ZM93.2123 33.0832L79.4723 33.0629V34.5949C79.4723 35.3507 80.0797 35.9648 80.8355 35.9648L93.2056 35.9851V33.0832H93.2123ZM98.2873 7.32402L98.2603 24.6138H93.1516L93.1651 15.7799H87.6313V11.7038H93.1651L93.1786 4.82031H95.797C97.1737 4.82031 98.2873 5.94057 98.2805 7.31727L98.2873 7.32402Z"
-                                    fill="#444444"></path>
-                                <path
-                                    d="M15.4494 39.9986C4.69894 39.9986 0.00195312 33.4188 0.00195312 25.0843V16.0885C0.00195312 4.50802 7.72228 0 16.7788 0C27.7115 0 32.4894 5.95221 32.4894 11.9044C32.4894 20.5898 23.6016 22.7156 19.6874 23.8561C18.5604 24.18 14.3966 25.4217 13.4518 25.6917C9.79408 26.7512 8.74131 27.9389 8.74131 29.2819C8.74131 31.5764 10.7456 33.574 15.4494 33.574C19.539 33.574 22.5286 32.1838 23.028 27.912H31.5851C30.7011 34.674 26.6384 39.9986 15.4494 39.9986ZM16.4211 6.44485C11.6634 6.44485 8.55235 9.61667 8.55235 15.0425V20.7248C8.55235 20.7248 14.9837 18.8487 17.6696 18.0388C19.9169 17.3572 23.9458 15.9333 23.9458 12.3768C23.9458 9.28599 21.4353 6.44485 16.4211 6.44485Z"
-                                    fill="#FFBB33"></path>
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_38_64">
-                                    <rect width="98.2857" height="40.0593" fill="white"></rect>
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </a>
-                </h1>
-            </div>
-            <div class="header-right membership-info">
-                <span class="badge-grade">GOLD</span>
-                <span class="user-name">이 신선님</span>
-                <button class="btn-dropdown">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z" fill="#222222" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <div class="search-bar-area">
-            <div class="search-input-box">
-                <input type="text" placeholder="검색할 상품을 입력해주세요">
-                <button class="btn-search-icon">
-                    <svg class="icon-search" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z"
-                            fill="currentColor"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <nav class="gnb-scroll">
-            <ul class="gnb-list list-unstyled m-0">
-                <li class="active"><a href="#" class="text-decoration-none">홈</a></li>
-                <li><a href="#" class="text-decoration-none">오늘의 특가</a></li>
-                <li><a href="#" class="text-decoration-none">MD추천</a></li>
-                <li><a href="#" class="text-decoration-none">오반장</a></li>
-                <li><a href="#" class="text-decoration-none">HOT 프로모션</a></li>
-                <li><a href="#" class="text-decoration-none">신상품</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div id="mobile-header-placeholder"></div>
 
     <main class="main-page">
-        <!-- 메인 슬라이더 -->
         <!-- 메인 슬라이더 -->
         <section class="mobile-main-slider">
             <div class="slider-track" id="mobileMainTrack">
                 <div class="slide-item">
                     <div class="slider-card-img-wrap">
-                        <img src="/assets/images/slider/coffee.png" alt="Coffee">
+                        <img src="/assets/images/slider/snack.png" alt="다이제">
                     </div>
-                    <div class="slider-card-body bg-navy">
+                    <div class="slider-card-body" style="background-color: #7B4B3A;"> <!-- 다이제 브라운 -->
                         <div class="text-group">
                             <h3 class="slider-title">Dr.You 다이제 초코</h3>
                             <p class="slider-desc">통밀의 고소함과 달콤한 초콜릿의 만남</p>
@@ -104,9 +41,9 @@
                 <!-- 슬라이드 아이템 -->
                 <div class="slide-item">
                     <div class="slider-card-img-wrap">
-                        <img src="/assets/images/slider/snack.png" alt="Snack">
+                        <img src="/assets/images/slider/beverage.png" alt="밸런스밀">
                     </div>
-                    <div class="slider-card-body bg-blue">
+                    <div class="slider-card-body" style="background-color: #B09882;"> <!-- 밸런스밀 토프 베이지 -->
                         <div class="text-group">
                             <h3 class="slider-title">믿을 수 있는 맛, 안정적인 품질</h3>
                             <p class="slider-desc">식사 품질을 일정하게 유지하는 검증된 레시피.</p>
@@ -122,12 +59,30 @@
                 </div>
                 <div class="slide-item">
                     <div class="slider-card-img-wrap">
-                        <img src="/assets/images/slider/coffee.png" alt="Coffee 2">
+                        <img src="/assets/images/slider/juice.png" alt="신선한 주스">
                     </div>
-                    <div class="slider-card-body bg-navy">
+                    <div class="slider-card-body" style="background-color: #EE712B;"> <!-- 주스 오렌지 -->
                         <div class="text-group">
-                            <h3 class="slider-title">Dr.You 다이제 초코</h3>
-                            <p class="slider-desc">통밀의 고소함과 달콤한 초콜릿의 만남</p>
+                            <h3 class="slider-title">자연의 신선함을 담은 주스</h3>
+                            <p class="slider-desc">매일 아침 생기를 더해주는 상큼한 한 잔</p>
+                        </div>
+                        <div class="slider-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-item">
+                    <div class="slider-card-img-wrap">
+                        <img src="/assets/images/slider/pasta.png" alt="정통 파스타">
+                    </div>
+                    <div class="slider-card-body" style="background-color: #157EB0;"> <!-- 파스타 배경 블루 매칭 -->
+                        <div class="text-group">
+                            <h3 class="slider-title">정통 이탈리안 파스타의 풍미</h3>
+                            <p class="slider-desc">홈파티를 완성하는 프리미엄 파스타 세트</p>
                         </div>
                         <div class="slider-arrow">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -149,7 +104,7 @@
                 <div class="page-count">
                     <span class="current" id="currentSlide">01</span>
                     <span class="divider"></span>
-                    <span class="total" id="totalSlides">03</span>
+                    <span class="total" id="totalSlides">04</span>
                 </div>
                 <button type="button" class="btn-next active" id="btnNext">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2021,7 +1976,7 @@
                                                         fill="#444444"></path>
                                                 </svg>
                                             </button>
-                                            <div class="qty-box" data-initialized="true">
+                                            <div class="qty-box">
                                                 <button><svg class="icon-minus" width="20" height="20"
                                                         viewBox="0 0 20 20" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -2122,7 +2077,7 @@
                                                         fill="#444444"></path>
                                                 </svg>
                                             </button>
-                                            <div class="qty-box" data-initialized="true">
+                                            <div class="qty-box">
                                                 <button><svg class="icon-minus" width="20" height="20"
                                                         viewBox="0 0 20 20" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -2223,7 +2178,7 @@
                                                         fill="#444444"></path>
                                                 </svg>
                                             </button>
-                                            <div class="qty-box" data-initialized="true">
+                                            <div class="qty-box">
                                                 <button><svg class="icon-minus" width="20" height="20"
                                                         viewBox="0 0 20 20" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -2365,7 +2320,7 @@
                                                         fill="#444444"></path>
                                                 </svg>
                                             </button>
-                                            <div class="qty-box" data-initialized="true">
+                                            <div class="qty-box">
                                                 <button><svg class="icon-minus" width="20" height="20"
                                                         viewBox="0 0 20 20" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -2466,7 +2421,7 @@
                                                         fill="#444444"></path>
                                                 </svg>
                                             </button>
-                                            <div class="qty-box" data-initialized="true">
+                                            <div class="qty-box">
                                                 <button><svg class="icon-minus" width="20" height="20"
                                                         viewBox="0 0 20 20" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -2629,134 +2584,7 @@
         </section>
 
         <!-- 푸터 -->
-        <!-- 푸터 -->
-        <footer class="mobile-footer">
-            <div class="footer-logo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="20" viewBox="0 0 99 41" fill="none">
-                    <g clip-path="url(#clip0_38_64)">
-                        <path
-                            d="M67.0151 18.4844V22.5133L36.9571 22.4661C35.8301 22.4661 34.9258 21.5483 34.9258 20.428V18.4372L57.6144 18.471C57.7696 17.4249 57.9248 16.5004 58.0463 15.5286L39.4068 16.3047C38.8264 16.3317 38.3203 15.9065 38.2393 15.3261L37.8411 12.4378L58.2825 12.0059C58.323 11.3108 58.323 10.6157 58.323 9.95429L40.4393 9.9273C39.562 9.9273 38.8534 9.21195 38.8534 8.33464V5.97266L60.28 6.0064C61.9807 6.0064 63.3574 7.38985 63.3506 9.09048V9.18496C63.3506 11.9316 63.3439 14.874 62.7163 18.471H67.0151V18.4844ZM43.4492 36.1386H63.4923C63.4923 36.1386 63.5193 36.1386 63.5193 36.1589V39.9313C63.5193 39.9313 63.4991 39.9583 63.4856 39.9583H42.7068C40.3381 39.9583 38.4148 38.035 38.4215 35.6662V30.3551L58.4849 30.3889V28.452L40.2234 28.425C39.1976 28.425 38.3608 27.5882 38.3608 26.5557V24.5851L63.5666 24.6256L63.5531 34.0331L43.4627 33.9993V36.1319L43.4492 36.1386Z"
-                            fill="#444444"></path>
-                        <path
-                            d="M88.6976 23.0481C83.7037 23.8107 79.2496 23.9254 72.7508 23.9119H72.6563C71.0839 23.9119 69.8152 22.6297 69.8152 21.064L69.8287 13.0333L80.822 13.0535V10.1921L71.9275 10.1787C70.7465 10.1787 69.7949 9.22036 69.7949 8.03936V6.10928L85.8632 6.13628L85.8429 16.8597L74.8901 16.8395V19.8223C80.1877 19.7953 83.9803 19.6468 88.3601 18.9517L88.7043 23.0549L88.6976 23.0481ZM93.2191 26.0782H98.2535L98.2333 40.0612L79.4791 40.0274C76.6649 40.0274 74.3907 37.7397 74.3907 34.9255L74.4042 26.0445H79.4723V29.1488L93.2123 29.169V26.0715L93.2191 26.0782ZM93.2123 33.0832L79.4723 33.0629V34.5949C79.4723 35.3507 80.0797 35.9648 80.8355 35.9648L93.2056 35.9851V33.0832H93.2123ZM98.2873 7.32402L98.2603 24.6138H93.1516L93.1651 15.7799H87.6313V11.7038H93.1651L93.1786 4.82031H95.797C97.1737 4.82031 98.2873 5.94057 98.2805 7.31727L98.2873 7.32402Z"
-                            fill="#444444"></path>
-                        <path
-                            d="M15.4494 39.9986C4.69894 39.9986 0.00195312 33.4188 0.00195312 25.0843V16.0885C0.00195312 4.50802 7.72228 0 16.7788 0C27.7115 0 32.4894 5.95221 32.4894 11.9044C32.4894 20.5898 23.6016 22.7156 19.6874 23.8561C18.5604 24.18 14.3966 25.4217 13.4518 25.6917C9.79408 26.7512 8.74131 27.9389 8.74131 29.2819C8.74131 31.5764 10.7456 33.574 15.4494 33.574C19.539 33.574 22.5286 32.1838 23.028 27.912H31.5851C30.7011 34.674 26.6384 39.9986 15.4494 39.9986ZM16.4211 6.44485C11.6634 6.44485 8.55235 9.61667 8.55235 15.0425V20.7248C8.55235 20.7248 14.9837 18.8487 17.6696 18.0388C19.9169 17.3572 23.9458 15.9333 23.9458 12.3768C23.9458 9.28599 21.4353 6.44485 16.4211 6.44485Z"
-                            fill="#FFBB33"></path>
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_38_64">
-                            <rect width="98.2857" height="40.0593" fill="white"></rect>
-                        </clipPath>
-                    </defs>
-                </svg>
-            </div>
-
-            <div class="footer-links-grid">
-                <div class="link-column">
-                    <a href="#">공지사항</a>
-                    <a href="#">자주하는질문</a>
-                    <a href="#">설문조사</a>
-                    <a href="#">이용약관</a>
-                </div>
-                <div class="link-column">
-                    <a href="#">고객의 소리</a>
-                    <a href="#">자료실</a>
-                    <a href="#" class="bold">개인정보처리방침 <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7M17 7H7M17 7V17" />
-                        </svg></a>
-                </div>
-            </div>
-
-            <button class="footer-info-toggle">
-                주식회사 이마트 사업자 정보
-                <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-            </button>
-
-            <div class="footer-details">
-                <div class="info-row">
-                    <div class="icon-wrap">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <g clip-path="url(#clip0_379_1682)">
-                                <path
-                                    d="M9.99101 1.66797C5.39101 1.66797 1.66602 5.4013 1.66602 10.0013C1.66602 14.6013 5.39101 18.3346 9.99101 18.3346C14.5993 18.3346 18.3327 14.6013 18.3327 10.0013C18.3327 5.4013 14.5993 1.66797 9.99101 1.66797ZM9.99935 16.668C6.31601 16.668 3.33268 13.6846 3.33268 10.0013C3.33268 6.31797 6.31601 3.33464 9.99935 3.33464C13.6827 3.33464 16.666 6.31797 16.666 10.0013C16.666 13.6846 13.6827 16.668 9.99935 16.668ZM12.916 9.16797C13.6077 9.16797 14.166 8.60963 14.166 7.91797C14.166 7.2263 13.6077 6.66797 12.916 6.66797C12.2243 6.66797 11.666 7.2263 11.666 7.91797C11.666 8.60963 12.2243 9.16797 12.916 9.16797ZM7.08268 9.16797C7.77435 9.16797 8.33268 8.60963 8.33268 7.91797C8.33268 7.2263 7.77435 6.66797 7.08268 6.66797C6.39102 6.66797 5.83268 7.2263 5.83268 7.91797C5.83268 8.60963 6.39102 9.16797 7.08268 9.16797ZM9.99935 14.5846C11.941 14.5846 13.591 13.368 14.2577 11.668H5.74101C6.40768 13.368 8.05768 14.5846 9.99935 14.5846Z"
-                                    fill="#444444" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_379_1682">
-                                    <rect width="20" height="20" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </div>
-                    <span class="label">회원점 담당자 :</span>
-                    <span class="value">도담매니저</span>
-                </div>
-                <div class="contact-large">
-                    <div class="icon-wrap">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path
-                                d="M5.83268 19.1654C5.37435 19.1654 4.98199 19.0022 4.6556 18.6758C4.32921 18.3494 4.16602 17.957 4.16602 17.4987V2.4987C4.16602 2.04036 4.32921 1.648 4.6556 1.32161C4.98199 0.995226 5.37435 0.832031 5.83268 0.832031H14.166C14.6243 0.832031 15.0167 0.995226 15.3431 1.32161C15.6695 1.648 15.8327 2.04036 15.8327 2.4987V5.08203C16.0827 5.17925 16.2841 5.33203 16.4368 5.54037C16.5896 5.7487 16.666 5.98481 16.666 6.2487V7.91537C16.666 8.17925 16.5896 8.41537 16.4368 8.6237C16.2841 8.83203 16.0827 8.98481 15.8327 9.08203V17.4987C15.8327 17.957 15.6695 18.3494 15.3431 18.6758C15.0167 19.0022 14.6243 19.1654 14.166 19.1654H5.83268ZM5.83268 17.4987H14.166V2.4987H5.83268V17.4987ZM9.99935 4.9987C10.2355 4.9987 10.4334 4.91884 10.5931 4.75911C10.7528 4.59939 10.8327 4.40148 10.8327 4.16536C10.8327 3.92925 10.7528 3.73134 10.5931 3.57161C10.4334 3.41189 10.2355 3.33203 9.99935 3.33203C9.76324 3.33203 9.56532 3.41189 9.4056 3.57161C9.24588 3.73134 9.16602 3.92925 9.16602 4.16536C9.16602 4.40148 9.24588 4.59939 9.4056 4.75911C9.56532 4.91884 9.76324 4.9987 9.99935 4.9987Z"
-                                fill="#444444" />
-                        </svg>
-                    </div>
-                    010 · 1234 · 5678
-                </div>
-                <div class="info-row">
-                    <div class="icon-wrap">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <g clip-path="url(#clip0_379_1691)">
-                                <path
-                                    d="M10.325 2C5.725 2 2 5.73333 2 10.3333C2 14.9333 5.725 18.6667 10.325 18.6667C14.9333 18.6667 18.6667 14.9333 18.6667 10.3333C18.6667 5.73333 14.9333 2 10.325 2ZM10.3333 17C6.65 17 3.66667 14.0167 3.66667 10.3333C3.66667 6.65 6.65 3.66667 10.3333 3.66667C14.0167 3.66667 17 6.65 17 10.3333C17 14.0167 14.0167 17 10.3333 17ZM10.75 6.16667H9.5V11.1667L13.875 13.7917L14.5 12.7667L10.75 10.5417V6.16667Z"
-                                    fill="#444444" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_379_1691">
-                                    <rect width="20" height="20" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </div>
-                    <span class="value">평일: 08시 30분 ~ 17시 30분 · 공휴일 휴무</span>
-                </div>
-            </div>
-
-            <div class="copyright">Copyright @ E-MART Inc. All Rights Reserved.</div>
-
-            <div class="floating-buttons">
-                <button class="btn-float btn-cart">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <g clip-path="url(#clip0_379_1730)">
-                            <path
-                                d="M12.957 10.8346C13.582 10.8346 14.132 10.493 14.4154 9.9763L17.3987 4.56797C17.707 4.01797 17.307 3.33464 16.6737 3.33464H4.34036L3.55703 1.66797H0.832031V3.33464H2.4987L5.4987 9.65963L4.3737 11.693C3.76536 12.8096 4.56536 14.168 5.83203 14.168H15.832V12.5013H5.83203L6.7487 10.8346H12.957ZM5.13203 5.0013H15.257L12.957 9.16797H7.10703L5.13203 5.0013ZM5.83203 15.0013C4.91536 15.0013 4.1737 15.7513 4.1737 16.668C4.1737 17.5846 4.91536 18.3346 5.83203 18.3346C6.7487 18.3346 7.4987 17.5846 7.4987 16.668C7.4987 15.7513 6.7487 15.0013 5.83203 15.0013ZM14.1654 15.0013C13.2487 15.0013 12.507 15.7513 12.507 16.668C12.507 17.5846 13.2487 18.3346 14.1654 18.3346C15.082 18.3346 15.832 17.5846 15.832 16.668C15.832 15.7513 15.082 15.0013 14.1654 15.0013Z"
-                                fill="white" />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_379_1730">
-                                <rect width="20" height="20" fill="white" />
-                            </clipPath>
-                        </defs>
-                    </svg>
-                </button>
-                <button class="btn-float btn-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <g clip-path="url(#clip0_379_1734)">
-                            <path
-                                d="M6.66536 9.16667H9.16536V17.5H10.832V9.16667H13.332L9.9987 5.83333L6.66536 9.16667ZM3.33203 2.5V4.16667H16.6654V2.5H3.33203Z"
-                                fill="#444444" />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_379_1734">
-                                <rect width="20" height="20" fill="white" />
-                            </clipPath>
-                        </defs>
-                    </svg>
-                </button>
-            </div>
-        </footer>
+        <div id="mobile-footer-placeholder"></div>
 
     </main>
 
@@ -2765,7 +2593,7 @@
         <a href="#" class="nav-item">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <g clip-path="url(#clip0_379_1699)">
-                    <path d="M3 8H21M3 16H21" stroke="#AAAAAA" stroke-width="2" stroke-linejoin="round" />
+                    <path d="M3 8H21M3 16H21" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
                 </g>
                 <defs>
                     <clipPath id="clip0_379_1699">
@@ -2779,10 +2607,10 @@
         <a href="#" class="nav-item">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <g clip-path="url(#clip0_406_4227)">
-                    <path d="M15 4H4V20H15" stroke="#AAAAAA" stroke-width="2" stroke-linejoin="round" />
-                    <path d="M11 7L11 17" stroke="#AAAAAA" stroke-width="2" stroke-linejoin="round" />
-                    <path d="M15 7L15 17" stroke="#AAAAAA" stroke-width="2" stroke-linejoin="round" />
-                    <path d="M19 7L19 17" stroke="#AAAAAA" stroke-width="2" stroke-linejoin="round" />
+                    <path d="M15 4H4V20H15" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                    <path d="M11 7L11 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                    <path d="M15 7L15 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                    <path d="M19 7L19 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
                 </g>
                 <defs>
                     <clipPath id="clip0_406_4227">
@@ -2820,9 +2648,9 @@
             <span class="icon icon-my">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <g clip-path="url(#clip0_406_4252)">
-                        <circle cx="12" cy="7" r="4" stroke="#AAAAAA" stroke-width="2" />
-                        <path d="M5 22V18C5 15.7909 6.79086 14 9 14H15C17.2091 14 19 15.7909 19 18V22" stroke="#AAAAAA"
-                            stroke-width="2" stroke-linejoin="round" />
+                        <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" />
+                        <path d="M5 22V18C5 15.7909 6.79086 14 9 14H15C17.2091 14 19 15.7909 19 18V22"
+                            stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
                     </g>
                     <defs>
                         <clipPath id="clip0_406_4252">
@@ -2837,8 +2665,8 @@
             <span class="icon icon-search">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <g clip-path="url(#clip0_379_1723)">
-                        <circle cx="11" cy="11" r="7" stroke="#AAAAAA" stroke-width="2" />
-                        <path d="M16 16L21 21" stroke="#AAAAAA" stroke-width="2" stroke-linejoin="round" />
+                        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                        <path d="M16 16L21 21" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
                     </g>
                     <defs>
                         <clipPath id="clip0_379_1723">
@@ -2851,9 +2679,34 @@
         </a>
     </nav>
     <script src="../assets/js/components/quantity-control.js"></script>
+    <script src="../assets/js/main.js"></script>
     <script src="../assets/js/components/mobile-footer.js"></script>
     <script src="../assets/js/components/favorites.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Use .txt extension to prevent live-server from injecting script tags into the partial component
+        function loadComponent(url, placeholderId) {
+            fetch(url + '?v=' + new Date().getTime())
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById(placeholderId).innerHTML = data;
+                    // Dispatch event if needed
+                    if (placeholderId === 'mobile-header-placeholder') {
+                        document.dispatchEvent(new Event('headerLoaded'));
+                    }
+                    if (placeholderId === 'mobile-footer-placeholder') {
+                        document.dispatchEvent(new Event('footerLoaded'));
+                    }
+                })
+                .catch(error => console.error('Error loading component:', error));
+        }
+
+        loadComponent('/mobile/components/header.component.txt', 'mobile-header-placeholder');
+        loadComponent('/mobile/components/footer.component.txt', 'mobile-footer-placeholder');
+    </script>
 </body>
 
 </html>

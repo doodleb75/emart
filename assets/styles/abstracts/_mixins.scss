@@ -24,3 +24,19 @@
         @include btn-active-styles($bg-color, $border-color);
     }
 }
+
+// 모바일 전용 터치 피드백 (배경색 어둡게 변경)
+@mixin mobile-touch-effect($bg: $white) {
+    -webkit-tap-highlight-color: transparent;
+
+    &:active {
+        background-color: darken($bg, 10%); // 버튼 배경 darken 적용
+    }
+}
+
+// 말줄임표 처리 (Truncate text)
+@mixin truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
