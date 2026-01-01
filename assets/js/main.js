@@ -998,6 +998,19 @@ document.addEventListener('headerLoaded', function () {
         }
 
 
+        let isClickInside = false;
+
+        searchContainer.addEventListener('mousedown', () => {
+            isClickInside = true;
+        });
+
+        window.addEventListener('mouseup', () => {
+            // 클릭 이벤트가 완전히 처리될 때까지 플래그 유지 (Keep flag until other events process)
+            setTimeout(() => {
+                isClickInside = false;
+            }, 300);
+        });
+
         if (searchInput) {
             const openSearch = () => {
                 searchContainer.classList.add('active');
@@ -1006,6 +1019,24 @@ document.addEventListener('headerLoaded', function () {
             searchInput.addEventListener('click', openSearch);
             searchInput.addEventListener('focus', openSearch);
             searchInput.addEventListener('input', updateDropdownView);
+
+            // 포커스 아웃 시 드롭다운 닫기 (Close on blur)
+            searchInput.addEventListener('blur', (e) => {
+                const relatedTarget = e.relatedTarget;
+
+                // 탭 이동으로 내부 요소에 포커스가 간 경우나, 현재 클릭 중인 경우 닫지 않음
+                if (isClickInside || (relatedTarget && searchContainer.contains(relatedTarget))) {
+                    return;
+                }
+
+                // 외부 클릭 시에는 다른 이벤트 처리를 위해 아주 약간의 지연 후 닫기
+                setTimeout(() => {
+                    if (!isClickInside) {
+                        searchContainer.classList.remove('active');
+                        updateDropdownView();
+                    }
+                }, 150);
+            });
         }
 
         if (btnClose) {
@@ -1068,16 +1099,19 @@ document.addEventListener('headerLoaded', function () {
                 // 삭제 로직
             });
         });
-    }
 
-    // 영역 외 클릭 시 닫기
-    document.addEventListener('click', function (event) {
-        if (searchContainer && searchContainer.classList.contains('active')) {
-            if (!searchContainer.contains(event.target)) {
-                searchContainer.classList.remove('active');
+        // 영역 외 클릭 시 닫기 (Close when clicking outside)
+        // searchContainer 블록 안으로 이동하여 스코프 문제 해결
+        document.addEventListener('click', (event) => {
+            if (searchContainer.classList.contains('active')) {
+                // 내부 클릭이 아니고, 플래그도 꺼져있을 때만 닫기
+                if (!searchContainer.contains(event.target) && !isClickInside) {
+                    searchContainer.classList.remove('active');
+                    updateDropdownView();
+                }
             }
-        }
-    });
+        });
+    }
 });
 // 모바일 슬라이더 로직
 document.addEventListener('DOMContentLoaded', () => {

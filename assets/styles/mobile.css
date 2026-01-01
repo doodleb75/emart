@@ -1021,6 +1021,9 @@ body.mobile-body {
   color: #1f95ff;
   font-weight: 600;
 }
+.mobile-header .search-container.active .search-dropdown .search-dropdown-autocomplete .autocomplete-column.promotion-column .promo-list li a:hover {
+  background-color: #f4f4f4;
+}
 .mobile-header .search-container.active .search-dropdown .search-dropdown-autocomplete .autocomplete-column.promotion-column .collection-list {
   margin: 0 -1.25rem;
   padding: 1.25rem;

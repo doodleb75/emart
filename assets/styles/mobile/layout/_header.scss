@@ -317,6 +317,11 @@
                                             color: $system-info;
                                             font-weight: 600;
                                         }
+
+
+                                        &:hover {
+                                            background-color: $gray-50;
+                                        }
                                     }
                                 }
                             }

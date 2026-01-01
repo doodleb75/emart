@@ -1708,7 +1708,7 @@ custom-checkbox {
 .search-dropdown .recent-list li .keyword-wrap:hover .keyword {
   text-decoration: underline;
 }
-.search-dropdown .recent-list li .recent-delte-btn {
+.search-dropdown .recent-list li .recent-delete-btn {
   background: none;
   border: none;
   color: #aaaaaa;
@@ -1720,7 +1720,7 @@ custom-checkbox {
   display: flex;
   align-items: center;
 }
-.search-dropdown .recent-list li .recent-delte-btn:hover path {
+.search-dropdown .recent-list li .recent-delete-btn:hover path {
   fill: #FF5447;
 }
 .search-dropdown .popular-list li {
