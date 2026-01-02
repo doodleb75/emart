@@ -58,25 +58,32 @@ $emart-yellow: #FFC000;
     }
 
     // 3. GNB
-    .header-gnb {
-        .category-toggle {
-            cursor: pointer;
-
-            &:hover span {
-                color: $primary-gold;
+    .header-nav {
+        .category-area {
+            .category-link {
+                &:hover .category-label {
+                    color: $primary-gold;
+                }
             }
         }
 
-        .gnb-menu {
-            .nav-link {
-                color: $gray-700;
-                font-size: 16px;
-                letter-spacing: -0.5px;
+        .gnb-nav {
+            .gnb-list {
+                .nav-item {
+                    .gnb-link {
+                        color: $gray-700;
+                        font-size: rem(16);
+                        letter-spacing: -0.5px;
 
-                &.active,
-                &:hover {
-                    color: $primary-gold;
-                    // border-bottom-color: $primary-gold !important;
+                        @media (max-width: 1280px) {
+                            font-size: rem(16);
+                        }
+
+                        &.active,
+                        &:hover {
+                            color: $primary-gold;
+                        }
+                    }
                 }
             }
         }

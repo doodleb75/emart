@@ -383,7 +383,33 @@
             align-items: center;
             justify-content: space-between;
             color: $white;
+
             // 배경색은 인라인 스타일로 개별 적용됨
+            &.bg-snack {
+                background-color: #65403a; // 다이제 브랜드 컬러 (Dr.You Brand Color)
+            }
+
+            &.bg-beverage {
+                background-color: #5a493f; // 밸런스밀 브랜드 컬러 (Balance Meal Brand Color)
+
+                .text-group .slider-title,
+                .text-group .slider-desc {
+                    color: $white; // 밝은 배경이므로 텍스트 색상 변경 (Dark text for light bg)
+                }
+            }
+
+            &.bg-juice {
+                background-color: #8d252c; // 주스 브랜드 컬러 (Juice Brand Color)
+
+                .text-group .slider-title,
+                .text-group .slider-desc {
+                    color: $white; // 밝은 배경이므로 텍스트 색상 변경 (Dark text for light bg)
+                }
+            }
+
+            &.bg-pasta {
+                background-color: #0076be; // 파스타랑 브랜드 컬러 (Pasta Brand Color)
+            }
 
             .text-group {
                 display: flex;

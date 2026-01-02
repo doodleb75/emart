@@ -88,7 +88,7 @@
             </div>
 
             <!-- 검색 영역 -->
-            <div class="search-container" style="max-width: 650.766px; width: 100%;">
+            <div class="search-container">
                 <div class="search-box">
                     <input type="text" class="search-input" placeholder="원하시는 상품을 검색해보세요.">
                     <button type="button" class="btn-clear" style="display: none;">

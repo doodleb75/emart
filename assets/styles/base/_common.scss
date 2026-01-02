@@ -4,12 +4,11 @@ html {
 
 // 공통 레이아웃
 body {
-    min-width: rem(1400);
     font-family: $font-family-base;
     background-color: $white;
+    font-weight: 600;
     color: $gray-700;
     margin: 0;
-    overflow-x: auto;
 }
 
 // 유틸리티 클래스
@@ -76,16 +75,31 @@ body {
     margin: 0 auto;
 }
 
+main {
+    position: relative; // 스티키 트랙의 기준점 (Reference point for sticky track)
+}
+
 // 플로팅 메뉴
 // 스티키 트랙
 .sticky-track {
     position: absolute;
     top: rem(664); // 헤더 높이 반영 위치 조정
-    bottom: 0;
+    bottom: rem(100); // 푸터 영역 침범 방지 (Prevent footer overlap)
     left: 50%;
     margin-left: rem(700); // 1360/2 + 20px 간격
     width: rem(120);
-    z-index: 100;
+    z-index: 1000; // 헤더보다는 낮게, 다른 요소보다는 높게
+    pointer-events: none; // 트랙 자체는 클릭 무시 (Ignore clicks on track)
+
+    // 브라우저 너비가 좁아지면 컨텐츠 안쪽으로 이동 (Shift inward when narrow)
+    @media (max-width: rem(1520)) {
+        margin-top: rem(96);
+        margin-left: rem(560); // 컨텐츠 우측 내부로 겹치게 설정
+    }
+
+    .floating-menu {
+        pointer-events: auto; // 메뉴는 클릭 가능 (Menu is clickable)
+    }
 }
 
 // 플로팅 메뉴
@@ -210,6 +224,7 @@ body {
     justify-content: space-between;
     border: 1px solid $gray-700;
     border-radius: rem(4);
+    height: 100%;
 
     overflow: hidden;
 
@@ -246,10 +261,12 @@ body {
         height: 90%;
         border-radius: rem(4);
         -moz-appearance: textfield;
+        appearance: textfield;
 
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
             -webkit-appearance: none;
+            appearance: none;
             margin: 0;
         }
 
@@ -275,10 +292,6 @@ body {
     // 호버 효과
     &:hover {
         background-color: $gray-50;
-    }
-
-    .icon-heart {
-        // 기본 상태
     }
 
     &.active {

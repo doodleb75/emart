@@ -1,12 +1,8 @@
 @charset "UTF-8";
 
 // 1. Abstracts (Variables, Mixins, Functions)
-@function rem($px) {
-    @return #{calc($px / 16)}rem;
-}
-
-@import "abstracts/variables";
 @import "abstracts/functions";
+@import "abstracts/variables";
 @import "abstracts/mixins";
 
 // 2. Base (Reset, Typography)

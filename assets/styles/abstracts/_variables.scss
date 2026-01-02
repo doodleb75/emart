@@ -66,40 +66,35 @@ $badge-blue-text: #1876D3;
 $font-family-base: 'Pretendard Variable', sans-serif;
 $font-family-number: 'Roboto', sans-serif;
 
-$font-size-xs: 11px;
-$font-size-sm: 13px;
-$font-size-base: 14px;
-$font-size-md: 16px;
-$font-size-lg: 20px;
-$font-size-xl: 32px;
-$font-size-xxl: 28px;
+// 기본 폰트 사이즈 (rem 기준이 되는 16px)
+$font-size-root: 16px;
 
-// 피그마 정의 폰트
-$font-display-lg: 60px;
-$font-display-md: 44px;
-$font-display-sm: 36px;
-$font-heading-lg: 28px;
-$font-heading-md: 24px;
-$font-heading-sm: 19px;
-$font-heading-xs: 17px;
-$font-heading-xxs: 15px;
-$font-body-lg: 19px;
-$font-body-md: 17px;
-$font-body-sm: 15px;
-$font-body-xs: 13px;
-
+// 시맨틱 폰트 사이즈
+$font-size-xs: rem(11);
+$font-size-sm: rem(13);
+$font-size-base: rem(14);
+$font-size-md: rem(16);
+$font-size-lg: rem(20);
+$font-size-xl: rem(24);
+$font-size-xxl: rem(28);
 
 // 3. 여백 & 레이아웃 (Spacing & Layout)
 // -----------------------------------------------------------------------------
-$header-height-top: 50px;
-$header-height-main: 80px;
-$header-height-nav: 60px;
+$space-xs: rem(4);
+$space-sm: rem(8);
+$space-md: rem(16);
+$space-lg: rem(24);
+$space-xl: rem(32);
+$space-xxl: rem(48);
 
-// 새 레이아웃 변수 (New Layout Variables)
-$layout-container-width: 1360px;
+$header-height-pc: rem(192); // Top(32*2+48) + Main(24*2+48) + Nav(24*2+?)... 정확한 계산 필요
+$header-height-mobile: rem(136); // Header top(48) + GNB(48) + Padding(16+8+16)...
+
+$layout-container-width: rem(1360);
+$layout-mobile-padding: rem(16);
 
 
-// 부트스트랩 오버라이드 (Bootstrap Overrides)
+// 4. 애니메이션 (Transitions)
 // -----------------------------------------------------------------------------
-$nav-link-padding-y: 8px;
-$nav-link-padding-x: 16px;
+$transition-base: all 0.2s ease-in-out;
+$transition-fast: all 0.1s ease-in-out;

@@ -127,6 +127,8 @@
         padding: rem(8) rem(16) rem(16);
         background-color: $white;
         transition: all 0.2s ease;
+        width: 100% !important;
+        margin-left: 0 !important;
 
         .search-header {
             display: flex;
