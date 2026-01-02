@@ -162,12 +162,11 @@ html {
 }
 
 body {
-  min-width: 87.5rem;
   font-family: "Pretendard Variable", sans-serif;
   background-color: #ffffff;
+  font-weight: 600;
   color: #444444;
   margin: 0;
-  overflow-x: auto;
 }
 
 .number-font {
@@ -229,14 +228,28 @@ body {
   margin: 0 auto;
 }
 
+main {
+  position: relative;
+}
+
 .sticky-track {
   position: absolute;
   top: 41.5rem;
-  bottom: 0;
+  bottom: 6.25rem;
   left: 50%;
   margin-left: 43.75rem;
   width: 7.5rem;
-  z-index: 100;
+  z-index: 1000;
+  pointer-events: none;
+}
+@media (max-width: 95rem) {
+  .sticky-track {
+    margin-top: 6rem;
+    margin-left: 35rem;
+  }
+}
+.sticky-track .floating-menu {
+  pointer-events: auto;
 }
 
 .floating-menu {
@@ -342,6 +355,7 @@ body {
   justify-content: space-between;
   border: 1px solid #444444;
   border-radius: 0.25rem;
+  height: 100%;
   overflow: hidden;
 }
 .qty-box button {
@@ -380,9 +394,11 @@ body {
   height: 90%;
   border-radius: 0.25rem;
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 .qty-box input::-webkit-outer-spin-button, .qty-box input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  appearance: none;
   margin: 0;
 }
 .qty-box input:focus {
@@ -412,6 +428,22 @@ custom-checkbox {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+html {
+  overflow-x: auto;
+  overflow-y: scroll;
+}
+
+body {
+  min-width: 85rem;
+  position: relative;
+  margin: 0;
+}
+
+.pc-container {
+  width: 85rem;
+  margin: 0 auto;
 }
 
 .badge-order-red {
@@ -546,16 +578,15 @@ custom-checkbox {
   width: 100%;
   position: relative;
   background-color: #f4f4f4;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   overflow: hidden;
-  margin-bottom: 1.25rem;
 }
-.product-card .card-thumb:before {
+.product-card .card-thumb::before {
   content: "";
   display: block;
   padding-bottom: 100%;
 }
-.product-card .card-thumb > img {
+.product-card .card-thumb img {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -563,13 +594,45 @@ custom-checkbox {
   width: 75%;
   height: 75%;
   object-fit: contain;
-  transition: transform 0.3s ease;
-}
-.product-card .card-thumb:hover > img {
-  transform: translate(-50%, -50%) scale(1.05);
+  transition: all 0.2s ease-in-out;
 }
 .product-card .card-thumb .badge-corner {
   position: absolute;
+  z-index: 10;
+}
+.product-card .card-thumb .delivery-tags {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+}
+.product-card .card-info {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+.product-card .card-info .product-name {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #444444;
+}
+.product-card .card-control {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+}
+.product-card .card-thumb {
+  margin-bottom: 1.25rem;
+}
+.product-card .card-thumb > img {
+  width: 75%;
+  height: 75%;
+}
+.product-card .card-thumb .badge-corner {
   top: 0.625rem;
   left: 0.625rem;
   background-color: #ffffe0;
@@ -583,18 +646,12 @@ custom-checkbox {
   color: #444444;
 }
 .product-card .card-thumb .badge-corner svg {
-  position: relative;
   width: 0.875rem;
   height: 0.875rem;
-  top: auto;
-  left: auto;
-  transform: none;
 }
 .product-card .card-thumb .delivery-tags {
-  position: absolute;
   bottom: 0.625rem;
   left: 0.625rem;
-  display: flex;
   gap: 0.625rem;
 }
 .product-card .card-thumb .delivery-tags .tag {
@@ -631,9 +688,9 @@ custom-checkbox {
 .product-card .card-info {
   padding: 0;
   margin-bottom: 2.4375rem;
-  display: block;
-  text-decoration: none;
-  color: inherit;
+}
+.product-card .card-info > * {
+  line-height: 150% !important;
 }
 .product-card .card-info:hover .product-name {
   text-decoration: underline;
@@ -642,14 +699,9 @@ custom-checkbox {
 .product-card .card-info .product-name {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #444444;
   margin-bottom: 0.25rem;
   line-height: 1.5;
   letter-spacing: 0.025rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
   margin-top: 0;
 }
 .product-card .card-info .unit-info {
@@ -662,7 +714,7 @@ custom-checkbox {
 }
 .product-card .card-info .unit-info .strike {
   text-decoration: line-through;
-  color: #999999;
+  color: #aaaaaa;
   font-size: 0.875rem;
   font-weight: 600;
 }
@@ -683,22 +735,20 @@ custom-checkbox {
   color: #444444;
 }
 .product-card .card-info .total-price-area .discount {
-  color: #FF531D;
+  color: #FF5447;
   font-weight: 700;
 }
 .product-card .card-info .total-price-area .discount:after {
   content: "%";
-  font-size: 1.375rem;
-  margin-left: 1px;
+  font-size: 0.875rem;
+  margin-left: 0.0625rem;
 }
 .product-card .card-info .total-price-area .price {
   font-weight: 800;
 }
 .product-card .card-control {
-  display: flex;
   gap: 0.375rem;
   margin-bottom: 0.75rem;
-  margin-top: auto;
 }
 .product-card .card-control .btn-icon {
   width: 3rem;
@@ -721,14 +771,15 @@ custom-checkbox {
   color: #888888;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
   min-height: 3.875rem;
   padding-bottom: 1rem;
+}
+.product-card .bottom-info > * {
+  line-height: 150% !important;
 }
 .product-card .bottom-info .info-row {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
   font-size: 0.875rem;
   color: #aaaaaa;
   font-weight: 500;
@@ -1347,13 +1398,15 @@ custom-checkbox {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex: 1;
+  flex: none;
+  width: 100%;
+  max-width: 40.672875rem;
   height: 3rem;
   background-color: #f4f4f4;
   border-radius: 0.25rem;
   padding: 0;
   position: relative;
-  margin: 0 auto;
+  margin: 0;
   transition: all 0.2s;
 }
 .search-container .search-box {
@@ -1460,7 +1513,7 @@ custom-checkbox {
   display: flex;
   align-items: center;
   flex: 0.8;
-  min-width: 10rem;
+  min-width: 8.125rem;
 }
 .category-area .category-link {
   display: flex;
@@ -1496,9 +1549,15 @@ custom-checkbox {
   display: flex;
   gap: 2.5rem;
   justify-content: center;
+  white-space: nowrap;
   list-style: none;
   padding: 0;
   margin: 0;
+}
+@media (max-width: 1280px) {
+  .gnb-list {
+    gap: 1rem;
+  }
 }
 
 .gnb-link {
@@ -1510,6 +1569,11 @@ custom-checkbox {
   letter-spacing: -0.025rem;
   display: block;
   position: relative;
+}
+@media (max-width: 1280px) {
+  .gnb-link {
+    font-size: 1rem;
+  }
 }
 .gnb-link.active::after {
   content: "";
@@ -1525,7 +1589,7 @@ custom-checkbox {
 }
 
 .order-info-area {
-  min-width: 25rem;
+  min-width: 18.75rem;
   flex: 0.8;
   display: flex;
   align-items: center;
@@ -1616,6 +1680,14 @@ custom-checkbox {
   align-items: center;
   margin-bottom: 1.5rem;
   height: 1.8125rem;
+}
+@media (max-width: 1280px) {
+  .search-dropdown .column-header {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    gap: 0.375rem;
+  }
 }
 .search-dropdown .column-header .title {
   font-size: 1.125rem;
@@ -2022,6 +2094,7 @@ custom-checkbox {
 
 .main-slider-wrapper {
   width: 100%;
+  min-width: 85rem;
   overflow-x: hidden;
   margin-bottom: 5rem;
   padding-left: 0;
@@ -2349,6 +2422,7 @@ custom-checkbox {
 }
 .brand-club-zone .brand-more-wrap .btn-brand-more svg {
   margin: 0.4375rem 0.375rem;
+  transition: transform 0.2s;
 }
 .brand-club-zone .brand-more-wrap .btn-brand-more {
   transition: background-color 0.2s ease;
@@ -2356,6 +2430,20 @@ custom-checkbox {
 .brand-club-zone .brand-more-wrap .btn-brand-more:hover {
   background-color: #eeeeee;
   border-color: #999999;
+}
+.brand-club-zone.is-expanded .btn-brand-more svg {
+  transform: rotate(180deg);
+}
+.brand-club-zone.is-expanded .brand-list .brand-card:nth-child(n+5) {
+  display: flex;
+}
+.brand-club-zone .brand-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.brand-club-zone .brand-list .brand-card:nth-child(n+5) {
+  display: none;
 }
 
 .cart-page {
@@ -3640,3 +3728,5 @@ custom-checkbox {
 .search-result-page .pagination-container .btn-pagination svg path {
   fill: currentColor;
 }
+
+/*# sourceMappingURL=pc.css.map */

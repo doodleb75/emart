@@ -40,33 +40,81 @@ document.addEventListener('DOMContentLoaded', () => {
         const navList = document.querySelector('.gnb-list');
         const searchContainer = document.querySelector('.search-container');
 
-        if (navList && searchContainer) {
-            // 스타일 초기화
-            searchContainer.style.width = '';
-            searchContainer.style.marginLeft = '';
+        if (!navList || !searchContainer) return;
 
+        const performAdjustment = () => {
+            // 1. 측정 방해 요소(Transition) 일시 제거
+            const originalTransition = searchContainer.style.transition;
+            searchContainer.style.transition = 'none';
+
+            // 2. GNB 요소의 너비 측정
             const listItems = navList.querySelectorAll('li');
-            if (listItems.length > 0) {
-                const firstRect = listItems[0].getBoundingClientRect();
-                const lastRect = listItems[listItems.length - 1].getBoundingClientRect();
-                const navWidth = lastRect.right - firstRect.left;
-
-                // 검색창 위치 계산
-                const searchRect = searchContainer.getBoundingClientRect();
-
-                // 좌측 여백 계산
-                const offsetLeft = firstRect.left - searchRect.left;
-
-                // 스타일 적용
-                searchContainer.style.width = `${navWidth}px`;
-                searchContainer.style.marginLeft = `${offsetLeft}px`;
+            if (listItems.length === 0) {
+                searchContainer.style.transition = originalTransition;
+                return;
             }
-        }
+
+            const firstRect = listItems[0].getBoundingClientRect();
+            const lastRect = listItems[listItems.length - 1].getBoundingClientRect();
+            const navWidth = lastRect.right - firstRect.left;
+
+            // 3. 먼저 너비를 확정 (너비가 변하면 주변 요소의 flex 배치가 변하므로 선행 필수)
+            searchContainer.style.width = `${navWidth}px`;
+            searchContainer.style.flex = 'none';
+            searchContainer.style.marginLeft = '0px'; // 임시 초기화
+
+            // 강제 리플로우 (변경된 너비에 맞춰 형제 요소들이 자리를 잡게 함)
+            void searchContainer.offsetWidth;
+
+            requestAnimationFrame(() => {
+                // 4. 안정된 상태에서 위치 재측정
+                const updatedSearchRect = searchContainer.getBoundingClientRect();
+
+                // 목표 위치(GNB 시작점)와 현재 위치(Search 시작점)의 차이 계산
+                const offset = firstRect.left - updatedSearchRect.left;
+
+                // 5. 최종 오프셋 적용
+                searchContainer.style.marginLeft = `${offset}px`;
+
+                // 트랜지션 복구
+                requestAnimationFrame(() => {
+                    searchContainer.style.transition = originalTransition;
+                });
+            });
+        };
+
+        performAdjustment();
     }
 
-    // 초기화 및 리사이즈 이벤트 등록
+    // 초기화 및 이벤트 관리
+    if (document.fonts) {
+        document.fonts.ready.then(adjustNavWidth);
+    }
+
+    // 헤더 내부 요소의 크기 변화 감시 (ResizeObserver)
+    const headerInner = document.querySelector('.header-main .header-inner');
+    if (headerInner && window.ResizeObserver) {
+        new ResizeObserver(adjustNavWidth).observe(headerInner);
+    }
+
     adjustNavWidth();
     window.addEventListener('resize', adjustNavWidth);
+    window.addEventListener('load', () => {
+        setTimeout(adjustNavWidth, 50);
+    });
+
+    // 비동기 헤더 로드 완료 이벤트 대응
+    document.addEventListener('headerLoaded', () => {
+        adjustNavWidth();
+
+        // 새로 생겨난 헤더 요소를 다시 감시
+        const newHeaderInner = document.querySelector('.header-main .header-inner');
+        if (newHeaderInner && window.ResizeObserver) {
+            new ResizeObserver(adjustNavWidth).observe(newHeaderInner);
+        }
+
+        setTimeout(adjustNavWidth, 100);
+    });
 
     // 주간 랭킹 토글
     const rankingWrapper = document.querySelector('.weekly-ranking') || document.querySelector('.ranking-carousel-container');
@@ -279,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const fullItemWidth = cardWidth + gap;
 
             // 시작 위치 계산
-            const windowWidth = window.innerWidth;
+            const windowWidth = Math.max(window.innerWidth, contentWidth);
             let gridStartX = (windowWidth - contentWidth) / 2;
             if (gridStartX < 0) gridStartX = 0;
 
@@ -460,6 +508,112 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // PC 버전 로직 (weekly-ranking 존재 시)
     const pcRankingSection = document.querySelector('.weekly-ranking');
+
+    if (pcRankingSection && window.matchMedia('(min-width: 1024px)').matches) {
+        const pcTrack = pcRankingSection.querySelector('.ranking-carousel-track');
+        const pcFirstList = pcTrack.querySelector('.ranking-list');
+        const btnPrev = pcRankingSection.querySelector('.btn-prev');
+        const btnNext = pcRankingSection.querySelector('.btn-next');
+        const btnPause = pcRankingSection.querySelector('.btn-pause');
+        const currentPageEl = pcRankingSection.querySelector('.page-count .current');
+        const totalPageEl = pcRankingSection.querySelector('.page-count .total');
+
+        if (pcTrack && pcFirstList && btnPrev && btnNext) {
+            // 초기 4회 복제 (총 5개 슬라이드)
+            const totalClones = 4;
+            const totalItems = totalClones + 1;
+
+            for (let i = 0; i < totalClones; i++) {
+                const clone = pcFirstList.cloneNode(true);
+                pcTrack.appendChild(clone);
+
+                // 복제된 아이템 초기화
+                const clonedItems = clone.querySelectorAll('.ranking-item');
+                clonedItems.forEach(item => {
+                    delete item.dataset.loadMoreInitialized;
+                    if (typeof initRankingItem === 'function') initRankingItem(item);
+                });
+
+                // 수량 조절 초기화
+                if (typeof initQuantityControl === 'function') {
+                    const qtyBoxes = clone.querySelectorAll('.qty-box');
+                    qtyBoxes.forEach(box => {
+                        delete box.dataset.initialized;
+                    });
+                    initQuantityControl(clone);
+                }
+            }
+
+            let currentIndex = 1;
+            let isPlaying = true;
+            let autoPlayTimer = null;
+
+            if (totalPageEl) totalPageEl.textContent = String(totalItems).padStart(2, '0');
+            if (currentPageEl) currentPageEl.textContent = String(currentIndex).padStart(2, '0');
+
+            const updateCarousel = () => {
+                pcTrack.style.transform = `translateX(-${(currentIndex - 1) * 100}%)`;
+                if (currentPageEl) currentPageEl.textContent = String(currentIndex).padStart(2, '0');
+
+                // 활성 슬라이드 클래스
+                Array.from(pcTrack.children).forEach((slide, index) => {
+                    if (index === currentIndex - 1) slide.classList.add('current');
+                    else slide.classList.remove('current');
+                });
+            };
+
+            const moveNext = () => {
+                currentIndex = (currentIndex % totalItems) + 1;
+                updateCarousel();
+            };
+
+            const movePrev = () => {
+                currentIndex = (currentIndex - 2 + totalItems) % totalItems + 1;
+                updateCarousel();
+            };
+
+            const startAutoPlay = () => {
+                stopAutoPlay();
+                autoPlayTimer = setInterval(moveNext, 3000);
+            };
+
+            const stopAutoPlay = () => {
+                if (autoPlayTimer) clearInterval(autoPlayTimer);
+            };
+
+            btnNext.addEventListener('click', () => {
+                stopAutoPlay();
+                moveNext();
+                if (isPlaying) startAutoPlay();
+            });
+
+            btnPrev.addEventListener('click', () => {
+                stopAutoPlay();
+                movePrev();
+                if (isPlaying) startAutoPlay();
+            });
+
+            if (btnPause) {
+                btnPause.addEventListener('click', () => {
+                    isPlaying = !isPlaying;
+                    const pauseIcon = btnPause.querySelector('svg');
+                    if (isPlaying) {
+                        startAutoPlay();
+                        if (pauseIcon) {
+                            pauseIcon.innerHTML = `<path d="M0 0h24v24H0V0z" fill="none" /><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor" />`;
+                        }
+                    } else {
+                        stopAutoPlay();
+                        if (pauseIcon) {
+                            pauseIcon.innerHTML = `<path d="M0 0h24v24H0V0z" fill="none" /><path d="M8 5v14l11-7z" fill="currentColor" />`;
+                        }
+                    }
+                });
+            }
+
+            startAutoPlay();
+        }
+    }
 
     // 모바일 카러셀 로직
     if (mobileRankingNav && mobileRankingContainer && mobileRankingTrack && mobileRankingList) {

@@ -200,14 +200,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex: 1;
+    flex: none; // JS에서 너비를 직접 제어하므로 flex: 1 대신 none 사용 (Prevent flex growth from overriding calculated width)
+    width: 100%;
+    max-width: rem(650.766); // FHD 기준 기본 최대 너비
     height: rem(48);
     background-color: $gray-50;
     // border: 1px solid transparent;
     border-radius: rem(4);
     padding: 0;
     position: relative;
-    margin: 0 auto;
+    margin: 0;
     transition: all 0.2s;
 
     .search-box {
@@ -332,7 +334,7 @@
     display: flex;
     align-items: center;
     flex: 0.8;
-    min-width: rem(160);
+    min-width: rem(130);
 
     .category-link {
         display: flex;
@@ -372,10 +374,15 @@
     display: flex;
     gap: rem(40); // 갭 설정
     justify-content: center;
+    white-space: nowrap; // 메뉴 줄바꿈 방지
     // min-width: rem(640);
     list-style: none;
     padding: 0;
     margin: 0;
+
+    @media (max-width: 1280px) {
+        gap: rem(16);
+    }
 }
 
 .gnb-link {
@@ -387,6 +394,10 @@
     letter-spacing: rem(-0.4);
     display: block;
     position: relative;
+
+    @media (max-width: 1280px) {
+        font-size: rem(16);
+    }
 
     &.active {
         // color: $primary-gold;
@@ -408,7 +419,7 @@
 }
 
 .order-info-area {
-    min-width: rem(400);
+    min-width: rem(300);
     flex: 0.8;
     display: flex;
     align-items: center;
@@ -517,6 +528,13 @@
         align-items: center;
         margin-bottom: rem(24);
         height: rem(29);
+
+        @media (max-width: 1280px) {
+            flex-direction: column;
+            align-items: flex-start;
+            height: auto;
+            gap: rem(6);
+        }
 
         .title {
             font-size: rem(18);

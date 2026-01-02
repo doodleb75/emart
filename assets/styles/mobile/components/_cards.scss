@@ -1,49 +1,13 @@
 @charset "UTF-8";
 
 .product-card {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    background-color: $white;
-
-    &* {
-        font-weight: 600;
-    }
-
-    // 모바일 테두리 제거
-    // border: 1px solid $gray-100;
-    // border-radius: rem(8);
-    // overflow: hidden;
+    @include product-card-base;
 
     .card-thumb {
-        position: relative;
-        width: 100%;
-        padding-top: 100%; // 1:1 비율
-        display: block;
-        overflow: hidden;
         border-radius: rem(4);
-        background-color: $gray-50;
-        @include mobile-touch-effect($gray-50); // 터치 피드백 추가
-
-        img {
-            // position: absolute;
-            // top: 0;
-            // left: 0;
-            // width: 100%;
-            // height: 100%;
-            // object-fit: cover;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 75%;
-            height: 75%;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
+        @include mobile-touch-effect($gray-50);
 
         .badge-corner {
-            position: absolute;
             top: rem(8);
             left: rem(12);
             background-color: $secondary-bg;
@@ -63,13 +27,10 @@
         }
 
         .delivery-tags {
-            position: absolute;
             bottom: rem(8);
             left: rem(12);
-            display: flex;
             align-items: center;
             gap: rem(4);
-            flex-wrap: wrap;
 
             .tag {
                 display: flex;
@@ -77,13 +38,14 @@
                 height: rem(24);
                 font-size: rem(10);
                 font-weight: 600;
+                gap: rem(4);
                 padding: rem(2) rem(6);
                 border-radius: rem(2);
                 background-color: $secondary-bg;
 
                 & svg {
-                    width: rem(12) !important;
-                    height: rem(12) !important;
+                    width: rem(14) !important;
+                    height: rem(14) !important;
                 }
 
                 &.tag-frozen {
@@ -109,24 +71,17 @@
 
     .card-info {
         padding: rem(16);
-        text-decoration: none;
-        color: inherit;
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        @include mobile-touch-effect; // 터치 피드백 추가
+        padding-bottom: rem(8);
+        @include mobile-touch-effect;
+
+        &>* {
+            line-height: 150%;
+        }
 
         .product-name {
             font-size: rem(14);
             font-weight: 600;
-            color: $gray-700;
-            margin-bottom: rem(2);
             line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
             letter-spacing: rem(-0.28);
         }
 
@@ -135,14 +90,12 @@
             flex-direction: column;
             align-content: flex-start;
             flex-wrap: wrap;
-            gap: rem(6);
-            margin-bottom: rem(8);
             font-size: rem(10);
-            height: rem(34);
+            // height: rem(34);
             justify-content: center;
 
             .strike {
-                color: $gray-500;
+                color: $gray-300;
                 text-decoration: line-through;
             }
 
@@ -156,7 +109,6 @@
             display: flex;
             align-items: center;
             gap: rem(8);
-            margin-top: auto;
 
             .discount {
                 font-size: rem(16);
@@ -165,7 +117,7 @@
 
                 .sub-txt {
                     font-size: rem(10);
-                    margin-left: rem
+                    margin-left: rem(2);
                 }
             }
 
@@ -180,14 +132,7 @@
     // 수량 조절 및 버튼 영역
     .card-control {
         padding: 0 rem(16) rem(8);
-        display: flex;
-        align-items: center;
         gap: rem(4);
-
-        .btn-icon,
-        .qty-box {
-            order: initial; // Reset order if any
-        }
 
         .btn-icon {
             width: rem(32);
@@ -199,12 +144,7 @@
             justify-content: center;
             background: $white;
             color: $black;
-            @include mobile-touch-effect; // 터치 피드백 추가
-
-            &:first-child {
-                // Heart icon if it's first
-                margin-right: 0;
-            }
+            @include mobile-touch-effect;
 
             svg {
                 width: rem(16);
@@ -212,57 +152,26 @@
             }
 
             &.active {
-                // border-color: $accent-base;
-
                 .icon-heart path {
                     fill: $accent-base;
-                    stroke: $accent-base; // If it's a stroke icon
+                    stroke: $accent-base;
                 }
             }
         }
 
-        // Specific ordering based on the design (Heart - Qty - Cart)
-        // Check HTML structure first. The design shows Heart -> Qty -> Cart.
-        // Current HTML is Qty -> Heart -> Cart.
-        // We will fix HTML order in the next step, but here we style assuming correct order or flex manipulation.
-
         .qty-box {
+            @include qty-box-base(rem(32), rem(12));
             flex: 1;
-            display: flex;
-            align-items: center;
-            border: 1px solid $gray-700;
             border-radius: rem(2);
-            height: rem(32);
-            overflow: hidden;
 
             button {
-                width: rem(24); // Slightly wider buttons
-                height: 100%;
-                background: $white;
-                border: none;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                color: $black;
-                @include mobile-touch-effect; // 터치 피드백 추가
+                width: rem(24);
+                @include mobile-touch-effect;
 
                 svg {
                     width: rem(12);
                     height: rem(12);
                 }
-            }
-
-            input {
-                flex: 0.8;
-                width: 100%;
-                border: none;
-                text-align: center;
-                font-size: rem(12);
-                font-weight: 400;
-                color: $black;
-                -moz-appearance: textfield;
-                appearance: textfield;
             }
         }
     }
@@ -273,16 +182,17 @@
         margin-top: 0;
         border-top: none;
 
+        >* {
+            line-height: 150%;
+        }
+
         .info-row {
             display: flex;
             align-items: center;
             flex-wrap: wrap;
-            gap: rem(4);
             font-size: rem(10);
             color: $gray-300;
-            line-height: 1.4;
             letter-spacing: -0.02em;
-            margin-bottom: rem(2);
             font-weight: 600;
 
             &:last-child {

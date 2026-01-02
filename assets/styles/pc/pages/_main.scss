@@ -3,6 +3,7 @@
 // Main Slider
 .main-slider-wrapper {
     width: 100%; // 전체 뷰포트 너비
+    min-width: rem(1360); // 가로 스크롤 시 콘텐츠 잘림 방지를 위해 min-width를 콘텐츠 너비(1360px)로 설정
     overflow-x: hidden;
     margin-bottom: rem(80);
     // 그리드 정렬 기준 (JS 오프셋)
@@ -418,9 +419,34 @@
 
             svg {
                 margin: rem(7) rem(6);
+                transition: transform 0.2s; // 회전 애니메이션 (Rotation animation)
             }
 
             @include btn-hover-effect;
+        }
+    }
+
+    &.is-expanded {
+        .btn-brand-more {
+            svg {
+                transform: rotate(180deg); // 화살표 위로 (Arrow up)
+            }
+        }
+
+        .brand-list {
+            .brand-card:nth-child(n+5) {
+                display: flex; // 5번째 이후 카드 표시 (Show cards after 4th as flex)
+            }
+        }
+    }
+
+    .brand-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: rem(24); // 간격 조정
+
+        .brand-card:nth-child(n+5) {
+            display: none; // 5번째 이후 카드 기본 숨김 (Hide cards after 4th by default)
         }
     }
 }

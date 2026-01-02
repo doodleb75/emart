@@ -35,8 +35,115 @@
 }
 
 // 말줄임표 처리 (Truncate text)
-@mixin truncate {
+@mixin truncate($lines: 1) {
+    @if $lines ==1 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    @else {
+        display: -webkit-box;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+// 상품 카드 공통 레이아웃
+@mixin product-card-base {
+    background-color: $white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .card-thumb {
+        width: 100%;
+        position: relative;
+        background-color: $gray-50;
+        border-radius: rem(4);
+        overflow: hidden;
+
+        &::before {
+            content: "";
+            display: block;
+            padding-bottom: 100%;
+        }
+
+        img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 75%;
+            height: 75%;
+            object-fit: contain;
+            transition: $transition-base;
+        }
+
+        .badge-corner {
+            position: absolute;
+            z-index: 10;
+        }
+
+        .delivery-tags {
+            position: absolute;
+            z-index: 10;
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+
+    .card-info {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+
+        .product-name {
+            @include truncate(2);
+            color: $gray-700;
+        }
+    }
+
+    .card-control {
+        display: flex;
+        align-items: center;
+        margin-top: auto;
+    }
+}
+
+// 수량 조절 박스 공통 레이아웃
+@mixin qty-box-base($height: rem(48), $font-size: rem(16)) {
+    display: flex;
+    align-items: center;
+    border: 1px solid $gray-700;
+    border-radius: rem(4);
+    height: $height;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+
+    button {
+        width: $height;
+        height: 100%;
+        background: none;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    input {
+        flex: 1;
+        width: 100%;
+        border: none;
+        background: transparent;
+        text-align: center;
+        font-size: $font-size;
+        font-weight: 600;
+        color: $gray-700;
+        outline: none;
+    }
 }

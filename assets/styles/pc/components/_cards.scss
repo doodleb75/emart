@@ -122,47 +122,18 @@
 
 // 상품 카드 컴포넌트
 .product-card {
-    background-color: $white;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    @include product-card-base;
 
     .card-thumb {
-        width: 100%;
-        position: relative;
-        background-color: $gray-50;
-        border-radius: rem(8);
-        overflow: hidden;
         margin-bottom: rem(20);
 
-        // 1:1 비율 유지
-        &:before {
-            content: "";
-            display: block;
-            padding-bottom: 100%;
-        }
-
         >img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             width: 75%;
             height: 75%;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-
-        &:hover {
-            >img {
-                transform: translate(-50%, -50%) scale(1.05);
-            }
         }
 
         // 좌측 상단 배지
         .badge-corner {
-            position: absolute;
             top: rem(10);
             left: rem(10);
             background-color: $secondary-bg;
@@ -176,21 +147,15 @@
             color: $gray-700;
 
             svg {
-                position: relative;
                 width: rem(14);
                 height: rem(14);
-                top: auto;
-                left: auto;
-                transform: none;
             }
         }
 
         // 하단 배송 태그 컨테이너
         .delivery-tags {
-            position: absolute;
             bottom: rem(10);
             left: rem(10);
-            display: flex;
             gap: rem(10);
 
             .tag {
@@ -205,7 +170,6 @@
                 svg {
                     width: rem(16);
                     height: rem(16);
-                    // object-fit: contain;
                     margin-right: rem(4);
                 }
             }
@@ -238,9 +202,10 @@
     .card-info {
         padding: 0;
         margin-bottom: rem(39);
-        display: block;
-        text-decoration: none;
-        color: inherit;
+
+        &>* {
+            line-height: 150% !important;
+        }
 
         &:hover {
             .product-name {
@@ -253,14 +218,9 @@
         .product-name {
             font-size: rem(20);
             font-weight: 600;
-            color: $gray-700;
             margin-bottom: rem(4);
             line-height: 1.5;
             letter-spacing: rem(0.4);
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
             margin-top: 0;
         }
 
@@ -275,8 +235,8 @@
 
             .strike {
                 text-decoration: line-through;
-                color: $gray-500;
-                font-size: rem(14); // Slightly smaller than main
+                color: $gray-300;
+                font-size: rem(14);
                 font-weight: 600;
             }
 
@@ -298,31 +258,29 @@
             gap: rem(6);
             font-size: rem(24);
             font-weight: 800;
-            color: $gray-700; // #333
+            color: $gray-700;
 
             .discount {
-                color: #FF531D;
+                color: $accent-75;
                 font-weight: 700;
 
                 &:after {
                     content: '%';
-                    font-size: rem(22);
-                    margin-left: 1px;
+                    font-size: rem(14);
+                    margin-left: rem(1);
                 }
             }
 
             .price {
-                font-weight: 800; // Extra bold
+                font-weight: 800;
             }
         }
     }
 
     // 컨트롤 버튼 (수량, 하트, 장바구니)
     .card-control {
-        display: flex;
         gap: rem(6);
         margin-bottom: rem(12);
-        margin-top: auto;
 
 
         .btn-icon {
@@ -346,14 +304,16 @@
         color: $gray-600;
         display: flex;
         flex-direction: column;
-        gap: rem(4);
         min-height: rem(62);
         padding-bottom: rem(16);
+
+        >* {
+            line-height: 150% !important;
+        }
 
         .info-row {
             display: flex;
             align-items: center;
-            gap: rem(4);
             font-size: rem(14);
             color: $gray-300;
             font-weight: 500;
@@ -445,10 +405,6 @@
 }
 
 // 슬라이드 컨트롤 (페이지네이션)
-.pagination-container {
-    // 중앙 정렬 유지
-}
-
 .pagination-control {
     display: flex;
     align-items: center;

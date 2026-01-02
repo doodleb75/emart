@@ -3,6 +3,7 @@
 
 // px to rem
 // rem(16) -> 1rem
-@function rem($px) {
-    @return #{calc($px / 16)}rem;
+// rem(16, 16) -> 1rem
+@function rem($px, $base: 16) {
+    @return #{$px / $base}rem;
 }

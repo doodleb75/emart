@@ -1,14 +1,15 @@
 @charset "UTF-8";
 
 // 1. Abstracts (변수, 함수, 믹스인)
-@import "abstracts/variables";
 @import "abstracts/functions";
+@import "abstracts/variables";
 @import "abstracts/mixins";
 
 // 2. Base (리셋, 타이포그래피, 공통 스타일)
 @import "base/reset";
 @import "base/typography";
 @import "base/common";
+@import "pc/base/pc-base";
 
 // 3. Components (PC 전용 컴포넌트)
 @import "pc/components/badges";
