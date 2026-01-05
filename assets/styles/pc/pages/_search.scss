@@ -112,16 +112,23 @@
                 font-size: rem(16);
                 color: $gray-700;
                 letter-spacing: rem(-0.32);
-                // 스크롤바 숨김ter;
 
-                &:hover {
-                    color: $black;
-                }
+                a.filter-link-link {
+                    display: flex;
+                    align-items: center;
+                    gap: rem(2);
 
-                svg {
-                    width: rem(18);
-                    height: rem(18);
-                    margin-left: rem(2);
+                    &:hover {
+                        color: $black;
+                    }
+
+                    svg {
+                        position: relative;
+                        top: rem(-1);
+                        width: rem(18);
+                        height: rem(18);
+                        margin-left: rem(2);
+                    }
                 }
 
                 .text-blue {

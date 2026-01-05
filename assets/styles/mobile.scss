@@ -19,9 +19,8 @@ body.mobile-body {
 }
 
 // 3. Components (Mobile Specific)
-// @import "mobile/components/buttons"; // Commented out until created
+@import "mobile/components/offcanvas"; // Offcanvas 스타일
 @import "mobile/components/cards"; // Mobile product cards
-// @import "mobile/components/icons"; // Commented out until created
 
 // 4. Layout
 @import "mobile/layout/header";

@@ -18,7 +18,7 @@
                 </a>
             </h1>
             <div class="header-divider"></div>
-            <div class="membership-info">
+            <div class="membership-info" data-bs-toggle="offcanvas" data-bs-target="#userInfoOffcanvas" style="cursor: pointer;">
                 <span class="badge-grade">GOLD</span>
                 <span class="user-name">이 신선님</span>
                 <button class="btn-dropdown">
@@ -481,3 +481,55 @@
         </ul>
     </nav>
 </header>
+
+<!-- 사용자 정보 바텀 시트 (User Info Bottom Sheet) -->
+<div class="offcanvas offcanvas-bottom user-info-offcanvas" tabindex="-1" id="userInfoOffcanvas" aria-labelledby="userInfoOffcanvasLabel">
+    <div class="offcanvas-handle"></div>
+    <div class="offcanvas-body">
+        <!-- 유저 요약 정보 (User Summary) -->
+        <div class="user-summary">
+            <span class="badge-gold">GOLD</span>
+            <div class="user-detail-text">
+                골드마트 <span>·</span> 이 신선님 <span>·</span> 554731
+            </div>
+        </div>
+        <hr class="sep-divider">
+
+        <!-- 포인트 프로그레스 섹션 (Point Progress Section) -->
+        <div class="point-progress-section">
+            <div class="progress-header">
+                <div class="icon-p">P</div>
+                <div class="progress-bar-placeholder" id="userPointProgress">
+                    <!-- 프로그레스 바 영역 (Progress bar area - to be handled by script) -->
+                </div>
+            </div>            
+        </div>
+        <div class="progress-info">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                결제금액의 일부를 포인트로 돌려드려요.
+            </div>
+
+        <!-- 유저 상세 수치 (User Statistics) -->
+        <div class="user-stat-list">
+            <div class="stat-item">
+                <span class="label">당월배송금액</span>
+                <span class="value">1,000,000</span>
+            </div>
+            <div class="stat-item">
+                <span class="label">
+                    사용 가능 포인트
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                </span>
+                <span class="value">999,687,079</span>
+            </div>
+        </div>
+    </div>
+</div>

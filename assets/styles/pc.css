@@ -1069,6 +1069,7 @@ body {
 
 .ranking-carousel-track {
   display: flex;
+  align-items: flex-start;
   transition: transform 0.5s ease;
   width: 100%;
 }
@@ -3127,10 +3128,17 @@ body {
   color: #444444;
   letter-spacing: -0.02rem;
 }
-.search-result-page .search-top-area .filter-options-row .filter-group:hover {
+.search-result-page .search-top-area .filter-options-row .filter-group a.filter-link-link {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+}
+.search-result-page .search-top-area .filter-options-row .filter-group a.filter-link-link:hover {
   color: #222222;
 }
-.search-result-page .search-top-area .filter-options-row .filter-group svg {
+.search-result-page .search-top-area .filter-options-row .filter-group a.filter-link-link svg {
+  position: relative;
+  top: -0.0625rem;
   width: 1.125rem;
   height: 1.125rem;
   margin-left: 0.125rem;
@@ -3728,5 +3736,3 @@ body {
 .search-result-page .pagination-container .btn-pagination svg path {
   fill: currentColor;
 }
-
-/*# sourceMappingURL=pc.css.map */

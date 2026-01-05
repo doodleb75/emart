@@ -8,26 +8,12 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/styles/pc.css" rel="stylesheet">
-    <script src="/assets/js/components/quantity-control.js"></script>
-    <script src="/assets/js/main.js"></script>
-    <script src="/assets/js/pages/search_result.js"></script>
-    <script src="/assets/js/components/view-toggle.js"></script>
-    <script src="/assets/js/components/checkbox.js"></script>
 </head>
 
 <body>
 
     <!-- 헤더 -->
     <div id="header-placeholder"></div>
-    <script>
-        fetch('/components/header.component.txt?v=' + new Date().getTime())
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-                document.dispatchEvent(new Event('headerLoaded'));
-            })
-            .catch(error => console.error('Error loading header:', error));
-    </script>
 
     <!-- Search Result Page Content -->
     <main class="search-result-page">
@@ -73,67 +59,80 @@
                 <div class="filter-options-row">
                     <!-- Links Group -->
                     <div class="filter-group">
-                        <span class="filter-label">협력업체</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <g clip-path="url(#clip0_215_2293)">
-                                <path
-                                    d="M15.8333 15.8333H4.16667V4.16667H10V2.5H4.16667C3.24167 2.5 2.5 3.25 2.5 4.16667V15.8333C2.5 16.75 3.24167 17.5 4.16667 17.5H15.8333C16.75 17.5 17.5 16.75 17.5 15.8333V10H15.8333V15.8333ZM11.6667 2.5V4.16667H14.6583L6.46667 12.3583L7.64167 13.5333L15.8333 5.34167V8.33333H17.5V2.5H11.6667Z"
-                                    fill="#444444" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_215_2293">
-                                    <rect width="20" height="20" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
+                        <a href="" class="filter-link-link">
+                            <span class="filter-label">협력업체</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none">
+                                <g clip-path="url(#clip0_215_2293)">
+                                    <path
+                                        d="M15.8333 15.8333H4.16667V4.16667H10V2.5H4.16667C3.24167 2.5 2.5 3.25 2.5 4.16667V15.8333C2.5 16.75 3.24167 17.5 4.16667 17.5H15.8333C16.75 17.5 17.5 16.75 17.5 15.8333V10H15.8333V15.8333ZM11.6667 2.5V4.16667H14.6583L6.46667 12.3583L7.64167 13.5333L15.8333 5.34167V8.33333H17.5V2.5H11.6667Z"
+                                        fill="#444444" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_215_2293">
+                                        <rect width="20" height="20" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </a>
                     </div>
                     <div class="divider-vertical"></div>
                     <div class="filter-group">
-                        <span class="filter-label">카테고리 <span class="text-blue">5</span></span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <g clip-path="url(#clip0_215_2293)">
-                                <path
-                                    d="M15.8333 15.8333H4.16667V4.16667H10V2.5H4.16667C3.24167 2.5 2.5 3.25 2.5 4.16667V15.8333C2.5 16.75 3.24167 17.5 4.16667 17.5H15.8333C16.75 17.5 17.5 16.75 17.5 15.8333V10H15.8333V15.8333ZM11.6667 2.5V4.16667H14.6583L6.46667 12.3583L7.64167 13.5333L15.8333 5.34167V8.33333H17.5V2.5H11.6667Z"
-                                    fill="#444444" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_215_2293">
-                                    <rect width="20" height="20" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
+                        <a href="" class="filter-link-link">
+                            <span class="filter-label">카테고리 <span class="text-blue">5</span></span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none">
+                                <g clip-path="url(#clip0_215_2293)">
+                                    <path
+                                        d="M15.8333 15.8333H4.16667V4.16667H10V2.5H4.16667C3.24167 2.5 2.5 3.25 2.5 4.16667V15.8333C2.5 16.75 3.24167 17.5 4.16667 17.5H15.8333C16.75 17.5 17.5 16.75 17.5 15.8333V10H15.8333V15.8333ZM11.6667 2.5V4.16667H14.6583L6.46667 12.3583L7.64167 13.5333L15.8333 5.34167V8.33333H17.5V2.5H11.6667Z"
+                                        fill="#444444" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_215_2293">
+                                        <rect width="20" height="20" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </a>
                     </div>
                     <div class="divider-vertical"></div>
                     <div class="filter-group">
-                        <span class="filter-label">상품형태</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <g clip-path="url(#clip0_215_2293)">
-                                <path
-                                    d="M15.8333 15.8333H4.16667V4.16667H10V2.5H4.16667C3.24167 2.5 2.5 3.25 2.5 4.16667V15.8333C2.5 16.75 3.24167 17.5 4.16667 17.5H15.8333C16.75 17.5 17.5 16.75 17.5 15.8333V10H15.8333V15.8333ZM11.6667 2.5V4.16667H14.6583L6.46667 12.3583L7.64167 13.5333L15.8333 5.34167V8.33333H17.5V2.5H11.6667Z"
-                                    fill="#444444" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_215_2293">
-                                    <rect width="20" height="20" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
+                        <a href="" class="filter-link-link">
+                            <span class="filter-label">상품형태</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none">
+                                <g clip-path="url(#clip0_215_2293)">
+                                    <path
+                                        d="M15.8333 15.8333H4.16667V4.16667H10V2.5H4.16667C3.24167 2.5 2.5 3.25 2.5 4.16667V15.8333C2.5 16.75 3.24167 17.5 4.16667 17.5H15.8333C16.75 17.5 17.5 16.75 17.5 15.8333V10H15.8333V15.8333ZM11.6667 2.5V4.16667H14.6583L6.46667 12.3583L7.64167 13.5333L15.8333 5.34167V8.33333H17.5V2.5H11.6667Z"
+                                        fill="#444444" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_215_2293">
+                                        <rect width="20" height="20" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </a>
                     </div>
                     <div class="divider-vertical"></div>
                     <div class="filter-group">
-                        <span class="filter-label">배송방법</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <g clip-path="url(#clip0_215_2312)">
-                                <path
-                                    d="M9.16504 5.83171H10.8317V7.49837H9.16504V5.83171ZM9.16504 9.16504H10.8317V14.165H9.16504V9.16504ZM9.99837 1.66504C5.39837 1.66504 1.66504 5.39837 1.66504 9.99837C1.66504 14.5984 5.39837 18.3317 9.99837 18.3317C14.5984 18.3317 18.3317 14.5984 18.3317 9.99837C18.3317 5.39837 14.5984 1.66504 9.99837 1.66504ZM9.99837 16.665C6.32337 16.665 3.33171 13.6734 3.33171 9.99837C3.33171 6.32337 6.32337 3.33171 9.99837 3.33171C13.6734 3.33171 16.665 6.32337 16.665 9.99837C16.665 13.6734 13.6734 16.665 9.99837 16.665Z"
-                                    fill="#CCCCCC" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_215_2312">
-                                    <rect width="20" height="20" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
+
+                        <a href="" class="filter-link-link">
+                            <span class="filter-label">배송방법</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none">
+                                <g clip-path="url(#clip0_215_2312)">
+                                    <path
+                                        d="M9.16504 5.83171H10.8317V7.49837H9.16504V5.83171ZM9.16504 9.16504H10.8317V14.165H9.16504V9.16504ZM9.99837 1.66504C5.39837 1.66504 1.66504 5.39837 1.66504 9.99837C1.66504 14.5984 5.39837 18.3317 9.99837 18.3317C14.5984 18.3317 18.3317 14.5984 18.3317 9.99837C18.3317 5.39837 14.5984 1.66504 9.99837 1.66504ZM9.99837 16.665C6.32337 16.665 3.33171 13.6734 3.33171 9.99837C3.33171 6.32337 6.32337 3.33171 9.99837 3.33171C13.6734 3.33171 16.665 6.32337 16.665 9.99837C16.665 13.6734 13.6734 16.665 9.99837 16.665Z"
+                                        fill="#CCCCCC" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_215_2312">
+                                        <rect width="20" height="20" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </a>
                     </div>
 
                     <!-- Checkboxes Group -->
@@ -661,14 +660,39 @@
 
     <!-- Footer -->
     <div id="footer-placeholder"></div>
+
     <script>
-        fetch('/components/footer.component.txt?v=' + new Date().getTime())
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            })
-            .catch(error => console.error('Error loading footer:', error));
+        function loadComponent(url, placeholderId) {
+            fetch(url + '?v=' + new Date().getTime())
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.text();
+                })
+                .then(data => {
+                    // Adjust relative paths for pages in subfolders
+                    if (window.location.pathname.includes('/pages/')) {
+                        data = data.replace(/src="assets\//g, 'src="../assets/');
+                    }
+                    document.getElementById(placeholderId).innerHTML = data;
+                    if (placeholderId === 'header-placeholder') {
+                        document.dispatchEvent(new Event('headerLoaded'));
+                    }
+                    if (placeholderId === 'footer-placeholder') {
+                        document.dispatchEvent(new Event('footerLoaded'));
+                    }
+                })
+                .catch(error => console.error('Error loading component:', error));
+        }
+
+        loadComponent('/components/header.component.txt', 'header-placeholder');
+        loadComponent('/components/footer.component.txt', 'footer-placeholder');
     </script>
+
+    <script src="/assets/js/components/quantity-control.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/pages/search_result.js"></script>
+    <script src="/assets/js/components/view-toggle.js"></script>
+    <script src="/assets/js/components/checkbox.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

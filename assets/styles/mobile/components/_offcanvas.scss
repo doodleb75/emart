@@ -1,0 +1,190 @@
+// User Info Offcanvas Style
+// -----------------------------------------------------------------------------
+
+.offcanvas-bottom.user-info-offcanvas {
+    height: auto; // 높이 자동 조절 (Auto height)
+    min-height: rem(300); // 최소 높이 설정 (Min height)
+    border-top-left-radius: rem(24); // 상단 좌측 라운드 (Top left radius)
+    border-top-right-radius: rem(24); // 상단 우측 라운드 (Top right radius)
+    border-top: none;
+    padding-bottom: rem(16);
+
+    .offcanvas-body {
+        padding: 0 rem(16) rem(16);
+    }
+
+    // 상단 핸들 (Top Handle)
+    .offcanvas-handle {
+        width: rem(80);
+        height: rem(4);
+        background-color: $gray-200;
+        border-radius: rem(5);
+        margin: rem(10) auto rem(16);
+        flex-shrink: 0;
+        cursor: pointer;
+        position: relative; // For pseudo-element
+        touch-action: none; // 브라우저 기본 제스처 차단 (Prevent browser gestures)
+
+        // 터치 영역 확장 (Expand touch area)
+        &::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            bottom: -15px;
+            left: -20px;
+            right: -20px;
+        }
+    }
+
+    .sep-divider {
+        border-color: $gray-100;
+        opacity: 1;
+    }
+
+    // 유저 상단 요약 (User Summary Header)
+    .user-summary {
+        display: flex;
+        align-items: center;
+        height: rem(32);
+        gap: rem(8);
+        margin-top: rem(16);
+        margin-bottom: rem(16);
+        // padding: rem(16) 0;
+
+        .badge-gold {
+            background-color: #FFAA00; // GOLD 배경색 (Gold bg)
+            color: $white;
+            height: 100%;
+            line-height: 2;
+            padding: rem(4) rem(8);
+            border-radius: rem(4);
+            font-size: rem(12);
+            font-weight: 600;
+            margin-right: rem(16);
+        }
+
+        .user-detail-text {
+            font-size: rem(14);
+            color: $gray-700; // #222 -> $gray-700 적용
+
+            span {
+                margin: 0 rem(4);
+                color: $gray-200;
+            }
+        }
+    }
+
+    // 포인트 프로그레스 자리 (Point Progress Placeholder)
+    .point-progress-section {
+        height: rem(32);
+        padding: rem(20) 0;
+        margin-bottom: rem(10);
+        border-bottom: rem(1) solid $gray-100;
+
+        .progress-header {
+            display: flex;
+            align-items: center;
+            gap: rem(8);
+            margin-bottom: rem(8);
+
+            .icon-p {
+                width: rem(28);
+                height: rem(28);
+                background-color: #FFBB33;
+                color: $white;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: rem(14);
+            }
+
+            // 프로그레스 바 자리 (Progress Bar Area)
+            .progress-bar-placeholder {
+                flex: 1;
+                height: rem(12);
+                display: flex;
+                align-items: center;
+                gap: rem(6);
+                padding: 0 rem(4);
+                background-color: $gray-50;
+                border-radius: rem(20);
+                overflow: hidden;
+
+                // 시안의 점들을 표현하는 가상 요소 (Placeholder dots)
+                &::before {
+                    content: '';
+                    display: block;
+                    width: 100%;
+                    height: rem(4);
+                    background-image: radial-gradient($gray-200 rem(2), transparent rem(2));
+                    background-size: rem(12) 100%;
+                    background-repeat: repeat-x;
+                }
+
+                // 추후 스크립트로 처리될 부분 (Progress fill)
+                .progress-fill {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    height: 100%;
+                    width: 0; // 스크립트로 조절 예정
+                    background-color: #FFBB33;
+                    border-radius: rem(20);
+                    z-index: 1;
+                }
+            }
+        }
+    }
+
+    .progress-info {
+        display: flex;
+        align-items: center;
+        gap: rem(4);
+        font-size: rem(14);
+        color: $gray-300;
+        padding: rem(6) 0;
+
+        svg {
+            color: $gray-300;
+        }
+    }
+
+    // 유저 통계 리스트 (User Stat List)
+    .user-stat-list {
+        font-size: rem(14);
+        line-height: 150%;
+        padding: rem(16) 0;
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: rem(12);
+            padding: rem(6) 0;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .label {
+                font-size: rem(14);
+                color: $gray-700; // #222 -> $gray-700 적용
+                display: flex;
+                align-items: center;
+                gap: rem(4);
+
+                svg {
+                    stroke: $gray-300;
+                }
+            }
+
+            .value {
+                font-size: rem(16);
+                font-weight: 700;
+                color: $gray-700; // #222 -> $gray-700 적용
+                font-family: $font-family-number;
+            }
+        }
+    }
+}

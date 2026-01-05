@@ -113,6 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
             new ResizeObserver(adjustNavWidth).observe(newHeaderInner);
         }
 
+        // 바텀 시트 드래그 서브 기능 초기화 (Init drag-to-close for bottom sheet)
+        initOffcanvasDrag('userInfoOffcanvas');
+
         setTimeout(adjustNavWidth, 100);
     });
 
@@ -157,98 +160,98 @@ document.addEventListener('DOMContentLoaded', () => {
                 item.classList.add('active');
                 toggleBtn.classList.add('active');
                 body.classList.add('show');
+
+                // 높이 업데이트 (Height Update)
+                setTimeout(() => {
+                    const pcSection = item.closest('.weekly-ranking');
+                    const mbSection = item.closest('.ranking-carousel-container');
+                    if (pcSection && typeof updatePcRankingHeight === 'function') updatePcRankingHeight();
+                    if (mbSection && typeof updateMbRankingHeight === 'function') updateMbRankingHeight();
+                }, 0);
             }
         });
     }
 
-    // 주간 랭킹 더보기 로직
+    // 주간 랭킹 더보기 로직 (Ranking item more/less logic)
     const initRankingItem = (item) => {
         const btnMore = item.querySelector('.btn-more');
-        const grid = item.querySelector('.ranking-body .product-grid-2');
+        const grid = item.querySelector('.ranking-body .ranking-grid') ||
+            item.querySelector('.ranking-body .product-grid-2') ||
+            item.querySelector('.ranking-body [class*="product-grid"]');
 
-        if (btnMore && grid) {
-            // 초기화 여부 확인
-            if (item.dataset.loadMoreInitialized) return;
-            item.dataset.loadMoreInitialized = 'true';
+        if (!btnMore || !grid || item.dataset.loadMoreInitialized) return;
+        item.dataset.loadMoreInitialized = 'true';
 
-            const cards = grid.querySelectorAll('.product-card');
-            const itemsPerView = 2; // 초기 노출 개수
+        const updateState = () => {
+            const cards = Array.from(grid.querySelectorAll('.product-card'));
+            const threshold = window.innerWidth >= 1024 ? 4 : 2;
+            const isExpanded = item.classList.contains('is-expanded');
 
-            // 2개 이하 버튼 숨김
-            if (cards.length <= itemsPerView) {
-                btnMore.style.display = 'none';
-                cards.forEach(card => card.style.display = 'flex');
-                return;
-            }
-
-            // 상태 초기화
-            let visibleCount = itemsPerView;
-
-            // 노출 상태 초기화
+            // 카드 노출 상태 업데이트 (Update card visibility)
             cards.forEach((card, index) => {
-                if (index >= visibleCount) {
-                    card.style.display = 'none';
-                } else {
-                    card.style.display = 'flex';
-                }
+                card.style.display = (isExpanded || index < threshold) ? 'flex' : 'none';
             });
 
-            const updateButton = () => {
-                let textNode = btnMore.firstChild;
+            // 버튼 표시 여부 결정 (Determine button visibility)
+            if (cards.length <= threshold) {
+                btnMore.style.setProperty('display', 'none', 'important');
+            } else {
+                btnMore.style.display = 'flex';
 
-                if (!textNode || textNode.nodeType !== Node.TEXT_NODE) {
+                // 텍스트 업데이트 (Update button text)
+                let textNode = Array.from(btnMore.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+                if (!textNode) {
                     textNode = document.createTextNode('');
                     btnMore.prepend(textNode);
                 }
+                textNode.textContent = isExpanded ? '상품 닫기 ' : '상품 더보기 ';
 
-                const svgs = btnMore.querySelectorAll('svg');
-
-                if (visibleCount >= cards.length) {
-                    // 닫기 상태
-                    textNode.textContent = '상품 닫기 ';
-                    if (svgs.length > 0) {
-                        svgs[0].innerHTML = '<path d="M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z" fill="currentColor" />';
-                    }
-                } else {
-                    // 더보기 상태
-                    textNode.textContent = '상품 더보기 ';
-                    if (svgs.length > 0) {
-                        svgs[0].innerHTML = '<path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z" fill="currentColor" />';
-                    }
+                // 아이콘 경로 업데이트 (Update SVG icon path)
+                const svgPath = btnMore.querySelector('svg path');
+                if (svgPath) {
+                    const upPath = 'M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z';
+                    const downPath = 'M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z';
+                    svgPath.setAttribute('d', isExpanded ? upPath : downPath);
                 }
-            };
+            }
+        };
 
-            // 버튼 초기화
-            updateButton();
+        // 외부(resize 등)에서 호출 가능하도록 함수 연결
+        item.refreshState = updateState;
 
-            // 이벤트 리스너
-            btnMore.addEventListener('click', (e) => {
-                e.stopPropagation();
+        btnMore.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
 
-                if (visibleCount >= cards.length) {
-                    // 닫기 동작
-                    visibleCount = itemsPerView;
-                    cards.forEach((card, index) => {
-                        if (index >= visibleCount) card.style.display = 'none';
-                    });
-                    // 상단 스크롤 이동
-                    const header = item.querySelector('.ranking-header');
-                    if (header) {
-                        const y = header.getBoundingClientRect().top + window.pageYOffset - 110;
-                        window.scrollTo({ top: y, behavior: 'smooth' });
-                    }
-                } else {
-                    // 더보기 동작
-                    const nextCount = visibleCount + 2;
-                    for (let i = visibleCount; i < nextCount && i < cards.length; i++) {
-                        cards[i].style.display = 'flex';
-                    }
-                    visibleCount = nextCount;
+            const wasExpanded = item.classList.contains('is-expanded');
+            item.classList.toggle('is-expanded');
+            updateState();
+
+            // 접을 때 상단 이동 (Scroll to top when collapsing)
+            if (wasExpanded) {
+                const header = item.querySelector('.ranking-header');
+                if (header) {
+                    const y = header.getBoundingClientRect().top + window.pageYOffset - 110;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
                 }
-                updateButton();
-            });
-        }
+            }
+
+            // 높이 동기화 (Height sync for carousel)
+            if (typeof updatePcRankingHeight === 'function') updatePcRankingHeight();
+            if (typeof updateMbRankingHeight === 'function') updateMbRankingHeight();
+        });
+
+        // 초기 실행
+        updateState();
     };
+
+    // 리사이즈 대응 (Handle window resize for ranking items)
+    window.addEventListener('resize', () => {
+        const rankingItems = document.querySelectorAll('.ranking-item');
+        rankingItems.forEach(item => {
+            if (item.refreshState) item.refreshState();
+        });
+    });
 
     // 초기 아이템 설정
     if (rankingWrapper) {
@@ -560,7 +563,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (index === currentIndex - 1) slide.classList.add('current');
                     else slide.classList.remove('current');
                 });
+                updatePcRankingHeight();
             };
+
+            // 전역 참조를 위해 헬퍼 정의
+            window.updatePcRankingHeight = () => {
+                const view = pcRankingSection.querySelector('.ranking-carousel-view');
+                const activeSlide = pcTrack.children[currentIndex - 1];
+                if (view && activeSlide) {
+                    view.style.height = activeSlide.offsetHeight + 'px';
+                }
+            };
+            updatePcRankingHeight(); // 초기 실행
 
             const moveNext = () => {
                 currentIndex = (currentIndex % totalItems) + 1;
@@ -674,7 +688,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // 트랙 이동
                 mobileRankingTrack.style.transform = `translateX(-${(currentIndex - 1) * 100}%)`;
+                updateMbRankingHeight();
             };
+
+            // 전역 참조를 위해 헬퍼 정의
+            window.updateMbRankingHeight = () => {
+                const view = mobileRankingContainer.querySelector('.ranking-carousel-view') || mobileRankingContainer;
+                const activeSlide = mobileRankingTrack.children[currentIndex - 1];
+                if (view && activeSlide) {
+                    view.style.height = activeSlide.offsetHeight + 'px';
+                }
+            };
+            updateMbRankingHeight(); // 초기 실행
 
             // 다음 버튼
             btnNext.addEventListener('click', () => {
@@ -1267,358 +1292,466 @@ document.addEventListener('headerLoaded', function () {
         });
     }
 });
-// 모바일 슬라이더 로직
+// 모바일 슬라이더 로직 (Mobile Slider Logic)
 document.addEventListener('DOMContentLoaded', () => {
     const track = document.getElementById('mobileMainTrack');
-    if (!track) return;
 
-    // 설장 값
-    let originalSlides = Array.from(track.querySelectorAll('.slide-item'));
-    if (originalSlides.length < 2) return;
+    // 모바일 전용 슬라이더 초기화 (Init mobile slider only if track exists)
+    if (track) {
+        let originalSlides = Array.from(track.querySelectorAll('.slide-item'));
+        if (originalSlides.length >= 2) {
 
-    const slideCount = originalSlides.length;
-    const currentEl = document.getElementById('currentSlide');
-    const totalEl = document.getElementById('totalSlides');
-    const btnPrev = document.getElementById('btnPrev');
-    const btnNext = document.getElementById('btnNext');
-    const btnPause = document.getElementById('btnPause');
+            const slideCount = originalSlides.length;
+            const currentEl = document.getElementById('currentSlide');
+            const totalEl = document.getElementById('totalSlides');
+            const btnPrev = document.getElementById('btnPrev');
+            const btnNext = document.getElementById('btnNext');
+            const btnPause = document.getElementById('btnPause');
 
-    // 아이콘
-    const iconPause = btnPause ? btnPause.querySelector('.icon-pause') : null;
-    const iconPlay = btnPause ? btnPause.querySelector('.icon-play') : null;
+            // 아이콘
+            const iconPause = btnPause ? btnPause.querySelector('.icon-pause') : null;
+            const iconPlay = btnPause ? btnPause.querySelector('.icon-play') : null;
 
-    // 무한 루프 복제
-    const cloneCount = 5;
-    const firstClones = [];
-    const lastClones = [];
+            // 무한 루프 복제
+            const cloneCount = 5;
+            const firstClones = [];
+            const lastClones = [];
 
-    // 슬라이드 복제
-    for (let i = 0; i < cloneCount; i++) {
-        firstClones.push(originalSlides[i % slideCount].cloneNode(true));
-        let index = (slideCount - 1 - (i % slideCount));
-        lastClones.push(originalSlides[index].cloneNode(true));
-    }
-
-    // 뒤쪽 복제본 앞 추가
-    lastClones.forEach(clone => {
-        clone.classList.add('clone-last');
-        track.insertBefore(clone, track.firstElementChild);
-    });
-
-    // 앞쪽 복제본 뒤 추가
-    firstClones.forEach(clone => {
-        clone.classList.add('clone-first');
-        track.appendChild(clone);
-    });
-
-    // 슬라이드 리스트 갱신
-    const allSlides = Array.from(track.querySelectorAll('.slide-item'));
-
-    // 초기 상태
-    if (totalEl) totalEl.textContent = slideCount.toString().padStart(2, '0');
-
-    let isPlaying = true;
-    let autoplayInterval;
-    const autoplayDelay = 3000;
-
-    // 치수 계산
-    const getMetrics = () => {
-        const realSlide = allSlides[cloneCount];
-        const slideWidth = realSlide.offsetWidth;
-        const style = window.getComputedStyle(track);
-        const gap = parseFloat(style.columnGap) || 8;
-        return { slideWidth, gap, fullWidth: slideWidth + gap };
-    };
-
-    // 스크롤 위치 초기화
-    const initPosition = () => {
-        const { fullWidth } = getMetrics();
-        track.scrollLeft = fullWidth * cloneCount;
-    };
-
-    // 레이아웃 대기
-    setTimeout(initPosition, 100);
-
-    // 페이지네이션 및 루프 체크
-    const handleScroll = () => {
-        const { fullWidth } = getMetrics();
-        if (fullWidth === 0) return;
-
-        const scrollLeft = track.scrollLeft;
-
-        let rawIndex = Math.round(scrollLeft / fullWidth);
-        let realIndex = rawIndex - cloneCount + 1;
-
-        // 루프 로직
-        if (rawIndex < cloneCount) {
-            const newPos = (slideCount + rawIndex) * fullWidth;
-            track.style.scrollSnapType = 'none';
-            track.scrollTo({ left: newPos, behavior: 'instant' });
-            requestAnimationFrame(() => {
-                track.style.scrollSnapType = '';
-            });
-
-            realIndex = rawIndex === cloneCount - 1 ? slideCount : slideCount - 1;
-        } else if (rawIndex >= slideCount + cloneCount) {
-            const newPos = (rawIndex - slideCount) * fullWidth;
-            track.style.scrollSnapType = 'none';
-            track.scrollTo({ left: newPos, behavior: 'instant' });
-            requestAnimationFrame(() => {
-                track.style.scrollSnapType = '';
-            });
-            realIndex = 1;
-        }
-
-        // 표시 인덱스 계산
-        let displayIndex = (rawIndex - cloneCount) % slideCount;
-        if (displayIndex < 0) displayIndex += slideCount;
-        displayIndex += 1;
-
-        if (currentEl) currentEl.textContent = displayIndex.toString().padStart(2, '0');
-    };
-
-    let scrollTimeout;
-    track.addEventListener('scroll', () => {
-        // 점프/스냅 로직 디바운스
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(handleScroll, 50);
-    });
-
-    track.addEventListener('scrollend', handleScroll);
-
-    // 네비게이션
-    const nextSlide = () => {
-        const { fullWidth } = getMetrics();
-        track.scrollBy({ left: fullWidth, behavior: 'smooth' });
-    };
-
-    const prevSlide = () => {
-        const { fullWidth } = getMetrics();
-        track.scrollBy({ left: -fullWidth, behavior: 'smooth' });
-    };
-
-    // 이벤트 리스너
-    if (btnNext) {
-        btnNext.addEventListener('click', () => {
-            stopAutoplay();
-            nextSlide();
-            if (isPlaying) startAutoplay();
-        });
-    }
-
-    if (btnPrev) {
-        btnPrev.addEventListener('click', () => {
-            stopAutoplay();
-            prevSlide();
-            if (isPlaying) startAutoplay();
-        });
-    }
-
-    // 자동재생
-    const startAutoplay = () => {
-        stopAutoplay();
-        autoplayInterval = setInterval(nextSlide, autoplayDelay);
-    };
-
-    const stopAutoplay = () => {
-        clearInterval(autoplayInterval);
-    };
-
-    if (btnPause) {
-        btnPause.addEventListener('click', (e) => {
-            e.stopPropagation(); // 버블링 방지
-            isPlaying = !isPlaying;
-            if (isPlaying) {
-                startAutoplay();
-                btnPause.classList.remove('paused');
-                if (iconPause) iconPause.style.display = 'block';
-                if (iconPlay) iconPlay.style.display = 'none';
-            } else {
-                stopAutoplay();
-                btnPause.classList.add('paused');
-                if (iconPause) iconPause.style.display = 'none';
-                if (iconPlay) iconPlay.style.display = 'block';
+            // 슬라이드 복제
+            for (let i = 0; i < cloneCount; i++) {
+                firstClones.push(originalSlides[i % slideCount].cloneNode(true));
+                let index = (slideCount - 1 - (i % slideCount));
+                lastClones.push(originalSlides[index].cloneNode(true));
             }
-        });
-    }
 
-    // 반응형
-    window.addEventListener('resize', () => {
-        const { fullWidth } = getMetrics();
-        if (fullWidth === 0) return;
-
-        // 인덱스 재계산
-        const index = Math.round(track.scrollLeft / fullWidth);
-        track.scrollTo({ left: index * fullWidth, behavior: 'instant' });
-    });
-
-    // 모바일 MD 추천 탭
-    const mdTabMenu = document.getElementById('mdTabMenu');
-    if (mdTabMenu) {
-        const mdTabs = mdTabMenu.querySelectorAll('.tab-btn');
-        mdTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                mdTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-            });
-        });
-    }
-
-    // 시작
-    startAutoplay();
-    // ==========================================
-    // 오늘의 특가 더보기 기능
-    // ==========================================
-    const btnLoadMoreSpecial = document.getElementById('btnLoadMoreSpecial');
-    if (btnLoadMoreSpecial) {
-        const grid = btnLoadMoreSpecial.previousElementSibling; // .product-grid-2
-        if (grid) {
-            const items = grid.querySelectorAll('.product-card');
-            const itemsPerView = 2; // 초기 노출 개수 변경 (Change initial visible count)
-            let visibleCount = itemsPerView;
-
-            // 초기 상태: 2개만 표시
-            items.forEach((item, index) => {
-                if (index >= visibleCount) {
-                    item.style.display = 'none';
-                }
+            // 뒤쪽 복제본 앞 추가
+            lastClones.forEach(clone => {
+                clone.classList.add('clone-last');
+                track.insertBefore(clone, track.firstElementChild);
             });
 
-            const updateButtonState = () => {
-                const totalItems = grid.querySelectorAll('.product-card').length;
-                const svgs = btnLoadMoreSpecial.querySelectorAll('svg');
+            // 앞쪽 복제본 뒤 추가
+            firstClones.forEach(clone => {
+                clone.classList.add('clone-first');
+                track.appendChild(clone);
+            });
 
-                let textNode = btnLoadMoreSpecial.firstChild;
-                if (textNode.nodeType !== Node.TEXT_NODE) {
-                    // 텍스트 노드 확인
-                    textNode = document.createTextNode('');
-                    btnLoadMoreSpecial.prepend(textNode);
-                }
+            // 슬라이드 리스트 갱신
+            const allSlides = Array.from(track.querySelectorAll('.slide-item'));
 
-                if (visibleCount >= totalItems) {
-                    // 닫기 모드
-                    textNode.textContent = '상품 닫기 ';
-                    btnLoadMoreSpecial.classList.add('expanded');
+            // 초기 상태
+            if (totalEl) totalEl.textContent = slideCount.toString().padStart(2, '0');
 
-                    if (svgs.length > 0) {
-                        svgs[0].innerHTML = '<path d="M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z" fill="currentColor" />';
-                    }
-                } else {
-                    // 더보기 모드
-                    textNode.textContent = '상품 더보기 ';
-                    btnLoadMoreSpecial.classList.remove('expanded');
+            let isPlaying = true;
+            let autoplayInterval;
+            const autoplayDelay = 3000;
 
-                    if (svgs.length > 0) {
-                        svgs[0].innerHTML = '<path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z" fill="currentColor" />';
-                    }
-                }
+            // 치수 계산
+            const getMetrics = () => {
+                const realSlide = allSlides[cloneCount];
+                const slideWidth = realSlide.offsetWidth;
+                const style = window.getComputedStyle(track);
+                const gap = parseFloat(style.columnGap) || 8;
+                return { slideWidth, gap, fullWidth: slideWidth + gap };
             };
 
-            btnLoadMoreSpecial.addEventListener('click', () => {
-                const allItems = grid.querySelectorAll('.product-card');
+            // 스크롤 위치 초기화
+            const initPosition = () => {
+                const { fullWidth } = getMetrics();
+                track.scrollLeft = fullWidth * cloneCount;
+            };
 
-                if (visibleCount >= allItems.length) {
-                    // 닫기 동작
-                    visibleCount = itemsPerView;
-                    allItems.forEach((item, index) => {
-                        if (index >= visibleCount) item.style.display = 'none';
+            // 레이아웃 대기
+            setTimeout(initPosition, 100);
+
+            // 페이지네이션 및 루프 체크
+            const handleScroll = () => {
+                const { fullWidth } = getMetrics();
+                if (fullWidth === 0) return;
+
+                const scrollLeft = track.scrollLeft;
+
+                let rawIndex = Math.round(scrollLeft / fullWidth);
+                let realIndex = rawIndex - cloneCount + 1;
+
+                // 루프 로직
+                if (rawIndex < cloneCount) {
+                    const newPos = (slideCount + rawIndex) * fullWidth;
+                    track.style.scrollSnapType = 'none';
+                    track.scrollTo({ left: newPos, behavior: 'instant' });
+                    requestAnimationFrame(() => {
+                        track.style.scrollSnapType = '';
                     });
 
-                    // 섹션 상단 스크롤
-                    const section = btnLoadMoreSpecial.closest('section');
-                    if (section) {
-                        const header = section.querySelector('.section-header');
-                        if (header) {
-                            // 헤더 높이 보정
-                            const y = header.getBoundingClientRect().top + window.pageYOffset - 60;
-                            window.scrollTo({ top: y, behavior: 'smooth' });
-                        } else {
-                            section.scrollIntoView({ behavior: 'smooth' });
-                        }
-                    }
-
-                } else {
-                    // 더보기 동작
-                    const nextCount = visibleCount + 2; // 2개씩 추가 노출 (Show 2 more items)
-                    for (let i = visibleCount; i < nextCount && i < allItems.length; i++) {
-                        allItems[i].style.display = 'flex';
-                    }
-                    visibleCount = nextCount;
+                    realIndex = rawIndex === cloneCount - 1 ? slideCount : slideCount - 1;
+                } else if (rawIndex >= slideCount + cloneCount) {
+                    const newPos = (rawIndex - slideCount) * fullWidth;
+                    track.style.scrollSnapType = 'none';
+                    track.scrollTo({ left: newPos, behavior: 'instant' });
+                    requestAnimationFrame(() => {
+                        track.style.scrollSnapType = '';
+                    });
+                    realIndex = 1;
                 }
-                updateButtonState();
+
+                // 표시 인덱스 계산
+                let displayIndex = (rawIndex - cloneCount) % slideCount;
+                if (displayIndex < 0) displayIndex += slideCount;
+                displayIndex += 1;
+
+                if (currentEl) currentEl.textContent = displayIndex.toString().padStart(2, '0');
+            };
+
+            let scrollTimeout;
+            track.addEventListener('scroll', () => {
+                // 점프/스냅 로직 디바운스
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(handleScroll, 50);
             });
 
-            // 초기 버튼 상태 업데이트
-            updateButtonState();
-        }
+            track.addEventListener('scrollend', handleScroll);
+
+            // 네비게이션
+            const nextSlide = () => {
+                const { fullWidth } = getMetrics();
+                track.scrollBy({ left: fullWidth, behavior: 'smooth' });
+            };
+
+            const prevSlide = () => {
+                const { fullWidth } = getMetrics();
+                track.scrollBy({ left: -fullWidth, behavior: 'smooth' });
+            };
+
+            // 이벤트 리스너
+            if (btnNext) {
+                btnNext.addEventListener('click', () => {
+                    stopAutoplay();
+                    nextSlide();
+                    if (isPlaying) startAutoplay();
+                });
+            }
+
+            if (btnPrev) {
+                btnPrev.addEventListener('click', () => {
+                    stopAutoplay();
+                    prevSlide();
+                    if (isPlaying) startAutoplay();
+                });
+            }
+
+            // 자동재생
+            const startAutoplay = () => {
+                stopAutoplay();
+                autoplayInterval = setInterval(nextSlide, autoplayDelay);
+            };
+
+            const stopAutoplay = () => {
+                clearInterval(autoplayInterval);
+            };
+
+            if (btnPause) {
+                btnPause.addEventListener('click', (e) => {
+                    e.stopPropagation(); // 버블링 방지
+                    isPlaying = !isPlaying;
+                    if (isPlaying) {
+                        startAutoplay();
+                        btnPause.classList.remove('paused');
+                        if (iconPause) iconPause.style.display = 'block';
+                        if (iconPlay) iconPlay.style.display = 'none';
+                    } else {
+                        stopAutoplay();
+                        btnPause.classList.add('paused');
+                        if (iconPause) iconPause.style.display = 'none';
+                        if (iconPlay) iconPlay.style.display = 'block';
+                    }
+                });
+            }
+
+            // 반응형
+            window.addEventListener('resize', () => {
+                const { fullWidth } = getMetrics();
+                if (fullWidth === 0) return;
+
+                // 인덱스 재계산
+                const index = Math.round(track.scrollLeft / fullWidth);
+                track.scrollTo({ left: index * fullWidth, behavior: 'instant' });
+            });
+
+            // 모바일 MD 추천 탭
+            const mdTabMenu = document.getElementById('mdTabMenu');
+            if (mdTabMenu) {
+                const mdTabs = mdTabMenu.querySelectorAll('.tab-btn');
+                mdTabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        mdTabs.forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                    });
+                });
+            }
+
+            // 시작
+            startAutoplay();
+        } // if (track) end
     }
+    // 공통 상품 더보기 기능 (오늘의 특가, MD 추천 등)
+    const initLoadMoreStep = (btnId, step = 2) => {
+        const btn = document.getElementById(btnId);
+        if (!btn) return;
+
+        const grid = btn.previousElementSibling;
+        if (!grid) return;
+
+        const getThreshold = () => window.innerWidth >= 1024 ? 4 : 2;
+        let visibleCount = getThreshold();
+
+        const getItems = () => Array.from(grid.querySelectorAll('.product-card'));
+
+        const updateDisplay = () => {
+            const allItems = getItems();
+            const threshold = getThreshold();
+
+            // 현재 펼쳐진 상태가 아니라면 임계값에 맞춤
+            if (!btn.classList.contains('is-expanded') && visibleCount < threshold) {
+                visibleCount = threshold;
+            }
+
+            allItems.forEach((item, index) => {
+                item.style.display = index < visibleCount ? 'flex' : 'none';
+            });
+
+            const isAllShown = visibleCount >= allItems.length;
+            const needsButton = allItems.length > threshold;
+
+            // 버튼 표시 여부
+            if (!needsButton) {
+                btn.style.setProperty('display', 'none', 'important');
+            } else {
+                btn.style.display = 'flex';
+                btn.classList.toggle('is-all-shown', isAllShown);
+
+                // 텍스트/아이콘 업데이트
+                let textNode = Array.from(btn.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+                if (!textNode) {
+                    textNode = document.createTextNode('');
+                    btn.prepend(textNode);
+                }
+                textNode.textContent = isAllShown ? '상품 닫기 ' : '상품 더보기 ';
+
+                const svgPath = btn.querySelector('svg path');
+                if (svgPath) {
+                    const upPath = 'M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z';
+                    const downPath = 'M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z';
+                    svgPath.setAttribute('d', isAllShown ? upPath : downPath);
+                }
+            }
+        };
+
+        btn.refreshState = updateDisplay;
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const allItems = getItems();
+
+            if (visibleCount >= allItems.length) {
+                // 닫기
+                visibleCount = getThreshold();
+                btn.classList.remove('is-expanded');
+                const section = btn.closest('section');
+                if (section) {
+                    const header = section.querySelector('.section-header');
+                    const y = (header || section).getBoundingClientRect().top + window.pageYOffset - 60;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+            } else {
+                // 더보기
+                visibleCount = Math.min(visibleCount + step, allItems.length);
+                if (visibleCount >= allItems.length) btn.classList.add('is-expanded');
+            }
+            updateDisplay();
+        });
+
+        updateDisplay();
+    };
+
+    // 공통 더보기 버튼 리사이즈 대응
+    window.addEventListener('resize', () => {
+        ['btnLoadMoreSpecial'].forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn && btn.refreshState) btn.refreshState();
+        });
+    });
+
+    // 적용 (오늘의 특가)
+    initLoadMoreStep('btnLoadMoreSpecial', 2, 2);
 
     // ==========================================
     // 브랜드관 더보기 (Brand Pavilion Load More)
     // ==========================================
-    const brandPavilion = document.querySelector('.brand-pavilion');
-    if (brandPavilion) {
-        const btnMore = brandPavilion.querySelector('.btn-brand-more');
+    // PC 버전 토글 (.brand-club-zone)
+    const brandClubZone = document.querySelector('.brand-club-zone');
+    if (brandClubZone) {
+        const btnMore = brandClubZone.querySelector('.btn-brand-more');
+        const span = btnMore?.querySelector('span');
 
         if (btnMore) {
-            const items = brandPavilion.querySelectorAll('.brand-story-item');
-            const itemsPerView = 1; // 초기 노출 개수
-
-            const updateButtonStyle = () => {
-                const hiddenItems = Array.from(items).filter(item => item.style.display === 'none');
-                const svg = btnMore.querySelector('svg');
-                let textNode = btnMore.firstChild;
-
-                if (!textNode || textNode.nodeType !== Node.TEXT_NODE) {
-                    textNode = document.createTextNode('');
-                    btnMore.prepend(textNode);
+            btnMore.addEventListener('click', function () {
+                // is-expanded 클래스 토글 (Toggle is-expanded class)
+                const isExpanded = brandClubZone.classList.toggle('is-expanded');
+                if (span) {
+                    span.textContent = isExpanded ? '브랜드관 닫기' : '브랜드관 더보기';
                 }
+            });
+        }
+    }
 
-                if (hiddenItems.length === 0) {
-                    // 모두 펼쳐진 상태 (Collapse Mode)
-                    textNode.textContent = '브랜드관 닫기 ';
-                    if (svg) {
-                        svg.innerHTML = '<path d="M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z" fill="currentColor" />';
-                    }
-                } else {
-                    // 더 펼칠 수 있는 상태 (More Mode)
-                    textNode.textContent = '브랜드관 더보기 ';
-                    if (svg) {
-                        svg.innerHTML = '<path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z" fill="currentColor" />';
-                    }
+    // 모바일 버전 토글 (.brand-pavilion)
+    const brandPavilion = document.querySelector('.brand-story-list');
+    const brandSection = document.querySelector('.brand-pavilion');
+    if (brandPavilion && brandSection) {
+        const btnMore = brandPavilion.querySelector('.btn-brand-more');
+        const items = Array.from(brandPavilion.querySelectorAll('.brand-story-item'));
+        const initialCount = 1;
+
+        if (btnMore && items.length > 0) {
+            const updateState = () => {
+                const isExpanded = brandPavilion.classList.contains('is-expanded');
+
+                // 아이템 노출 상태 (Update item visibility)
+                items.forEach((item, index) => {
+                    item.style.display = (isExpanded || index < initialCount) ? 'flex' : 'none';
+                });
+
+                // 버튼 텍스트 및 아이콘 업데이트 (Update button text and icon)
+                let textNode = Array.from(btnMore.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+                if (!textNode) textNode = btnMore.appendChild(document.createTextNode(''));
+                textNode.textContent = isExpanded ? '브랜드관 닫기 ' : '브랜드관 더보기 ';
+
+                const svgPath = btnMore.querySelector('svg path');
+                if (svgPath) {
+                    const upPath = 'M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z';
+                    const downPath = 'M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z';
+                    svgPath.setAttribute('d', isExpanded ? upPath : downPath);
                 }
             };
 
-            btnMore.addEventListener('click', function () {
-                const hiddenItems = Array.from(items).filter(item => item.style.display === 'none');
+            btnMore.addEventListener('click', (e) => {
+                e.preventDefault();
+                const wasExpanded = brandPavilion.classList.contains('is-expanded');
+                brandPavilion.classList.toggle('is-expanded');
+                updateState();
 
-                if (hiddenItems.length === 0) {
-                    // 닫기 동작 (Collapse)
-                    items.forEach((item, index) => {
-                        if (index >= itemsPerView) item.style.display = 'none';
-                    });
-
-                    // 상단으로 스크롤 이동
-                    const header = brandPavilion.querySelector('.section-header');
+                // 접을 때 상단 이동 (Scroll to section header when collapsing)
+                if (wasExpanded) {
+                    const header = brandSection.querySelector('.section-header');
                     if (header) {
                         const y = header.getBoundingClientRect().top + window.pageYOffset - 60;
                         window.scrollTo({ top: y, behavior: 'smooth' });
                     }
-                } else {
-                    // 펼치기 동작 (Expand 1 by 1)
-                    for (let i = 0; i < items.length; i++) {
-                        if (items[i].style.display === 'none') {
-                            items[i].style.display = ''; // Revert to stylesheet value (flex)
-                            break; // 1개씩 펼침
-                        }
-                    }
                 }
-                updateButtonStyle();
             });
 
-            // 초기 상태 설정
-            updateButtonStyle();
+            // 초기화
+            updateState();
         }
+    }
+
+    // 바텀 시트 드래그 종료 로직 (Drag to close bottom sheet)
+    // 바텀 시트 드래그 종료 로직 (Drag to close bottom sheet)
+    function initOffcanvasDrag(offcanvasId) {
+        const offcanvasEl = document.getElementById(offcanvasId);
+        if (!offcanvasEl) return;
+
+        const handle = offcanvasEl.querySelector('.offcanvas-handle');
+        if (!handle) return;
+
+        let startY = 0;
+        let currentY = 0;
+        let isDragging = false;
+        let startTime = 0;
+
+        // 닫기 함수 (Close function)
+        const closeOffcanvas = () => {
+            let bsOffcanvas = null;
+            if (window.bootstrap && window.bootstrap.Offcanvas) {
+                // getOrCreateInstance로 안전하게 인스턴스 확보
+                bsOffcanvas = window.bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl);
+            }
+            if (bsOffcanvas) bsOffcanvas.hide();
+        };
+
+        // 드래그 시작 (Start)
+        const onStart = (y) => {
+            startY = y;
+            currentY = y;
+            isDragging = true;
+            startTime = new Date().getTime();
+            offcanvasEl.style.transition = 'none';
+        };
+
+        // 드래그 이동 (Move)
+        const onMove = (y) => {
+            if (!isDragging) return;
+            currentY = y;
+            const diff = currentY - startY;
+
+            // 아래로 드래그 시에만 이동 (Only move down)
+            if (diff > 0) {
+                offcanvasEl.style.transform = `translateY(${diff}px)`;
+            }
+        };
+
+        // 드래그 종료 (End)
+        const onEnd = () => {
+            if (!isDragging) return;
+
+            const diff = currentY - startY;
+            const timeDiff = new Date().getTime() - startTime;
+
+            // 100px 이상 내리거나, 짧은 시간(300ms)에 50px 이상 내리면 닫기
+            if (diff > 100 || (diff > 50 && timeDiff < 300)) {
+                closeOffcanvas();
+            } else {
+                // 원위치 복귀 (Revert position)
+                offcanvasEl.style.transition = 'transform 0.3s ease-out';
+                offcanvasEl.style.transform = 'translateY(0)';
+            }
+
+            setTimeout(() => { isDragging = false; }, 50);
+        };
+
+        // 클릭 핸들러: 드래그가 거의 없었을 때만 닫기 트리거 (Click handler)
+        handle.addEventListener('click', (e) => {
+            if (Math.abs(currentY - startY) < 5) {
+                closeOffcanvas();
+            }
+        });
+
+        // Touch Events
+        handle.addEventListener('touchstart', (e) => onStart(e.touches[0].clientY), { passive: true });
+        handle.addEventListener('touchmove', (e) => onMove(e.touches[0].clientY), { passive: true });
+        handle.addEventListener('touchend', onEnd);
+
+        // Mouse Events (PC Testing)
+        const onMouseMove = (e) => onMove(e.clientY);
+        const onMouseUp = () => {
+            onEnd();
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+        };
+
+        handle.addEventListener('mousedown', (e) => {
+            onStart(e.clientY);
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        });
+
+        // 시트가 닫히면 스타일 초기화
+        offcanvasEl.addEventListener('hidden.bs.offcanvas', () => {
+            offcanvasEl.style.transform = '';
+            offcanvasEl.style.transition = '';
+            currentY = 0;
+            startY = 0;
+        });
     }
 
 });
