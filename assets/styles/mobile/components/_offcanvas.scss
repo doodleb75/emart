@@ -10,7 +10,7 @@
     padding-bottom: rem(16);
 
     .offcanvas-body {
-        padding: 0 rem(16) rem(16);
+        padding: 0 rem(16) rem(64);
     }
 
     // 상단 핸들 (Top Handle)
@@ -55,12 +55,12 @@
             background-color: #FFAA00; // GOLD 배경색 (Gold bg)
             color: $white;
             height: 100%;
-            line-height: 2;
+            line-height: 1.75;
             padding: rem(4) rem(8);
             border-radius: rem(4);
-            font-size: rem(12);
+            font-size: rem(14);
             font-weight: 600;
-            margin-right: rem(16);
+            margin-right: rem(10);
         }
 
         .user-detail-text {
@@ -74,65 +74,51 @@
         }
     }
 
-    // 포인트 프로그레스 자리 (Point Progress Placeholder)
+    // 포인트 프로그레스 자리 (Point Progress Section)
     .point-progress-section {
-        height: rem(32);
-        padding: rem(20) 0;
-        margin-bottom: rem(10);
-        border-bottom: rem(1) solid $gray-100;
+        padding: rem(20) 0 rem(10);
 
-        .progress-header {
+        .point-progress-track {
+            width: 100%;
+            height: rem(40);
+            background-color: $gray-50;
+            border-radius: rem(100);
+            position: relative;
+            overflow: hidden;
+
+            // 배경 패턴 (Background Pattern)
+            // 10px 원 (rem(5) radius), 4px 간격 (gap)
+            // 총 반복 너비: 10px + 4px = 14px
+            background-image: radial-gradient(circle, $white rem(3), transparent rem(3));
+            background-size: rem(20) 100%;
+            background-position: center;
+            background-repeat: repeat-x;
+        }
+
+        .point-progress-fill {
+            height: 100%;
+            background-color: $primary-gold;
+            border-radius: rem(100);
             display: flex;
             align-items: center;
-            gap: rem(8);
-            margin-bottom: rem(8);
+            justify-content: center;
+            padding-left: rem(6);
+            min-width: rem(40); // 아이콘이 잘리지 않도록 최소 너비 설정
+            box-sizing: border-box;
+            transition: width 0.5s ease-out;
 
             .icon-p {
                 width: rem(28);
                 height: rem(28);
-                background-color: #FFBB33;
                 color: $white;
-                border-radius: 50%;
+                font-weight: 700;
+                font-size: rem(15);
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-size: rem(14);
-            }
-
-            // 프로그레스 바 자리 (Progress Bar Area)
-            .progress-bar-placeholder {
-                flex: 1;
-                height: rem(12);
-                display: flex;
-                align-items: center;
-                gap: rem(6);
-                padding: 0 rem(4);
-                background-color: $gray-50;
-                border-radius: rem(20);
-                overflow: hidden;
-
-                // 시안의 점들을 표현하는 가상 요소 (Placeholder dots)
-                &::before {
-                    content: '';
-                    display: block;
-                    width: 100%;
-                    height: rem(4);
-                    background-image: radial-gradient($gray-200 rem(2), transparent rem(2));
-                    background-size: rem(12) 100%;
-                    background-repeat: repeat-x;
-                }
-
-                // 추후 스크립트로 처리될 부분 (Progress fill)
-                .progress-fill {
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    height: 100%;
-                    width: 0; // 스크립트로 조절 예정
-                    background-color: #FFBB33;
-                    border-radius: rem(20);
-                    z-index: 1;
-                }
+                // P 자체가 원형 배경을 가질 수도 있으나, 여기서는 Fill이 배경 역할을 함.
+                // 명시적으로 P만 강조하고 싶다면 background-color 추가 가능하지만,
+                // "P area expands" 문맥상 Fill 전체가 Gold임.
             }
         }
     }
@@ -154,7 +140,7 @@
     .user-stat-list {
         font-size: rem(14);
         line-height: 150%;
-        padding: rem(16) 0;
+        padding: rem(0) 0;
 
         .stat-item {
             display: flex;

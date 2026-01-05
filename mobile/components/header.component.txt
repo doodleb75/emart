@@ -497,21 +497,22 @@
 
         <!-- 포인트 프로그레스 섹션 (Point Progress Section) -->
         <div class="point-progress-section">
-            <div class="progress-header">
-                <div class="icon-p">P</div>
-                <div class="progress-bar-placeholder" id="userPointProgress">
-                    <!-- 프로그레스 바 영역 (Progress bar area - to be handled by script) -->
+            <div class="point-progress-track">
+                <div class="point-progress-fill" id="userPointFill" style="width: 40%">
+                    <div class="icon-p">P</div>
                 </div>
             </div>            
         </div>
         <div class="progress-info">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" y1="16" x2="12" y2="12"></line>
-                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                </svg>
-                결제금액의 일부를 포인트로 돌려드려요.
-            </div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            결제금액의 일부를 포인트로 돌려드려요.
+        </div>
+
+        <hr class="sep-divider">
 
         <!-- 유저 상세 수치 (User Statistics) -->
         <div class="user-stat-list">

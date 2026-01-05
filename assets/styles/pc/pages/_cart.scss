@@ -266,7 +266,12 @@
 
     .item-checkbox-col {
         margin-right: rem(20);
-        padding-top: rem(60); // 콘텐츠 중앙 정렬 보정
+        display: flex;
+        align-items: center;
+        /* 자식 요소를 수직 중앙 정렬 */
+        justify-content: center;
+        /* (선택 사항) 자식 요소를 수평 중앙 정렬 */
+
     }
 
     .item-image {

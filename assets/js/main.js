@@ -1113,6 +1113,104 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileScrollSlider('.mobile-main-slider', '#mobileMainTrack');
     initMobileScrollSlider('.popcorn-banner-wrapper', '#popcornBannerTrack');
 });
+// 바텀 시트 드래그 종료 로직 (Drag to close bottom sheet)
+function initOffcanvasDrag(offcanvasId) {
+    const offcanvasEl = document.getElementById(offcanvasId);
+    if (!offcanvasEl) return;
+
+    const handle = offcanvasEl.querySelector('.offcanvas-handle');
+    if (!handle) return;
+
+    let startY = 0;
+    let currentY = 0;
+    let isDragging = false;
+    let startTime = 0;
+
+    // 닫기 함수 (Close function)
+    const closeOffcanvas = () => {
+        let bsOffcanvas = null;
+        if (window.bootstrap && window.bootstrap.Offcanvas) {
+            // getOrCreateInstance로 안전하게 인스턴스 확보
+            bsOffcanvas = window.bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl);
+        }
+        if (bsOffcanvas) bsOffcanvas.hide();
+    };
+
+    // 드래그 시작 (Start)
+    const onStart = (y) => {
+        startY = y;
+        currentY = y;
+        isDragging = true;
+        startTime = new Date().getTime();
+        offcanvasEl.style.transition = 'none';
+    };
+
+    // 드래그 이동 (Move)
+    const onMove = (y) => {
+        if (!isDragging) return;
+        currentY = y;
+        const diff = currentY - startY;
+
+        // 아래로 드래그 시에만 이동 (Only move down)
+        if (diff > 0) {
+            offcanvasEl.style.transform = `translateY(${diff}px)`;
+        }
+    };
+
+    // 드래그 종료 (End)
+    const onEnd = () => {
+        if (!isDragging) return;
+
+        const diff = currentY - startY;
+        const timeDiff = new Date().getTime() - startTime;
+
+        // 100px 이상 내리거나, 짧은 시간(300ms)에 50px 이상 내리면 닫기
+        if (diff > 100 || (diff > 50 && timeDiff < 300)) {
+            closeOffcanvas();
+        } else {
+            // 원위치 복귀 (Revert position)
+            offcanvasEl.style.transition = 'transform 0.3s ease-out';
+            offcanvasEl.style.transform = 'translateY(0)';
+        }
+
+        setTimeout(() => { isDragging = false; }, 50);
+    };
+
+    // 클릭 핸들러: 드래그가 거의 없었을 때만 닫기 트리거 (Click handler)
+    handle.addEventListener('click', (e) => {
+        if (Math.abs(currentY - startY) < 5) {
+            closeOffcanvas();
+        }
+    });
+
+    // Touch Events
+    handle.addEventListener('touchstart', (e) => onStart(e.touches[0].clientY), { passive: true });
+    handle.addEventListener('touchmove', (e) => onMove(e.touches[0].clientY), { passive: true });
+    handle.addEventListener('touchend', onEnd);
+
+    // Mouse Events (PC Testing)
+    const onMouseMove = (e) => onMove(e.clientY);
+    const onMouseUp = () => {
+        onEnd();
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+    };
+
+    handle.addEventListener('mousedown', (e) => {
+        onStart(e.clientY);
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+    });
+
+    // 시트가 닫히면 스타일 초기화
+    offcanvasEl.addEventListener('hidden.bs.offcanvas', () => {
+        offcanvasEl.style.transform = '';
+        offcanvasEl.style.transition = '';
+        currentY = 0;
+        startY = 0;
+    });
+}
+
 // 검색 드롭다운 로직
 document.addEventListener('headerLoaded', function () {
     const searchContainer = document.querySelector('.search-container');
@@ -1290,6 +1388,8 @@ document.addEventListener('headerLoaded', function () {
                 }
             }
         });
+        // 바텀시트 초기화
+        initOffcanvasDrag('userInfoOffcanvas');
     }
 });
 // 모바일 슬라이더 로직 (Mobile Slider Logic)
@@ -1655,103 +1755,236 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 바텀 시트 드래그 종료 로직 (Drag to close bottom sheet)
-    // 바텀 시트 드래그 종료 로직 (Drag to close bottom sheet)
-    function initOffcanvasDrag(offcanvasId) {
-        const offcanvasEl = document.getElementById(offcanvasId);
-        if (!offcanvasEl) return;
+    // ==========================================
+    // 사용자 포인트 프로그레스 설정 (User Point Progress Setup)
+    // ==========================================
+    window.setUserPointProgress = function (percentage) {
+        const fillEl = document.getElementById("userPointFill");
+        if (fillEl) {
+            // 0~100 사이 값 제한
+            const safePercent = Math.max(0, Math.min(100, percentage));
+            fillEl.style.width = safePercent + "%";
+        }
+    };
 
-        const handle = offcanvasEl.querySelector('.offcanvas-handle');
-        if (!handle) return;
+    // 초기 실행 (1000원 단위 등 실제 로직 적용 전 시각적 테스트용)
+    // 10%
+    if (window.setUserPointProgress) window.setUserPointProgress(60);
 
-        let startY = 0;
-        let currentY = 0;
-        let isDragging = false;
-        let startTime = 0;
+    // ==========================================
+    // 카테고리 전체보기 오버레이 (Category Overlay)
+    // ==========================================
+    // 카테고리 전체보기 오버레이 (Category Overlay)
+    // ==========================================
+    const initCategoryMenu = () => {
+        const categoryLink = document.querySelector('.category-link');
+        const categoryOverlay = document.querySelector('.category-overlay');
+        const categoryCloseBtn = document.querySelector('.btn-category-close');
 
-        // 닫기 함수 (Close function)
-        const closeOffcanvas = () => {
-            let bsOffcanvas = null;
-            if (window.bootstrap && window.bootstrap.Offcanvas) {
-                // getOrCreateInstance로 안전하게 인스턴스 확보
-                bsOffcanvas = window.bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl);
+        if (categoryLink && categoryOverlay) {
+            // 토글 기능 (Toggle)
+            categoryLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                categoryOverlay.classList.toggle('active');
+            });
+
+            // 닫기 버튼 (Close)
+            if (categoryCloseBtn) {
+                categoryCloseBtn.addEventListener('click', () => {
+                    categoryOverlay.classList.remove('active');
+                });
             }
-            if (bsOffcanvas) bsOffcanvas.hide();
-        };
 
-        // 드래그 시작 (Start)
-        const onStart = (y) => {
-            startY = y;
-            currentY = y;
-            isDragging = true;
-            startTime = new Date().getTime();
-            offcanvasEl.style.transition = 'none';
-        };
+            // 영역 외 클릭 시 닫기 (Close on outside click)
+            document.addEventListener('click', (e) => {
+                if (!categoryLink.contains(e.target) && !categoryOverlay.contains(e.target)) {
+                    categoryOverlay.classList.remove('active');
+                }
+            });
 
-        // 드래그 이동 (Move)
-        const onMove = (y) => {
-            if (!isDragging) return;
-            currentY = y;
-            const diff = currentY - startY;
-
-            // 아래로 드래그 시에만 이동 (Only move down)
-            if (diff > 0) {
-                offcanvasEl.style.transform = `translateY(${diff}px)`;
+            // 상단 카테고리/브랜드 탭 전환
+            const topTabs = categoryOverlay.querySelectorAll('.category-tabs .tab-btn');
+            if (topTabs.length > 0) {
+                topTabs.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        topTabs.forEach(t => t.classList.remove('active'));
+                        btn.classList.add('active');
+                    });
+                });
             }
-        };
 
-        // 드래그 종료 (End)
-        const onEnd = () => {
-            if (!isDragging) return;
+            // 탭 기능 (Tab Switching)
+            const sidebarItems = categoryOverlay.querySelectorAll('.category-sidebar li');
+            const detailContents = categoryOverlay.querySelectorAll('.category-detail');
 
-            const diff = currentY - startY;
-            const timeDiff = new Date().getTime() - startTime;
+            sidebarItems.forEach(item => {
+                const switchTab = () => {
+                    // 탭 활성화
+                    sidebarItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
 
-            // 100px 이상 내리거나, 짧은 시간(300ms)에 50px 이상 내리면 닫기
-            if (diff > 100 || (diff > 50 && timeDiff < 300)) {
-                closeOffcanvas();
+                    // 컨텐츠 활성화
+                    const targetId = item.dataset.target;
+                    detailContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === targetId) {
+                            content.classList.add('active');
+                        }
+                    });
+                };
+
+                item.addEventListener('mouseenter', switchTab);
+                item.addEventListener('click', switchTab);
+            });
+        }
+    };
+
+    // 헤더 로드 완료 시 실행
+    document.addEventListener('headerLoaded', initCategoryMenu);
+
+    // ==========================================
+    // Toast Notification System
+    // ==========================================
+    // ==========================================
+    // Toast Notification System
+    // ==========================================
+    class ToastManager {
+        static getIcon(type) {
+            const icons = {
+                success: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+  <g clip-path="url(#clip0_618_4802)">
+    <path d="M10.0003 1.66797C5.40032 1.66797 1.66699 5.4013 1.66699 10.0013C1.66699 14.6013 5.40032 18.3346 10.0003 18.3346C14.6003 18.3346 18.3337 14.6013 18.3337 10.0013C18.3337 5.4013 14.6003 1.66797 10.0003 1.66797ZM8.33366 14.168L4.16699 10.0013L5.34199 8.8263L8.33366 11.8096L14.6587 5.48463L15.8337 6.66797L8.33366 14.168Z" fill="white"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_618_4802">
+      <rect width="20" height="20" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>`,
+                danger: `<svg class="toast-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 20C4.477 20 0 15.523 0 10C0 4.477 4.477 0 10 0C15.523 0 20 4.477 20 10C20 15.523 15.523 20 10 20ZM11 15H9V13H11V15ZM11 11H9V5H11V11Z" fill="#ffffff"/></svg>`,
+                warning: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+  <g clip-path="url(#clip0_618_7143)">
+    <path d="M0.833008 17.5013H19.1663L9.99968 1.66797L0.833008 17.5013ZM10.833 15.0013H9.16634V13.3346H10.833V15.0013ZM10.833 11.668H9.16634V8.33464H10.833V11.668Z" fill="white"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_618_7143">
+      <rect width="20" height="20" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>`,
+                info: `<svg class="toast-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 20C4.477 20 0 15.523 0 10C0 4.477 4.477 0 10 0C15.523 0 20 4.477 20 10C20 15.523 15.523 20 10 20ZM11 15H9V9H11V15ZM11 7H9V5H11V7Z" fill="#ffffff"/></svg>`
+            };
+            return icons[type] || icons.success;
+        }
+
+        static show(type, message, target = null) {
+            // 컨테이너 생성 또는 찾기
+            let container;
+            const isCustomPosition = !!target;
+
+            if (isCustomPosition) {
+                container = document.createElement('div');
+                container.className = 'custom-toast-container position-absolute';
+                document.body.appendChild(container); // Append to body to avoid clipping
+
+                // Get accurate position
+                const rect = target.getBoundingClientRect();
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+                // Position logic: Center below existing element
+                container.style.top = `${rect.bottom + scrollTop + 10}px`;
+                container.style.left = `${rect.left + scrollLeft + (rect.width / 2)}px`;
+                container.style.transform = 'translateX(-50%)';
+
             } else {
-                // 원위치 복귀 (Revert position)
-                offcanvasEl.style.transition = 'transform 0.3s ease-out';
-                offcanvasEl.style.transform = 'translateY(0)';
+                // 전역 컨테이너 (화면 하단 중앙)
+                container = document.querySelector('.custom-toast-container.global');
+                if (!container) {
+                    container = document.createElement('div');
+                    container.className = 'custom-toast-container global';
+                    document.body.appendChild(container);
+                }
             }
 
-            setTimeout(() => { isDragging = false; }, 50);
-        };
+            // 토스트 요소 생성
+            const toastEl = document.createElement('div');
+            toastEl.className = `custom-toast toast-${type}`;
+            toastEl.innerHTML = `
+                ${this.getIcon(type)}
+                <span>${message}</span>
+            `;
 
-        // 클릭 핸들러: 드래그가 거의 없었을 때만 닫기 트리거 (Click handler)
-        handle.addEventListener('click', (e) => {
-            if (Math.abs(currentY - startY) < 5) {
-                closeOffcanvas();
-            }
-        });
+            container.appendChild(toastEl);
 
-        // Touch Events
-        handle.addEventListener('touchstart', (e) => onStart(e.touches[0].clientY), { passive: true });
-        handle.addEventListener('touchmove', (e) => onMove(e.touches[0].clientY), { passive: true });
-        handle.addEventListener('touchend', onEnd);
+            // Show Animation
+            requestAnimationFrame(() => {
+                toastEl.classList.add('show');
+            });
 
-        // Mouse Events (PC Testing)
-        const onMouseMove = (e) => onMove(e.clientY);
-        const onMouseUp = () => {
-            onEnd();
-            document.removeEventListener('mousemove', onMouseMove);
-            document.removeEventListener('mouseup', onMouseUp);
-        };
-
-        handle.addEventListener('mousedown', (e) => {
-            onStart(e.clientY);
-            document.addEventListener('mousemove', onMouseMove);
-            document.addEventListener('mouseup', onMouseUp);
-        });
-
-        // 시트가 닫히면 스타일 초기화
-        offcanvasEl.addEventListener('hidden.bs.offcanvas', () => {
-            offcanvasEl.style.transform = '';
-            offcanvasEl.style.transition = '';
-            currentY = 0;
-            startY = 0;
-        });
+            // Hide & Remove logic
+            setTimeout(() => {
+                toastEl.classList.remove('show');
+                toastEl.addEventListener('transitionend', () => {
+                    toastEl.remove();
+                    // If custom container is empty, remove it
+                    if (isCustomPosition && container.children.length === 0) {
+                        container.remove();
+                    }
+                }, { once: true });
+            }, 2000); // 2초 후 사라짐
+        }
     }
+
+    // 전역에서 접근 가능하도록 설정
+    window.Toast = ToastManager;
+
+    // Improved Event Listener for Heart Button
+    // Improved Event Listener for Heart Button
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn-icon');
+
+        // Ensure it is the heart button
+        if (btn && btn.querySelector('.icon-heart')) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const heartIcon = btn.querySelector('.icon-heart');
+            const path = heartIcon.querySelector('path');
+
+            if (!path) return;
+
+            // Store original path data (Outline Heart) if not already stored
+            if (!path.dataset.originalD) {
+                path.dataset.originalD = path.getAttribute('d');
+            }
+
+            const originalD = path.dataset.originalD;
+            // Create Solid Heart path by taking only the outer loop (first subpath)
+            // Assumes structure: [Outer Loop]Z[Inner Loop]Z
+            const solidD = originalD.split('Z')[0] + 'Z';
+
+            const isActive = btn.classList.contains('active');
+
+            if (!isActive) {
+                // Activate (Solid Red Heart)
+                btn.classList.add('active');
+
+                path.setAttribute('d', solidD); // Switch to solid shape
+                path.setAttribute('fill', '#FF5447');
+                path.style.fill = '#FF5447';
+
+                // Show Toast
+                ToastManager.show('success', '관심상품에 저장되었습니다.', btn);
+            } else {
+                // Deactivate (Outline Gray Heart)
+                btn.classList.remove('active');
+
+                path.setAttribute('d', originalD); // Revert to outline shape
+                path.setAttribute('fill', '#444444');
+                path.style.fill = '#444444';
+            }
+        }
+    }, true);
 
 });

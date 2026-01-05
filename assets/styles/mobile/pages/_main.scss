@@ -576,6 +576,12 @@
             }
         }
     }
+
+    .btn-more {
+        svg {
+            transform: rotate(-90deg);
+        }
+    }
 }
 
 // 브랜드관 (Brand Pavilion)

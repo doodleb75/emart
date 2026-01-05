@@ -57,6 +57,14 @@
         align-items: center;
         justify-content: flex-end;
         gap: rem(48);
+
+        a {
+            cursor: pointer;
+
+            &:hover {
+                color: $gray-800;
+            }
+        }
     }
 
     .metric-item {
@@ -866,3 +874,236 @@
 .search-container.active .btn-search {
     z-index: 1003;
 }
+
+// -----------------------------------------------------------------------------
+// 카테고리 오버레이 (Category Overlay)
+// -----------------------------------------------------------------------------
+.category-area {
+    position: relative;
+
+    // 카테고리 오버레이 본체
+    .category-overlay {
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        position: absolute;
+        top: rem(-16); // 버튼 하단 위치 (48px header + gap)
+        left: rem(-16);
+        width: rem(720); // 전체 너비
+        min-height: rem(720); // 높이
+        background-color: $white;
+        border: 1.5px solid $gray-700; // 외곽선
+        border-radius: rem(8);
+        z-index: 2000;
+        // box-shadow: 0 rem(4) rem(20) rgba(0, 0, 0, 0.15);
+        box-shadow: 0 rem(8) rem(8) 0 rgba(0, 0, 0, 0.08);
+
+        &.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        // 상단 헤더 (닫기 버튼 등)
+        .overlay-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: rem(16);
+
+            .btn-category-close {
+                display: flex;
+                align-items: center;
+                gap: rem(16);
+                font-size: rem(20);
+                font-weight: 600;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+
+                .icon-box {
+                    width: rem(48);
+                    height: rem(48);
+                    border-radius: rem(4);
+                    background-color: $gray-700;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: $white;
+                }
+
+                .icon-close-category {
+                    width: rem(24);
+                    height: rem(24);
+                }
+
+                .text {
+                    color: $gray-700;
+                }
+
+                &:hover {
+                    .text {
+                        color: $black;
+                    }
+                }
+            }
+        }
+
+        // 카테고리/브랜드 탭
+        .category-tabs {
+            display: flex;
+            align-items: center;
+            gap: rem(8);
+            padding: rem(16);
+            padding-top: 0;
+
+            .tab-btn {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: rem(48);
+                border-radius: rem(4);
+                border: none; // 테두리 없음
+                font-size: rem(16);
+                font-weight: 600;
+                cursor: pointer;
+                background-color: $gray-50;
+                color: $gray-700;
+                transition: all 0.2s;
+
+                &.active {
+                    background-color: $gray-700;
+                    color: $white;
+                }
+
+                &:hover {
+                    background-color: darken($gray-50, 5%);
+
+                    &.active {
+                        background-color: $gray-700; // active는 유지
+                    }
+                }
+            }
+        }
+
+        // 오버레이 바디 (좌측 메뉴 + 우측 컨텐츠)
+        .overlay-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            padding: rem(16);
+            gap: rem(32);
+            border-radius: 0 0 rem(8) rem(8);
+        }
+
+        // 좌측 사이드바
+        .category-sidebar {
+            width: rem(160);
+            background-color: $gray-50;
+            overflow-y: auto;
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            li {
+                padding: rem(16) rem(24);
+                font-size: rem(16);
+                font-weight: 500;
+                color: $gray-600;
+                cursor: pointer;
+                transition: all 0.2s;
+
+                &:hover,
+                &.active {
+                    background-color: $white;
+                    color: $gray-900;
+                    font-weight: 700;
+                }
+            }
+        }
+
+        // 우측 메인 컨텐츠
+        .category-main-content {
+            flex: 1;
+            // padding: rem(40);
+            overflow-y: auto;
+            background-color: $white;
+
+            .category-detail {
+                display: none;
+
+                &.active {
+                    display: block;
+                }
+
+                .detail-title {
+
+                    font-size: rem(16);
+                    font-weight: 600;
+                    color: $gray-700;
+                    margin-bottom: rem(10);
+
+                    a {
+                        display: flex;
+                        align-items: center;
+                        gap: rem(4);
+                        cursor: pointer;
+                        padding: rem(16) 0;
+
+                        &:hover {
+                            color: $gray-900;
+                            text-decoration: underline;
+                        }
+
+                        // @include btn-hover-effect;
+                    }
+                }
+
+                .detail-grid {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: rem(32) rem(24);
+
+                    .detail-item {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: rem(12);
+                        text-decoration: none;
+                        cursor: pointer;
+
+                        .item-img {
+                            width: rem(48);
+                            height: rem(48);
+                            object-fit: contain;
+                            border-radius: 50%;
+                            // background-color: $gray-50;
+                        }
+
+                        .item-name {
+                            font-size: rem(14);
+                            color: $gray-700;
+                            text-align: center;
+                            font-weight: 500;
+                        }
+
+                        &:hover .item-name {
+                            color: $gray-900;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 모달 (당월 누적 금액) - components/_modal.scss 로 이동됨

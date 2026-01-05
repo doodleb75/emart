@@ -32,25 +32,26 @@
             <!-- 메트릭 정보 -->
             <div class="header-right-group">
                 <!-- 이번 달 누적 구매액 -->
-                <div class="metric-item">
+                <!-- 이번 달 누적 구매액 -->
+                <a href="#" class="metric-item" data-bs-toggle="modal" data-bs-target="#monthPurchaseModal">
                     <span class="info-label mb-1">이번 달 누적 구매액</span>
                     <strong class="metric-value number-font">35,400</strong>
-                </div>
+                </a>
 
                 <!-- 오늘 주문 총액 -->
-                <div class="metric-item">
+                <a href="#" class="metric-item">
                     <span class="info-label mb-1">오늘 주문 총액</span>
                     <strong class="metric-value number-font">428,200</strong>
-                </div>
+                </a>
 
                 <!-- 배송 예정 금액 -->
-                <div class="metric-item">
+                <a href="#" class="metric-item">
                     <span class="info-label mb-1">배송 예정 금액</span>
                     <strong class="metric-value number-font">112,800</strong>
-                </div>
+                </a>
 
                 <!-- 사용 가능 포인트 -->
-                <div class="metric-item">
+                <a href="#" class="metric-item">
                     <span class="info-label label-with-icon">
                         <svg class="icon-muted-simple" width="16" height="16" viewBox="0 0 16 16" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -61,7 +62,7 @@
                         사용 가능 포인트
                     </span>
                     <strong class="metric-value number-font">215,300</strong>
-                </div>
+                </a>
             </div>
         </div>
     </div>
@@ -562,6 +563,161 @@
                     </div>
                     <span class="category-label">전체 카테고리</span>
                 </a>
+
+                <!-- 카테고리 오버레이 -->
+                <div class="category-overlay">
+                    <!-- 상단 헤더 -->
+                    <div class="overlay-header">
+                        <button type="button" class="btn-category-close">
+                            <span class="icon-box">
+                                <svg class="icon-close-category" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </span>
+                            <span class="text">카테고리 닫기</span>
+                        </button>
+                    </div>
+
+                    <!-- 카테고리/브랜드 탭 -->
+                    <div class="category-tabs">
+                        <button type="button" class="tab-btn active" data-target="cat">카테고리</button>
+                        <button type="button" class="tab-btn" data-target="brand">브랜드</button>
+                    </div>
+
+                    <!-- 오버레이 바디 -->
+                    <div class="overlay-body">
+                        <!-- 좌측 사이드바 (LNB) -->
+                        <div class="category-sidebar">
+                            <ul>
+                                <li class="active" data-target="cat-food">식품</li>
+                                <li data-target="cat-living">생활용품</li>
+                                <li data-target="cat-club">이클럽 차별화</li>
+                            </ul>
+                        </div>
+
+                        <!-- 우측 콘텐츠 영역 -->
+                        <div class="category-main-content">
+                            <!-- 식품 카테고리 상세 -->
+                            <div class="category-detail active" id="cat-food">
+                                <div class="detail-title">
+                                <a href="#" class="detail-title-link">
+                                    <span>식품 전체보기</span>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#444444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+                                </div>
+                                <div class="detail-grid">
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb01.png" alt="커피/차" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Coffee'">
+                                        <span class="item-name">커피・차</span>
+                                    </a>
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb02.png" alt="생수/음료" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Water'">
+                                        <span class="item-name">생수・음료・건강</span>
+                                    </a>
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb03.png" alt="라면" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Noodle'">
+                                        <span class="item-name">라면・통조림・상온 즉석</span>
+                                    </a>
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb04.png" alt="과자" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Snack'">
+                                        <span class="item-name">과자・씨리얼・초콜릿</span>
+                                    </a>
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb05.png" alt="조미료" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Sauce'">
+                                        <span class="item-name">조미료・장류</span>
+                                    </a>
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb06.png" alt="냉동" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Frozen'">
+                                        <span class="item-name">냉동・냉장・간편식</span>
+                                    </a>
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb07.png" alt="유제품" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Milk'">
+                                        <span class="item-name">유제품・아이스크림</span>
+                                    </a>
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb08.png" alt="과일" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Fruit'">
+                                        <span class="item-name">과일・채소</span>
+                                    </a>
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb09.png" alt="정육" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Meat'">
+                                        <span class="item-name">축산・수산・건해산</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- 생활용품 카테고리 상세 -->
+                            <div class="category-detail" id="cat-living">
+                                <div class="detail-title">
+                                <a href="#" class="detail-title-link">
+                                    <span>생활용품 전체보기</span>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#444444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+                                </div>
+                                <div class="detail-grid">
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb10.png" alt="화장지" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Tissue'">
+                                        <span class="item-name">화장지・티슈・위생용품</span>
+                                    </a>
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb11.png" alt="세제" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Detergent'">
+                                        <span class="item-name">세제・주방・욕실</span>
+                                    </a>
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb12.png" alt="헤어" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Body'">
+                                        <span class="item-name">헤어・바디・구강케어</span>
+                                    </a>
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb13.png" alt="일회용품" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Etc'">
+                                        <span class="item-name">일회용품・건전지・기타</span>
+                                    </a>
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb14.png" alt="속옷" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Underwear'">
+                                        <span class="item-name">속옷</span>
+                                    </a>
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb15.png" alt="분유" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Baby'">
+                                        <span class="item-name">분유</span>
+                                    </a>
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb16.png" alt="반려동물" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Pet'">
+                                        <span class="item-name">반려동물용품</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- 이클럽 차별화 상세 -->
+                            <div class="category-detail" id="cat-club">
+                                <div class="detail-title">
+                                <a href="#" class="detail-title-link">
+                                    <span>이클럽 차별화 전체보기</span>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#444444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+                                </div>
+                                <div class="detail-grid">
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb01.png" alt="단독" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Only'">
+                                        <span class="item-name">이클럽 단독</span>
+                                    </a>
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb02.png" alt="PB" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=PB'">
+                                        <span class="item-name">자체브랜드(PB)</span>
+                                    </a>
+                                    <a href="#" class="detail-item">
+                                        <img src="/assets/images/category/category-thumb03.png" alt="대용량" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Bulk'">
+                                        <span class="item-name">대용량 추천</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- GNB -->
@@ -610,3 +766,40 @@
     </nav>
 </header>
 <!-- 헤더 끝 -->
+
+<!-- 당월배송금액 모달 -->
+<div class="modal fade layer-popup" id="monthPurchaseModal" tabindex="-1" aria-labelledby="monthPurchaseModalLabel" aria-hidden="true" data-bs-backdrop="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="popup-content">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+  <path d="M11.6667 1.175L10.4917 0L5.83333 4.65833L1.175 0L0 1.175L4.65833 5.83333L0 10.4917L1.175 11.6667L5.83333 7.00833L10.4917 11.6667L11.6667 10.4917L7.00833 5.83333L11.6667 1.175Z" fill="#222222"/>
+</svg>
+                </button>
+            <div class="popup-header">
+                <h5 class="popup-title" id="monthPurchaseModalLabel">당월배송금액(세제외) 안내</h5>                
+            </div>
+            <div class="popup-body">
+                
+                    장려금은 세제외 금액을 기준으로 지급되오니 참고하시기 바랍니다.
+                </br>
+                
+                    세포함 당월배송금액은 마이페이지에서 확인하실 수 있습니다.
+                
+                </br>
+                    장려금 기준은 마이페이지에서 확인 가능합니다
+                
+            </div>
+            <div class="popup-footer">
+                <div class="btn-group-half">
+                    <div class="btn-area">
+                        <button type="button" class="btn-popup btn-gray" onclick="location.href='/pages/mypage.html'">마이페이지 이동</button>
+                    </div>
+                    <div class="btn-area">
+                        <button type="button" class="btn-popup btn-primary" data-bs-dismiss="modal">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

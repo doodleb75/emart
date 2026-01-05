@@ -445,7 +445,7 @@ body.mobile-body {
   padding-bottom: 1rem;
 }
 .offcanvas-bottom.user-info-offcanvas .offcanvas-body {
-  padding: 0 1rem 1rem;
+  padding: 0 1rem 4rem;
 }
 .offcanvas-bottom.user-info-offcanvas .offcanvas-handle {
   width: 5rem;
@@ -482,12 +482,12 @@ body.mobile-body {
   background-color: #FFAA00;
   color: #ffffff;
   height: 100%;
-  line-height: 2;
+  line-height: 1.75;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  margin-right: 1rem;
+  margin-right: 0.625rem;
 }
 .offcanvas-bottom.user-info-offcanvas .user-summary .user-detail-text {
   font-size: 0.875rem;
@@ -498,57 +498,41 @@ body.mobile-body {
   color: #cccccc;
 }
 .offcanvas-bottom.user-info-offcanvas .point-progress-section {
-  height: 2rem;
-  padding: 1.25rem 0;
-  margin-bottom: 0.625rem;
-  border-bottom: 0.0625rem solid #eeeeee;
+  padding: 1.25rem 0 0.625rem;
 }
-.offcanvas-bottom.user-info-offcanvas .point-progress-section .progress-header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+.offcanvas-bottom.user-info-offcanvas .point-progress-section .point-progress-track {
+  width: 100%;
+  height: 2.5rem;
+  background-color: #f4f4f4;
+  border-radius: 6.25rem;
+  position: relative;
+  overflow: hidden;
+  background-image: radial-gradient(circle, #ffffff 0.1875rem, transparent 0.1875rem);
+  background-size: 1.25rem 100%;
+  background-position: center;
+  background-repeat: repeat-x;
 }
-.offcanvas-bottom.user-info-offcanvas .point-progress-section .progress-header .icon-p {
-  width: 1.75rem;
-  height: 1.75rem;
-  background-color: #FFBB33;
-  color: #ffffff;
-  border-radius: 50%;
+.offcanvas-bottom.user-info-offcanvas .point-progress-section .point-progress-fill {
+  height: 100%;
+  background-color: #ffbb33;
+  border-radius: 6.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.875rem;
+  padding-left: 0.375rem;
+  min-width: 2.5rem;
+  box-sizing: border-box;
+  transition: width 0.5s ease-out;
 }
-.offcanvas-bottom.user-info-offcanvas .point-progress-section .progress-header .progress-bar-placeholder {
-  flex: 1;
-  height: 0.75rem;
+.offcanvas-bottom.user-info-offcanvas .point-progress-section .point-progress-fill .icon-p {
+  width: 1.75rem;
+  height: 1.75rem;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9375rem;
   display: flex;
   align-items: center;
-  gap: 0.375rem;
-  padding: 0 0.25rem;
-  background-color: #f4f4f4;
-  border-radius: 1.25rem;
-  overflow: hidden;
-}
-.offcanvas-bottom.user-info-offcanvas .point-progress-section .progress-header .progress-bar-placeholder::before {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 0.25rem;
-  background-image: radial-gradient(#cccccc 0.125rem, transparent 0.125rem);
-  background-size: 0.75rem 100%;
-  background-repeat: repeat-x;
-}
-.offcanvas-bottom.user-info-offcanvas .point-progress-section .progress-header .progress-bar-placeholder .progress-fill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 0;
-  background-color: #FFBB33;
-  border-radius: 1.25rem;
-  z-index: 1;
+  justify-content: center;
 }
 .offcanvas-bottom.user-info-offcanvas .progress-info {
   display: flex;
@@ -564,7 +548,7 @@ body.mobile-body {
 .offcanvas-bottom.user-info-offcanvas .user-stat-list {
   font-size: 0.875rem;
   line-height: 150%;
-  padding: 1rem 0;
+  padding: 0rem 0;
 }
 .offcanvas-bottom.user-info-offcanvas .user-stat-list .stat-item {
   display: flex;
@@ -919,6 +903,70 @@ body.mobile-body {
 }
 .product-card .bottom-info .info-row .text-highlight {
   color: #FF5447;
+}
+
+.custom-toast-container {
+  position: fixed;
+  z-index: 1060;
+  max-width: 22.5rem;
+  width: auto;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 1.5rem;
+}
+.custom-toast-container.position-absolute {
+  position: absolute;
+  bottom: auto;
+  left: auto;
+  transform: none;
+}
+
+.custom-toast {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transform: translateY(0.625rem);
+  background-color: #222222;
+  border: none;
+}
+.custom-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.custom-toast .toast-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+.custom-toast .toast-icon path {
+  fill: currentColor;
+}
+.custom-toast.toast-success {
+  background-color: #00b87a;
+}
+.custom-toast.toast-danger {
+  background-color: #e03e3e;
+}
+.custom-toast.toast-warning {
+  background-color: #ffaa00;
+  color: #222222;
+}
+.custom-toast.toast-info {
+  background-color: #1f95ff;
 }
 
 .mobile-header {
@@ -2237,6 +2285,9 @@ body.mobile-body {
   border-color: #222222;
   font-weight: 700;
 }
+.md-recommendation .btn-more svg {
+  transform: rotate(-90deg);
+}
 
 .brand-pavilion .brand-story-list {
   display: flex;
@@ -2386,3 +2437,5 @@ body.mobile-body {
 .popcorn-banner-wrapper .slider-controller .page-count .total {
   color: #aaaaaa;
 }
+
+/*# sourceMappingURL=mobile.css.map */
