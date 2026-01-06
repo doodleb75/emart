@@ -2018,3 +2018,61 @@ document.addEventListener('DOMContentLoaded', () => {
     }, true);
 
 });
+
+// ==========================================
+// 모달 독점 표시 로직 (Exclusive Modal Display)
+// ==========================================
+document.addEventListener('show.bs.modal', (event) => {
+    const targetModal = event.target;
+    // 현재 열려있는 다른 모달 닫기
+    document.querySelectorAll('.modal.show').forEach(modal => {
+        if (modal !== targetModal) {
+            // getOrCreateInstance를 사용하여 인스턴스가 없으면 생성 후 제어
+            const instance = bootstrap.Modal.getOrCreateInstance(modal);
+            instance.hide();
+        }
+    });
+});
+
+document.addEventListener('shown.bs.modal', () => {
+    // 모달이 완전히 떴을 때 Body 스타일 강제 초기화 (Prevent layout shift/gap)
+    document.body.style.overflow = 'auto';
+    document.body.style.paddingRight = '0px';
+});
+
+// ==========================================
+// 최소 주문 금액 모달 로직 (Minimum Order Modal)
+// ==========================================
+document.addEventListener('headerLoaded', () => {
+    const trigger = document.getElementById('minOrderTrigger');
+    const modalEl = document.getElementById('minOrderModal');
+
+    if (trigger && modalEl) {
+        const modal = new bootstrap.Modal(modalEl, {
+            backdrop: false,
+            keyboard: true
+        });
+
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // 위치 설정 (Positioning)
+            const dialog = modalEl.querySelector('.modal-dialog');
+            if (dialog) {
+                const rect = trigger.getBoundingClientRect();
+
+                dialog.style.margin = '0';
+                dialog.style.position = 'fixed';
+                dialog.style.top = `${rect.bottom + 12}px`; // 12px gap
+
+                // 중앙 정렬 시도 (Center align to trigger)
+                const leftPos = rect.left + (rect.width / 2);
+                dialog.style.left = `${leftPos}px`;
+                dialog.style.transform = 'translateX(-50%)';
+                dialog.style.zIndex = '1060';
+            }
+
+            modal.show();
+        });
+    }
+});

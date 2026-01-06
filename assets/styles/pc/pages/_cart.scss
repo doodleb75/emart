@@ -78,7 +78,7 @@
         justify-content: space-between;
         align-items: center;
         padding-bottom: rem(12);
-        border-bottom: 1px solid $black; // 디자인 굵은 라인 (Black)
+        border-bottom: 1.5px solid $black; // 디자인 굵은 라인 (Black)
         margin-bottom: rem(0);
 
 
@@ -121,6 +121,44 @@
             @include btn-hover-effect;
         }
     }
+
+    // cart empty assign
+    &.empty-cart {
+        .page-title {
+            .count {
+                color: $gray-300;
+            }
+        }
+
+        .category-tabs {
+            .count {
+                color: $gray-300 !important;
+            }
+        }
+
+        .cart-sidebar {
+
+            .sel-count,
+            .price-val,
+            .sel-count-sm {
+                color: $gray-300 !important;
+            }
+
+            .price-row {
+                &.total {
+                    span {
+                        color: $gray-700 !important;
+                    }
+
+                    .total-val {
+                        color: $gray-300 !important;
+                    }
+                }
+
+            }
+        }
+    }
+
 }
 
 // 글로벌 체크박스 스타일 (control-bar 외부로 이동)
@@ -230,7 +268,7 @@
 
     .section-title-group {
         padding-bottom: rem(10);
-        border-bottom: 1px solid $gray-100;
+        border-bottom: 1.5px solid $gray-100;
     }
 
     // 섹션 헤더 (제목 + 체크박스)
@@ -247,6 +285,41 @@
             color: $black;
         }
     }
+
+    .qty-box {
+        border: 0 !important;
+        background: $gray-20;
+    }
+}
+
+.cart-section.empty-list {
+    display: flex;
+    padding: rem(46) rem(24);
+    padding-top: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: rem(16);
+    flex: 1 0 0;
+    align-self: stretch;
+
+    border-bottom: 1.5px solid $gray-100 !important;
+
+    .empty-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: rem(16);
+
+        svg.cart-gray {
+            color: $gray-200;
+        }
+
+        .empty-list-text {
+            font-size: rem(14);
+            color: $gray-300;
+        }
+    }
 }
 
 .cart-item {
@@ -255,7 +328,7 @@
     padding: rem(24) 0;
 
     &:not(:last-of-type) {
-        border-bottom: 1px solid $gray-100;
+        border-bottom: 1.5px solid $gray-100;
     }
 
     >div:not(:first-of-type) {
@@ -569,7 +642,7 @@
                 &.first-row {
                     margin-bottom: rem(16);
                     padding-bottom: rem(20);
-                    border-bottom: 1px solid $gray-100;
+                    border-bottom: 1.5px solid $gray-100;
                     font-size: rem(20);
                     font-weight: 700;
 
@@ -593,7 +666,7 @@
                 &.border-top {
                     margin-top: rem(20);
                     padding-top: rem(20);
-                    border-top: 1px solid $gray-100;
+                    border-top: 1.5px solid $gray-100;
                 }
 
                 // 최종 결제 금액

@@ -734,7 +734,7 @@
 
             <!-- 주문 정보 -->
             <div class="order-info-area">
-                <span class="min-order-text">
+                <span class="min-order-text" id="minOrderTrigger" style="cursor: pointer;">
                     <svg class="icon-muted-simple" width="16" height="16" viewBox="0 0 16 16" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -768,7 +768,7 @@
 <!-- 헤더 끝 -->
 
 <!-- 당월배송금액 모달 -->
-<div class="modal fade layer-popup" id="monthPurchaseModal" tabindex="-1" aria-labelledby="monthPurchaseModalLabel" aria-hidden="true" data-bs-backdrop="false">
+<div class="modal fade layer-popup" id="monthPurchaseModal" tabindex="-1" aria-labelledby="monthPurchaseModalLabel" aria-hidden="true" data-bs-backdrop="false" data-bs-focus="false">
     <div class="modal-dialog modal-dialog-centered">
         <div class="popup-content">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
@@ -798,6 +798,33 @@
                     <div class="btn-area">
                         <button type="button" class="btn-popup btn-primary" data-bs-dismiss="modal">확인</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 최소 주문 금액 모달 -->
+<div class="modal fade layer-popup" id="minOrderModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="false">
+    <div class="modal-dialog">
+        <div class="popup-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M11.6667 1.175L10.4917 0L5.83333 4.65833L1.175 0L0 1.175L4.65833 5.83333L0 10.4917L1.175 11.6667L5.83333 7.00833L10.4917 11.6667L11.6667 10.4917L7.00833 5.83333L11.6667 1.175Z" fill="#222222"/>
+                </svg>
+            </button>
+            <div class="popup-header">
+                <h5 class="popup-title">최소 주문 금액 안내</h5>                
+            </div>
+            <div class="popup-body">
+                상온 30만원, 저온 20만원 이상 주문하셔야 합니다. </br>
+상온 또는 저온 각 기준만으로 주문 가능합니다. </br>
+(상온 30만원 기준 주문, 또는 저온 20만원 기준 주문)
+            </div>
+            <div class="popup-footer">
+                <div class="btn-area">
+                    <button type="button" class="btn-popup btn-primary" data-bs-dismiss="modal">확인</button>
                 </div>
             </div>
         </div>

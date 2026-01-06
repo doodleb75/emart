@@ -219,6 +219,7 @@
     position: relative;
     margin: 0;
     transition: all 0.2s;
+    z-index: 1100;
 
     .search-box {
         position: relative;
@@ -253,6 +254,7 @@
         background: transparent;
         padding: rem(8);
         cursor: pointer;
+        z-index: 1005;
         color: $gray-700;
         display: flex;
         align-items: center;
@@ -312,7 +314,7 @@
     &.active {
         .search-input {
             border: 2px solid $primary-gold;
-            border-bottom: 1px solid $white; // 아래 경계선 삭제 효과
+            border-bottom: 1.5px solid $white; // 아래 경계선 삭제 효과
             border-bottom: none;
             padding-bottom: 2px;
             border-radius: rem(4) rem(4) 0 0;
@@ -515,7 +517,7 @@
         padding: rem(24);
         padding-bottom: 0;
         min-height: rem(300);
-        border-top: 1px solid $gray-100;
+        border-top: 1.5px solid $gray-100;
     }
 
     .search-column {
@@ -725,7 +727,7 @@
     }
 
     .search-footer {
-        border-top: 1px solid $gray-100;
+        border-top: 1.5px solid $gray-100;
         padding: rem(12) rem(24);
         text-align: right;
 
@@ -755,7 +757,7 @@
         min-height: rem(380);
         width: 100%;
         box-sizing: border-box;
-        border-top: 1px solid $gray-100;
+        border-top: 1.5px solid $gray-100;
 
         .autocomplete-column {
             flex: 1;

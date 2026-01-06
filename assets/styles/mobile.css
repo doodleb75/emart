@@ -320,7 +320,7 @@ main {
   width: 100%;
   padding: 0.75rem 0;
   border: none;
-  border-top: 1px solid #eeeeee;
+  border-top: 1.5px solid #eeeeee;
   background: #ffffff;
   color: #444444;
   cursor: pointer;
@@ -2019,7 +2019,7 @@ body.mobile-body {
   padding-bottom: 0;
 }
 .weekly-ranking .ranking-item .ranking-header {
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1.5px solid #eeeeee;
 }
 .weekly-ranking .ranking-item.active .ranking-header {
   border-bottom: none;

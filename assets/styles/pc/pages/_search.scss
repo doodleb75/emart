@@ -210,7 +210,7 @@
             margin-top: rem(10);
             padding-top: rem(10);
             padding-bottom: rem(24);
-            border-bottom: 1px solid $gray-100;
+            border-bottom: 1.5px solid $gray-100;
 
             .left-col {
                 display: flex;
@@ -604,13 +604,25 @@
 
                     *:disabled,
                     .qty-box {
+                        cursor: default;
                         background: $gray-50;
+
+                        &.btn-icon {
+                            &:hover {
+                                border-color: $gray-200;
+                            }
+                        }
                     }
 
                     input,
                     svg:not(.icon-heart) {
 
                         color: $gray-300;
+                        pointer-events: none;
+
+                        &:focus {
+                            outline: none;
+                        }
                     }
                 }
             }
@@ -625,7 +637,7 @@
         display: flex !important;
         flex-direction: column !important;
         gap: 0 !important;
-        border-top: 1px solid $black; // 리스트 보기 상단 테두리
+        border-top: 1.5px solid $black; // 리스트 보기 상단 테두리
 
         .product-card {
             display: flex !important;
@@ -633,7 +645,7 @@
             align-items: center; // 수직 중앙 정렬
             width: 100%;
             padding: rem(20) rem(10);
-            border-bottom: 1px solid $gray-100;
+            border-bottom: 1.5px solid $gray-100;
             margin: 0;
             height: auto !important; // 고정 높이 초기화
 
@@ -676,7 +688,7 @@
                 }
 
                 .status-overlay {
-                    display: block !important; // 오버레이 텍스트 표시
+                    // display: block !important; // 오버레이 텍스트 표시
                     font-size: rem(14) !important; // 리스트 뷰 썸네일용 작은 폰트
                     white-space: nowrap;
                     width: 100%;
@@ -686,6 +698,41 @@
                 // 배송 태그 숨김 (요청사항)
                 .delivery-tags {
                     display: none !important;
+                }
+
+                .status-overlay {
+                    display: flex; // "품절" 등의 텍스트 표시
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    gap: rem(16);
+                    position: absolute;
+                    bottom: -16%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 15;
+                    width: 76%;
+                    color: $white;
+                    font-size: rem(16);
+                    font-weight: 600;
+
+                    .btn-substitute {
+                        flex: 1;
+                        min-height: rem(38);
+                        width: 100%;
+                        background-color: $white;
+                        border: 1.5px solid $gray-700;
+                        border-radius: rem(4);
+                        font-size: rem(16);
+                        color: $gray-700;
+                        cursor: pointer;
+                        font-weight: 600;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        @include btn-hover-effect;
+                    }
                 }
             }
 

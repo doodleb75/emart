@@ -1,11 +1,19 @@
 // 모달 (레이어 팝업) 공통 스타일
-// Bootstrap Modal 구조(modal > modal-dialog > ...)를 기반으로 하되
-// 내용은 커스텀 클래스(.popup-*)를 사용하여 스타일링
+// Bootstrap Modal 구조(modal > modal-dialog > ...)를 기반 커스텀 스타일링
 
 // custom width 설정
 #monthPurchaseModal {
+    pointer-events: none;
+
     .modal-dialog {
         max-width: rem(480);
+        pointer-events: auto;
+    }
+}
+
+#minOrderModal {
+    .modal-dialog {
+        min-width: rem(400);
     }
 }
 
@@ -80,7 +88,7 @@
     .popup-body {
         position: relative;
         flex: 1 1 auto;
-        padding: 0 rem(24) rem(32);
+        padding: 0 rem(24) rem(24);
         font-size: rem(14);
         line-height: 150%;
         color: $gray-600;
@@ -114,11 +122,11 @@
             display: flex;
             width: 100%;
             gap: rem(8);
+        }
 
-            .btn-area {
-                flex: 1;
-                width: 50%;
-            }
+        .btn-area {
+            display: flex;
+            flex: 1;
         }
 
         .btn-popup {
@@ -131,6 +139,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex: 1;
             cursor: pointer;
 
             &.btn-gray {
@@ -145,4 +154,10 @@
             }
         }
     }
+}
+
+// 부트스트랩 모달 오픈 시 강제 padding 및 overflow 방지
+body.modal-open {
+    overflow: auto !important;
+    padding-right: 0 !important;
 }

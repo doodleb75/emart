@@ -42,9 +42,20 @@
 // 섹션 래퍼 (전체 너비 및 하단 테두리)
 .section-wrapper {
     width: 100%;
-    border-bottom: 1px solid $gray-50;
+    border-bottom: 1.5px solid $gray-50;
     margin-bottom: rem(80);
     padding-bottom: rem(80);
+
+    &.brand-club-zone {
+        margin-bottom: 0;
+        border-bottom: 0;
+    }
+
+    &.notice {
+        border-bottom: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
 }
 
 // 섹션 컨테이너 (중앙 정렬)
@@ -146,7 +157,6 @@
 }
 
 // Pagination Container
-// Pagination Container
 .pagination-container {
     display: flex;
     justify-content: center;
@@ -161,7 +171,7 @@
     margin-top: rem(20);
 
     .ranking-item {
-        border-bottom: 1px solid $gray-100;
+        border-bottom: 1.5px solid $gray-100;
 
         .ranking-header {
             padding: rem(24) rem(10); // 이미지 참조 간격
@@ -447,6 +457,94 @@
 
         .brand-card:nth-child(n+5) {
             display: none; // 5번째 이후 카드 기본 숨김 (Hide cards after 4th by default)
+        }
+    }
+}
+
+// 공지사항 (Notice) 섹션
+.notice {
+    * {
+        line-height: 150%;
+    }
+
+    .notice-board-wrap {
+        display: flex;
+        overflow: hidden;
+        // margin-bottom: rem(20);
+
+        .notice-item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            // gap: rem(20);
+            padding: rem(13) 0;
+
+            &:first-child {
+                padding-right: rem(40);
+                margin-right: rem(40);
+            }
+
+            .notice-cate {
+                display: flex;
+                align-items: center;
+                gap: rem(8);
+                flex-shrink: 0;
+                margin-right: rem(16);
+
+                span {
+                    font-family: 'Pretendard', sans-serif;
+                    font-size: rem(16);
+                    font-weight: 700;
+                    color: $gray-700;
+                    line-height: 1.5;
+                }
+
+                svg {
+                    path {
+                        fill: $gray-700; // #333333
+                    }
+                }
+            }
+
+            .notice-content {
+                flex: .85;
+                display: flex;
+                align-items: center;
+                min-width: 0;
+
+                .subject {
+                    flex: 1;
+                    font-size: rem(14);
+                    color: $gray-300;
+                    text-decoration: none;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin-right: rem(12);
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+
+                .date {
+                    flex-shrink: 0;
+                    font-size: rem(14);
+                    color: $gray-300;
+                    position: relative;
+                    padding-left: rem(12);
+
+                    &::before {
+                        content: "•";
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        color: $gray-300;
+                        font-size: rem(10);
+                    }
+                }
+            }
         }
     }
 }

@@ -51,6 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     cb.removeAttribute('checked');
                 });
 
+                // 수량 조절 버튼 재초기화
+                clone.querySelectorAll('.qty-box').forEach(box => {
+                    delete box.dataset.initialized;
+                });
+
                 // 수량 초기화
                 const qtyInput = clone.querySelector('.qty-box input');
                 if (qtyInput) qtyInput.value = 0;
@@ -111,6 +116,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // 커스텀 체크박스 재초기화 (Reset Custom Checkbox)
         clone.querySelectorAll('custom-checkbox').forEach(cb => {
             cb.innerHTML = '';
+        });
+
+        // 수량 조절 버튼 재초기화
+        clone.querySelectorAll('.qty-box').forEach(box => {
+            delete box.dataset.initialized;
         });
 
         // 자식 요소 섞기 (Shuffle Children)
