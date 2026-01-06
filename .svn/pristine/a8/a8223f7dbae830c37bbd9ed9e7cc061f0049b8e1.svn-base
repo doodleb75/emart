@@ -1,0 +1,102 @@
+// _variables.scss
+
+// 1. 색상 시스템 변수 정의
+// -----------------------------------------------------------------------------
+$white: #ffffff;
+$black: #222222;
+
+// 그레이 스케일
+$gray-20: #FAFAFA;
+$gray-50: #f4f4f4;
+$gray-100: #eeeeee;
+$gray-200: #cccccc;
+$gray-300: #aaaaaa;
+$gray-500: #999999;
+$gray-600: #888888;
+$gray-700: #444444;
+$gray-900: #222222;
+
+// 브랜드 색상
+$primary-gold: #ffbb33;
+$primary-100: #ffaa00;
+$primary-50: #fddb96;
+$primary-25: #fbeac8;
+
+$accent-base: #ff5447;
+$accent-100: #b81f14;
+$accent-75: #FF5447;
+$accent-50: #fcb7b3;
+$accent-25: #fae9e8;
+
+$secondary-bg: #ffffe0;
+$secondary-100: #e9d10c;
+$secondary-75: #ffe400;
+$secondary-50: #fdef7d;
+
+// 시스템 색상
+$system-info-100: #146BB8;
+$system-info-75: #1f95ff;
+$system-info-50: #A2D2FC;
+$system-info-25: #E4F0FA;
+$system-info: #1f95ff;
+
+
+$system-success: #00b87a;
+$system-danger: #e03e3e;
+$system-warning: #ffaa00;
+$secondary: #6c757d;
+
+// 시맨틱 별칭 및 하위 호환
+$primary-text: $black;
+$secondary-text: $gray-300;
+$gray-400: $gray-200;
+$gray-800: #333333;
+$gray-10: #fafafa;
+$black-pure: #000000;
+
+// 배지 컬러
+$badge-red-bg: #FAEBDB;
+$badge-red-text: $accent-base;
+$badge-blue-bg: #D8ECFD;
+$badge-blue-text: #1876D3;
+
+
+// 2. 타이포그래피 설정
+// -----------------------------------------------------------------------------
+$font-family-base: 'Pretendard Variable', sans-serif;
+$font-family-number: 'Roboto', sans-serif;
+
+// 기본 폰트 사이즈 (rem 기준이 되는 16px)
+$font-size-root: 16px;
+
+// 시맨틱 폰트 사이즈
+$font-size-xs: rem(11);
+$font-size-sm: rem(13);
+$font-size-base: rem(14);
+$font-size-md: rem(16);
+$font-size-lg: rem(20);
+$font-size-xl: rem(24);
+$font-size-xxl: rem(28);
+
+// 3. 여백 & 레이아웃 (Spacing & Layout)
+// -----------------------------------------------------------------------------
+$space-xs: rem(4);
+$space-sm: rem(8);
+$space-md: rem(16);
+$space-lg: rem(24);
+$space-xl: rem(32);
+$space-xxl: rem(48);
+
+$header-height-pc: rem(192); // Top(32*2+48) + Main(24*2+48) + Nav(24*2+?)... 정확한 계산 필요
+$header-height-mobile: rem(136); // Header top(48) + GNB(48) + Padding(16+8+16)...
+
+$layout-container-width: rem(1360);
+$layout-mobile-padding: rem(16);
+
+$breakpoint-mobile: 768px;
+
+
+// 4. 애니메이션 (Transitions)
+// -----------------------------------------------------------------------------
+$transition-base: all 0.2s ease-in-out;
+$transition-fast: all 0.1s ease-in-out;

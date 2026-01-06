@@ -1,0 +1,19 @@
+0000000000000000000000000000000000000000 103131f7533900746a6a6eaf61568cf50335aa2b 배대현/에브리데이(PC)/tas02o <tas02o@ssg.global> 1766031152 +0900	clone: from https://github.com/doodleb75/emart.git
+103131f7533900746a6a6eaf61568cf50335aa2b aea4e333f980555e0e7c9ede161821f94ea277be bdh <torouso@daum.net> 1766133316 +0900	commit: 1. 폴더구조변경
+aea4e333f980555e0e7c9ede161821f94ea277be 7e3537608d29a555cce359447b298828c216c70f bdh <torouso@daum.net> 1766454848 +0900	commit: index
+7e3537608d29a555cce359447b298828c216c70f ea7457a4b7bc8d24f213fc79481ddfad65d84489 bdh <torouso@daum.net> 1766480149 +0900	commit: 장바구니
+ea7457a4b7bc8d24f213fc79481ddfad65d84489 61c9ca4ff1cb090ab39948d69eb7eba965aa9095 bdh <torouso@daum.net> 1766564919 +0900	commit: 1. 공통/ 메인 / 장바구니
+61c9ca4ff1cb090ab39948d69eb7eba965aa9095 898719b3ab780e87e570a78da77e483f679fe9f4 bdh <torouso@daum.net> 1766565628 +0900	commit: 1. 스타일 수정
+898719b3ab780e87e570a78da77e483f679fe9f4 529e4a920ad0a5e8dccf009f3da3d700d71b052a bdh <torouso@daum.net> 1766737524 +0900	commit: 1. 검색결과 페이지
+529e4a920ad0a5e8dccf009f3da3d700d71b052a eae59caaba14375790f14fed478a074fedb50b9d bdh <torouso@daum.net> 1766738125 +0900	commit: - custom-checkbox 공통 스타일 마크업 선택
+eae59caaba14375790f14fed478a074fedb50b9d d72afe4f2c2ae33da54cf400ac84c0e6878a4097 bdh <torouso@daum.net> 1767084020 +0900	commit: 1. 모바일 메인
+d72afe4f2c2ae33da54cf400ac84c0e6878a4097 6b001ea3ffe5b25acecb4364a825babf914d6849 bdh <torouso@daum.net> 1767161585 +0900	commit: 1. 모바일 메인 수정
+6b001ea3ffe5b25acecb4364a825babf914d6849 936e960521e451e71a9340e7ef199202b02ddd85 bdh <torouso@daum.net> 1767309807 +0900	commit: 1. 20260102- 작업 시작전
+936e960521e451e71a9340e7ef199202b02ddd85 936e960521e451e71a9340e7ef199202b02ddd85 bdh <torouso@daum.net> 1767310348 +0900	checkout: moving from main to feature/scss-refactor
+936e960521e451e71a9340e7ef199202b02ddd85 91bd51582189ce93928ffb40c2d7e2bca5be8946 bdh <torouso@daum.net> 1767329823 +0900	commit: feat: Initialize core UI structure, styling, and interactive features including navigation and ranking display.
+91bd51582189ce93928ffb40c2d7e2bca5be8946 936e960521e451e71a9340e7ef199202b02ddd85 bdh <torouso@daum.net> 1767329846 +0900	reset: moving to HEAD~
+936e960521e451e71a9340e7ef199202b02ddd85 40a3b34c95a00406f2d94f9531d1d8a1d30a6429 bdh <torouso@daum.net> 1767329970 +0900	commit: feat: Initialize core UI structure, styling, and interactive features including navigation and ranking display.
+40a3b34c95a00406f2d94f9531d1d8a1d30a6429 936e960521e451e71a9340e7ef199202b02ddd85 bdh <torouso@daum.net> 1767329986 +0900	reset: moving to HEAD~
+936e960521e451e71a9340e7ef199202b02ddd85 e962f7dd1e58e7dbcaac34200c5caefeb0a91136 bdh <torouso@daum.net> 1767330122 +0900	commit: feat: Initialize core UI structure, styling, and interactive features including navigation and ranking display.
+e962f7dd1e58e7dbcaac34200c5caefeb0a91136 0017e60f86fef7b4cfc6f319d1a54e4b6e860a66 bdh <torouso@daum.net> 1767584737 +0900	commit: ### 20260105 - 오전 작업 ###
+0017e60f86fef7b4cfc6f319d1a54e4b6e860a66 a06016a5cd663f24d4fd6400f069eb4778f25f5b bdh <torouso@daum.net> 1767602516 +0900	commit: ### 오주 작업 : 20260105 ###

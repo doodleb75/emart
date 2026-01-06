@@ -1,158 +1,211 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const productGrid = document.querySelector('.product-grid-4.search-result-grid');
+    const grid0 = document.getElementById('md-grid-0');
+    if (!grid0) return;
+
     const tabItems = document.querySelectorAll('.tab-menu .tab-item');
-    const itemsPerPageTrigger = document.getElementById('itemsPerPageTrigger');
     const itemsPerPageOptions = document.querySelectorAll('.dropdown-options li');
-    const dropdownWrapper = document.querySelector('.dropdown-wrapper');
     const totalCountEl = document.querySelector('.total-count-row .count');
     const searchSelectAll = document.getElementById('searchSelectAll');
 
-    if (!productGrid) return;
+    // 그리드 컨테이너 설정 (Grid Container)
+    const gridParent = grid0.parentNode;
+    const grids = [grid0];
+    const tabCount = tabItems.length; // 탭 개수 (4개)
 
-    // 탭 선택 상태 관리
-    const tabStates = {};
-    let activeTabId = '0'; // 초기 활성 탭
+    // 상태 관리 (State)
+    let currentLimit = 20;
+    let activeTabId = '0';
+    const tabCheckStates = {}; // 탭별 체크박스 상태
 
-    // 초기 템플릿 저장
-    // 원본 카드 요소 복사
-    const originalCards = Array.from(productGrid.querySelectorAll('.product-card'));
-    let currentLimit = 20; // 페이지당 표시 수
+    // UI에서 초기 제한 설정 (Initialize Limit)
+    const activeOption = document.querySelector('.dropdown-options li.active');
+    if (activeOption) {
+        currentLimit = parseInt(activeOption.dataset.value || '20', 10);
+    }
 
-    // 난수 생성 함수
-    const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-
-
-    // 상품 그리드 렌더링
-    const renderGrid = (limit) => {
-        productGrid.innerHTML = ''; // 목록 초기화
-
-        // 현재 탭 전체 선택 상태 확인
-        const isTabAllSelected = tabStates[activeTabId] || false;
-
-        // 전체 선택 UI 갱신
-        if (searchSelectAll) {
-            searchSelectAll.checked = isTabAllSelected;
+    // 배열 섞기 (Shuffle Helper)
+    const shuffle = (array) => {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
         }
+        return array;
+    };
 
-        const newCards = [];
+    // 아이템 늘리기 (Increase Items for testing)
+    const increaseItems = () => {
+        const originalCards = Array.from(grid0.children);
+        if (originalCards.length === 0) return;
 
-        // 상품 카드 생성
-        for (let i = 0; i < limit; i++) {
-            // 랜덤 상품 템플릿 선택
-            const template = originalCards[getRandomInt(0, originalCards.length - 1)];
-            const clone = template.cloneNode(true);
+        const targetCount = 60; // 목표 개수
+        let currentCount = originalCards.length;
 
-            // 초기화 상태 리셋 (cloneNode는 이벤트를 복사하지 않으므로 dataset 초기화 필요)
-            const qtyBoxes = clone.querySelectorAll('.qty-box');
-            qtyBoxes.forEach(box => {
-                delete box.dataset.initialized;
-                const input = box.querySelector('input');
-                if (input) input.value = 0; // 수량 초기화
-            });
+        while (currentCount < targetCount) {
+            originalCards.forEach(card => {
+                if (currentCount >= targetCount) return;
+                const clone = card.cloneNode(true);
 
-            // 체크박스 초기화 및 상태 적용
-            const checkboxes = clone.querySelectorAll('custom-checkbox');
-            checkboxes.forEach(cb => {
-                cb.innerHTML = '';
-                // 탭별 체크 상태 적용
-                if (isTabAllSelected) {
-                    cb.setAttribute('checked', '');
-                    cb.checked = true;
-                } else {
+                // 체크박스 초기화
+                clone.querySelectorAll('custom-checkbox').forEach(cb => {
+                    cb.innerHTML = '';
                     cb.removeAttribute('checked');
-                    cb.checked = false;
-                }
-            });
-
-            newCards.push(clone);
-        }
-
-        // DOM 요소 추가
-        newCards.forEach(card => productGrid.appendChild(card));
-
-        // 수량 박스 이벤트 등록
-        if (typeof initQuantityControl === 'function') {
-            initQuantityControl(productGrid);
-        }
-
-        // 총 상품 수 갱신
-        if (totalCountEl) {
-            totalCountEl.textContent = limit;
-        }
-
-        // 개별 체크박스 이벤트 등록
-        if (searchSelectAll) {
-            const newItems = productGrid.querySelectorAll('.item-check');
-            newItems.forEach(cb => {
-                cb.addEventListener('change', () => {
-                    // 전체 선택 상태 재계산
-                    const allChecked = Array.from(newItems).every(c => c.checked);
-                    searchSelectAll.checked = allChecked;
-
-                    // 선택 상태 저장
-                    tabStates[activeTabId] = allChecked;
                 });
+
+                // 수량 초기화
+                const qtyInput = clone.querySelector('.qty-box input');
+                if (qtyInput) qtyInput.value = 0;
+
+                grid0.appendChild(clone);
+                currentCount++;
             });
         }
     };
 
-    // 탭 전환 이벤트
+    // 초기 아이템 증식 실행
+    increaseItems();
+
+    // 표시 아이템 수 및 총 개수 업데이트 (Update Visibility)
+    const updateVisibility = () => {
+        // 모든 그리드에 대해 가시성 업데이트 (탭 전환 시 상태 유지 위해)
+        grids.forEach(grid => {
+            const cards = Array.from(grid.children);
+            cards.forEach((card, index) => {
+                if (index < currentLimit) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        if (totalCountEl) {
+            totalCountEl.textContent = currentLimit;
+        }
+    };
+
+    // 그리드별 체크박스 이벤트 연결 (Attach Checkbox Events)
+    const attachCheckboxEvents = (grid, tabId) => {
+        const checks = grid.querySelectorAll('.item-check');
+        checks.forEach(check => {
+            check.addEventListener('change', () => {
+                // 현재 탭인 경우 전체 선택 상태 동기화
+                if (activeTabId === tabId && searchSelectAll) {
+                    const allChecked = Array.from(checks).every(c => c.checked);
+                    searchSelectAll.checked = allChecked;
+                    tabCheckStates[tabId] = allChecked;
+                }
+            });
+        });
+    };
+
+    // 1. 그리드 복제 생성 (Create Duplicated Grids)
+    // 0번(기본)은 이미 존재하므로 1번부터 생성
+    const paginationContainer = document.querySelector('.pagination-container');
+
+    for (let i = 1; i < tabCount; i++) {
+        const clone = grid0.cloneNode(true);
+        clone.id = `md-grid-${i}`;
+        clone.classList.remove('active');
+        clone.style.display = 'none'; // 초기 숨김 처리
+
+        // 커스텀 체크박스 재초기화 (Reset Custom Checkbox)
+        clone.querySelectorAll('custom-checkbox').forEach(cb => {
+            cb.innerHTML = '';
+        });
+
+        // 자식 요소 섞기 (Shuffle Children)
+        const children = Array.from(clone.children);
+        const shuffled = shuffle(children);
+        clone.innerHTML = '';
+        shuffled.forEach(child => clone.appendChild(child));
+
+        // 페이지네이션 이전에 추가하여 순서 유지
+        if (paginationContainer) {
+            gridParent.insertBefore(clone, paginationContainer);
+        } else {
+            gridParent.appendChild(clone);
+        }
+        grids.push(clone);
+    }
+
+    // 2. 모든 그리드 이벤트 초기화 (Init Events)
+    grids.forEach((grid, index) => {
+        const tabId = index.toString();
+
+        // 수량 조절 기능 초기화 (Quantity Control)
+        if (typeof initQuantityControl === 'function') {
+            initQuantityControl(grid);
+        }
+
+        // 체크박스 이벤트 연결
+        attachCheckboxEvents(grid, tabId);
+    });
+
+    // 3. 탭 전환 로직 (Tab Switching)
     tabItems.forEach(tab => {
         tab.addEventListener('click', () => {
-            // 탭 활성화 처리
+            const targetId = tab.dataset.tab;
+
+            if (activeTabId === targetId) return;
+
+            // 탭 UI 업데이트
             tabItems.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
 
-            // 활성 탭 ID 갱신
-            activeTabId = tab.dataset.tab;
+            // 그리드 표시 상태 업데이트
+            grids.forEach((g, index) => {
+                if (index == targetId) {
+                    g.classList.add('active');
+                    g.style.display = 'grid';
+                } else {
+                    g.classList.remove('active');
+                    g.style.display = 'none';
+                }
+            });
 
-            // 탭 변경 시 목록 갱신
-            renderGrid(currentLimit);
+            activeTabId = targetId;
+
+            // 전체 선택 상태 복원 (Restore Select All)
+            if (searchSelectAll) {
+                // 현재 그리드의 체크 상태 확인
+                const currentGrid = grids[targetId];
+                const checks = currentGrid.querySelectorAll('.item-check');
+                // 실제 체크박스 상태로 확인
+                const allChecked = checks.length > 0 && Array.from(checks).every(c => c.checked);
+                searchSelectAll.checked = allChecked;
+            }
         });
     });
 
-    // 보기 옵션 드롭다운
-    if (itemsPerPageOptions.length > 0) {
-        itemsPerPageOptions.forEach(option => {
-            option.addEventListener('click', (e) => {
-                // 표시 개수 설졍 변경
-                const value = option.getAttribute('data-value');
-                currentLimit = parseInt(value, 10);
-
-                // 옵션 변경 시 전체 선택 해제
-                tabStates[activeTabId] = false;
-
-                // 목록 갱신
-                renderGrid(currentLimit);
-            });
-        });
-    }
-
-    // 전체 선택 기능
+    // 4. 전체 선택 로직 (Select All Logic)
     if (searchSelectAll) {
         searchSelectAll.addEventListener('change', (e) => {
             const isChecked = e.target.checked;
+            tabCheckStates[activeTabId] = isChecked;
 
-            // 선택 상태 저장
-            tabStates[activeTabId] = isChecked;
+            const activeGrid = grids[activeTabId];
+            if (activeGrid) {
+                const checks = activeGrid.querySelectorAll('.item-check');
+                checks.forEach(c => c.checked = isChecked);
+            }
+        });
+    }
 
-            // 현재 목록 체크박스 조회
-            const currentItems = productGrid.querySelectorAll('.item-check');
-            currentItems.forEach(cb => {
-                cb.checked = isChecked;
+    // 5. 페이지당 아이템 수 로직 (Items Per Page)
+    if (itemsPerPageOptions.length > 0) {
+        itemsPerPageOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const value = option.dataset.value;
+                currentLimit = parseInt(value, 10);
+                updateVisibility();
+
+                // 드롭다운 활성 상태 업데이트
+                itemsPerPageOptions.forEach(o => o.classList.remove('active'));
+                option.classList.add('active');
             });
         });
     }
 
-    // 초기 화면 렌더링
-    // 기본 목록 로드
-    if (originalCards.length > 0) {
-        // 초기 활성 탭 설정
-        const activeTab = document.querySelector('.tab-menu .tab-item.active');
-        if (activeTab) {
-            activeTabId = activeTab.dataset.tab;
-        }
-        renderGrid(currentLimit);
-    }
+    // 초기 가시성 설정 (Initial Visibility)
+    updateVisibility();
 });

@@ -1,0 +1,89 @@
+@charset "UTF-8";
+
+// Toast Notification System
+// 4가지 타입 (Success, Danger, Warning, Info) 지원
+
+.custom-toast-container {
+    position: fixed; // 기본은 fixed, target 지정 시 JS로 absolute 변경 가능
+    z-index: 1060; // Modal보다 높거나 비슷하게
+    max-width: rem(360);
+    width: auto;
+    pointer-events: none; // 토스트 뒤 클릭 가능하도록 (필요시 pointer-events: auto를 toast 자체에)
+    display: flex;
+    justify-content: center;
+
+    // 위치 조정 (기본값)
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: rem(24);
+
+    &.position-absolute {
+        position: absolute;
+        bottom: auto;
+        left: auto;
+        transform: none;
+    }
+}
+
+.custom-toast {
+    pointer-events: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: rem(8);
+    padding: rem(12) rem(20);
+    border-radius: rem(8);
+    box-shadow: 0 rem(4) rem(12) rgba(0, 0, 0, 0.15);
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    font-weight: 500;
+    line-height: 1.4;
+    color: $white;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform: translateY(rem(10));
+
+    // Bootstrap Toast Override
+    background-color: $gray-900; // Default fallback
+    border: none;
+
+    &.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    // 아이콘 크기
+    .toast-icon {
+        width: rem(20);
+        height: rem(20);
+        flex-shrink: 0;
+
+        path {
+            fill: currentColor;
+        }
+    }
+
+    // 1. Success Type (Green)
+    &.toast-success {
+        background-color: $system-success;
+
+        .toast-icon {
+            // Check icon or similar
+        }
+    }
+
+    // 2. Danger Type (Red)
+    &.toast-danger {
+        background-color: $system-danger;
+    }
+
+    // 3. Warning Type (Yellow/Gold)
+    &.toast-warning {
+        background-color: $system-warning;
+        color: $black; // 노란 배경엔 검은 글씨가 가독성 좋음
+    }
+
+    // 4. Info Type (Blue)
+    &.toast-info {
+        background-color: $system-info;
+    }
+}

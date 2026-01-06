@@ -1,0 +1,17 @@
+// PC 전용 베이스 스타일
+html {
+    overflow-x: auto;
+    overflow-y: scroll;
+}
+
+body {
+    min-width: rem(1360);
+    position: relative;
+    margin: 0;
+}
+
+// PC 레이아웃 공통
+.pc-container {
+    width: $layout-container-width;
+    margin: 0 auto;
+}

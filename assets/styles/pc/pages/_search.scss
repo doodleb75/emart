@@ -3,7 +3,6 @@
     padding-top: rem(40);
     padding-bottom: rem(80);
     font-weight: 600;
-    border-top: 1px solid $gray-100;
 
     // 페이지 헤더
     .page-header {
@@ -18,7 +17,6 @@
             font-weight: 600;
 
             .keyword {
-
                 color: $system-info; // 강조 색상
             }
         }
@@ -172,7 +170,7 @@
                     .custom-checkbox-visual {
                         width: rem(18);
                         height: rem(18);
-                        border: 1px solid $gray-300;
+                        border: 1.5px solid $gray-300;
                         border-radius: rem(2);
                         background-color: $white;
                         display: flex;
@@ -232,7 +230,7 @@
                         width: rem(360);
                         height: rem(48);
                         background-color: #f8f8f8;
-                        border: 1px solid transparent;
+                        border: 1.5px solid transparent;
                         border-radius: rem(4);
                         padding: 0 rem(16);
                         font-size: rem(15);
@@ -254,7 +252,7 @@
                     height: rem(48);
                     padding: rem(10) rem(16);
                     background: $white;
-                    border: 1px solid $gray-700;
+                    border: 1.5px solid $gray-700;
                     color: $black;
                     font-size: rem(15);
                     border-radius: rem(4);
@@ -280,7 +278,7 @@
                     // 메뉴 활성화 상태
                     &.active {
                         .select-wrap {
-                            border: 1px solid $gray-700;
+                            border: 1.5px solid $gray-700;
                             background-color: $white;
 
                             .icon-arrow {
@@ -324,7 +322,7 @@
                         left: 0;
                         width: 100%;
                         background-color: $white;
-                        border: 1px solid $gray-700;
+                        border: 1.5px solid $gray-700;
                         border-radius: rem(4);
                         list-style: none;
                         padding: rem(8) 0;
@@ -352,7 +350,7 @@
                     // 활성화 상태
                     &.active {
                         .select-wrap {
-                            border: 1px solid $gray-700; // 활성화 트리거 테두리
+                            border: 1.5px solid $gray-700; // 활성화 트리거 테두리
                             background-color: $white; // 시각적 피드백
 
                             .icon-arrow {
@@ -451,7 +449,7 @@
             height: rem(48);
             padding: rem(10) rem(16);
             background-color: $white;
-            border: 1px solid $gray-700;
+            border: 1.5px solid $gray-700;
             border-radius: rem(4);
             font-size: rem(16);
             font-weight: 600;
@@ -469,6 +467,7 @@
     .product-card {
         width: 100%;
         position: relative;
+
 
         .card-thumb {
             position: relative;
@@ -531,6 +530,10 @@
 
         // 품절/준비중 상태 (Dimmed)
         &.state-dimmed {
+            a {
+                cursor: default;
+            }
+
             .card-thumb {
                 &::after {
                     content: '';
@@ -542,15 +545,38 @@
                 }
 
                 .status-overlay {
-                    display: block; // "품절" 등의 텍스트 표시
+                    display: flex; // "품절" 등의 텍스트 표시
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    gap: rem(40);
                     position: absolute;
-                    top: 50%;
+                    bottom: 5%;
                     left: 50%;
                     transform: translate(-50%, -50%);
                     z-index: 15;
+                    width: 76%;
                     color: $white;
                     font-size: rem(24);
                     font-weight: 600;
+
+                    .btn-substitute {
+                        flex: 1;
+                        min-height: rem(48);
+                        width: 100%;
+                        background-color: $white;
+                        border: 1.5px solid $gray-700;
+                        border-radius: rem(4);
+                        font-size: rem(16);
+                        color: $gray-700;
+                        cursor: pointer;
+                        font-weight: 600;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        @include btn-hover-effect;
+                    }
                 }
             }
 
@@ -570,27 +596,26 @@
                 }
             }
 
-            .btn-substitute {
-                flex: 1;
-                height: 100%;
-                background-color: $white;
-                border: 1px solid $gray-700;
-                border-radius: rem(4);
-                font-size: rem(16);
-                color: $gray-700;
-                cursor: pointer;
-                font-weight: 600;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                @include btn-hover-effect;
-            }
-
             .card-control {
                 display: flex;
                 gap: rem(8);
+
+                &.sold-out {
+
+                    *:disabled,
+                    .qty-box {
+                        background: $gray-50;
+                    }
+
+                    input,
+                    svg:not(.icon-heart) {
+
+                        color: $gray-300;
+                    }
+                }
             }
+
+
         }
     }
 
@@ -611,6 +636,7 @@
             border-bottom: 1px solid $gray-100;
             margin: 0;
             height: auto !important; // 고정 높이 초기화
+
 
             // 1. 썸네일 영역 (좌측)
             .card-thumb {
@@ -707,7 +733,7 @@
                     display: flex;
                     align-items: center;
                     background-color: $white;
-                    border: 1px solid $gray-200;
+                    border: 1.5px solid $gray-200;
                     border-radius: rem(4);
 
                     button {
