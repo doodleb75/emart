@@ -31,7 +31,7 @@
     align-items: center;
     gap: rem(8);
     padding: rem(12) rem(20);
-    border-radius: rem(8);
+    border-radius: rem(4);
     box-shadow: 0 rem(4) rem(12) rgba(0, 0, 0, 0.15);
     font-family: $font-family-base;
     font-size: $font-size-base;
@@ -79,7 +79,7 @@
     // 3. Warning Type (Yellow/Gold)
     &.toast-warning {
         background-color: $system-warning;
-        color: $black; // 노란 배경엔 검은 글씨가 가독성 좋음
+        color: $white;
     }
 
     // 4. Info Type (Blue)

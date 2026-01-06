@@ -930,7 +930,7 @@ body.mobile-body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.25rem;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
   font-family: "Pretendard Variable", sans-serif;
   font-size: 0.875rem;
@@ -963,7 +963,7 @@ body.mobile-body {
 }
 .custom-toast.toast-warning {
   background-color: #ffaa00;
-  color: #222222;
+  color: #ffffff;
 }
 .custom-toast.toast-info {
   background-color: #1f95ff;

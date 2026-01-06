@@ -6,7 +6,7 @@
     pointer-events: none;
 
     .modal-dialog {
-        max-width: rem(480);
+        min-width: rem(480);
         pointer-events: auto;
     }
 }
@@ -14,6 +14,19 @@
 #minOrderModal {
     .modal-dialog {
         min-width: rem(400);
+    }
+}
+
+#logOutModal {
+    .modal-dialog {
+        min-width: rem(320);
+    }
+}
+
+#cartWarningModal {
+    .modal-dialog {
+        min-width: rem(300);
+        max-width: rem(300);
     }
 }
 
@@ -36,10 +49,22 @@
         flex-direction: column;
         width: 100%;
         background-color: $white;
-        border-radius: rem(8);
+        border: 1.5px solid $gray-300;
+        border-radius: rem(4);
         box-shadow: 0 rem(4) rem(20) rgba(0, 0, 0, 0.15);
         outline: 0;
         overflow: hidden;
+
+        &.no-header {
+            .popup-body {
+                margin-top: rem(36);
+
+                &.dark-text {
+                    font-size: rem(14);
+                    color: $gray-700;
+                }
+            }
+        }
 
     }
 

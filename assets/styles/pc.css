@@ -1236,12 +1236,21 @@ body {
   pointer-events: none;
 }
 #monthPurchaseModal .modal-dialog {
-  max-width: 30rem;
+  min-width: 30rem;
   pointer-events: auto;
 }
 
 #minOrderModal .modal-dialog {
   min-width: 25rem;
+}
+
+#logOutModal .modal-dialog {
+  min-width: 20rem;
+}
+
+#cartWarningModal .modal-dialog {
+  min-width: 18.75rem;
+  max-width: 18.75rem;
 }
 
 .layer-popup {
@@ -1263,10 +1272,18 @@ body {
   flex-direction: column;
   width: 100%;
   background-color: #ffffff;
-  border-radius: 0.5rem;
+  border: 1.5px solid #aaaaaa;
+  border-radius: 0.25rem;
   box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.15);
   outline: 0;
   overflow: hidden;
+}
+.layer-popup .popup-content.no-header .popup-body {
+  margin-top: 2.25rem;
+}
+.layer-popup .popup-content.no-header .popup-body.dark-text {
+  font-size: 0.875rem;
+  color: #444444;
 }
 .layer-popup .popup-header {
   display: flex;
@@ -1392,7 +1409,7 @@ body.modal-open {
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.25rem;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
   font-family: "Pretendard Variable", sans-serif;
   font-size: 0.875rem;
@@ -1425,7 +1442,7 @@ body.modal-open {
 }
 .custom-toast.toast-warning {
   background-color: #ffaa00;
-  color: #222222;
+  color: #ffffff;
 }
 .custom-toast.toast-info {
   background-color: #1f95ff;
@@ -1614,7 +1631,7 @@ body.modal-open {
   position: relative;
   margin: 0;
   transition: all 0.2s;
-  z-index: 1100;
+  z-index: 1000;
 }
 .search-container .search-box {
   position: relative;

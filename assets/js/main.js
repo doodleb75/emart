@@ -1885,27 +1885,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         static show(type, message, target = null, options = {}) {
-            // 컨테이너 생성 또는 찾기
+            // 컨테이너 탐색 및 자동 생성
             let container;
             const isCustomPosition = !!target;
 
             if (isCustomPosition) {
                 container = document.createElement('div');
                 container.className = 'custom-toast-container position-absolute';
-                document.body.appendChild(container); // Append to body to avoid clipping
+                document.body.appendChild(container); // 요소 잘림 방지를 위해 body 직계 추가
 
-                // Get accurate position
+                // 타겟 요소 기준 정밀 좌표 계산
                 const rect = target.getBoundingClientRect();
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
-                // Default Position logic: Center below existing element
+                // 타겟 중앙 하단 배치를 위한 좌표 연산
                 let top = rect.bottom + scrollTop + 10;
                 let left = rect.left + scrollLeft + (rect.width / 2);
                 let transform = 'translateX(-50%)';
                 let width = 'auto';
 
-                // Handle Options
+                // 정렬 및 너비 옵션 처리
                 if (options.align === 'start' || options.align === 'left') {
                     left = rect.left + scrollLeft;
                     transform = 'none';
@@ -1922,7 +1922,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 container.style.width = width;
 
             } else {
-                // 전역 컨테이너 (화면 하단 중앙)
+                // 전역 토스트(ID 미지정 시) 기본 컨테이너 처리
                 container = document.querySelector('.custom-toast-container.global');
                 if (!container) {
                     container = document.createElement('div');
@@ -1931,7 +1931,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // 토스트 요소 생성
+            // 토스트 메시지 노드 생성
             const toastEl = document.createElement('div');
             toastEl.className = `custom-toast toast-${type}`;
             toastEl.innerHTML = `
@@ -1947,34 +1947,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
             container.appendChild(toastEl);
 
-            // Show Animation
+            // 노출 애니메이션 적용
             requestAnimationFrame(() => {
                 toastEl.classList.add('show');
             });
 
-            // Hide & Remove logic
+            // 자동 페이드아웃 및 DOM 제거
             setTimeout(() => {
                 toastEl.classList.remove('show');
                 toastEl.addEventListener('transitionend', () => {
                     toastEl.remove();
-                    // If custom container is empty, remove it
+                    // 빈 커스텀 컨테이너 정리
                     if (isCustomPosition && container.children.length === 0) {
                         container.remove();
                     }
                 }, { once: true });
-            }, 2000); // 2초 후 사라짐
+            }, 2000); // 2초 노출 후 종료
         }
     }
 
-    // 전역에서 접근 가능하도록 설정
+    // 외부 연동용 전역 인터페이스 노출
     window.Toast = ToastManager;
 
-    // Improved Event Listener for Heart Button
-    // Improved Event Listener for Heart Button
+    // 하트(찜) 클릭 감지 및 상태 전환
     document.addEventListener('click', (e) => {
         const btn = e.target.closest('.btn-icon');
 
-        // Ensure it is the heart button
+        // 타겟 요소 유효성(하트 아이콘) 검증
         if (btn && btn.querySelector('.icon-heart')) {
             e.preventDefault();
             e.stopPropagation();
@@ -1984,35 +1983,110 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!path) return;
 
-            // Store original path data (Outline Heart) if not already stored
+            // 라인 형태 데이터 백업 (복구용)
             if (!path.dataset.originalD) {
                 path.dataset.originalD = path.getAttribute('d');
             }
 
             const originalD = path.dataset.originalD;
-            // Create Solid Heart path by taking only the outer loop (first subpath)
-            // Assumes structure: [Outer Loop]Z[Inner Loop]Z
+            // 채워진 하트 형태 추출
+            // 패스 데이터 구조 기반 연산 (첫 폐곡선)
             const solidD = originalD.split('Z')[0] + 'Z';
 
             const isActive = btn.classList.contains('active');
 
             if (!isActive) {
-                // Activate (Solid Red Heart)
+                // 활성 상태 전환 (Red)
                 btn.classList.add('active');
 
                 path.setAttribute('d', solidD); // Switch to solid shape
                 path.setAttribute('fill', '#FF5447');
                 path.style.fill = '#FF5447';
 
-                // Show Toast - Target Parent, Match Width, Align Left
-                ToastManager.show('success', '관심상품에 저장되었습니다.', btn.parentElement, { width: 'match', align: 'left' });
+                // 알림 메시지 호출 (card-control 너비 맞춤)
+                const toastTarget = btn.closest('.card-control') || btn.parentElement;
+                ToastManager.show('success', '관심상품에 저장되었습니다.', toastTarget, { width: 'match', align: 'left' });
             } else {
-                // Deactivate (Outline Gray Heart)
+                // 비활성 상태 전환 (Gray)
                 btn.classList.remove('active');
 
                 path.setAttribute('d', originalD); // Revert to outline shape
                 path.setAttribute('fill', '#444444');
                 path.style.fill = '#444444';
+            }
+        }
+    }, true);
+
+    // 수량 마이너스 버튼 클릭 시 최소 수량(1) 경고 및 장바구니 삭제 유도 모달
+    document.addEventListener('click', (e) => {
+        const minusBtn = e.target.closest('.qty-box button:first-of-type');
+        if (minusBtn) {
+            const qtyBox = minusBtn.closest('.qty-box');
+            const input = qtyBox?.querySelector('input');
+            if (input) {
+                const currentVal = parseInt(input.value, 10) || 0;
+                const isInCart = qtyBox.dataset.inCart === 'true';
+
+                // 장바구니 담긴 상태에서 1 -> 0 시도 시 모달 표시
+                if (currentVal === 1 && isInCart) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation(); // quantity-control.js 실행 차단
+
+                    const modalEl = document.getElementById('cartWarningModal');
+                    if (modalEl) {
+                        // 부모 요소에 따른 위치 계산 오류 방지 (Body 직계로 이동)
+                        if (modalEl.parentElement !== document.body) {
+                            document.body.appendChild(modalEl);
+                        }
+
+                        // 모달 옵션 강제 및 인스턴스 생성
+                        const modal = bootstrap.Modal.getOrCreateInstance(modalEl, {
+                            backdrop: false,
+                            keyboard: true
+                        });
+
+                        // 현재 카드의 장바구니 버튼 또는 클릭한 마이너스 버튼 기준
+                        const cardControl = minusBtn.closest('.card-control') || minusBtn.closest('.product-card');
+                        const cartBtn = cardControl?.querySelector('.icon-cart')?.closest('button') || cardControl?.querySelector('.btn-cart');
+
+                        positionLayerPopup(cartBtn || minusBtn, modalEl, { align: 'right' });
+                        modal.show();
+                    }
+                } else if (currentVal === 0) {
+                    // 수량이 이미 0인 경우 최소수량 알림 토스트 (card-control 너비 맞춤)
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    if (window.Toast) {
+                        const toastTarget = qtyBox.closest('.card-control') || qtyBox;
+                        window.Toast.show('warning', '최소 수량은 1입니다.', toastTarget, { width: 'match', align: 'left' });
+                    }
+                }
+            }
+        }
+    }, true);
+
+    // 장바구니 아이콘 클릭 시 수량 1로 설정 및 '장바구니 상태' 저장
+    document.addEventListener('click', (e) => {
+        const cartBtn = e.target.closest('.icon-cart')?.closest('button') || e.target.closest('.btn-cart');
+        if (cartBtn) {
+            e.preventDefault();
+
+            // 인접한 qty-box 탐색
+            const container = cartBtn.closest('.card-control') || cartBtn.closest('.product-card') || cartBtn.parentElement;
+            const qtyBox = container.querySelector('.qty-box');
+
+            if (qtyBox) {
+                const input = qtyBox.querySelector('input');
+                if (input) {
+                    input.value = 1; // 수량 1로 고정
+                    qtyBox.dataset.inCart = 'true'; // 장바구니 상태 플래그 저장
+
+                    // 장바구니 담김 토스트 표시 (card-control 너비 맞춤)
+                    if (window.Toast) {
+                        const toastTarget = cartBtn.closest('.card-control') || cartBtn;
+                        window.Toast.show('success', '장바구니에 담겼습니다.', toastTarget, { width: 'match', align: 'left' });
+                    }
+                }
             }
         }
     }, true);
@@ -2040,39 +2114,77 @@ document.addEventListener('shown.bs.modal', () => {
     document.body.style.paddingRight = '0px';
 });
 
-// ==========================================
-// 최소 주문 금액 모달 로직 (Minimum Order Modal)
-// ==========================================
-document.addEventListener('headerLoaded', () => {
-    const trigger = document.getElementById('minOrderTrigger');
-    const modalEl = document.getElementById('minOrderModal');
+// 레이어 팝업 위치 지정 코어 (Position logic extracted)
+function positionLayerPopup(trigger, modalEl, options = { align: 'center' }) {
+    const dialog = modalEl.querySelector('.modal-dialog');
+    if (dialog) {
+        const rect = trigger.getBoundingClientRect();
+        const margin = 20;
+
+        // 스타일 초기 설정
+        dialog.style.margin = '0';
+        dialog.style.position = 'fixed';
+        dialog.style.top = `${rect.bottom + 12}px`;
+        dialog.style.zIndex = '2000';
+
+        // 정확한 너비 측정을 위해 임시 노출
+        const originalDisplay = modalEl.style.display;
+        const originalVisibility = modalEl.style.visibility;
+        modalEl.style.display = 'block';
+        modalEl.style.visibility = 'hidden';
+        const dialogWidth = dialog.offsetWidth;
+        modalEl.style.display = originalDisplay;
+        modalEl.style.visibility = originalVisibility;
+
+        let leftPos;
+
+        if (options.align === 'right') {
+            // 트리거 우측 끝 기준 (Align right)
+            leftPos = rect.right - dialogWidth;
+        } else {
+            // 중앙 정렬 (Align center)
+            leftPos = rect.left + (rect.width / 2) - (dialogWidth / 2);
+        }
+
+        // 화면 영역 이탈 방지
+        const viewportWidth = window.innerWidth;
+        if (leftPos + dialogWidth > viewportWidth - margin) {
+            leftPos = viewportWidth - margin - dialogWidth;
+        }
+        if (leftPos < margin) {
+            leftPos = margin;
+        }
+
+        dialog.style.left = `${leftPos}px`;
+        dialog.style.transform = 'none'; // Bootstrap transform 과의 충돌 방지
+    }
+}
+
+function initLayerPopup(triggerId, modalId) {
+    const trigger = document.getElementById(triggerId);
+    const modalEl = document.getElementById(modalId);
 
     if (trigger && modalEl) {
-        const modal = new bootstrap.Modal(modalEl, {
+        const modal = bootstrap.Modal.getOrCreateInstance(modalEl, {
             backdrop: false,
             keyboard: true
         });
 
         trigger.addEventListener('click', (e) => {
             e.preventDefault();
-
-            // 위치 설정 (Positioning)
-            const dialog = modalEl.querySelector('.modal-dialog');
-            if (dialog) {
-                const rect = trigger.getBoundingClientRect();
-
-                dialog.style.margin = '0';
-                dialog.style.position = 'fixed';
-                dialog.style.top = `${rect.bottom + 12}px`; // 12px gap
-
-                // 중앙 정렬 시도 (Center align to trigger)
-                const leftPos = rect.left + (rect.width / 2);
-                dialog.style.left = `${leftPos}px`;
-                dialog.style.transform = 'translateX(-50%)';
-                dialog.style.zIndex = '1060';
-            }
-
+            positionLayerPopup(trigger, modalEl);
             modal.show();
         });
     }
+}
+
+// 헤더 로딩 후 팝업 초기화
+document.addEventListener('headerLoaded', () => {
+    // 최소 주문 금액 팝업
+    initLayerPopup('minOrderTrigger', 'minOrderModal');
+    // 이번 달 누적 구매액 팝업
+    initLayerPopup('monthPurchaseTrigger', 'monthPurchaseModal');
+    // 로그아웃 팝업
+    initLayerPopup('logOutTrigger', 'logOutModal');
 });
+
