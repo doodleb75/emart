@@ -163,7 +163,7 @@
                         <!-- Dropdown -->
                         <div class="dropdown-wrapper">
                             <div class="select-wrap" id="itemsPerPageTrigger">
-                                <span class="selected-value">20개씩 보기</span>
+                                <span class="selected-value">5개씩 보기</span>
                                 <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     viewBox="0 0 20 20" fill="none">
                                     <g clip-path="url(#clip0_219_2472)">
@@ -179,9 +179,9 @@
                                 </svg>
                             </div>
                             <ul class="dropdown-options">
-                                <li data-value="5">5개씩 보기</li>
+                                <li data-value="5" class="active">5개씩 보기</li>
                                 <li data-value="10">10개씩 보기</li>
-                                <li data-value="20" class="active">20개씩 보기</li>
+                                <li data-value="20">20개씩 보기</li>
                                 <li data-value="30">30개씩 보기</li>
                                 <li data-value="50">50개씩 보기</li>
                                 <li data-value="100">100개씩 보기</li>
@@ -225,7 +225,7 @@
             </div>
 
             <!-- Tab Content Grid -->
-            <div class="product-grid-4 search-result-grid active" id="md-grid-0" style="display: grid;">
+            <div class="product-grid-4 search-result-grid active" id="md-grid-0">
                 <!-- Product 1: Matcha Cream Bread -->
                 <article class="product-card">
                     <a href="#" class="card-thumb">
@@ -722,8 +722,9 @@
         loadComponent('/components/footer.component.txt', 'footer-placeholder');
     </script>
 
-    <script src="/assets/js/components/quantity-control.js"></script>
     <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/components/favorites.js"></script>
+    <script src="/assets/js/components/quantity-control.js"></script>
     <script src="/assets/js/pages/search_result.js"></script>
     <script src="/assets/js/components/view-toggle.js"></script>
     <script src="/assets/js/components/checkbox.js"></script>

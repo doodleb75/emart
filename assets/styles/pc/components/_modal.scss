@@ -30,6 +30,13 @@
     }
 }
 
+#productDeleteModal {
+    .modal-dialog {
+        min-width: rem(300);
+        max-width: rem(300);
+    }
+}
+
 .layer-popup {
     pointer-events: none; // 모달 컨테이너 자체가 클릭을 가로채지 않도록 설정
 

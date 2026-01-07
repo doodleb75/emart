@@ -1,34 +1,42 @@
 function initViewToggle() {
     const viewToggles = document.querySelectorAll('.view-toggles .btn-toggle');
-    const productGrid = document.querySelector('.product-grid-4');
+    // 모든 그리드 요소 선택 (Select all grid elements)
+    const productGrids = document.querySelectorAll('.product-grid-4');
 
-    if (!viewToggles.length || !productGrid) return;
+    if (!viewToggles.length || !productGrids.length) return;
 
     viewToggles.forEach(btn => {
+        if (btn.dataset.initialized) return;
+        btn.dataset.initialized = 'true';
+
         btn.addEventListener('click', () => {
-            // 전체 버튼 비활성화
+            // 전체 버튼 비활성화 (Deactivate all buttons)
             viewToggles.forEach(b => b.classList.remove('active'));
-            // 클릭 버튼 활성화
+            // 클릭 버튼 활성화 (Activate clicked button)
             btn.classList.add('active');
 
-            // 뷰 타입 확인
-            if (btn.classList.contains('btn-list')) {
-                // 리스트 보기 적용
-                productGrid.classList.add('list-view');
-                productGrid.style.gridTemplateColumns = '1fr';
-            } else {
-                // 그리드 보기 적용
-                productGrid.classList.remove('list-view');
-                productGrid.style.gridTemplateColumns = ''; // 스타일 초기화
-            }
+            const isListView = btn.classList.contains('btn-list');
+
+            // 모든 그리드에 일괄 적용 (Apply to all grids)
+            document.querySelectorAll('.product-grid-4').forEach(grid => {
+                if (isListView) {
+                    grid.classList.add('list-view');
+                } else {
+                    grid.classList.remove('list-view');
+                }
+            });
         });
     });
 
-    // 초기 상태 설정
+    // 초기 상태 설정 (Initial State)
     const activeBtn = document.querySelector('.view-toggles .btn-toggle.active');
-    if (activeBtn && activeBtn.classList.contains('btn-list')) {
-        productGrid.classList.add('list-view');
-        productGrid.style.gridTemplateColumns = '1fr';
+    if (activeBtn) {
+        const isListView = activeBtn.classList.contains('btn-list');
+        productGrids.forEach(grid => {
+            if (isListView) {
+                grid.classList.add('list-view');
+            }
+        });
     }
 }
 

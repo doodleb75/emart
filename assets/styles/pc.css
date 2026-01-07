@@ -1253,6 +1253,11 @@ body {
   max-width: 18.75rem;
 }
 
+#productDeleteModal .modal-dialog {
+  min-width: 18.75rem;
+  max-width: 18.75rem;
+}
+
 .layer-popup {
   pointer-events: none;
 }
@@ -3995,13 +4000,12 @@ body.modal-open {
   border-radius: 0.25rem;
 }
 .search-result-page .product-card .product-name {
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: #222222;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   line-height: 1.4;
   height: auto;
-  min-height: 2.75rem;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -4092,14 +4096,14 @@ body.modal-open {
   outline: none;
 }
 .search-result-page .product-grid-4.list-view {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
   border-top: 1.5px solid #222222;
 }
 .search-result-page .product-grid-4.list-view .product-card {
-  display: flex !important;
-  flex-direction: row !important;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   width: 100%;
   padding: 1.25rem 0.625rem;
@@ -4231,7 +4235,7 @@ body.modal-open {
 }
 .search-result-page .product-grid-4.list-view .product-card .card-control .qty-box input {
   width: calc(100% - 4rem);
-  height: 100%;
+  height: calc(100% - 0.125rem) !important;
   border: none;
   text-align: center;
   font-size: 0.9375rem;
@@ -4249,6 +4253,28 @@ body.modal-open {
 }
 .search-result-page .product-grid-4.list-view .product-card .bottom-info {
   display: none !important;
+}
+.search-result-page .product-grid-4.list-view .card-control {
+  display: flex;
+  gap: 0.5rem;
+}
+.search-result-page .product-grid-4.list-view .card-control.sold-out *:disabled,
+.search-result-page .product-grid-4.list-view .card-control.sold-out .qty-box {
+  cursor: default;
+  background: #f4f4f4;
+}
+.search-result-page .product-grid-4.list-view .card-control.sold-out *:disabled.btn-icon:hover,
+.search-result-page .product-grid-4.list-view .card-control.sold-out .qty-box.btn-icon:hover {
+  border-color: #cccccc;
+}
+.search-result-page .product-grid-4.list-view .card-control.sold-out input,
+.search-result-page .product-grid-4.list-view .card-control.sold-out svg:not(.icon-heart) {
+  color: #aaaaaa;
+  pointer-events: none;
+}
+.search-result-page .product-grid-4.list-view .card-control.sold-out input:focus,
+.search-result-page .product-grid-4.list-view .card-control.sold-out svg:not(.icon-heart):focus {
+  outline: none;
 }
 .search-result-page .custom-checkbox-wrap {
   display: inline-flex;
@@ -4285,6 +4311,67 @@ body.modal-open {
 }
 .search-result-page .custom-checkbox-wrap .label-text {
   font-size: 1rem;
+}
+.search-result-page .product-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+.search-result-page .product-grid-4.list-view {
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+.search-result-page .product-grid-4.list-view .product-card {
+  flex-direction: row;
+  height: 11.25rem;
+  padding: 1.25rem;
+  gap: 1.5rem;
+  align-items: center;
+  border-bottom: 1px solid #cccccc;
+}
+.search-result-page .product-grid-4.list-view .product-card .card-thumb {
+  width: 8.75rem;
+  height: 8.75rem;
+  flex-shrink: 0;
+}
+.search-result-page .product-grid-4.list-view .product-card .card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.search-result-page .product-grid-4.list-view .product-card .card-info {
+  flex: 1;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.search-result-page .product-grid-4.list-view .product-card .card-info .product-name {
+  font-size: 1.125rem;
+  margin-bottom: 0.25rem;
+}
+.search-result-page .product-grid-4.list-view .product-card .card-info .unit-info {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+.search-result-page .product-grid-4.list-view .product-card .card-info .total-price-area {
+  margin-top: 0;
+}
+.search-result-page .product-grid-4.list-view .product-card .card-info .total-price-area .price {
+  font-size: 1.5rem;
+}
+.search-result-page .product-grid-4.list-view .product-card .card-control {
+  max-width: 15rem;
+  flex-direction: row;
+  gap: 0.75rem;
+  margin-top: 0;
+}
+.search-result-page .product-grid-4.list-view .product-card .card-control .qty-box {
+  width: 100%;
+}
+.search-result-page .product-grid-4.list-view .product-card .bottom-info {
+  display: none;
 }
 .search-result-page .pagination-container {
   display: flex;

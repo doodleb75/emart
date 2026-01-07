@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         grids.forEach(grid => {
             const cards = Array.from(grid.children);
             cards.forEach((card, index) => {
+                // limit 값에 따라 아이템 표시/숨김
                 if (index < currentLimit) {
                     card.style.display = '';
                 } else {
@@ -83,8 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        if (totalCountEl) {
-            totalCountEl.textContent = currentLimit;
+        // 현재 활성화된 탭의 실제 데이터 개수 업데이트
+        if (totalCountEl && grids[activeTabId]) {
+            const activeCards = Array.from(grids[activeTabId].children);
+            // 전체 상품 수와 설정된 limit 중 작은 값을 표시
+            totalCountEl.textContent = Math.min(activeCards.length, currentLimit);
         }
     };
 
@@ -166,7 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
             grids.forEach((g, index) => {
                 if (index == targetId) {
                     g.classList.add('active');
-                    g.style.display = 'grid';
+                    // display: none만 제거하고, CSS 클래스(grid-template-columns)에 의해 조절되도록 함
+                    g.style.display = '';
                 } else {
                     g.classList.remove('active');
                     g.style.display = 'none';
@@ -174,6 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             activeTabId = targetId;
+            updateVisibility(); // 탭 전환 시 개수 업데이트
 
             // 전체 선택 상태 복원 (Restore Select All)
             if (searchSelectAll) {
@@ -218,4 +224,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 초기 가시성 설정 (Initial Visibility)
     updateVisibility();
+
+    // 그리드가 복제된 후 뷰 토글 기능을 다시 초기화 (Re-init view toggle after cloning)
+    if (typeof initViewToggle === 'function') {
+        initViewToggle();
+    }
 });

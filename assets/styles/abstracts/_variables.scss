@@ -1,7 +1,7 @@
 // _variables.scss
 
 // 1. 색상 시스템 변수 정의
-// -----------------------------------------------------------------------------
+
 $white: #ffffff;
 $black: #222222;
 
@@ -66,7 +66,7 @@ $badge-blue-text: #1876D3;
 $font-family-base: 'Pretendard Variable', sans-serif;
 $font-family-number: 'Roboto', sans-serif;
 
-// 기본 폰트 사이즈 (rem 기준이 되는 16px)
+// 기본 폰트 사이즈 / rem - 16px
 $font-size-root: 16px;
 
 // 시맨틱 폰트 사이즈
@@ -78,7 +78,7 @@ $font-size-lg: rem(20);
 $font-size-xl: rem(24);
 $font-size-xxl: rem(28);
 
-// 3. 여백 & 레이아웃 (Spacing & Layout)
+// 3. 여백 & 레이아웃 
 // -----------------------------------------------------------------------------
 $space-xs: rem(4);
 $space-sm: rem(8);
@@ -96,7 +96,7 @@ $layout-mobile-padding: rem(16);
 $breakpoint-mobile: 768px;
 
 
-// 4. 애니메이션 (Transitions)
+// 4. 애니메이션 
 // -----------------------------------------------------------------------------
 $transition-base: all 0.2s ease-in-out;
 $transition-fast: all 0.1s ease-in-out;

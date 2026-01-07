@@ -6,6 +6,111 @@ const menuData = {
     settings: ['화면설정', '소리설정', '언어설정', '기타설정']
 };
 
+// ==========================================
+// Toast Notification System (Global)
+// ==========================================
+class ToastManager {
+    static getIcon(type) {
+        const icons = {
+            success: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+<g clip-path="url(#clip0_618_4802)">
+<path d="M10.0003 1.66797C5.40032 1.66797 1.66699 5.4013 1.66699 10.0013C1.66699 14.6013 5.40032 18.3346 10.0003 18.3346C14.6003 18.3346 18.3337 14.6013 18.3337 10.0013C18.3337 5.4013 14.6003 1.66797 10.0003 1.66797ZM8.33366 14.168L4.16699 10.0013L5.34199 8.8263L8.33366 11.8096L14.6587 5.48463L15.8337 6.66797L8.33366 14.168Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_618_4802">
+  <rect width="20" height="20" fill="white"/>
+</clipPath>
+</defs>
+</svg>`,
+            danger: `<svg class="toast-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 20C4.477 20 0 15.523 0 10C0 4.477 4.477 0 10 0C15.523 0 20 4.477 20 10C20 15.523 15.523 20 10 20ZM11 15H9V13H11V15ZM11 11H9V5H11V11Z" fill="#ffffff"/></svg>`,
+            warning: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+<g clip-path="url(#clip0_618_7143)">
+<path d="M0.833008 17.5013H19.1663L9.99968 1.66797L0.833008 17.5013ZM10.833 15.0013H9.16634V13.3346H10.833V15.0013ZM10.833 11.668H9.16634V8.33464H10.833V11.668Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_618_7143">
+  <rect width="20" height="20" fill="white"/>
+</clipPath>
+</defs>
+</svg>`,
+            info: `<svg class="toast-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 20C4.477 20 0 15.523 0 10C0 4.477 4.477 0 10 0C15.523 0 20 4.477 20 10C20 15.523 15.523 20 10 20ZM11 15H9V9H11V15ZM11 7H9V5H11V7Z" fill="#ffffff"/></svg>`
+        };
+        return icons[type] || icons.success;
+    }
+
+    static show(type, message, target = null, options = {}) {
+        let container;
+        const isCustomPosition = !!target;
+
+        if (isCustomPosition) {
+            container = document.createElement('div');
+            container.className = 'custom-toast-container position-absolute';
+            document.body.appendChild(container);
+
+            const rect = target.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+            let top = rect.bottom + scrollTop + 10;
+            let left = rect.left + scrollLeft + (rect.width / 2);
+            let transform = 'translateX(-50%)';
+            let width = 'auto';
+
+            if (options.align === 'start' || options.align === 'left') {
+                left = rect.left + scrollLeft;
+                transform = 'none';
+                container.style.justifyContent = 'flex-start';
+            }
+
+            if (options.width === 'match') {
+                container.style.minWidth = `${rect.width}px`;
+            }
+
+            container.style.top = `${top}px`;
+            container.style.left = `${left}px`;
+            container.style.transform = transform;
+            container.style.width = width;
+
+        } else {
+            container = document.querySelector('.custom-toast-container.global');
+            if (!container) {
+                container = document.createElement('div');
+                container.className = 'custom-toast-container global';
+                document.body.appendChild(container);
+            }
+        }
+
+        const toastEl = document.createElement('div');
+        toastEl.className = `custom-toast toast-${type}`;
+        toastEl.innerHTML = `
+            ${this.getIcon(type)}
+            <span>${message}</span>
+        `;
+
+        if (isCustomPosition && options.width === 'match') {
+            toastEl.style.width = '100%';
+            toastEl.style.whiteSpace = 'nowrap';
+            toastEl.style.justifyContent = 'flex-start';
+        }
+
+        container.appendChild(toastEl);
+        requestAnimationFrame(() => {
+            toastEl.classList.add('show');
+        });
+
+        setTimeout(() => {
+            toastEl.classList.remove('show');
+            toastEl.addEventListener('transitionend', () => {
+                toastEl.remove();
+                if (isCustomPosition && container.children.length === 0) {
+                    container.remove();
+                }
+            }, { once: true });
+        }, 2000);
+    }
+}
+window.Toast = ToastManager;
+
 document.addEventListener('DOMContentLoaded', () => {
     const sidebarItems = document.querySelectorAll('.sidebar-item');
     const contentList = document.querySelector('.content-list');
@@ -1852,170 +1957,8 @@ document.addEventListener('DOMContentLoaded', () => {
         initCategoryMenu();
     }
 
-    // ==========================================
-    // Toast Notification System
-    // ==========================================
-    class ToastManager {
-        static getIcon(type) {
-            const icons = {
-                success: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-  <g clip-path="url(#clip0_618_4802)">
-    <path d="M10.0003 1.66797C5.40032 1.66797 1.66699 5.4013 1.66699 10.0013C1.66699 14.6013 5.40032 18.3346 10.0003 18.3346C14.6003 18.3346 18.3337 14.6013 18.3337 10.0013C18.3337 5.4013 14.6003 1.66797 10.0003 1.66797ZM8.33366 14.168L4.16699 10.0013L5.34199 8.8263L8.33366 11.8096L14.6587 5.48463L15.8337 6.66797L8.33366 14.168Z" fill="white"/>
-  </g>
-  <defs>
-    <clipPath id="clip0_618_4802">
-      <rect width="20" height="20" fill="white"/>
-    </clipPath>
-  </defs>
-</svg>`,
-                danger: `<svg class="toast-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 20C4.477 20 0 15.523 0 10C0 4.477 4.477 0 10 0C15.523 0 20 4.477 20 10C20 15.523 15.523 20 10 20ZM11 15H9V13H11V15ZM11 11H9V5H11V11Z" fill="#ffffff"/></svg>`,
-                warning: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-  <g clip-path="url(#clip0_618_7143)">
-    <path d="M0.833008 17.5013H19.1663L9.99968 1.66797L0.833008 17.5013ZM10.833 15.0013H9.16634V13.3346H10.833V15.0013ZM10.833 11.668H9.16634V8.33464H10.833V11.668Z" fill="white"/>
-  </g>
-  <defs>
-    <clipPath id="clip0_618_7143">
-      <rect width="20" height="20" fill="white"/>
-    </clipPath>
-  </defs>
-</svg>`,
-                info: `<svg class="toast-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 20C4.477 20 0 15.523 0 10C0 4.477 4.477 0 10 0C15.523 0 20 4.477 20 10C20 15.523 15.523 20 10 20ZM11 15H9V9H11V15ZM11 7H9V5H11V7Z" fill="#ffffff"/></svg>`
-            };
-            return icons[type] || icons.success;
-        }
 
-        static show(type, message, target = null, options = {}) {
-            // 컨테이너 탐색 및 자동 생성
-            let container;
-            const isCustomPosition = !!target;
 
-            if (isCustomPosition) {
-                container = document.createElement('div');
-                container.className = 'custom-toast-container position-absolute';
-                document.body.appendChild(container); // 요소 잘림 방지를 위해 body 직계 추가
-
-                // 타겟 요소 기준 정밀 좌표 계산
-                const rect = target.getBoundingClientRect();
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-
-                // 타겟 중앙 하단 배치를 위한 좌표 연산
-                let top = rect.bottom + scrollTop + 10;
-                let left = rect.left + scrollLeft + (rect.width / 2);
-                let transform = 'translateX(-50%)';
-                let width = 'auto';
-
-                // 정렬 및 너비 옵션 처리
-                if (options.align === 'start' || options.align === 'left') {
-                    left = rect.left + scrollLeft;
-                    transform = 'none';
-                    container.style.justifyContent = 'flex-start';
-                }
-
-                if (options.width === 'match') {
-                    container.style.minWidth = `${rect.width}px`;
-                }
-
-                container.style.top = `${top}px`;
-                container.style.left = `${left}px`;
-                container.style.transform = transform;
-                container.style.width = width;
-
-            } else {
-                // 전역 토스트(ID 미지정 시) 기본 컨테이너 처리
-                container = document.querySelector('.custom-toast-container.global');
-                if (!container) {
-                    container = document.createElement('div');
-                    container.className = 'custom-toast-container global';
-                    document.body.appendChild(container);
-                }
-            }
-
-            // 토스트 메시지 노드 생성
-            const toastEl = document.createElement('div');
-            toastEl.className = `custom-toast toast-${type}`;
-            toastEl.innerHTML = `
-                ${this.getIcon(type)}
-                <span>${message}</span>
-            `;
-
-            if (isCustomPosition && options.width === 'match') {
-                toastEl.style.width = '100%';
-                toastEl.style.whiteSpace = 'nowrap';
-                toastEl.style.justifyContent = 'flex-start';
-            }
-
-            container.appendChild(toastEl);
-
-            // 노출 애니메이션 적용
-            requestAnimationFrame(() => {
-                toastEl.classList.add('show');
-            });
-
-            // 자동 페이드아웃 및 DOM 제거
-            setTimeout(() => {
-                toastEl.classList.remove('show');
-                toastEl.addEventListener('transitionend', () => {
-                    toastEl.remove();
-                    // 빈 커스텀 컨테이너 정리
-                    if (isCustomPosition && container.children.length === 0) {
-                        container.remove();
-                    }
-                }, { once: true });
-            }, 2000); // 2초 노출 후 종료
-        }
-    }
-
-    // 외부 연동용 전역 인터페이스 노출
-    window.Toast = ToastManager;
-
-    // 하트(찜) 클릭 감지 및 상태 전환
-    document.addEventListener('click', (e) => {
-        const btn = e.target.closest('.btn-icon');
-
-        // 타겟 요소 유효성(하트 아이콘) 검증
-        if (btn && btn.querySelector('.icon-heart')) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            const heartIcon = btn.querySelector('.icon-heart');
-            const path = heartIcon.querySelector('path');
-
-            if (!path) return;
-
-            // 라인 형태 데이터 백업 (복구용)
-            if (!path.dataset.originalD) {
-                path.dataset.originalD = path.getAttribute('d');
-            }
-
-            const originalD = path.dataset.originalD;
-            // 채워진 하트 형태 추출
-            // 패스 데이터 구조 기반 연산 (첫 폐곡선)
-            const solidD = originalD.split('Z')[0] + 'Z';
-
-            const isActive = btn.classList.contains('active');
-
-            if (!isActive) {
-                // 활성 상태 전환 (Red)
-                btn.classList.add('active');
-
-                path.setAttribute('d', solidD); // Switch to solid shape
-                path.setAttribute('fill', '#FF5447');
-                path.style.fill = '#FF5447';
-
-                // 알림 메시지 호출 (card-control 너비 맞춤)
-                const toastTarget = btn.closest('.card-control') || btn.parentElement;
-                ToastManager.show('success', '관심상품에 저장되었습니다.', toastTarget, { width: 'match', align: 'left' });
-            } else {
-                // 비활성 상태 전환 (Gray)
-                btn.classList.remove('active');
-
-                path.setAttribute('d', originalD); // Revert to outline shape
-                path.setAttribute('fill', '#444444');
-                path.style.fill = '#444444';
-            }
-        }
-    }, true);
 
     // 수량 마이너스 버튼 클릭 시 최소 수량(1) 경고 및 장바구니 삭제 유도 모달
     document.addEventListener('click', (e) => {
@@ -2160,31 +2103,51 @@ function positionLayerPopup(trigger, modalEl, options = { align: 'center' }) {
     }
 }
 
-function initLayerPopup(triggerId, modalId) {
-    const trigger = document.getElementById(triggerId);
-    const modalEl = document.getElementById(modalId);
+function initLayerPopup(triggerSelector, modalId) {
+    const setupModal = () => {
+        // Bootstrap 로드 확인 (Check if Bootstrap is loaded)
+        if (typeof bootstrap === 'undefined' || !bootstrap.Modal) {
+            setTimeout(setupModal, 50);
+            return;
+        }
 
-    if (trigger && modalEl) {
-        const modal = bootstrap.Modal.getOrCreateInstance(modalEl, {
-            backdrop: false,
-            keyboard: true
-        });
+        const selector = triggerSelector.startsWith('.') || triggerSelector.startsWith('#')
+            ? triggerSelector
+            : `#${triggerSelector}, .${triggerSelector}`;
 
-        trigger.addEventListener('click', (e) => {
+        // 이벤트 위임 방식 적용 (Use event delegation for robustness)
+        document.addEventListener('click', (e) => {
+            const trigger = e.target.closest(selector);
+            if (!trigger) return;
+
             e.preventDefault();
-            positionLayerPopup(trigger, modalEl);
-            modal.show();
+            const modalEl = document.getElementById(modalId);
+
+            if (modalEl) {
+                const modal = bootstrap.Modal.getOrCreateInstance(modalEl, {
+                    backdrop: false,
+                    keyboard: true
+                });
+                positionLayerPopup(trigger, modalEl);
+                modal.show();
+            }
         });
-    }
+    };
+    setupModal();
 }
 
-// 헤더 로딩 후 팝업 초기화
-document.addEventListener('headerLoaded', () => {
-    // 최소 주문 금액 팝업
+// 헤더 로딩 후 팝업 초기화 
+const initAllHeaderPopups = () => {
     initLayerPopup('minOrderTrigger', 'minOrderModal');
-    // 이번 달 누적 구매액 팝업
     initLayerPopup('monthPurchaseTrigger', 'monthPurchaseModal');
-    // 로그아웃 팝업
     initLayerPopup('logOutTrigger', 'logOutModal');
-});
+    initLayerPopup('productDeleteTrigger', 'productDeleteModal');
+};
+
+document.addEventListener('headerLoaded', initAllHeaderPopups);
+
+// 이미 로드된 경우 대응 
+if (document.getElementById('monthPurchaseTrigger')) {
+    initAllHeaderPopups();
+}
 

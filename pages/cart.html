@@ -236,7 +236,7 @@
                                                 fill="#444444"></path>
                                         </svg>
                                     </button>
-                                    <button class="btn-icon">
+                                    <button class="btn-icon productDeleteTrigger">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="15"
                                             viewBox="0 0 12 15" fill="none">
                                             <path
@@ -347,7 +347,7 @@
                                                 fill="#444444"></path>
                                         </svg>
                                     </button>
-                                    <button class="btn-icon">
+                                    <button class="btn-icon productDeleteTrigger">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="15"
                                             viewBox="0 0 12 15" fill="none">
                                             <path
@@ -473,7 +473,7 @@
                                                 fill="#444444"></path>
                                         </svg>
                                     </button>
-                                    <button class="btn-icon">
+                                    <button class="btn-icon productDeleteTrigger">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="15"
                                             viewBox="0 0 12 15" fill="none">
                                             <path
@@ -584,7 +584,7 @@
                                                 fill="#444444"></path>
                                         </svg>
                                     </button>
-                                    <button class="btn-icon">
+                                    <button class="btn-icon productDeleteTrigger">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="15"
                                             viewBox="0 0 12 15" fill="none">
                                             <path
@@ -721,7 +721,7 @@
                                                 fill="#444444"></path>
                                         </svg>
                                     </button>
-                                    <button class="btn-icon">
+                                    <button class="btn-icon productDeleteTrigger">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="15"
                                             viewBox="0 0 12 15" fill="none">
                                             <path
@@ -833,7 +833,7 @@
                                                 fill="#444444"></path>
                                         </svg>
                                     </button>
-                                    <button class="btn-icon">
+                                    <button class="btn-icon productDeleteTrigger">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="15"
                                             viewBox="0 0 12 15" fill="none">
                                             <path
@@ -969,7 +969,7 @@
                                                 fill="#444444"></path>
                                         </svg>
                                     </button>
-                                    <button class="btn-icon">
+                                    <button class="btn-icon productDeleteTrigger">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="15"
                                             viewBox="0 0 12 15" fill="none">
                                             <path
@@ -1081,7 +1081,7 @@
                                                 fill="#444444"></path>
                                         </svg>
                                     </button>
-                                    <button class="btn-icon">
+                                    <button class="btn-icon productDeleteTrigger">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="15"
                                             viewBox="0 0 12 15" fill="none">
                                             <path
@@ -1215,7 +1215,7 @@
                                                 fill="#444444"></path>
                                         </svg>
                                     </button>
-                                    <button class="btn-icon">
+                                    <button class="btn-icon productDeleteTrigger">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="15"
                                             viewBox="0 0 12 15" fill="none">
                                             <path
@@ -1327,7 +1327,7 @@
                                                 fill="#444444"></path>
                                         </svg>
                                     </button>
-                                    <button class="btn-icon">
+                                    <button class="btn-icon productDeleteTrigger">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="15"
                                             viewBox="0 0 12 15" fill="none">
                                             <path
@@ -1489,11 +1489,43 @@
         </div>
     </main>
 
+    <script src="/assets/js/components/favorites.js"></script>
     <script src="/assets/js/components/quantity-control.js"></script>
     <script src="/assets/js/main.js"></script>
     <script src="/assets/js/components/checkbox.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+
+
+    <!-- 선택상품 삭제 모달  -->
+    <div class="modal fade layer-popup" id="productDeleteModal" tabindex="-1" aria-hidden="true"
+        data-bs-backdrop="false">
+        <div class="modal-dialog">
+            <div class="popup-content no-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path
+                            d="M11.6667 1.175L10.4917 0L5.83333 4.65833L1.175 0L0 1.175L4.65833 5.83333L0 10.4917L1.175 11.6667L5.83333 7.00833L10.4917 11.6667L11.6667 10.4917L7.00833 5.83333L11.6667 1.175Z"
+                            fill="#222222" />
+                    </svg>
+                </button>
+                <div class="popup-body dark-text">
+                    선택상품을 삭제 하시겠습니까?
+                </div>
+                <div class="popup-footer">
+                    <div class="btn-group-half">
+                        <div class="btn-area">
+                            <button type="button" class="btn-popup btn-gray" data-bs-dismiss="modal">아니오</button>
+                        </div>
+                        <div class="btn-area">
+                            <button type="button" class="btn-popup btn-primary"
+                                onclick="location.href='/pages/cart.html'">네</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
