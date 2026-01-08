@@ -21,7 +21,7 @@ body.mobile-body {
 // 3. Components (Mobile Specific)
 @import "mobile/components/offcanvas"; // Offcanvas 스타일
 @import "mobile/components/cards"; // Mobile product cards
-@import "pc/components/toast"; // Shared Toast Component
+@import "mobile/components/toast"; // Mobile Specific Toast Style
 
 // 4. Layout
 @import "mobile/layout/header";
@@ -32,3 +32,4 @@ body.mobile-body {
 @import "mobile/pages/main";
 @import "mobile/pages/app-download";
 @import "mobile/pages/join";
+@import "mobile/pages/login";

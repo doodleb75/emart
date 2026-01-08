@@ -34,7 +34,7 @@ document.addEventListener('click', (e) => {
             // 알림 메시지 호출 (card-control 너비 맞춤)
             if (window.Toast) {
                 const toastTarget = btn.closest('.card-control') || btn.parentElement;
-                window.Toast.show('success', '관심상품에 저장되었습니다.', toastTarget, { width: 'match', align: 'left' });
+                window.Toast.show('success', '관심상품에 저장되었습니다.', toastTarget, { width: 'match', align: 'auto' });
             }
         } else {
             // 비활성 상태 전환 (Gray Outline)
