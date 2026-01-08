@@ -161,12 +161,11 @@ html {
 }
 
 body {
-  min-width: 87.5rem;
   font-family: "Pretendard Variable", sans-serif;
   background-color: #ffffff;
+  font-weight: 600;
   color: #444444;
   margin: 0;
-  overflow-x: auto;
 }
 
 .number-font {
@@ -228,14 +227,28 @@ body {
   margin: 0 auto;
 }
 
+main {
+  position: relative;
+}
+
 .sticky-track {
   position: absolute;
   top: 41.5rem;
-  bottom: 0;
+  bottom: 6.25rem;
   left: 50%;
   margin-left: 43.75rem;
   width: 7.5rem;
-  z-index: 100;
+  z-index: 1000;
+  pointer-events: none;
+}
+@media (max-width: 95rem) {
+  .sticky-track {
+    margin-top: 6rem;
+    margin-left: 35rem;
+  }
+}
+.sticky-track .floating-menu {
+  pointer-events: auto;
 }
 
 .floating-menu {
@@ -243,7 +256,7 @@ body {
   top: 0.625rem;
   width: 100%;
   background: #ffffff;
-  border: 1px solid #444444;
+  border: 1.5px solid #444444;
   border-radius: 0.25rem;
   text-align: center;
   overflow: hidden;
@@ -307,7 +320,7 @@ body {
   width: 100%;
   padding: 0.75rem 0;
   border: none;
-  border-top: 1px solid #eeeeee;
+  border-top: 1.5px solid #eeeeee;
   background: #ffffff;
   color: #444444;
   cursor: pointer;
@@ -339,8 +352,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #444444;
+  border: 1.5px solid #cccccc;
   border-radius: 0.25rem;
+  height: 100%;
   overflow: hidden;
 }
 .qty-box button {
@@ -379,9 +393,11 @@ body {
   height: 90%;
   border-radius: 0.25rem;
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 .qty-box input::-webkit-outer-spin-button, .qty-box input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  appearance: none;
   margin: 0;
 }
 .qty-box input:focus {
@@ -391,7 +407,7 @@ body {
 .btn-icon {
   width: 2.5rem;
   height: 2.5rem;
-  border: 1px solid #aaaaaa;
+  border: 1.5px solid #aaaaaa;
   border-radius: 0.25rem;
   background: transparent;
   cursor: pointer;
@@ -420,27 +436,235 @@ body.mobile-body {
   overflow-x: hidden;
 }
 
-.product-card {
+.offcanvas-bottom.user-info-offcanvas {
+  height: auto;
+  min-height: 18.75rem;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  border-top: none;
+  padding-bottom: 1rem;
+}
+.offcanvas-bottom.user-info-offcanvas .offcanvas-body {
+  padding: 0 1rem 4rem;
+}
+.offcanvas-bottom.user-info-offcanvas .offcanvas-handle {
+  width: 5rem;
+  height: 0.3125rem;
+  background-color: #cccccc;
+  border-radius: 0.3125rem;
+  margin: 0.625rem auto 1rem;
+  flex-shrink: 0;
+  cursor: pointer;
+  position: relative;
+  touch-action: none;
+}
+.offcanvas-bottom.user-info-offcanvas .offcanvas-handle::after {
+  content: "";
+  position: absolute;
+  top: -15px;
+  bottom: -15px;
+  left: -20px;
+  right: -20px;
+}
+.offcanvas-bottom.user-info-offcanvas .sep-divider {
+  border-color: #eeeeee;
+  opacity: 1;
+}
+.offcanvas-bottom.user-info-offcanvas .user-summary {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.offcanvas-bottom.user-info-offcanvas .user-summary .badge-gold {
+  background-color: #FFAA00;
+  color: #ffffff;
+  height: 100%;
+  line-height: 1.75;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-right: 0.625rem;
+}
+.offcanvas-bottom.user-info-offcanvas .user-summary .user-detail-text {
+  font-size: 0.875rem;
+  color: #444444;
+}
+.offcanvas-bottom.user-info-offcanvas .user-summary .user-detail-text span {
+  color: #aaaaaa;
+  margin: 0 0.125rem;
+}
+.offcanvas-bottom.user-info-offcanvas .point-progress-section {
+  margin: 1.25rem 0 0.625rem;
+}
+.offcanvas-bottom.user-info-offcanvas .point-progress-track {
+  width: 100%;
+  height: 2.5rem;
+  background-color: #eeeeee;
+  border-radius: 1.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.offcanvas-bottom.user-info-offcanvas .point-progress-track .point-progress-fill {
+  height: 100%;
+  background-color: #FFAA00;
+  border-radius: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0.375rem;
+  min-width: 2.5rem;
+  box-sizing: border-box;
+  transition: width 0.5s ease-out;
+}
+.offcanvas-bottom.user-info-offcanvas .point-progress-track .point-progress-fill .icon-p {
+  width: 1.75rem;
+  height: 1.75rem;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.offcanvas-bottom.user-info-offcanvas .progress-info {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: #aaaaaa;
+  padding: 0.375rem 0;
+}
+.offcanvas-bottom.user-info-offcanvas .progress-info svg {
+  color: #aaaaaa;
+}
+.offcanvas-bottom.user-info-offcanvas .user-stat-list {
+  font-size: 0.875rem;
+  line-height: 150%;
+  padding: 0rem 0;
+}
+.offcanvas-bottom.user-info-offcanvas .user-stat-list .stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding: 0.375rem 0;
+}
+.offcanvas-bottom.user-info-offcanvas .user-stat-list .stat-item:last-child {
+  margin-bottom: 0;
+}
+.offcanvas-bottom.user-info-offcanvas .user-stat-list .stat-item .label {
+  font-size: 0.875rem;
+  color: #444444;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.offcanvas-bottom.user-info-offcanvas .user-stat-list .stat-item .label svg {
+  stroke: #aaaaaa;
+}
+.offcanvas-bottom.user-info-offcanvas .user-stat-list .stat-item .value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #444444;
+  font-family: "Roboto", sans-serif;
+}
+
+.offcanvas-bottom.app-download-offcanvas {
+  height: auto;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  border-top: none;
+  padding-bottom: 1.875rem;
+}
+.offcanvas-bottom.app-download-offcanvas .offcanvas-handle {
+  width: 5rem;
+  height: 0.3125rem;
+  background-color: #cccccc;
+  border-radius: 0.3125rem;
+  margin: 0.625rem auto 1rem;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.offcanvas-bottom.app-download-offcanvas .offcanvas-body {
+  padding: 0 1.5rem 0rem;
+}
+.offcanvas-bottom.app-download-offcanvas .app-download-content {
   display: flex;
   flex-direction: column;
-  position: relative;
-  background-color: #ffffff;
+  align-items: center;
+  text-align: center;
+  margin-top: 1.25rem;
 }
-.product-card* {
-  font-weight: 600;
+.offcanvas-bottom.app-download-offcanvas .app-download-content .app-icon-wrap {
+  width: 5rem;
+  height: 5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+}
+.offcanvas-bottom.app-download-offcanvas .app-download-content .app-icon-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: #eeeeee;
+}
+.offcanvas-bottom.app-download-offcanvas .app-download-content .title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #444444;
+  margin-bottom: 2rem;
+  white-space: pre-wrap;
+}
+.offcanvas-bottom.app-download-offcanvas .app-download-content .btn-group-half {
+  display: flex;
+  width: 100%;
+  gap: 0.25rem;
+}
+.offcanvas-bottom.app-download-offcanvas .app-download-content .btn-group-half .btn {
+  flex: 1;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 0.25rem;
+}
+.offcanvas-bottom.app-download-offcanvas .app-download-content .btn-group-half .btn.btn-gray {
+  background-color: #aaaaaa;
+  color: #ffffff;
+  border: none;
+}
+.offcanvas-bottom.app-download-offcanvas .app-download-content .btn-group-half .btn.btn-primary {
+  background-color: #ffbb33;
+  color: #ffffff;
+  border: none;
+}
+
+.product-card {
+  background-color: #ffffff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .product-card .card-thumb {
-  position: relative;
   width: 100%;
-  padding-top: 100%;
-  display: block;
-  overflow: hidden;
-  border-radius: 0.25rem;
+  position: relative;
   background-color: #f4f4f4;
-  -webkit-tap-highlight-color: transparent;
+  border-radius: 0.25rem;
+  overflow: hidden;
 }
-.product-card .card-thumb:active {
-  background-color: rgb(218.5, 218.5, 218.5);
+.product-card .card-thumb::before {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
 }
 .product-card .card-thumb img {
   position: absolute;
@@ -450,10 +674,45 @@ body.mobile-body {
   width: 75%;
   height: 75%;
   object-fit: contain;
-  transition: transform 0.3s ease;
+  transition: all 0.2s ease-in-out;
 }
 .product-card .card-thumb .badge-corner {
   position: absolute;
+  z-index: 10;
+}
+.product-card .card-thumb .delivery-tags {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+}
+.product-card .card-info {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+.product-card .card-info .product-name {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #444444;
+}
+.product-card .card-control {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+}
+.product-card .card-thumb {
+  border-radius: 0.25rem;
+  -webkit-tap-highlight-color: transparent;
+}
+.product-card .card-thumb:active {
+  background-color: rgb(218.5, 218.5, 218.5);
+}
+.product-card .card-thumb .badge-corner {
   top: 0.5rem;
   left: 0.75rem;
   background-color: #ffffe0;
@@ -471,13 +730,10 @@ body.mobile-body {
   height: 0.875rem;
 }
 .product-card .card-thumb .delivery-tags {
-  position: absolute;
   bottom: 0.5rem;
   left: 0.75rem;
-  display: flex;
   align-items: center;
   gap: 0.25rem;
-  flex-wrap: wrap;
 }
 .product-card .card-thumb .delivery-tags .tag {
   display: flex;
@@ -485,13 +741,14 @@ body.mobile-body {
   height: 1.5rem;
   font-size: 0.625rem;
   font-weight: 600;
+  gap: 0.25rem;
   padding: 0.125rem 0.375rem;
   border-radius: 0.125rem;
   background-color: #ffffe0;
 }
 .product-card .card-thumb .delivery-tags .tag svg {
-  width: 0.75rem !important;
-  height: 0.75rem !important;
+  width: 0.875rem !important;
+  height: 0.875rem !important;
 }
 .product-card .card-thumb .delivery-tags .tag.tag-frozen {
   color: #1f95ff;
@@ -509,27 +766,19 @@ body.mobile-body {
 }
 .product-card .card-info {
   padding: 1rem;
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  padding-bottom: 0.5rem;
   -webkit-tap-highlight-color: transparent;
 }
 .product-card .card-info:active {
   background-color: rgb(229.5, 229.5, 229.5);
 }
+.product-card .card-info > * {
+  line-height: 150%;
+}
 .product-card .card-info .product-name {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #444444;
-  margin-bottom: 0.125rem;
   line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
   letter-spacing: -0.0175rem;
 }
 .product-card .card-info .unit-info {
@@ -537,14 +786,11 @@ body.mobile-body {
   flex-direction: column;
   align-content: flex-start;
   flex-wrap: wrap;
-  gap: 0.375rem;
-  margin-bottom: 0.5rem;
   font-size: 0.625rem;
-  height: 2.125rem;
   justify-content: center;
 }
 .product-card .card-info .unit-info .strike {
-  color: #999999;
+  color: #aaaaaa;
   text-decoration: line-through;
 }
 .product-card .card-info .unit-info .unit-highlight {
@@ -555,7 +801,6 @@ body.mobile-body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-top: auto;
 }
 .product-card .card-info .total-price-area .discount {
   font-size: 1rem;
@@ -564,7 +809,7 @@ body.mobile-body {
 }
 .product-card .card-info .total-price-area .discount .sub-txt {
   font-size: 0.625rem;
-  margin-left: rem;
+  margin-left: 0.125rem;
 }
 .product-card .card-info .total-price-area .price {
   font-size: 1rem;
@@ -573,13 +818,7 @@ body.mobile-body {
 }
 .product-card .card-control {
   padding: 0 1rem 0.5rem;
-  display: flex;
-  align-items: center;
   gap: 0.25rem;
-}
-.product-card .card-control .btn-icon,
-.product-card .card-control .qty-box {
-  order: initial;
 }
 .product-card .card-control .btn-icon {
   width: 2rem;
@@ -596,9 +835,6 @@ body.mobile-body {
 .product-card .card-control .btn-icon:active {
   background-color: rgb(229.5, 229.5, 229.5);
 }
-.product-card .card-control .btn-icon:first-child {
-  margin-right: 0;
-}
 .product-card .card-control .btn-icon svg {
   width: 1rem;
   height: 1rem;
@@ -608,24 +844,40 @@ body.mobile-body {
   stroke: #ff5447;
 }
 .product-card .card-control .qty-box {
-  flex: 1;
   display: flex;
   align-items: center;
-  border: 1px solid #444444;
-  border-radius: 0.125rem;
+  border: 1.5px solid #444444;
+  border-radius: 0.25rem;
   height: 2rem;
   overflow: hidden;
 }
 .product-card .card-control .qty-box button {
-  width: 1.5rem;
+  width: 2rem;
   height: 100%;
-  background: #ffffff;
+  background: none;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #222222;
+}
+.product-card .card-control .qty-box input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #444444;
+  outline: none;
+}
+.product-card .card-control .qty-box {
+  flex: 1;
+  border-radius: 0.125rem;
+}
+.product-card .card-control .qty-box button {
+  width: 1.5rem;
   -webkit-tap-highlight-color: transparent;
 }
 .product-card .card-control .qty-box button:active {
@@ -635,32 +887,21 @@ body.mobile-body {
   width: 0.75rem;
   height: 0.75rem;
 }
-.product-card .card-control .qty-box input {
-  flex: 0.8;
-  width: 100%;
-  border: none;
-  text-align: center;
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: #222222;
-  -moz-appearance: textfield;
-  appearance: textfield;
-}
 .product-card .bottom-info {
   padding: 0 1rem 1rem;
   margin-top: 0;
   border-top: none;
 }
+.product-card .bottom-info > * {
+  line-height: 150%;
+}
 .product-card .bottom-info .info-row {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.25rem;
   font-size: 0.625rem;
   color: #aaaaaa;
-  line-height: 1.4;
   letter-spacing: -0.02em;
-  margin-bottom: 0.125rem;
   font-weight: 600;
 }
 .product-card .bottom-info .info-row:last-child {
@@ -732,6 +973,70 @@ body.mobile-body {
 }
 .product-card .bottom-info .info-row .text-highlight {
   color: #FF5447;
+}
+
+.custom-toast-container {
+  position: fixed;
+  z-index: 1060;
+  max-width: 22.5rem;
+  width: auto;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 1.5rem;
+}
+.custom-toast-container.position-absolute {
+  position: absolute;
+  bottom: auto;
+  left: auto;
+  transform: none;
+}
+
+.custom-toast {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transform: translateY(0.625rem);
+  background-color: #222222;
+  border: none;
+}
+.custom-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.custom-toast .toast-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+.custom-toast .toast-icon path {
+  fill: currentColor;
+}
+.custom-toast.toast-success {
+  background-color: #00b87a;
+}
+.custom-toast.toast-danger {
+  background-color: #e03e3e;
+}
+.custom-toast.toast-warning {
+  background-color: #ffaa00;
+  color: #ffffff;
+}
+.custom-toast.toast-info {
+  background-color: #1f95ff;
 }
 
 .mobile-header {
@@ -854,6 +1159,8 @@ body.mobile-body {
   padding: 0.5rem 1rem 1rem;
   background-color: #ffffff;
   transition: all 0.2s ease;
+  width: 100% !important;
+  margin-left: 0 !important;
 }
 .mobile-header .search-container .search-header {
   display: flex;
@@ -1324,6 +1631,10 @@ body.mobile-body {
   gap: 1rem;
   margin-bottom: 2rem;
 }
+.mobile-footer .footer-links-grid * {
+  line-height: 1.5 !important;
+  font-weight: 600 !important;
+}
 .mobile-footer .footer-links-grid .link-column {
   display: flex;
   flex-direction: column;
@@ -1333,7 +1644,6 @@ body.mobile-body {
   font-size: 0.8125rem;
   color: #333333;
   text-decoration: none;
-  font-weight: 400;
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -1594,7 +1904,7 @@ body.mobile-body {
   display: block;
   width: 2rem;
   height: 2rem;
-  border: 1px solid #444444;
+  border: 1.5px solid #444444;
   border-radius: 0.125rem;
   background: url("/assets/icons/fullview-arrow.svg") no-repeat center center;
   background-size: 1.25rem 1.25rem;
@@ -1642,7 +1952,7 @@ body.mobile-body {
 .weekly-ranking .ranking-nav .nav-btn {
   width: 3rem;
   height: 3rem;
-  border: 1px solid #cccccc;
+  border: 1.5px solid #cccccc;
   border-radius: 0.125rem;
   background: #ffffff;
   display: flex;
@@ -1742,7 +2052,7 @@ body.mobile-body {
   width: 2rem;
   height: 2rem;
   background: #ffffff;
-  border: 1px solid #cccccc;
+  border: 1.5px solid #cccccc;
   border-radius: 0.125rem;
   color: #222222;
   display: flex;
@@ -1782,7 +2092,7 @@ body.mobile-body {
   padding-bottom: 0;
 }
 .weekly-ranking .ranking-item .ranking-header {
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1.5px solid #eeeeee;
 }
 .weekly-ranking .ranking-item.active .ranking-header {
   border-bottom: none;
@@ -1805,7 +2115,7 @@ body.mobile-body {
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
-  border: 1px solid #444444;
+  border: 1.5px solid #444444;
   background: #ffffff;
   border-radius: 0.125rem;
   font-size: 0.875rem;
@@ -1883,6 +2193,26 @@ body.mobile-body {
   align-items: center;
   justify-content: space-between;
   color: #ffffff;
+}
+.mobile-main-slider .slide-item .slider-card-body.bg-snack {
+  background-color: #65403a;
+}
+.mobile-main-slider .slide-item .slider-card-body.bg-beverage {
+  background-color: #5a493f;
+}
+.mobile-main-slider .slide-item .slider-card-body.bg-beverage .text-group .slider-title,
+.mobile-main-slider .slide-item .slider-card-body.bg-beverage .text-group .slider-desc {
+  color: #ffffff;
+}
+.mobile-main-slider .slide-item .slider-card-body.bg-juice {
+  background-color: #8d252c;
+}
+.mobile-main-slider .slide-item .slider-card-body.bg-juice .text-group .slider-title,
+.mobile-main-slider .slide-item .slider-card-body.bg-juice .text-group .slider-desc {
+  color: #ffffff;
+}
+.mobile-main-slider .slide-item .slider-card-body.bg-pasta {
+  background-color: #0076be;
 }
 .mobile-main-slider .slide-item .slider-card-body .text-group {
   display: flex;
@@ -2005,7 +2335,7 @@ body.mobile-body {
 .md-recommendation .tab-menu::-webkit-scrollbar {
   display: none;
 }
-.md-recommendation .tab-menu .tab-btn {
+.md-recommendation .tab-menu .tab-item {
   padding: 0.5rem 1rem;
   border-radius: 0.125rem;
   border: 0;
@@ -2019,14 +2349,17 @@ body.mobile-body {
   transition: all 0.2s;
   -webkit-tap-highlight-color: transparent;
 }
-.md-recommendation .tab-menu .tab-btn:active {
+.md-recommendation .tab-menu .tab-item:active {
   background-color: rgb(229.5, 229.5, 229.5);
 }
-.md-recommendation .tab-menu .tab-btn.active {
+.md-recommendation .tab-menu .tab-item.active {
   background-color: #222222;
   color: #ffffff;
   border-color: #222222;
   font-weight: 700;
+}
+.md-recommendation .btn-more svg {
+  transform: rotate(-90deg);
 }
 
 .brand-pavilion .brand-story-list {
@@ -2176,4 +2509,632 @@ body.mobile-body {
 }
 .popcorn-banner-wrapper .slider-controller .page-count .total {
   color: #aaaaaa;
+}
+
+.app-download-page {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 3.75rem;
+}
+.app-download-page * {
+  font-weight: 600;
+}
+.app-download-page .app-download-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.app-download-page .app-header {
+  width: 100%;
+  padding-top: 2.5rem;
+  padding-bottom: 1.25rem;
+  text-align: center;
+  animation: fadeInDown 0.8s ease-out;
+}
+.app-download-page .app-header .logo-wrap {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+.app-download-page .app-header .logo-wrap svg {
+  width: 7.5rem;
+  height: auto;
+}
+.app-download-page .app-header .title-wrap .main-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #444444;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  letter-spacing: -0.03125rem;
+}
+.app-download-page .app-header .title-wrap .sub-text {
+  font-size: 0.875rem;
+  color: #444444;
+  line-height: 150%;
+  letter-spacing: -0.01875rem;
+}
+.app-download-page .app-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 1rem 2.5rem;
+  animation: fadeInUp 1s ease-out;
+}
+.app-download-page .app-content .mockup-wrap {
+  width: 100%;
+  max-width: 20rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: center;
+  filter: drop-shadow(0 0.625rem 1.25rem rgba(0, 0, 0, 0.05));
+  transition: transform 0.3s ease;
+}
+.app-download-page .app-content .mockup-wrap:hover {
+  transform: translateY(-0.625rem);
+}
+.app-download-page .app-content .mockup-wrap .iphone-img {
+  width: 80%;
+  height: auto;
+  display: block;
+}
+.app-download-page .app-content .desc-wrap {
+  text-align: center;
+  margin-top: 0rem;
+}
+.app-download-page .app-content .desc-wrap .desc-text {
+  font-size: 0.875rem;
+  color: #aaaaaa;
+  line-height: 150%;
+}
+.app-download-page .btn-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 5rem;
+  width: 3rem;
+  height: 3rem;
+  background: #ffffff;
+  border: 0.0625rem solid #444444;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+}
+.app-download-page .btn-top:active {
+  transform: scale(0.9);
+}
+.app-download-page .btn-top svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.app-download-page .section-divider {
+  width: 100%;
+  height: 0.25rem;
+  background-color: #FAFAFA;
+  border: none;
+  margin: 0;
+}
+.app-download-page .club-section {
+  width: 100%;
+  animation: fadeInUp 1s ease-out;
+}
+.app-download-page .club-section.club-intro-wrap .section-inner {
+  border-top: 0.25rem solid #FAFAFA;
+}
+.app-download-page .club-section .section-inner {
+  padding: 2rem 1rem;
+  border-bottom: 0.25rem solid #FAFAFA;
+}
+.app-download-page .club-section .section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #444444;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.app-download-page .club-section .section-title .title-in-span {
+  position: relative;
+  top: 2px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+.app-download-page .club-section .section-title::before {
+  content: "";
+  display: block;
+  width: 3.6875rem;
+  height: 1.5rem;
+  background: url("/assets/images/mobile/app-download/icon_eclub_title.svg") no-repeat center/contain;
+}
+.app-download-page .club-section .section-desc {
+  font-size: 1rem;
+  color: #444444;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+.app-download-page .club-intro-wrap .intro-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #444444;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+}
+.app-download-page .club-intro-wrap .intro-text + .intro-text {
+  margin-top: 1.5rem;
+}
+.app-download-page .club-method-list {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.app-download-page .club-method-list .method-item {
+  display: flex;
+  gap: 0.25rem;
+  font-size: 1rem;
+  color: #444444;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+.app-download-page .club-method-list .method-item .num {
+  color: #444444;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.app-download-page .club-method-list .method-item p {
+  color: #444444;
+  font-weight: 600;
+}
+.app-download-page .club-benefit-wrap .benefit-group + .benefit-group {
+  margin-top: 2rem;
+}
+.app-download-page .club-benefit-wrap .benefit-group .group-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #444444;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+.app-download-page .club-benefit-wrap .benefit-group .benefit-list {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.5rem;
+}
+.app-download-page .club-benefit-wrap .benefit-group .benefit-list .benefit-item {
+  position: relative;
+  padding-left: 0.75rem;
+  font-size: 0.875rem;
+  color: #444444;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.app-download-page .club-benefit-wrap .benefit-group .benefit-list .benefit-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 0.25rem;
+  height: 0.25rem;
+  background-color: #444444;
+  border-radius: 50%;
+}
+.app-download-page .club-benefit-wrap .benefit-group .benefit-list .benefit-item .highlight {
+  color: #ff5447;
+  font-weight: 500;
+}
+.app-download-page .club-grade-wrap .grade-info-text {
+  font-size: 1rem;
+  color: #444444;
+  line-height: 150%;
+  margin-bottom: 1.25rem;
+}
+.app-download-page .club-grade-wrap .grade-info-text .highlight {
+  color: #ff5447;
+  font-weight: 700;
+}
+.app-download-page .club-grade-wrap .badge-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+.app-download-page .club-grade-wrap .badge-list .badge-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+.app-download-page .club-grade-wrap .badge-list .badge-item img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+}
+.app-download-page .club-grade-wrap .badge-list .badge-item span {
+  font-size: 0.6875rem;
+  color: #999999;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.app-download-page .club-grade-wrap .badge-list .badge-item.vvip span {
+  color: #a4539e;
+}
+.app-download-page .club-grade-wrap .badge-list .badge-item.vip span {
+  color: #1f95ff;
+}
+.app-download-page .club-grade-wrap .badge-list .badge-item.family span {
+  color: #00b87a;
+}
+.app-download-page .club-grade-wrap .badge-list .badge-item.silver span {
+  color: #999999;
+}
+.app-download-page .club-grade-wrap .badge-list .badge-item.gold span {
+  color: #ffbb33;
+}
+.app-download-page .club-grade-wrap .delivery-visual {
+  position: relative;
+  width: 100%;
+  height: 11.25rem;
+  background: url("/assets/images/mobile/app-download/truck_delivery.png") no-repeat center bottom/contain;
+  height: 200px;
+  flex-shrink: 0;
+  align-self: stretch;
+  aspect-ratio: 41/25;
+}
+.app-download-page .club-delivery-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.app-download-page .club-delivery-list .delivery-item .item-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #444444;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+.app-download-page .club-delivery-list .delivery-item .item-desc {
+  font-size: 1rem;
+  color: #444444;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+  letter-spacing: -0.02em;
+}
+.app-download-page .club-delivery-list .delivery-item .item-desc .highlight {
+  color: #FF5447;
+  font-weight: 600;
+}
+.app-download-page .club-delivery-list .delivery-item .item-desc .highlight-blue {
+  color: #1f95ff;
+  font-weight: 600;
+}
+.app-download-page .club-delivery-list .delivery-item .sub-desc {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #ffaa00;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+.app-download-page .club-delivery-list .delivery-item .sub-desc.gray-text {
+  color: #444444;
+}
+.app-download-page .club-call-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 0.0625rem solid #444444;
+  padding: 0.5rem 0;
+  margin-top: 1.5rem;
+}
+.app-download-page .club-call-list .call-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  font-size: 0.875rem;
+  letter-spacing: -0.02em;
+}
+.app-download-page .club-call-list .call-item:last-child {
+  border-bottom: 0.0625rem solid #444444;
+  padding-bottom: 1rem;
+}
+.app-download-page .club-call-list .call-item .leader {
+  flex: 1;
+  color: #444444;
+  font-weight: 600;
+  text-align: left;
+}
+.app-download-page .club-call-list .call-item .region {
+  flex: 1.2;
+  color: #444444;
+  font-weight: 600;
+  text-align: left;
+}
+.app-download-page .club-call-list .call-item .tel {
+  flex: 1.5;
+  color: #444444;
+  font-weight: 600;
+  text-align: right;
+  text-decoration: none;
+}
+.app-download-page .cs-center {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.app-download-page .cs-center * {
+  line-height: 1.5 !important;
+}
+.app-download-page .cs-center .cs-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #444444;
+  letter-spacing: -0.01em;
+}
+.app-download-page .cs-center .cs-tel {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #444444;
+  letter-spacing: -0.02em;
+}
+.app-download-page .cs-center .cs-time {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #444444;
+  letter-spacing: -0.02em;
+}
+.app-download-page .mobile-footer.app-download {
+  width: 100% !important;
+}
+.app-download-page .club-footer-info {
+  padding: 2.5rem 1rem 6.25rem;
+  background-color: #ffffff;
+}
+.app-download-page .club-footer-info .footer-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.app-download-page .club-footer-info .footer-title::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background: url("../assets/images/mobile/app-download/icon_eclub_title.svg") no-repeat center/contain;
+}
+.app-download-page .club-footer-info .footer-table {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+.app-download-page .club-footer-info .footer-table tr td {
+  padding: 0.25rem 0;
+  font-size: 0.75rem;
+  color: #444444;
+  vertical-align: top;
+}
+.app-download-page .club-footer-info .footer-table tr td:first-child {
+  width: 5rem;
+  color: #999999;
+}
+.app-download-page .club-footer-info .footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.app-download-page .club-footer-info .footer-links .link-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: #444444;
+  text-decoration: none;
+}
+.app-download-page .club-footer-info .footer-links .link-item svg {
+  width: 1rem;
+  height: 1rem;
+}
+.app-download-page .club-footer-info .copyright {
+  font-size: 0.6875rem;
+  color: #cccccc;
+}
+.app-download-page .app-footer-buttons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  height: 3.75rem;
+  z-index: 1000;
+}
+.app-download-page .app-footer-buttons a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.app-download-page .app-footer-buttons a:active {
+  opacity: 0.8;
+}
+.app-download-page .app-footer-buttons .btn-join {
+  background-color: #aaaaaa;
+  color: #ffffff;
+}
+.app-download-page .app-footer-buttons .btn-download {
+  background-color: #ffbb33;
+  color: #ffffff;
+}
+.app-download-page .floating-buttons .btn-float {
+  box-shadow: none !important;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.join-page {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 4rem;
+}
+.join-page .join-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.5rem;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  z-index: 10;
+}
+.join-page .join-header .btn-back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3.5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.join-page .join-header .btn-back:hover {
+  background: #f4f4f4;
+}
+.join-page .join-header .btn-back svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.join-page .join-header .header-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #222222;
+  margin: 0;
+}
+.join-page .join-container {
+  padding: 2rem 1rem 1.5rem;
+  flex: 1;
+}
+.join-page .join-container .join-text-box {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.join-page .join-container .join-text-box p {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #888888;
+  line-height: 1.5;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
+}
+.join-page .join-container .agreement-group {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.join-page .join-container .agreement-group > custom-radio {
+  flex: 1;
+}
+.join-page .join-footer-btns {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  z-index: 20;
+}
+.join-page .join-footer-btns .btn-action {
+  flex: 1;
+  height: 100%;
+  border: none;
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.join-page .join-footer-btns .btn-action.cancel {
+  background-color: #aaaaaa;
+  color: #ffffff;
+}
+.join-page .join-footer-btns .btn-action.confirm {
+  background-color: #ffbb33;
+  color: #ffffff;
+}
+
+custom-radio {
+  display: inline-block;
+}
+custom-radio .custom-radio-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+custom-radio .custom-radio-wrap .hidden-radio {
+  display: none;
+}
+custom-radio .custom-radio-wrap .custom-radio-ui {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+custom-radio .custom-radio-wrap .custom-radio-ui svg {
+  width: 100%;
+  height: 100%;
+}
+custom-radio .custom-radio-wrap .label-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #444444;
 }

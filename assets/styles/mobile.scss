@@ -1,12 +1,8 @@
 @charset "UTF-8";
 
 // 1. Abstracts (Variables, Mixins, Functions)
-@function rem($px) {
-    @return #{calc($px / 16)}rem;
-}
-
-@import "abstracts/variables";
 @import "abstracts/functions";
+@import "abstracts/variables";
 @import "abstracts/mixins";
 
 // 2. Base (Reset, Typography)
@@ -23,9 +19,9 @@ body.mobile-body {
 }
 
 // 3. Components (Mobile Specific)
-// @import "mobile/components/buttons"; // Commented out until created
+@import "mobile/components/offcanvas"; // Offcanvas 스타일
 @import "mobile/components/cards"; // Mobile product cards
-// @import "mobile/components/icons"; // Commented out until created
+@import "pc/components/toast"; // Shared Toast Component
 
 // 4. Layout
 @import "mobile/layout/header";
@@ -34,3 +30,5 @@ body.mobile-body {
 
 // 5. Pages
 @import "mobile/pages/main";
+@import "mobile/pages/app-download";
+@import "mobile/pages/join";
