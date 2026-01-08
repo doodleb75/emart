@@ -1,0 +1,64 @@
+// _variables.scss
+
+// 1. Color System (Synced with Figma)
+// -----------------------------------------------------------------------------
+$white: #ffffff;
+$black: #222222; // Gray-222222-80
+
+// Gray Scale
+$gray-50: #f4f4f4; // Gray-F4F4F4-30
+$gray-100: #eeeeee; // Gray-EEEEEE-40
+$gray-200: #cccccc; // Gray-CCCCCC-50
+$gray-300: #aaaaaa; // Gray-AAAAAA-60
+$gray-500: #999999; // Preserved
+$gray-600: #888888; // Preserved
+$gray-700: #444444; // Gray-444444-70
+$gray-900: #222222; // Gray-222222-80
+
+// Brand Colors
+$primary-gold: #ffbb33; // primary-75-base
+$accent-base: #ff5447; // Accent-75-base
+$secondary-bg: #ffffe0; // Secondary-25
+
+// System Colors
+$system-info: #1f95ff; // System-information-75-base
+$system-success: #00b87a; // System-success-75-base
+
+// Semantic Aliases & Legacy Support
+$primary-text: $black;
+$secondary-text: $gray-300;
+$gray-400: $gray-200; // Alias for #CCCCCC
+$gray-800: #333333; // Added for legacy support
+
+// Badge Colors (Refined from Figma/Puppeteer)
+$badge-red-bg: #FAEBDB;
+$badge-red-text: $accent-base; // #FF5447
+$badge-blue-bg: #D8ECFD;
+$badge-blue-text: #1876D3; // Distinct from system-info
+
+
+// 2. Typography (Preserved)
+// -----------------------------------------------------------------------------
+$font-family-base: 'Pretendard Variable', sans-serif;
+$font-family-number: 'Roboto', sans-serif;
+
+$font-size-xs: 11px;
+$font-size-sm: 13px;
+$font-size-base: 14px;
+$font-size-md: 16px;
+$font-size-lg: 20px;
+$font-size-xl: 32px; // Logo 'e'
+$font-size-xxl: 28px; // Logo 'Club'
+
+
+// 3. Spacing & Layout (Preserved)
+// -----------------------------------------------------------------------------
+$header-height-top: 50px;
+$header-height-main: 80px;
+$header-height-nav: 60px;
+
+
+// Bootstrap Overrides
+// -----------------------------------------------------------------------------
+$nav-link-padding-y: 8px;
+$nav-link-padding-x: 16px;
