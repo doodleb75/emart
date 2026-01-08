@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emart Everyday POS</title>
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <!-- Pretendard Font (CDN for demo) -->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+</head>
+
+<body>
+    <div class="ev-container">
+        <!-- Status Bar -->
+        <div class="ev-status-bar">
+            <!-- Left: Date/Time -->
+            <div class="status-left">
+                <span class="date-time">2025.01.01 10:30</span>
+                <span class="divider"></span>
+                <span class="pos-no">190004-0001</span>
+            </div>
+            <!-- Right: Status Icons -->
+            <div class="status-icons">
+                <span class="status-text">정상</span>
+                <img src="assets/images/icon-wifi.svg" alt="Wifi" class="icon-wifi">
+                <img src="assets/images/icon-battery.svg" alt="Battery" class="icon-battery">
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="ev-header">
+            <!-- Top Row: Close Button -->
+            <div class="header-top">
+                <button class="btn-close-custom">
+                    <img src="assets/images/close.svg" alt="Close">
+                </button>
+            </div>
+
+            <!-- User Info Block -->
+            <div class="user-info-block">
+                <div class="branch-info">
+                    <span class="info-group">
+                        <img src="assets/images/map-pin.svg" alt="Location" width="16">
+                        <span>분당점</span>
+                    </span>
+                    <span class="badge-custom">직영/식품</span>
+                </div>
+                <div class="user-name">
+                    <strong>홍길동</strong> 님
+                </div>
+            </div>
+
+
+        </header>
+        <!-- Customer Center / Logout Row -->
+        <div class="header-bottom">
+            <span class="cs-center">POS 고객센터 1588-1234</span>
+            <button class="btn-logout">
+                <img src="assets/images/logout.svg" alt="Logout">
+                로그아웃
+            </button>
+        </div>
+        <!-- Main Split Layout -->
+        <div class="ev-body-split">
+            <!-- Left Sidebar -->
+            <aside class="ev-sidebar">
+                <div class="sidebar-item active" data-menu="sales">
+                    <div class="icon-box">
+                        <img src="assets/images/archive.svg" alt="Sales">
+                    </div>
+                    <span class="label">판매/정산</span>
+                </div>
+                <div class="sidebar-item" data-menu="query">
+                    <div class="icon-box">
+                        <!-- Use generic search icon for 'Query' -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </div>
+                    <span class="label">조회</span>
+                </div>
+                <div class="sidebar-item" data-menu="system">
+                    <div class="icon-box">
+                        <img src="assets/images/system.svg" alt="System">
+                    </div>
+                    <span class="label">시스템관리</span>
+                </div>
+                <div class="sidebar-item" data-menu="settings">
+                    <div class="icon-box">
+                        <!-- Use generic settings icon -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                            </path>
+                        </svg>
+                    </div>
+                    <span class="label">환경설정</span>
+                </div>
+            </aside>
+
+            <!-- Right Content -->
+            <main class="ev-content">
+                <ul class="content-list">
+                    <li class="list-item">판매등록</li>
+                    <li class="list-item">판매TR조회</li>
+                    <li class="list-item">저널조회</li>
+                    <li class="list-item">무이자정보</li>
+                    <li class="list-item">품번매출</li>
+                    <li class="list-item">점검</li>
+                    <li class="list-item">정산</li>
+                </ul>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색결과 - e-Club</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/styles/pc.css" rel="stylesheet">
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/pages/search_result.js"></script>
+    <script src="../assets/js/components/view-toggle.js"></script>
+    <script src="../assets/js/components/checkbox.js"></script>
+</head>
+
+<body>
+
+    <!-- 헤더 -->
+    <div id="header-placeholder"></div>
+    <script>
+        fetch('/components/header.component.txt?v=' + new Date().getTime())
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+                document.dispatchEvent(new Event('headerLoaded'));
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+
+    <!-- Search Result Page Content -->
+    <main class="search-result-page">
+        <div class="section-container">
+
+            <!-- Title Area -->
+            <div class="page-header">
+                <h2 class="search-result-title">
+                    <span class="keyword">‘햇반’</span>(으)로 검색한 결과입니다.
+                </h2>
+            </div>
+
+            <!-- Top Info Area -->
+            <div class="search-top-area">
+                <!-- 1. Total Count -->
+                <div class="total-count-row">
+                    총 <span class="count">41</span>개의 상품이 있습니다
+                </div>
+
+                <!-- 2. Related Keywords -->
+                <div class="related-keywords-row">
+                    <span class="label">연관검색어</span>
+                    <div class="divider-vertical"></div>
+                    <div class="keyword-list">
+                        <span class="keyword-item">햇반 흑미밥</span>
+                        <span class="keyword-item">햇반 윤기가득쌀밥</span>
+                        <span class="keyword-item">햇반 잡곡밥</span>
+                        <span class="keyword-item">햇반 잡곡</span>
+                        <span class="keyword-item">현미 햇반</span>
+                        <span class="keyword-item">햇반 전복내장죽</span>
+                        <span class="keyword-item">햇반 흑미</span>
+                        <span class="keyword-item">햇반 전복죽</span>
+                        <span class="keyword-item">cj 햇반</span>
+                        <span class="keyword-item">햇반 이천쌀밥</span>
+                        <span class="keyword-item">햇반 곤약밥</span>
+                        <span class="keyword-item">정회원 햇반</span>
+                        <span class="keyword-item">햇반통곡물밥</span>
+                        <span class="keyword-item">햇반솥밥</span>
+                    </div>
+                </div>
+
+                <!-- 3. Filter Options -->
+                <div class="filter-options-row">
+                    <!-- Links Group -->
+                    <div class="filter-group">
+                        <span class="filter-label">협력업체</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <g clip-path="url(#clip0_215_2293)">
+                                <path
+                                    d="M15.8333 15.8333H4.16667V4.16667H10V2.5H4.16667C3.24167 2.5 2.5 3.25 2.5 4.16667V15.8333C2.5 16.75 3.24167 17.5 4.16667 17.5H15.8333C16.75 17.5 17.5 16.75 17.5 15.8333V10H15.8333V15.8333ZM11.6667 2.5V4.16667H14.6583L6.46667 12.3583L7.64167 13.5333L15.8333 5.34167V8.33333H17.5V2.5H11.6667Z"
+                                    fill="#444444" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_215_2293">
+                                    <rect width="20" height="20" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="divider-vertical"></div>
+                    <div class="filter-group">
+                        <span class="filter-label">카테고리 <span class="text-blue">5</span></span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <g clip-path="url(#clip0_215_2293)">
+                                <path
+                                    d="M15.8333 15.8333H4.16667V4.16667H10V2.5H4.16667C3.24167 2.5 2.5 3.25 2.5 4.16667V15.8333C2.5 16.75 3.24167 17.5 4.16667 17.5H15.8333C16.75 17.5 17.5 16.75 17.5 15.8333V10H15.8333V15.8333ZM11.6667 2.5V4.16667H14.6583L6.46667 12.3583L7.64167 13.5333L15.8333 5.34167V8.33333H17.5V2.5H11.6667Z"
+                                    fill="#444444" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_215_2293">
+                                    <rect width="20" height="20" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="divider-vertical"></div>
+                    <div class="filter-group">
+                        <span class="filter-label">상품형태</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <g clip-path="url(#clip0_215_2293)">
+                                <path
+                                    d="M15.8333 15.8333H4.16667V4.16667H10V2.5H4.16667C3.24167 2.5 2.5 3.25 2.5 4.16667V15.8333C2.5 16.75 3.24167 17.5 4.16667 17.5H15.8333C16.75 17.5 17.5 16.75 17.5 15.8333V10H15.8333V15.8333ZM11.6667 2.5V4.16667H14.6583L6.46667 12.3583L7.64167 13.5333L15.8333 5.34167V8.33333H17.5V2.5H11.6667Z"
+                                    fill="#444444" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_215_2293">
+                                    <rect width="20" height="20" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="divider-vertical"></div>
+                    <div class="filter-group">
+                        <span class="filter-label">배송방법</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <g clip-path="url(#clip0_215_2312)">
+                                <path
+                                    d="M9.16504 5.83171H10.8317V7.49837H9.16504V5.83171ZM9.16504 9.16504H10.8317V14.165H9.16504V9.16504ZM9.99837 1.66504C5.39837 1.66504 1.66504 5.39837 1.66504 9.99837C1.66504 14.5984 5.39837 18.3317 9.99837 18.3317C14.5984 18.3317 18.3317 14.5984 18.3317 9.99837C18.3317 5.39837 14.5984 1.66504 9.99837 1.66504ZM9.99837 16.665C6.32337 16.665 3.33171 13.6734 3.33171 9.99837C3.33171 6.32337 6.32337 3.33171 9.99837 3.33171C13.6734 3.33171 16.665 6.32337 16.665 9.99837C16.665 13.6734 13.6734 16.665 9.99837 16.665Z"
+                                    fill="#CCCCCC" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_215_2312">
+                                    <rect width="20" height="20" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    <!-- Checkboxes Group -->
+                    <div class="checkbox-group">
+                        <custom-checkbox label="상온"></custom-checkbox>
+                        <custom-checkbox label="저온"></custom-checkbox>
+                        <custom-checkbox label="TC"></custom-checkbox>
+                        <custom-checkbox label="DC"></custom-checkbox>
+                        <custom-checkbox label="직납"></custom-checkbox>
+
+                        <div class="divider-vertical"></div>
+
+                        <custom-checkbox label="품절 제외" class="dark-label"></custom-checkbox>
+                        <custom-checkbox label="곧 주문 제외" class="dark-label"></custom-checkbox>
+                    </div>
+                </div>
+
+                <!-- 4. Search Control Row -->
+                <div class="search-control-row">
+                    <div class="left-col">
+                        <span class="label">결과 내 검색</span>
+                        <div class="input-wrap">
+                            <input type="text" placeholder="상품을 검색해보세요">
+                        </div>
+                        <button class="btn-search">조회</button>
+                    </div>
+                    <div class="right-col">
+                        <!-- Dropdown -->
+                        <div class="dropdown-wrapper">
+                            <div class="select-wrap" id="itemsPerPageTrigger">
+                                <span class="selected-value">20개씩 보기</span>
+                                <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 20 20" fill="none">
+                                    <g clip-path="url(#clip0_219_2472)">
+                                        <path
+                                            d="M6.175 7.1582L10 10.9749L13.825 7.1582L15 8.3332L10 13.3332L5 8.3332L6.175 7.1582Z"
+                                            fill="#444444" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_219_2472">
+                                            <rect width="20" height="20" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <ul class="dropdown-options">
+                                <li data-value="5">5개씩 보기</li>
+                                <li data-value="10">10개씩 보기</li>
+                                <li data-value="20" class="active">20개씩 보기</li>
+                                <li data-value="30">30개씩 보기</li>
+                                <li data-value="50">50개씩 보기</li>
+                                <li data-value="100">100개씩 보기</li>
+                            </ul>
+                        </div>
+                        <!-- View Toggles -->
+                        <div class="view-toggles">
+                            <button class="btn-toggle btn-grid active" aria-label="Grid View">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M3 3V11H11V3H3ZM9 9H5V5H9V9ZM3 13V21H11V13H3ZM9 19H5V15H9V19ZM13 3V11H21V3H13ZM19 9H15V5H19V9ZM13 13V21H21V13H13ZM19 19H15V15H19V19Z"
+                                        fill="#444444" />
+                                </svg>
+                            </button>
+                            <button class="btn-toggle btn-list" aria-label="List View">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="10" viewBox="0 0 18 10"
+                                    fill="none">
+                                    <path
+                                        d="M0 6H2V4H0V6ZM0 10H2V8H0V10ZM0 2H2V0H0V2ZM4 6H18V4H4V6ZM4 10H18V8H4V10ZM4 0V2H18V0H4ZM0 6H2V4H0V6ZM0 10H2V8H0V10ZM0 2H2V0H0V2ZM4 6H18V4H4V6ZM4 10H18V8H4V10ZM4 0V2H18V0H4Z"
+                                        fill="#444444" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Menu -->
+            <nav class="tab-menu">
+                <div class="tab-item active" data-tab="0">판매순</div>
+                <div class="tab-item" data-tab="1">많은 구매횟수</div>
+                <div class="tab-item" data-tab="2">신상품순</div>
+                <div class="tab-item" data-tab="3">낮은가격순</div>
+            </nav>
+
+            <!-- Control Bar -->
+            <div class="product-control-bar">
+                <custom-checkbox id="searchSelectAll" label="전체선택"></custom-checkbox>
+                <button class="btn-add-selected">선택상품담기</button>
+            </div>
+
+            <!-- Tab Content Grid -->
+            <div class="product-grid-4 search-result-grid active" id="md-grid-0" style="display: grid;">
+                <!-- Product 1: Matcha Cream Bread -->
+                <article class="product-card">
+                    <a href="#" class="card-thumb">
+                        <div class="card-checkbox">
+                            <custom-checkbox class="item-check"></custom-checkbox>
+                        </div>
+                        <img src="/assets/images/products/md_product_1.png" alt="Product">
+                        <div class="badge-corner">
+                            <svg class="icon-smile" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_713_2703)">
+                                    <path
+                                        d="M7.99398 1.33203C4.31398 1.33203 1.33398 4.31203 1.33398 7.9987C1.33398 11.6854 4.31398 14.6654 7.99398 14.6654C11.674 14.6654 14.6673 11.6854 14.6673 7.9987C14.6673 4.31203 11.6807 1.33203 7.99398 1.33203ZM8.00065 13.332C5.05398 13.332 2.66732 10.9454 2.66732 7.9987C2.66732 5.05203 5.05398 2.66536 8.00065 2.66536C10.9473 2.66536 13.334 5.05203 13.334 7.9987C13.334 10.9454 10.9473 13.332 8.00065 13.332ZM8.66732 6.62536L9.37398 7.33203L10.0807 6.62536L10.7873 7.33203L11.494 6.62536L10.0807 5.21203L8.66732 6.62536ZM5.92065 6.62536L6.62732 7.33203L7.33398 6.62536L5.92065 5.21203L4.50732 6.62536L5.21398 7.33203L5.92065 6.62536ZM8.00065 11.6654C9.55398 11.6654 10.874 10.692 11.4073 9.33203H4.59398C5.12732 10.692 6.44732 11.6654 8.00065 11.6654Z"
+                                        fill="currentColor" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_713_2703">
+                                        <rect width="16" height="16" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg> MD 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-ambient"><svg class="icon-thermometer" width="16" height="16"
+                                    viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M11.3077 7.16797V5.16797H9.30768V4.16797H11.3077V2.16797H12.3077V4.16797H14.3077V5.16797H12.3077V7.16797H11.3077ZM5.58784 13.668C4.7584 13.668 4.05134 13.3761 3.46668 12.7923C2.88212 12.2085 2.58984 11.5004 2.58984 10.668C2.58984 10.1603 2.70862 9.69086 2.94618 9.25964C3.18384 8.82841 3.50951 8.4688 3.92318 8.1808V4.0013C3.92318 3.53552 4.08451 3.1413 4.40718 2.81864C4.72973 2.49597 5.12396 2.33464 5.58984 2.33464C6.05562 2.33464 6.44984 2.49597 6.77251 2.81864C7.09507 3.1413 7.25634 3.53552 7.25634 4.0013V8.1808C7.67001 8.4688 7.99462 8.82841 8.23018 9.25964C8.46562 9.69086 8.58545 10.1603 8.58968 10.668C8.58545 11.5004 8.29146 12.2085 7.70768 12.7923C7.1239 13.3761 6.41729 13.668 5.58784 13.668ZM4.92318 6.66797H6.25651V4.0013C6.25651 3.81241 6.19262 3.65408 6.06484 3.5263C5.93707 3.39852 5.77873 3.33464 5.58984 3.33464C5.40096 3.33464 5.24262 3.39852 5.11484 3.5263C4.98707 3.65408 4.92318 3.81241 4.92318 4.0013V6.66797Z"
+                                        fill="currentColor" />
+                                </svg> 상온</span>
+                            <span class="tag tag-outline">TC</span>
+                            <span class="tag tag-green">소비기한 9개월</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">밥누스 말차크림빵 150g</h3>
+                        <div class="unit-info">
+                            <span class="strike">2,900</span>
+                            <span class="unit-highlight">2,100</span>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">10</span>
+                            <span class="price">25,200</span>
+                        </div>
+                    </a>
+                    <div class="card-control">
+                        <div class="qty-box">
+                            <button><svg class="icon-minus" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z" fill="currentColor" />
+                                </svg></button>
+                            <input type="number" value="0">
+                            <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M15.8346 10.8346H10.8346V15.8346H9.16797V10.8346H4.16797V9.16797H9.16797V4.16797H10.8346V9.16797H15.8346V10.8346Z"
+                                        fill="currentColor" />
+                                </svg></button>
+                        </div>
+                        <button class="btn-icon">
+                            <svg class="icon-heart" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 17 16" fill="none">
+                                <path
+                                    d="M8.33333 15.2917L7.125 14.2083C5.72222 12.9444 4.5625 11.8542 3.64583 10.9375C2.72917 10.0208 2 9.19792 1.45833 8.46875C0.916667 7.73958 0.538194 7.06944 0.322917 6.45833C0.107639 5.84722 0 5.22222 0 4.58333C0 3.27778 0.4375 2.1875 1.3125 1.3125C2.1875 0.4375 3.27778 0 4.58333 0C5.30555 0 5.99305 0.152778 6.64583 0.458333C7.29861 0.763889 7.86111 1.19444 8.33333 1.75C8.80555 1.19444 9.36805 0.763889 10.0208 0.458333C10.6736 0.152778 11.3611 0 12.0833 0C13.3889 0 14.4792 0.4375 15.3542 1.3125C16.2292 2.1875 16.6667 3.27778 16.6667 4.58333C16.6667 5.22222 16.559 5.84722 16.3437 6.45833C16.1285 7.06944 15.75 7.73958 15.2083 8.46875C14.6667 9.19792 13.9375 10.0208 13.0208 10.9375C12.1042 11.8542 10.9444 12.9444 9.54167 14.2083L8.33333 15.2917ZM8.33333 13.0417C9.66667 11.8472 10.7639 10.8229 11.625 9.96875C12.4861 9.11458 13.1667 8.37153 13.6667 7.73958C14.1667 7.10764 14.5139 6.54514 14.7083 6.05208C14.9028 5.55903 15 5.06944 15 4.58333C15 3.75 14.7222 3.05556 14.1667 2.5C13.6111 1.94444 12.9167 1.66667 12.0833 1.66667C11.4306 1.66667 10.8264 1.85069 10.2708 2.21875C9.71528 2.58681 9.33333 3.05556 9.125 3.625H7.54167C7.33333 3.05556 6.95139 2.58681 6.39583 2.21875C5.84028 1.85069 5.23611 1.66667 4.58333 1.66667C3.75 1.66667 3.05556 1.94444 2.5 2.5C1.94444 3.05556 1.66667 3.75 1.66667 4.58333C1.66667 5.06944 1.76389 5.55903 1.95833 6.05208C2.15278 6.54514 2.5 7.10764 3 7.73958C3.5 8.37153 4.18055 9.11458 5.04167 9.96875C5.90278 10.8229 7 11.8472 8.33333 13.0417Z"
+                                    fill="#222222" />
+                            </svg>
+                        </button>
+                        <button class="btn-icon">
+                            <svg class="icon-cart" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_29_2955)">
+                                    <path
+                                        d="M9.16536 7.4987H10.832V4.9987H13.332V3.33203H10.832V0.832031H9.16536V3.33203H6.66536V4.9987H9.16536V7.4987ZM5.83203 14.9987C4.91536 14.9987 4.1737 15.7487 4.1737 16.6654C4.1737 17.582 4.91536 18.332 5.83203 18.332C6.7487 18.332 7.4987 17.582 7.4987 16.6654C7.4987 15.7487 6.7487 14.9987 5.83203 14.9987ZM14.1654 14.9987C13.2487 14.9987 12.507 15.7487 12.507 16.6654C12.507 17.582 13.2487 18.332 14.1654 18.332C15.082 18.332 15.832 17.582 15.832 16.6654C15.832 15.7487 15.082 14.9987 14.1654 14.9987ZM6.7487 10.832H12.957C13.582 10.832 14.132 10.4904 14.4154 9.9737L17.632 4.13203L16.182 3.33203L12.957 9.16536H7.10703L3.55703 1.66536H0.832031V3.33203H2.4987L5.4987 9.65703L4.3737 11.6904C3.76536 12.807 4.56536 14.1654 5.83203 14.1654H15.832V12.4987H5.83203L6.7487 10.832Z"
+                                        fill="#222222" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_29_2955">
+                                        <rect width="20" height="20" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+                            <i class="icon-sparkle"></i> 다다익선 할인
+                        </div>
+                        <div class="info-row">
+                            <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 2: Mozza Cheese Salad -->
+                <article class="product-card">
+                    <a href="#" class="card-thumb">
+                        <div class="card-checkbox">
+                            <custom-checkbox class="item-check"></custom-checkbox>
+                        </div>
+                        <img src="/assets/images/products/md_product_2.png" alt="Product">
+                        <div class="badge-corner">
+                            <svg class="icon-smile" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_713_2703)">
+                                    <path
+                                        d="M7.99398 1.33203C4.31398 1.33203 1.33398 4.31203 1.33398 7.9987C1.33398 11.6854 4.31398 14.6654 7.99398 14.6654C11.674 14.6654 14.6673 11.6854 14.6673 7.9987C14.6673 4.31203 11.6807 1.33203 7.99398 1.33203ZM8.00065 13.332C5.05398 13.332 2.66732 10.9454 2.66732 7.9987C2.66732 5.05203 5.05398 2.66536 8.00065 2.66536C10.9473 2.66536 13.334 5.05203 13.334 7.9987C13.334 10.9454 10.9473 13.332 8.00065 13.332ZM8.66732 6.62536L9.37398 7.33203L10.0807 6.62536L10.7873 7.33203L11.494 6.62536L10.0807 5.21203L8.66732 6.62536ZM5.92065 6.62536L6.62732 7.33203L7.33398 6.62536L5.92065 5.21203L4.50732 6.62536L5.21398 7.33203L5.92065 6.62536ZM8.00065 11.6654C9.55398 11.6654 10.874 10.692 11.4073 9.33203H4.59398C5.12732 10.692 6.44732 11.6654 8.00065 11.6654Z"
+                                        fill="currentColor" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_713_2703">
+                                        <rect width="16" height="16" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg> MD 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-ambient"><svg class="icon-thermometer" width="16" height="16"
+                                    viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M11.3077 7.16797V5.16797H9.30768V4.16797H11.3077V2.16797H12.3077V4.16797H14.3077V5.16797H12.3077V7.16797H11.3077ZM5.58784 13.668C4.7584 13.668 4.05134 13.3761 3.46668 12.7923C2.88212 12.2085 2.58984 11.5004 2.58984 10.668C2.58984 10.1603 2.70862 9.69086 2.94618 9.25964C3.18384 8.82841 3.50951 8.4688 3.92318 8.1808V4.0013C3.92318 3.53552 4.08451 3.1413 4.40718 2.81864C4.72973 2.49597 5.12396 2.33464 5.58984 2.33464C6.05562 2.33464 6.44984 2.49597 6.77251 2.81864C7.09507 3.1413 7.25634 3.53552 7.25634 4.0013V8.1808C7.67001 8.4688 7.99462 8.82841 8.23018 9.25964C8.46562 9.69086 8.58545 10.1603 8.58968 10.668C8.58545 11.5004 8.29146 12.2085 7.70768 12.7923C7.1239 13.3761 6.41729 13.668 5.58784 13.668ZM4.92318 6.66797H6.25651V4.0013C6.25651 3.81241 6.19262 3.65408 6.06484 3.5263C5.93707 3.39852 5.77873 3.33464 5.58984 3.33464C5.40096 3.33464 5.24262 3.39852 5.11484 3.5263C4.98707 3.65408 4.92318 3.81241 4.92318 4.0013V6.66797Z"
+                                        fill="currentColor" />
+                                </svg> 상온</span>
+                            <span class="tag tag-outline">TC</span>
+                            <span class="tag tag-green">소비기한 24개월</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">모짜치즈과일샐러드</h3>
+                        <div class="unit-info">
+                            <span class="strike">2,290</span>
+                            <span class="unit-highlight">1,908</span>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">12</span>
+                            <span class="price">22,900</span>
+                        </div>
+                    </a>
+                    <div class="card-control">
+                        <div class="qty-box">
+                            <button><svg class="icon-minus" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15.8346 10.8346H4.16797V9.16797H15.8346V10.8346Z" fill="currentColor" />
+                                </svg></button>
+                            <input type="number" value="0">
+                            <button><svg class="icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M15.8346 10.8346H10.8346V15.8346H9.16797V10.8346H4.16797V9.16797H9.16797V4.16797H10.8346V9.16797H15.8346V10.8346Z"
+                                        fill="currentColor" />
+                                </svg></button>
+                        </div>
+                        <button class="btn-icon">
+                            <svg class="icon-heart" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 17 16" fill="none">
+                                <path
+                                    d="M8.33333 15.2917L7.125 14.2083C5.72222 12.9444 4.5625 11.8542 3.64583 10.9375C2.72917 10.0208 2 9.19792 1.45833 8.46875C0.916667 7.73958 0.538194 7.06944 0.322917 6.45833C0.107639 5.84722 0 5.22222 0 4.58333C0 3.27778 0.4375 2.1875 1.3125 1.3125C2.1875 0.4375 3.27778 0 4.58333 0C5.30555 0 5.99305 0.152778 6.64583 0.458333C7.29861 0.763889 7.86111 1.19444 8.33333 1.75C8.80555 1.19444 9.36805 0.763889 10.0208 0.458333C10.6736 0.152778 11.3611 0 12.0833 0C13.3889 0 14.4792 0.4375 15.3542 1.3125C16.2292 2.1875 16.6667 3.27778 16.6667 4.58333C16.6667 5.22222 16.559 5.84722 16.3437 6.45833C16.1285 7.06944 15.75 7.73958 15.2083 8.46875C14.6667 9.19792 13.9375 10.0208 13.0208 10.9375C12.1042 11.8542 10.9444 12.9444 9.54167 14.2083L8.33333 15.2917ZM8.33333 13.0417C9.66667 11.8472 10.7639 10.8229 11.625 9.96875C12.4861 9.11458 13.1667 8.37153 13.6667 7.73958C14.1667 7.10764 14.5139 6.54514 14.7083 6.05208C14.9028 5.55903 15 5.06944 15 4.58333C15 3.75 14.7222 3.05556 14.1667 2.5C13.6111 1.94444 12.9167 1.66667 12.0833 1.66667C11.4306 1.66667 10.8264 1.85069 10.2708 2.21875C9.71528 2.58681 9.33333 3.05556 9.125 3.625H7.54167C7.33333 3.05556 6.95139 2.58681 6.39583 2.21875C5.84028 1.85069 5.23611 1.66667 4.58333 1.66667C3.75 1.66667 3.05556 1.94444 2.5 2.5C1.94444 3.05556 1.66667 3.75 1.66667 4.58333C1.66667 5.06944 1.76389 5.55903 1.95833 6.05208C2.15278 6.54514 2.5 7.10764 3 7.73958C3.5 8.37153 4.18055 9.11458 5.04167 9.96875C5.90278 10.8229 7 11.8472 8.33333 13.0417Z"
+                                    fill="#222222" />
+                            </svg>
+                        </button>
+                        <button class="btn-icon">
+                            <svg class="icon-cart" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_29_2955)">
+                                    <path
+                                        d="M9.16536 7.4987H10.832V4.9987H13.332V3.33203H10.832V0.832031H9.16536V3.33203H6.66536V4.9987H9.16536V7.4987ZM5.83203 14.9987C4.91536 14.9987 4.1737 15.7487 4.1737 16.6654C4.1737 17.582 4.91536 18.332 5.83203 18.332C6.7487 18.332 7.4987 17.582 7.4987 16.6654C7.4987 15.7487 6.7487 14.9987 5.83203 14.9987ZM14.1654 14.9987C13.2487 14.9987 12.507 15.7487 12.507 16.6654C12.507 17.582 13.2487 18.332 14.1654 18.332C15.082 18.332 15.832 17.582 15.832 16.6654C15.832 15.7487 15.082 14.9987 14.1654 14.9987ZM6.7487 10.832H12.957C13.582 10.832 14.132 10.4904 14.4154 9.9737L17.632 4.13203L16.182 3.33203L12.957 9.16536H7.10703L3.55703 1.66536H0.832031V3.33203H2.4987L5.4987 9.65703L4.3737 11.6904C3.76536 12.807 4.56536 14.1654 5.83203 14.1654H15.832V12.4987H5.83203L6.7487 10.832Z"
+                                        fill="#222222" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_29_2955">
+                                        <rect width="20" height="20" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+                            <i class="icon-sparkle"></i> 다다익선 할인
+                        </div>
+                        <div class="info-row">
+                            <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 3: Bibimbap -->
+                <article class="product-card state-dimmed">
+                    <a href="#" class="card-thumb">
+                        <div class="card-checkbox">
+                            <custom-checkbox class="item-check"></custom-checkbox>
+                        </div>
+                        <img src="/assets/images/products/md_product_3.png" alt="Product">
+                        <div class="status-overlay">곧 입고예정</div>
+                        <div class="badge-corner">
+                            <svg class="icon-thumbs-up" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.21735 13.6669V5.66687L9.64035 1.26953L10.5467 2.17586L9.73768 5.66687H14.9993V8.18987L12.6813 13.6669H5.21735ZM1.66602 13.6669V5.66687H4.21735V13.6669H1.66602Z"
+                                    fill="currentColor" />
+                            </svg> 강력추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-ambient"><svg class="icon-thermometer" width="16" height="16"
+                                    viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M11.3077 7.16797V5.16797H9.30768V4.16797H11.3077V2.16797H12.3077V4.16797H14.3077V5.16797H12.3077V7.16797H11.3077ZM5.58784 13.668C4.7584 13.668 4.05134 13.3761 3.46668 12.7923C2.88212 12.2085 2.58984 11.5004 2.58984 10.668C2.58984 10.1603 2.70862 9.69086 2.94618 9.25964C3.18384 8.82841 3.50951 8.4688 3.92318 8.1808V4.0013C3.92318 3.53552 4.08451 3.1413 4.40718 2.81864C4.72973 2.49597 5.12396 2.33464 5.58984 2.33464C6.05562 2.33464 6.44984 2.49597 6.77251 2.81864C7.09507 3.1413 7.25634 3.53552 7.25634 4.0013V8.1808C7.67001 8.4688 7.99462 8.82841 8.23018 9.25964C8.46562 9.69086 8.58545 10.1603 8.58968 10.668C8.58545 11.5004 8.29146 12.2085 7.70768 12.7923C7.1239 13.3761 6.41729 13.668 5.58784 13.668ZM4.92318 6.66797H6.25651V4.0013C6.25651 3.81241 6.19262 3.65408 6.06484 3.5263C5.93707 3.39852 5.77873 3.33464 5.58984 3.33464C5.40096 3.33464 5.24262 3.39852 5.11484 3.5263C4.98707 3.65408 4.92318 3.81241 4.92318 4.0013V6.66797Z"
+                                        fill="currentColor" />
+                                </svg> 상온</span>
+                            <span class="tag tag-outline">TC</span>
+                            <span class="tag tag-green">소비기한 9개월</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">영진 문문문_소불고기비빔밥</h3>
+                        <div class="unit-info">
+                            <span class="strike">3,120</span>
+                            <span class="unit-highlight">2,075</span>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">20</span>
+                            <span class="price">24,900</span>
+                        </div>
+                    </a>
+                    <div class="card-control">
+                        <button class="btn-substitute">대체상품보기</button>
+                        <button class="btn-icon">
+                            <svg class="icon-heart" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 17 16" fill="none">
+                                <path
+                                    d="M8.33333 15.2917L7.125 14.2083C5.72222 12.9444 4.5625 11.8542 3.64583 10.9375C2.72917 10.0208 2 9.19792 1.45833 8.46875C0.916667 7.73958 0.538194 7.06944 0.322917 6.45833C0.107639 5.84722 0 5.22222 0 4.58333C0 3.27778 0.4375 2.1875 1.3125 1.3125C2.1875 0.4375 3.27778 0 4.58333 0C5.30555 0 5.99305 0.152778 6.64583 0.458333C7.29861 0.763889 7.86111 1.19444 8.33333 1.75C8.80555 1.19444 9.36805 0.763889 10.0208 0.458333C10.6736 0.152778 11.3611 0 12.0833 0C13.3889 0 14.4792 0.4375 15.3542 1.3125C16.2292 2.1875 16.6667 3.27778 16.6667 4.58333C16.6667 5.22222 16.559 5.84722 16.3437 6.45833C16.1285 7.06944 15.75 7.73958 15.2083 8.46875C14.6667 9.19792 13.9375 10.0208 13.0208 10.9375C12.1042 11.8542 10.9444 12.9444 9.54167 14.2083L8.33333 15.2917ZM8.33333 13.0417C9.66667 11.8472 10.7639 10.8229 11.625 9.96875C12.4861 9.11458 13.1667 8.37153 13.6667 7.73958C14.1667 7.10764 14.5139 6.54514 14.7083 6.05208C14.9028 5.55903 15 5.06944 15 4.58333C15 3.75 14.7222 3.05556 14.1667 2.5C13.6111 1.94444 12.9167 1.66667 12.0833 1.66667C11.4306 1.66667 10.8264 1.85069 10.2708 2.21875C9.71528 2.58681 9.33333 3.05556 9.125 3.625H7.54167C7.33333 3.05556 6.95139 2.58681 6.39583 2.21875C5.84028 1.85069 5.23611 1.66667 4.58333 1.66667C3.75 1.66667 3.05556 1.94444 2.5 2.5C1.94444 3.05556 1.66667 3.75 1.66667 4.58333C1.66667 5.06944 1.76389 5.55903 1.95833 6.05208C2.15278 6.54514 2.5 7.10764 3 7.73958C3.5 8.37153 4.18055 9.11458 5.04167 9.96875C5.90278 10.8229 7 11.8472 8.33333 13.0417Z"
+                                    fill="#222222" />
+                            </svg>
+                        </button>
+                        <button class="btn-icon">
+                            <svg class="icon-cart" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_29_2955)">
+                                    <path
+                                        d="M9.16536 7.4987H10.832V4.9987H13.332V3.33203H10.832V0.832031H9.16536V3.33203H6.66536V4.9987H9.16536V7.4987ZM5.83203 14.9987C4.91536 14.9987 4.1737 15.7487 4.1737 16.6654C4.1737 17.582 4.91536 18.332 5.83203 18.332C6.7487 18.332 7.4987 17.582 7.4987 16.6654C7.4987 15.7487 6.7487 14.9987 5.83203 14.9987ZM14.1654 14.9987C13.2487 14.9987 12.507 15.7487 12.507 16.6654C12.507 17.582 13.2487 18.332 14.1654 18.332C15.082 18.332 15.832 17.582 15.832 16.6654C15.832 15.7487 15.082 14.9987 14.1654 14.9987ZM6.7487 10.832H12.957C13.582 10.832 14.132 10.4904 14.4154 9.9737L17.632 4.13203L16.182 3.33203L12.957 9.16536H7.10703L3.55703 1.66536H0.832031V3.33203H2.4987L5.4987 9.65703L4.3737 11.6904C3.76536 12.807 4.56536 14.1654 5.83203 14.1654H15.832V12.4987H5.83203L6.7487 10.832Z"
+                                        fill="#222222" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_29_2955">
+                                        <rect width="20" height="20" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <i class="icon-ban"></i> 쿠폰 미적용 상품 &nbsp;·&nbsp;
+                            <i class="icon-cart-limit"></i> 최대 3BOX 구매 가능
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 8: Bacon Sandwich -->
+                <article class="product-card state-dimmed">
+                    <a href="#" class="card-thumb">
+                        <div class="card-checkbox">
+                            <custom-checkbox class="item-check"></custom-checkbox>
+                        </div>
+                        <img src="/assets/images/products/md_product_8.png" alt="Product">
+                        <div class="status-overlay">품절</div>
+                        <div class="badge-corner">
+                            <svg class="icon-smile" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_713_2703)">
+                                    <path
+                                        d="M7.99398 1.33203C4.31398 1.33203 1.33398 4.31203 1.33398 7.9987C1.33398 11.6854 4.31398 14.6654 7.99398 14.6654C11.674 14.6654 14.6673 11.6854 14.6673 7.9987C14.6673 4.31203 11.6807 1.33203 7.99398 1.33203ZM8.00065 13.332C5.05398 13.332 2.66732 10.9454 2.66732 7.9987C2.66732 5.05203 5.05398 2.66536 8.00065 2.66536C10.9473 2.66536 13.334 5.05203 13.334 7.9987C13.334 10.9454 10.9473 13.332 8.00065 13.332ZM8.66732 6.62536L9.37398 7.33203L10.0807 6.62536L10.7873 7.33203L11.494 6.62536L10.0807 5.21203L8.66732 6.62536ZM5.92065 6.62536L6.62732 7.33203L7.33398 6.62536L5.92065 5.21203L4.50732 6.62536L5.21398 7.33203L5.92065 6.62536ZM8.00065 11.6654C9.55398 11.6654 10.874 10.692 11.4073 9.33203H4.59398C5.12732 10.692 6.44732 11.6654 8.00065 11.6654Z"
+                                        fill="currentColor" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_713_2703">
+                                        <rect width="16" height="16" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg> MD 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-ambient"><svg class="icon-thermometer" width="16" height="16"
+                                    viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M11.3077 7.16797V5.16797H9.30768V4.16797H11.3077V2.16797H12.3077V4.16797H14.3077V5.16797H12.3077V7.16797H11.3077ZM5.58784 13.668C4.7584 13.668 4.05134 13.3761 3.46668 12.7923C2.88212 12.2085 2.58984 11.5004 2.58984 10.668C2.58984 10.1603 2.70862 9.69086 2.94618 9.25964C3.18384 8.82841 3.50951 8.4688 3.92318 8.1808V4.0013C3.92318 3.53552 4.08451 3.1413 4.40718 2.81864C4.72973 2.49597 5.12396 2.33464 5.58984 2.33464C6.05562 2.33464 6.44984 2.49597 6.77251 2.81864C7.09507 3.1413 7.25634 3.53552 7.25634 4.0013V8.1808C7.67001 8.4688 7.99462 8.82841 8.23018 9.25964C8.46562 9.69086 8.58545 10.1603 8.58968 10.668C8.58545 11.5004 8.29146 12.2085 7.70768 12.7923C7.1239 13.3761 6.41729 13.668 5.58784 13.668ZM4.92318 6.66797H6.25651V4.0013C6.25651 3.81241 6.19262 3.65408 6.06484 3.5263C5.93707 3.39852 5.77873 3.33464 5.58984 3.33464C5.40096 3.33464 5.24262 3.39852 5.11484 3.5263C4.98707 3.65408 4.92318 3.81241 4.92318 4.0013V6.66797Z"
+                                        fill="currentColor" />
+                                </svg> 상온</span>
+                            <span class="tag tag-outline">TC</span>
+                            <span class="tag tag-green">소비기한 9개월</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">손종원 뉴욕스타일베이컨샌드위치</h3>
+                        <div class="unit-info">
+                            <span class="strike">2,490</span>
+                            <span class="unit-highlight">2,075</span>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">20</span>
+                            <span class="price">24,900</span>
+                        </div>
+                    </a>
+                    <div class="card-control">
+                        <button class="btn-substitute">대체상품보기</button>
+                        <button class="btn-icon">
+                            <svg class="icon-heart" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 17 16" fill="none">
+                                <path
+                                    d="M8.33333 15.2917L7.125 14.2083C5.72222 12.9444 4.5625 11.8542 3.64583 10.9375C2.72917 10.0208 2 9.19792 1.45833 8.46875C0.916667 7.73958 0.538194 7.06944 0.322917 6.45833C0.107639 5.84722 0 5.22222 0 4.58333C0 3.27778 0.4375 2.1875 1.3125 1.3125C2.1875 0.4375 3.27778 0 4.58333 0C5.30555 0 5.99305 0.152778 6.64583 0.458333C7.29861 0.763889 7.86111 1.19444 8.33333 1.75C8.80555 1.19444 9.36805 0.763889 10.0208 0.458333C10.6736 0.152778 11.3611 0 12.0833 0C13.3889 0 14.4792 0.4375 15.3542 1.3125C16.2292 2.1875 16.6667 3.27778 16.6667 4.58333C16.6667 5.22222 16.559 5.84722 16.3437 6.45833C16.1285 7.06944 15.75 7.73958 15.2083 8.46875C14.6667 9.19792 13.9375 10.0208 13.0208 10.9375C12.1042 11.8542 10.9444 12.9444 9.54167 14.2083L8.33333 15.2917ZM8.33333 13.0417C9.66667 11.8472 10.7639 10.8229 11.625 9.96875C12.4861 9.11458 13.1667 8.37153 13.6667 7.73958C14.1667 7.10764 14.5139 6.54514 14.7083 6.05208C14.9028 5.55903 15 5.06944 15 4.58333C15 3.75 14.7222 3.05556 14.1667 2.5C13.6111 1.94444 12.9167 1.66667 12.0833 1.66667C11.4306 1.66667 10.8264 1.85069 10.2708 2.21875C9.71528 2.58681 9.33333 3.05556 9.125 3.625H7.54167C7.33333 3.05556 6.95139 2.58681 6.39583 2.21875C5.84028 1.85069 5.23611 1.66667 4.58333 1.66667C3.75 1.66667 3.05556 1.94444 2.5 2.5C1.94444 3.05556 1.66667 3.75 1.66667 4.58333C1.66667 5.06944 1.76389 5.55903 1.95833 6.05208C2.15278 6.54514 2.5 7.10764 3 7.73958C3.5 8.37153 4.18055 9.11458 5.04167 9.96875C5.90278 10.8229 7 11.8472 8.33333 13.0417Z"
+                                    fill="#222222" />
+                            </svg>
+                        </button>
+                        <button class="btn-icon">
+                            <svg class="icon-cart" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_29_2955)">
+                                    <path
+                                        d="M9.16536 7.4987H10.832V4.9987H13.332V3.33203H10.832V0.832031H9.16536V3.33203H6.66536V4.9987H9.16536V7.4987ZM5.83203 14.9987C4.91536 14.9987 4.1737 15.7487 4.1737 16.6654C4.1737 17.582 4.91536 18.332 5.83203 18.332C6.7487 18.332 7.4987 17.582 7.4987 16.6654C7.4987 15.7487 6.7487 14.9987 5.83203 14.9987ZM14.1654 14.9987C13.2487 14.9987 12.507 15.7487 12.507 16.6654C12.507 17.582 13.2487 18.332 14.1654 18.332C15.082 18.332 15.832 17.582 15.832 16.6654C15.832 15.7487 15.082 14.9987 14.1654 14.9987ZM6.7487 10.832H12.957C13.582 10.832 14.132 10.4904 14.4154 9.9737L17.632 4.13203L16.182 3.33203L12.957 9.16536H7.10703L3.55703 1.66536H0.832031V3.33203H2.4987L5.4987 9.65703L4.3737 11.6904C3.76536 12.807 4.56536 14.1654 5.83203 14.1654H15.832V12.4987H5.83203L6.7487 10.832Z"
+                                        fill="#222222" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_29_2955">
+                                        <rect width="20" height="20" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <i class="icon-ban"></i> 쿠폰 미적용 상품 &nbsp;·&nbsp;
+                            <i class="icon-cart-limit"></i> 최대 3BOX 구매 가능
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-container">
+                <div class="pagination-nav-group">
+                    <button class="btn-pagination btn-prev-end" aria-label="First Page">
+                        <!-- Double Arrow Left -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <g clip-path="url(#clip0_248_5880)">
+                                <path
+                                    d="M14.6583 15L15.8333 13.825L12.0167 10L15.8333 6.175L14.6583 5L9.65833 10L14.6583 15Z"
+                                    fill="#444444" />
+                                <path
+                                    d="M9.16663 15L10.3416 13.825L6.52496 10L10.3416 6.175L9.16663 5L4.16663 10L9.16663 15Z"
+                                    fill="#444444" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_248_5880">
+                                    <rect width="20" height="20" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </button>
+                    <button class="btn-pagination btn-prev" aria-label="Previous Page">
+                        <!-- Single Arrow Left -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <g clip-path="url(#clip0_248_5888)">
+                                <path
+                                    d="M12.841 13.825L9.02435 10L12.841 6.175L11.666 5L6.66602 10L11.666 15L12.841 13.825Z"
+                                    fill="#444444" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_248_5888">
+                                    <rect width="20" height="20" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Page Numbers -->
+                <a href="#" class="btn-pagination active">1</a>
+                <a href="#" class="btn-pagination">2</a>
+                <a href="#" class="btn-pagination">3</a>
+                <a href="#" class="btn-pagination">4</a>
+                <a href="#" class="btn-pagination">5</a>
+                <a href="#" class="btn-pagination">6</a>
+                <a href="#" class="btn-pagination">7</a>
+                <a href="#" class="btn-pagination">8</a>
+                <a href="#" class="btn-pagination">9</a>
+                <a href="#" class="btn-pagination">10</a>
+
+                <div class="pagination-nav-group">
+                    <button class="btn-pagination btn-next" aria-label="Next Page">
+                        <!-- Single Arrow Right -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <g clip-path="url(#clip0_248_5912)">
+                                <path
+                                    d="M7.15845 13.825L10.9751 10L7.15845 6.175L8.33345 5L13.3334 10L8.33345 15L7.15845 13.825Z"
+                                    fill="#444444" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_248_5912">
+                                    <rect width="20" height="20" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </button>
+                    <button class="btn-pagination btn-next-end" aria-label="Last Page">
+                        <!-- Double Arrow Right -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <g clip-path="url(#clip0_248_5916)">
+                                <path
+                                    d="M5.34175 5L4.16675 6.175L7.98341 10L4.16675 13.825L5.34175 15L10.3417 10L5.34175 5Z"
+                                    fill="#444444" />
+                                <path
+                                    d="M10.8334 5L9.65845 6.175L13.4751 10L9.65845 13.825L10.8334 15L15.8334 10L10.8334 5Z"
+                                    fill="#444444" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_248_5916">
+                                    <rect width="20" height="20" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('/components/footer.component.txt?v=' + new Date().getTime())
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error));
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
