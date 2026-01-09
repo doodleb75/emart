@@ -22,13 +22,23 @@ document.addEventListener('click', (e) => {
         }
     }
 
-    // 최상단 이동 버튼 (Scroll To Top) - inline onclick이 없는 경우를 대비한 백업
+    // 최상단 이동 (Scroll to top)
     const btnTop = e.target.closest('.btn-top');
-    if (btnTop && !btnTop.onclick) {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+    if (btnTop) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 });
+
+// 상단 이동 버튼 노출 제어 (Top button visibility)
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            scrollTopBtn.classList.add('is-visible');
+        } else {
+            scrollTopBtn.classList.remove('is-visible');
+        }
+    });
+}
+
 

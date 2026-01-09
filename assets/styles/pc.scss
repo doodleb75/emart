@@ -17,6 +17,7 @@
 @import "pc/components/ranking";
 @import "pc/components/modal";
 @import "pc/components/toast";
+@import "pc/components/dropdown";
 
 // 4. Layout (PC 헤더, 푸터)
 @import "pc/layout/header";
@@ -26,3 +27,4 @@
 @import "pc/pages/main";
 @import "pc/pages/cart";
 @import "pc/pages/search";
+@import "pc/pages/mypage";

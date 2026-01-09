@@ -56,20 +56,29 @@ class ToastManager {
             let transform = 'translateX(-50%)';
             let width = 'auto';
 
-            if (options.align === 'start' || options.align === 'left') {
+            // 화면 가로 세로 기준 위치 파악 (Determine position relative to screen)
+            const isRightSide = (rect.left + rect.width / 2) > (window.innerWidth / 2);
+            const align = options.align === 'auto' ? (isRightSide ? 'right' : 'left') : (options.align || 'center');
+
+            if (align === 'start' || align === 'left') {
                 left = rect.left + scrollLeft;
                 transform = 'none';
                 container.style.justifyContent = 'flex-start';
+            } else if (align === 'end' || align === 'right') {
+                left = rect.right + scrollLeft;
+                transform = 'translateX(-100%)';
+                container.style.justifyContent = 'flex-end';
             }
 
             if (options.width === 'match') {
                 container.style.minWidth = `${rect.width}px`;
+                container.style.width = 'auto';
             }
 
             container.style.top = `${top}px`;
             container.style.left = `${left}px`;
             container.style.transform = transform;
-            container.style.width = width;
+            // width 설정 부분 제거하여 minWidth와 내용에 의해 결정되게 함
 
         } else {
             container = document.querySelector('.custom-toast-container.global');
@@ -88,9 +97,9 @@ class ToastManager {
         `;
 
         if (isCustomPosition && options.width === 'match') {
-            toastEl.style.width = '100%';
-            toastEl.style.whiteSpace = 'nowrap';
-            toastEl.style.justifyContent = 'flex-start';
+            toastEl.style.minWidth = '100%';
+            toastEl.style.width = 'max-content';
+            toastEl.style.justifyContent = 'center';
         }
 
         container.appendChild(toastEl);
@@ -2021,18 +2030,77 @@ document.addEventListener('DOMContentLoaded', () => {
             if (qtyBox) {
                 const input = qtyBox.querySelector('input');
                 if (input) {
-                    input.value = 1; // 수량 1로 고정
-                    qtyBox.dataset.inCart = 'true'; // 장바구니 상태 플래그 저장
+                    const currentVal = parseInt(input.value, 10) || 0;
+                    if (currentVal === 0) {
+                        input.value = 1; // 0인 경우에만 1로 설정 (Set to 1 only if current value is 0)
+                    }
+                    qtyBox.dataset.inCart = 'true'; // 장바구니 상태 플래그 저장 (Save cart status flag)
 
-                    // 장바구니 담김 토스트 표시 (card-control 너비 맞춤)
+                    // 장바구니 담김 토스트 표시 (Show toast with quantity)
                     if (window.Toast) {
                         const toastTarget = cartBtn.closest('.card-control') || cartBtn;
-                        window.Toast.show('success', '장바구니에 담겼습니다.', toastTarget, { width: 'match', align: 'left' });
+                        const finalQty = input.value;
+                        window.Toast.show('success', `장바구니에 ${finalQty}개가 담겼습니다.`, toastTarget, { width: 'match', align: 'left' });
                     }
                 }
             }
         }
     }, true);
+
+    // ==========================================
+    // 공통 드롭다운 토글 (Global Dropdown Toggle)
+    // ==========================================
+    const initDropdowns = () => {
+        document.addEventListener('click', (e) => {
+            const trigger = e.target.closest('.dropdown-wrapper .select-wrap');
+            const wrapper = trigger?.closest('.dropdown-wrapper');
+
+            // 드롭다운 토글 (Toggle dropdown)
+            if (trigger && wrapper) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // 다른 드롭다운 닫기 (Close other dropdowns)
+                document.querySelectorAll('.dropdown-wrapper.active').forEach(w => {
+                    if (w !== wrapper) w.classList.remove('active');
+                });
+
+                wrapper.classList.toggle('active');
+            } else {
+                // 외부 클릭 시 모든 드롭다운 닫기 (Close all on outside click)
+                document.querySelectorAll('.dropdown-wrapper.active').forEach(w => {
+                    w.classList.remove('active');
+                });
+            }
+
+            // 옵션 선택 (Select option)
+            const option = e.target.closest('.dropdown-wrapper .dropdown-options li');
+            if (option) {
+                const wrap = option.closest('.dropdown-wrapper');
+                const selectedVal = wrap?.querySelector('.selected-value');
+                const allOptions = wrap?.querySelectorAll('.dropdown-options li');
+
+                if (selectedVal) {
+                    selectedVal.textContent = option.textContent;
+                }
+
+                allOptions?.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                wrap?.classList.remove('active');
+
+                // 커스텀 이벤트 발생 (Dispatch custom event if needed)
+                const event = new CustomEvent('dropdownChange', {
+                    detail: {
+                        value: option.dataset.value || option.textContent,
+                        text: option.textContent
+                    }
+                });
+                wrap?.dispatchEvent(event);
+            }
+        });
+    };
+
+    initDropdowns();
 
 });
 

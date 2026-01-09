@@ -31,9 +31,10 @@
             margin-bottom: rem(32);
             display: flex;
             justify-content: center;
+            flex-shrink: 0;
 
             svg {
-                width: rem(120);
+                width: rem(98);
                 height: auto;
             }
         }
@@ -112,8 +113,17 @@
         align-items: center;
         justify-content: center;
         z-index: 100;
-        transition: $transition-base;
+        opacity: 0; // 초기 숨김 (Initially hidden)
+        visibility: hidden; // 클릭 방지 (Prevent clicks)
+        pointer-events: none; // 이벤트 방지 (Prevent events)
+        transition: all 0.3s ease; // 부드러운 전환 (Smooth transition)
         box-shadow: 0 rem(4) rem(12) rgba(0, 0, 0, 0.1);
+
+        &.is-visible {
+            opacity: 1; // 표시 (Show)
+            visibility: visible; // 클릭 가능 (Make clickable)
+            pointer-events: auto; // 이벤트 허용 (Allow events)
+        }
 
         &:active {
             transform: scale(0.9); // 클릭 시 축소 (Scale down on click)
