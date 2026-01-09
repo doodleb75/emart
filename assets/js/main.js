@@ -2047,6 +2047,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, true);
 
+    // ==========================================
+    // 공통 드롭다운 토글 (Global Dropdown Toggle)
+    // ==========================================
+    const initDropdowns = () => {
+        document.addEventListener('click', (e) => {
+            const trigger = e.target.closest('.dropdown-wrapper .select-wrap');
+            const wrapper = trigger?.closest('.dropdown-wrapper');
+
+            // 드롭다운 토글 (Toggle dropdown)
+            if (trigger && wrapper) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // 다른 드롭다운 닫기 (Close other dropdowns)
+                document.querySelectorAll('.dropdown-wrapper.active').forEach(w => {
+                    if (w !== wrapper) w.classList.remove('active');
+                });
+
+                wrapper.classList.toggle('active');
+            } else {
+                // 외부 클릭 시 모든 드롭다운 닫기 (Close all on outside click)
+                document.querySelectorAll('.dropdown-wrapper.active').forEach(w => {
+                    w.classList.remove('active');
+                });
+            }
+
+            // 옵션 선택 (Select option)
+            const option = e.target.closest('.dropdown-wrapper .dropdown-options li');
+            if (option) {
+                const wrap = option.closest('.dropdown-wrapper');
+                const selectedVal = wrap?.querySelector('.selected-value');
+                const allOptions = wrap?.querySelectorAll('.dropdown-options li');
+
+                if (selectedVal) {
+                    selectedVal.textContent = option.textContent;
+                }
+
+                allOptions?.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                wrap?.classList.remove('active');
+
+                // 커스텀 이벤트 발생 (Dispatch custom event if needed)
+                const event = new CustomEvent('dropdownChange', {
+                    detail: {
+                        value: option.dataset.value || option.textContent,
+                        text: option.textContent
+                    }
+                });
+                wrap?.dispatchEvent(event);
+            }
+        });
+    };
+
+    initDropdowns();
+
 });
 
 // ==========================================
