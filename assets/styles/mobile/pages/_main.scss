@@ -16,6 +16,17 @@
     }
 }
 
+.qty-box {
+    input {
+        height: calc(100% - rem(4));
+        border-radius: rem(2);
+
+        &:focus {
+            outline: 2px solid $gray-700 !important;
+        }
+    }
+}
+
 .section-header {
     display: flex;
     justify-content: space-between;

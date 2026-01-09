@@ -2705,7 +2705,7 @@ body.modal-open {
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
   font-weight: 600;
   height: auto;
   padding: 0;
@@ -4504,6 +4504,14 @@ body.modal-open {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+.mypage-section-wrapper #section-2 .filter-container .list-container .btn-edit:hover,
+.mypage-section-wrapper #section-3 .filter-container .list-container .btn-edit:hover,
+.mypage-section-wrapper #section-4 .filter-container .list-container .btn-edit:hover,
+.mypage-section-wrapper #section-5 .filter-container .list-container .btn-edit:hover {
+  background-color: #eeeeee;
+  border-color: #999999;
 }
 .mypage-section-wrapper #section-2 .filter-row,
 .mypage-section-wrapper #section-3 .filter-row,
@@ -5333,6 +5341,11 @@ body.modal-open {
   color: #444444;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
+}
+.mypage-page .list-container .list-header .actions .btn-excel-download:hover {
+  background-color: #eeeeee;
+  border-color: #999999;
 }
 .mypage-page .list-container .list-header .actions .btn-excel-download svg {
   flex-shrink: 0;

@@ -2017,17 +2017,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, true);
 
-    // 장바구니 아이콘 클릭 시 수량 1로 설정 및 '장바구니 상태' 저장
+    // 장바구니 버튼 클릭 시 수량 1로 설정 및 상태 저장 (Set quantity to 1 and save state)
     document.addEventListener('click', (e) => {
-        const cartBtn = e.target.closest('.icon-cart')?.closest('button') || e.target.closest('.btn-cart');
-        if (cartBtn) {
-            e.preventDefault();
+        const btn = e.target.closest('.btn-icon');
+        const cartBtn = (btn && btn.querySelector('.icon-cart')) ? btn : e.target.closest('.btn-cart');
 
+        if (cartBtn) {
             // 인접한 qty-box 탐색
             const container = cartBtn.closest('.card-control') || cartBtn.closest('.product-card') || cartBtn.parentElement;
             const qtyBox = container.querySelector('.qty-box');
 
             if (qtyBox) {
+                e.preventDefault();
                 const input = qtyBox.querySelector('input');
                 if (input) {
                     const currentVal = parseInt(input.value, 10) || 0;
