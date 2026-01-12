@@ -249,3 +249,144 @@
         }
     }
 }
+
+// Custom Checkbox Common
+.hidden-checkbox {
+    display: none !important;
+}
+
+// Category Filter Offcanvas
+// -----------------------------------------------------------------------------
+.category-filter-offcanvas {
+    min-height: rem(460);
+    border-top-left-radius: rem(24);
+    border-top-right-radius: rem(24);
+    border-top: none;
+    padding-bottom: rem(30);
+
+    .offcanvas-handle {
+        width: rem(80);
+        height: rem(5);
+        background-color: $gray-200;
+        border-radius: rem(5);
+        margin: rem(10) auto rem(16);
+        flex-shrink: 0;
+        cursor: pointer;
+    }
+
+    .offcanvas-header {
+        padding: rem(10) rem(24) rem(18);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .offcanvas-title {
+            font-size: rem(18);
+            font-weight: 700;
+            color: $gray-700;
+        }
+
+        .btn-close-custom {
+            background: none;
+            border: none;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .offcanvas-body {
+        padding: 0 rem(24) rem(0);
+    }
+
+    .select-all-area {
+        text-align: left;
+        padding: rem(10) 0;
+
+        custom-checkbox {
+            justify-content: flex-start;
+        }
+    }
+
+    .divider {
+        height: rem(1.5);
+        background-color: $gray-700;
+        margin-top: rem(8);
+        margin-bottom: rem(8);
+
+        &.gray {
+            background-color: $gray-100;
+            margin-bottom: rem(24);
+        }
+    }
+
+    .category-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: rem(16) rem(8); // 간격 조정 (Adjust gap)
+        margin-bottom: rem(24);
+        margin-top: rem(24);
+
+        .category-item-wrap {
+            display: flex;
+            align-items: center;
+
+            custom-checkbox {
+                width: 100%;
+
+                // 내부 라벨 영역 스타일 확장 (Fix internal label alignment)
+                .custom-checkbox-wrap {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                }
+
+                .label-text {
+                    font-size: rem(14);
+                    font-weight: 600;
+                    color: $gray-700;
+                    margin-left: rem(8);
+                    display: flex;
+                    align-items: center;
+                }
+
+                .count {
+                    color: $system-info;
+                    font-size: rem(14);
+                    font-weight: 600;
+                    margin-left: rem(4);
+                }
+            }
+        }
+    }
+
+    .btn-group-half {
+        display: flex;
+        width: 100%;
+        gap: rem(8);
+
+        .btn {
+            flex: 1;
+            height: rem(48);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: rem(16);
+            font-weight: 700;
+            border-radius: rem(2);
+
+            &.btn-gray {
+                background-color: $gray-200;
+                color: $gray-700;
+                border: none;
+            }
+
+            &.btn-primary {
+                background-color: $secondary-75;
+                color: $gray-700;
+                border: none;
+            }
+        }
+    }
+}

@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 바텀 시트 드래그 서브 기능 초기화 (Init drag-to-close for bottom sheet)
-        initOffcanvasDrag('userInfoOffcanvas');
+        initOffcanvasDrag();
 
         setTimeout(adjustNavWidth, 100);
     });
@@ -987,84 +987,84 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 보기 옵션 드롭다운 기능
     // ==========================================
-    const itemsPerPageTrigger = document.getElementById('itemsPerPageTrigger');
-    if (itemsPerPageTrigger) {
-        const dropdownWrapper = itemsPerPageTrigger.closest('.dropdown-wrapper');
-        const optionsList = dropdownWrapper.querySelector('.dropdown-options');
-        const options = optionsList.querySelectorAll('li');
-        const selectedText = itemsPerPageTrigger.querySelector('.selected-value');
+    // const itemsPerPageTrigger = document.getElementById('itemsPerPageTrigger');
+    // if (itemsPerPageTrigger) {
+    //     const dropdownWrapper = itemsPerPageTrigger.closest('.dropdown-wrapper');
+    //     const optionsList = dropdownWrapper.querySelector('.dropdown-options');
+    //     const options = optionsList.querySelectorAll('li');
+    //     const selectedText = itemsPerPageTrigger.querySelector('.selected-value');
 
-        // 드롭다운 토글
-        itemsPerPageTrigger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            dropdownWrapper.classList.toggle('active');
-        });
+    //     // 드롭다운 토글
+    //     itemsPerPageTrigger.addEventListener('click', (e) => {
+    //         e.stopPropagation();
+    //         dropdownWrapper.classList.toggle('active');
+    //     });
 
-        // 옵션 선택
-        options.forEach(option => {
-            option.addEventListener('click', (e) => {
-                e.stopPropagation();
+    //     // 옵션 선택
+    //     options.forEach(option => {
+    //         option.addEventListener('click', (e) => {
+    //             e.stopPropagation();
 
-                // 선택값 표시 업데이트
-                const valueText = option.textContent;
-                if (selectedText) selectedText.textContent = valueText;
+    //             // 선택값 표시 업데이트
+    //             const valueText = option.textContent;
+    //             if (selectedText) selectedText.textContent = valueText;
 
-                // 활성 옵션 변경
-                options.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
+    //             // 활성 옵션 변경
+    //             options.forEach(opt => opt.classList.remove('active'));
+    //             option.classList.add('active');
 
-                // 드롭다운 닫기
-                dropdownWrapper.classList.remove('active');
+    //             // 드롭다운 닫기
+    //             dropdownWrapper.classList.remove('active');
 
-                // Optional: Trigger Reload/Search here
-                console.log(`Changed to ${option.dataset.value} items per page`);
-            });
-        });
+    //             // Optional: Trigger Reload/Search here
+    //             console.log(`Changed to ${option.dataset.value} items per page`);
+    //         });
+    //     });
 
-        // 외부 클릭 감지 (닫기)
-        document.addEventListener('click', (e) => {
-            if (!dropdownWrapper.contains(e.target)) {
-                dropdownWrapper.classList.remove('active');
-            }
-        });
+    //     // 외부 클릭 감지 (닫기)
+    //     document.addEventListener('click', (e) => {
+    //         if (!dropdownWrapper.contains(e.target)) {
+    //             dropdownWrapper.classList.remove('active');
+    //         }
+    //     });
 
-        // ---------------------------------------------------------
-        // 드롭다운 너비 자동 조정
-        // ---------------------------------------------------------
-        function adjustDropdownWidth() {
-            // 텍스트 측정용 임시 요소 생성
-            const tempSpan = document.createElement('span');
-            tempSpan.style.visibility = 'hidden';
-            tempSpan.style.position = 'absolute';
-            tempSpan.style.fontSize = '14px'; // Match CSS rem(14)
-            tempSpan.style.fontWeight = '400'; // Standard weight
-            tempSpan.style.whiteSpace = 'nowrap';
-            document.body.appendChild(tempSpan);
+    //     // ---------------------------------------------------------
+    //     // 드롭다운 너비 자동 조정
+    //     // ---------------------------------------------------------
+    //     function adjustDropdownWidth() {
+    //         // 텍스트 측정용 임시 요소 생성
+    //         const tempSpan = document.createElement('span');
+    //         tempSpan.style.visibility = 'hidden';
+    //         tempSpan.style.position = 'absolute';
+    //         tempSpan.style.fontSize = '14px'; // Match CSS rem(14)
+    //         tempSpan.style.fontWeight = '400'; // Standard weight
+    //         tempSpan.style.whiteSpace = 'nowrap';
+    //         document.body.appendChild(tempSpan);
 
-            let maxWidth = 0;
-            const texts = Array.from(options).map(o => o.textContent.trim());
-            // 선택된 텍스트 포함
-            if (selectedText) texts.push(selectedText.textContent.trim());
+    //         let maxWidth = 0;
+    //         const texts = Array.from(options).map(o => o.textContent.trim());
+    //         // 선택된 텍스트 포함
+    //         if (selectedText) texts.push(selectedText.textContent.trim());
 
-            texts.forEach(text => {
-                tempSpan.textContent = text;
-                const w = tempSpan.offsetWidth;
-                if (w > maxWidth) maxWidth = w;
-            });
+    //         texts.forEach(text => {
+    //             tempSpan.textContent = text;
+    //             const w = tempSpan.offsetWidth;
+    //             if (w > maxWidth) maxWidth = w;
+    //         });
 
-            document.body.removeChild(tempSpan);
+    //         document.body.removeChild(tempSpan);
 
-            // 전체 필요 너비 계산
-            const extraSpace = 32 + 12 + 20 + 4;
-            const requiredWidth = maxWidth + extraSpace;
+    //         // 전체 필요 너비 계산
+    //         const extraSpace = 32 + 12 + 20 + 4;
+    //         const requiredWidth = maxWidth + extraSpace;
 
-            // 최소 너비 적용
-            dropdownWrapper.style.width = `${Math.max(requiredWidth, 130)}px`;
-        }
+    //         // 최소 너비 적용
+    //         dropdownWrapper.style.width = `${Math.max(requiredWidth, 130)}px`;
+    //     }
 
-        // 초기 실행
-        adjustDropdownWidth();
-    }
+    //     // 초기 실행
+    //     adjustDropdownWidth();
+    // }
 
     // 찜하기 버튼 토글 기능
     document.body.addEventListener('click', (e) => {
@@ -1226,103 +1226,150 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize logic
     initMobileScrollSlider('.mobile-main-slider', '#mobileMainTrack');
     initMobileScrollSlider('.popcorn-banner-wrapper', '#popcornBannerTrack');
+    initOffcanvasDrag();
+
+    // 동적으로 추가되는 Offcanvas 감지 (Observe dynamic offcanvas additions)
+    if (window.MutationObserver) {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === 1) {
+                        // 직접 offcanvas인 경우
+                        if (node.classList.contains('offcanvas')) {
+                            initOffcanvasDrag(node);
+                        }
+                        // 내부 자식에 offcanvas가 있는 경우
+                        else if (node.querySelectorAll) {
+                            node.querySelectorAll('.offcanvas').forEach(el => initOffcanvasDrag(el));
+                        }
+                    }
+                });
+            });
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
 });
 // 바텀 시트 드래그 종료 로직 (Drag to close bottom sheet)
-function initOffcanvasDrag(offcanvasId) {
-    const offcanvasEl = document.getElementById(offcanvasId);
-    if (!offcanvasEl) return;
+function initOffcanvasDrag(target) {
+    // 내부 함수: 개별 요소에 드래그 로직 부착
+    const attach = (offcanvasEl) => {
+        if (!offcanvasEl || offcanvasEl.dataset.dragInitialized) return;
+        const handle = offcanvasEl.querySelector('.offcanvas-handle');
+        if (!handle) return;
 
-    const handle = offcanvasEl.querySelector('.offcanvas-handle');
-    if (!handle) return;
+        offcanvasEl.dataset.dragInitialized = 'true';
 
-    let startY = 0;
-    let currentY = 0;
-    let isDragging = false;
-    let startTime = 0;
+        let startY = 0;
+        let currentY = 0;
+        let isDragging = false;
+        let startTime = 0;
 
-    // 닫기 함수 (Close function)
-    const closeOffcanvas = () => {
-        let bsOffcanvas = null;
-        if (window.bootstrap && window.bootstrap.Offcanvas) {
-            // getOrCreateInstance로 안전하게 인스턴스 확보
-            bsOffcanvas = window.bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl);
-        }
-        if (bsOffcanvas) bsOffcanvas.hide();
+        // 닫기 함수 (Close function)
+        const closeOffcanvas = () => {
+            let bsOffcanvas = null;
+            if (window.bootstrap && window.bootstrap.Offcanvas) {
+                // getOrCreateInstance로 안전하게 인스턴스 확보
+                bsOffcanvas = window.bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl);
+            }
+            if (bsOffcanvas) bsOffcanvas.hide();
+        };
+
+        // 드래그 시작 (Start)
+        const onStart = (y) => {
+            startY = y;
+            currentY = y;
+            isDragging = true;
+            startTime = new Date().getTime();
+            offcanvasEl.style.transition = 'none';
+        };
+
+        // 드래그 이동 (Move)
+        const onMove = (y) => {
+            if (!isDragging) return;
+            currentY = y;
+            const diff = currentY - startY;
+
+            // 아래로 드래그 시에만 이동 (Only move down)
+            if (diff > 0) {
+                offcanvasEl.style.transform = `translateY(${diff}px)`;
+            }
+        };
+
+        // 드래그 종료 (End)
+        const onEnd = () => {
+            if (!isDragging) return;
+
+            const diff = currentY - startY;
+            const timeDiff = new Date().getTime() - startTime;
+
+            // 100px 이상 내리거나, 짧은 시간(300ms)에 50px 이상 내리면 닫기
+            if (diff > 100 || (diff > 50 && timeDiff < 300)) {
+                closeOffcanvas();
+            } else {
+                // 원위치 복귀 (Revert position)
+                offcanvasEl.style.transition = 'transform 0.3s ease-out';
+                offcanvasEl.style.transform = 'translateY(0)';
+            }
+
+            setTimeout(() => { isDragging = false; }, 50);
+        };
+
+        // 클릭 핸들러: 드래그가 거의 없었을 때만 닫기 트리거 (Click handler)
+        handle.addEventListener('click', (e) => {
+            if (Math.abs(currentY - startY) < 5) {
+                closeOffcanvas();
+            }
+        });
+
+        // Touch Events
+        // Touch Events
+        handle.addEventListener('touchstart', (e) => {
+            // 핸들 터치 시 스크롤 방지 의도라면 preventDefault 사용 가능, 여기서는 드래그 로직 우선
+            onStart(e.touches[0].clientY);
+        }, { passive: true });
+
+        handle.addEventListener('touchmove', (e) => {
+            if (isDragging && e.cancelable) e.preventDefault(); // 드래그 중 스크롤 방지
+            onMove(e.touches[0].clientY);
+        }, { passive: false });
+
+        handle.addEventListener('touchend', onEnd);
+
+        // Mouse Events (PC Testing)
+        const onMouseMove = (e) => onMove(e.clientY);
+        const onMouseUp = () => {
+            onEnd();
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+        };
+
+        handle.addEventListener('mousedown', (e) => {
+            onStart(e.clientY);
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        });
+
+        // 시트가 닫히면 스타일 초기화
+        offcanvasEl.addEventListener('hidden.bs.offcanvas', () => {
+            offcanvasEl.style.transform = '';
+            offcanvasEl.style.transition = '';
+            currentY = 0;
+            startY = 0;
+        });
     };
 
-    // 드래그 시작 (Start)
-    const onStart = (y) => {
-        startY = y;
-        currentY = y;
-        isDragging = true;
-        startTime = new Date().getTime();
-        offcanvasEl.style.transition = 'none';
-    };
-
-    // 드래그 이동 (Move)
-    const onMove = (y) => {
-        if (!isDragging) return;
-        currentY = y;
-        const diff = currentY - startY;
-
-        // 아래로 드래그 시에만 이동 (Only move down)
-        if (diff > 0) {
-            offcanvasEl.style.transform = `translateY(${diff}px)`;
-        }
-    };
-
-    // 드래그 종료 (End)
-    const onEnd = () => {
-        if (!isDragging) return;
-
-        const diff = currentY - startY;
-        const timeDiff = new Date().getTime() - startTime;
-
-        // 100px 이상 내리거나, 짧은 시간(300ms)에 50px 이상 내리면 닫기
-        if (diff > 100 || (diff > 50 && timeDiff < 300)) {
-            closeOffcanvas();
-        } else {
-            // 원위치 복귀 (Revert position)
-            offcanvasEl.style.transition = 'transform 0.3s ease-out';
-            offcanvasEl.style.transform = 'translateY(0)';
-        }
-
-        setTimeout(() => { isDragging = false; }, 50);
-    };
-
-    // 클릭 핸들러: 드래그가 거의 없었을 때만 닫기 트리거 (Click handler)
-    handle.addEventListener('click', (e) => {
-        if (Math.abs(currentY - startY) < 5) {
-            closeOffcanvas();
-        }
-    });
-
-    // Touch Events
-    handle.addEventListener('touchstart', (e) => onStart(e.touches[0].clientY), { passive: true });
-    handle.addEventListener('touchmove', (e) => onMove(e.touches[0].clientY), { passive: true });
-    handle.addEventListener('touchend', onEnd);
-
-    // Mouse Events (PC Testing)
-    const onMouseMove = (e) => onMove(e.clientY);
-    const onMouseUp = () => {
-        onEnd();
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
-    };
-
-    handle.addEventListener('mousedown', (e) => {
-        onStart(e.clientY);
-        document.addEventListener('mousemove', onMouseMove);
-        document.addEventListener('mouseup', onMouseUp);
-    });
-
-    // 시트가 닫히면 스타일 초기화
-    offcanvasEl.addEventListener('hidden.bs.offcanvas', () => {
-        offcanvasEl.style.transform = '';
-        offcanvasEl.style.transition = '';
-        currentY = 0;
-        startY = 0;
-    });
+    // 로직 실행 분기
+    if (target) {
+        const el = typeof target === 'string' ? document.getElementById(target) : target;
+        if (el) attach(el);
+    } else {
+        // 인자가 없으면 핸들이 있는 모든 offcanvas에 적용
+        document.querySelectorAll('.offcanvas').forEach(el => {
+            if (el.querySelector('.offcanvas-handle')) {
+                attach(el);
+            }
+        });
+    }
 }
 
 // 검색 드롭다운 로직
@@ -1505,7 +1552,7 @@ const initSearchDropdown = function () {
             }
         });
         // 바텀시트 초기화
-        initOffcanvasDrag('userInfoOffcanvas');
+        initOffcanvasDrag();
     }
 };
 

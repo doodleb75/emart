@@ -712,6 +712,11 @@ body {
   align-items: center;
   gap: 0.375rem;
 }
+.product-card .card-info .unit-info .price-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
 .product-card .card-info .unit-info .strike {
   text-decoration: line-through;
   color: #aaaaaa;
@@ -2229,7 +2234,7 @@ body.modal-open {
 .search-dropdown .search-dropdown-autocomplete .autocomplete-column {
   flex: 1;
   padding: 1.5rem;
-  padding-bottom: 0;
+  padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
 }
@@ -5371,7 +5376,7 @@ body.modal-open {
 .mypage-page .list-container .custom-table th {
   background: #FAFAFA;
   font-size: 1rem;
-  color: #888888;
+  color: #444444;
   text-align: center;
   padding: 1.25rem;
   border-bottom: 0.09375rem solid #eeeeee;
