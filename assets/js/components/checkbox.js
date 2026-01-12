@@ -116,7 +116,7 @@ class CustomCheckbox extends HTMLElement {
         }
         if (name === 'label') {
             const labelSpan = this.querySelector('.label-text');
-            if (labelSpan) labelSpan.textContent = newValue;
+            if (labelSpan) labelSpan.innerHTML = newValue;
         }
         if (name === 'disabled') {
             this.input.disabled = this.hasAttribute('disabled');

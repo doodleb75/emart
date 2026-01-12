@@ -2234,7 +2234,7 @@ body.modal-open {
 .search-dropdown .search-dropdown-autocomplete .autocomplete-column {
   flex: 1;
   padding: 1.5rem;
-  padding-bottom: 0;
+  padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
 }

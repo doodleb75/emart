@@ -4540,10 +4540,15 @@
 
     <!-- Bottom Nav Placeholder -->
     <div id="mobile-bottom-nav-placeholder"></div>
+
+    <!-- Category Filter Offcanvas Placeholder -->
+    <div id="category-filter-placeholder"></div>
+
     <script src="/assets/js/components/quantity-control.js"></script>
     <script src="/assets/js/main.js"></script>
     <script src="/assets/js/components/mobile-footer.js"></script>
     <script src="/assets/js/components/favorites.js"></script>
+    <script src="/assets/js/components/checkbox.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Use .txt extension to prevent live-server from injecting script tags into the partial component
@@ -4554,7 +4559,18 @@
                     return response.text();
                 })
                 .then(data => {
-                    document.getElementById(placeholderId).innerHTML = data;
+                    const placeholder = document.getElementById(placeholderId);
+                    placeholder.innerHTML = data;
+
+                    // 실행 가능한 스크립트 추출 및 실행 (Extract and execute scripts)
+                    const scripts = placeholder.querySelectorAll('script');
+                    scripts.forEach(oldScript => {
+                        const newScript = document.createElement('script');
+                        Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+                        newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+                        oldScript.parentNode.replaceChild(newScript, oldScript);
+                    });
+
                     // Dispatch event if needed
                     if (placeholderId === 'mobile-header-placeholder') {
                         document.dispatchEvent(new Event('headerLoaded'));
@@ -4569,6 +4585,7 @@
         loadComponent('/mobile/components/header.component.txt', 'mobile-header-placeholder');
         loadComponent('/mobile/components/footer.component.txt', 'mobile-footer-placeholder');
         loadComponent('/mobile/components/bottom-nav.component.txt', 'mobile-bottom-nav-placeholder');
+        loadComponent('/mobile/components/category-filter.offcanvas.txt', 'category-filter-placeholder');
     </script>
 </body>
 

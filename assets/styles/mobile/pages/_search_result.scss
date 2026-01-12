@@ -511,18 +511,20 @@
                     .status-overlay {
                         display: flex; // "품절" 등의 텍스트 표시
                         align-items: center;
-                        justify-content: center;
+                        justify-content: space-between;
                         flex-direction: column;
                         gap: $space-xs; // 간격 축소 (Reduce gap)
                         position: absolute;
-                        top: 50%;
+                        bottom: 5%;
                         left: 50%;
-                        transform: translate(-50%, -50%);
+                        transform: translate(-50%, -5%);
                         z-index: 15;
                         width: 76%;
                         color: $white;
-                        font-size: rem(24);
+                        font-size: $font-size-lg;
                         font-weight: 600;
+
+                        height: 48%;
 
                         .btn-substitute {
                             min-height: rem(32); // 높이 조절 (Adjust height)
@@ -531,8 +533,8 @@
                             font-size: $font-size-sm;
                             background-color: $white;
                             border: 1.5px solid $gray-700;
-                            border-radius: $space-xs;
-                            font-size: $font-size-md;
+                            border-radius: rem(2);
+                            font-size: $font-size-base;
                             color: $gray-700;
                             cursor: pointer;
                             font-weight: 600;
