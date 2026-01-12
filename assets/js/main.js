@@ -987,84 +987,84 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 보기 옵션 드롭다운 기능
     // ==========================================
-    const itemsPerPageTrigger = document.getElementById('itemsPerPageTrigger');
-    if (itemsPerPageTrigger) {
-        const dropdownWrapper = itemsPerPageTrigger.closest('.dropdown-wrapper');
-        const optionsList = dropdownWrapper.querySelector('.dropdown-options');
-        const options = optionsList.querySelectorAll('li');
-        const selectedText = itemsPerPageTrigger.querySelector('.selected-value');
+    // const itemsPerPageTrigger = document.getElementById('itemsPerPageTrigger');
+    // if (itemsPerPageTrigger) {
+    //     const dropdownWrapper = itemsPerPageTrigger.closest('.dropdown-wrapper');
+    //     const optionsList = dropdownWrapper.querySelector('.dropdown-options');
+    //     const options = optionsList.querySelectorAll('li');
+    //     const selectedText = itemsPerPageTrigger.querySelector('.selected-value');
 
-        // 드롭다운 토글
-        itemsPerPageTrigger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            dropdownWrapper.classList.toggle('active');
-        });
+    //     // 드롭다운 토글
+    //     itemsPerPageTrigger.addEventListener('click', (e) => {
+    //         e.stopPropagation();
+    //         dropdownWrapper.classList.toggle('active');
+    //     });
 
-        // 옵션 선택
-        options.forEach(option => {
-            option.addEventListener('click', (e) => {
-                e.stopPropagation();
+    //     // 옵션 선택
+    //     options.forEach(option => {
+    //         option.addEventListener('click', (e) => {
+    //             e.stopPropagation();
 
-                // 선택값 표시 업데이트
-                const valueText = option.textContent;
-                if (selectedText) selectedText.textContent = valueText;
+    //             // 선택값 표시 업데이트
+    //             const valueText = option.textContent;
+    //             if (selectedText) selectedText.textContent = valueText;
 
-                // 활성 옵션 변경
-                options.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
+    //             // 활성 옵션 변경
+    //             options.forEach(opt => opt.classList.remove('active'));
+    //             option.classList.add('active');
 
-                // 드롭다운 닫기
-                dropdownWrapper.classList.remove('active');
+    //             // 드롭다운 닫기
+    //             dropdownWrapper.classList.remove('active');
 
-                // Optional: Trigger Reload/Search here
-                console.log(`Changed to ${option.dataset.value} items per page`);
-            });
-        });
+    //             // Optional: Trigger Reload/Search here
+    //             console.log(`Changed to ${option.dataset.value} items per page`);
+    //         });
+    //     });
 
-        // 외부 클릭 감지 (닫기)
-        document.addEventListener('click', (e) => {
-            if (!dropdownWrapper.contains(e.target)) {
-                dropdownWrapper.classList.remove('active');
-            }
-        });
+    //     // 외부 클릭 감지 (닫기)
+    //     document.addEventListener('click', (e) => {
+    //         if (!dropdownWrapper.contains(e.target)) {
+    //             dropdownWrapper.classList.remove('active');
+    //         }
+    //     });
 
-        // ---------------------------------------------------------
-        // 드롭다운 너비 자동 조정
-        // ---------------------------------------------------------
-        function adjustDropdownWidth() {
-            // 텍스트 측정용 임시 요소 생성
-            const tempSpan = document.createElement('span');
-            tempSpan.style.visibility = 'hidden';
-            tempSpan.style.position = 'absolute';
-            tempSpan.style.fontSize = '14px'; // Match CSS rem(14)
-            tempSpan.style.fontWeight = '400'; // Standard weight
-            tempSpan.style.whiteSpace = 'nowrap';
-            document.body.appendChild(tempSpan);
+    //     // ---------------------------------------------------------
+    //     // 드롭다운 너비 자동 조정
+    //     // ---------------------------------------------------------
+    //     function adjustDropdownWidth() {
+    //         // 텍스트 측정용 임시 요소 생성
+    //         const tempSpan = document.createElement('span');
+    //         tempSpan.style.visibility = 'hidden';
+    //         tempSpan.style.position = 'absolute';
+    //         tempSpan.style.fontSize = '14px'; // Match CSS rem(14)
+    //         tempSpan.style.fontWeight = '400'; // Standard weight
+    //         tempSpan.style.whiteSpace = 'nowrap';
+    //         document.body.appendChild(tempSpan);
 
-            let maxWidth = 0;
-            const texts = Array.from(options).map(o => o.textContent.trim());
-            // 선택된 텍스트 포함
-            if (selectedText) texts.push(selectedText.textContent.trim());
+    //         let maxWidth = 0;
+    //         const texts = Array.from(options).map(o => o.textContent.trim());
+    //         // 선택된 텍스트 포함
+    //         if (selectedText) texts.push(selectedText.textContent.trim());
 
-            texts.forEach(text => {
-                tempSpan.textContent = text;
-                const w = tempSpan.offsetWidth;
-                if (w > maxWidth) maxWidth = w;
-            });
+    //         texts.forEach(text => {
+    //             tempSpan.textContent = text;
+    //             const w = tempSpan.offsetWidth;
+    //             if (w > maxWidth) maxWidth = w;
+    //         });
 
-            document.body.removeChild(tempSpan);
+    //         document.body.removeChild(tempSpan);
 
-            // 전체 필요 너비 계산
-            const extraSpace = 32 + 12 + 20 + 4;
-            const requiredWidth = maxWidth + extraSpace;
+    //         // 전체 필요 너비 계산
+    //         const extraSpace = 32 + 12 + 20 + 4;
+    //         const requiredWidth = maxWidth + extraSpace;
 
-            // 최소 너비 적용
-            dropdownWrapper.style.width = `${Math.max(requiredWidth, 130)}px`;
-        }
+    //         // 최소 너비 적용
+    //         dropdownWrapper.style.width = `${Math.max(requiredWidth, 130)}px`;
+    //     }
 
-        // 초기 실행
-        adjustDropdownWidth();
-    }
+    //     // 초기 실행
+    //     adjustDropdownWidth();
+    // }
 
     // 찜하기 버튼 토글 기능
     document.body.addEventListener('click', (e) => {

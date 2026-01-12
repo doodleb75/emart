@@ -119,7 +119,7 @@
 @mixin qty-box-base($height: rem(48), $font-size: rem(16)) {
     display: flex;
     align-items: center;
-    border: 1.5px solid $gray-700;
+    border: 1.5px solid $gray-200;
     border-radius: rem(4);
     height: $height;
     overflow: hidden;

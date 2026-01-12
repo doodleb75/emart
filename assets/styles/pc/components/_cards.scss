@@ -233,6 +233,12 @@
             align-items: center;
             gap: rem(6);
 
+            .price-wrap {
+                display: flex;
+                align-items: center;
+                gap: rem(4);
+            }
+
             .strike {
                 text-decoration: line-through;
                 color: $gray-300;

@@ -1,232 +1,356 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const grid0 = document.getElementById('md-grid-0');
-    if (!grid0) return;
+    // 상품 그리드 및 더보기 버튼/페이지네이션 (Product Grid, Load More, Pagination)
+    const grid = document.getElementById('md-grid-0');
+    const btnLoadMore = document.getElementById('btnLoadMoreMD'); // Mobile 전용
+    const paginationContainer = document.querySelector('.pagination-container'); // PC 전용
+    if (!grid) return;
 
-    const tabItems = document.querySelectorAll('.tab-menu .tab-item');
-    const itemsPerPageOptions = document.querySelectorAll('.dropdown-options li');
-    const totalCountEl = document.querySelector('.total-count-row .count');
-    const searchSelectAll = document.getElementById('searchSelectAll');
+    // 1. 초기 상태 및 데이터 확장 (Initial State & Mock Data Extension)
+    let isExpanded = false;
+    let threshold = 5; // PC 기본 20개씩 보기 (Default 20 items for PC)
+    let currentPage = 1;
+    const totalItemsCount = 41; // HTML에 표시된 '총 41개'와 동기화
 
-    // 그리드 컨테이너 설정 (Grid Container)
-    const gridParent = grid0.parentNode;
-    const grids = [grid0];
-    const tabCount = tabItems.length; // 탭 개수 (4개)
-
-    // 상태 관리 (State)
-    let currentLimit = 20;
-    let activeTabId = '0';
-    const tabCheckStates = {}; // 탭별 체크박스 상태
-
-    // UI에서 초기 제한 설정 (Initialize Limit)
-    const activeOption = document.querySelector('.dropdown-options li.active');
-    if (activeOption) {
-        currentLimit = parseInt(activeOption.dataset.value || '20', 10);
-    }
-
-    // 배열 섞기 (Shuffle Helper)
-    const shuffle = (array) => {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+    // 0. 선택 초기화 함수 (Reset Selection)
+    const selectAllBtn = document.getElementById('searchSelectAll');
+    const resetSelection = () => {
+        if (selectAllBtn) selectAllBtn.checked = false;
+        const grid = document.getElementById('md-grid-0');
+        if (grid) {
+            grid.querySelectorAll('.item-check').forEach(check => {
+                check.checked = false;
+            });
         }
-        return array;
     };
+    // 데이터 확장을 위한 복제 (Clone items to match mock count)
+    const prepareMockData = () => {
+        const originalItems = Array.from(grid.querySelectorAll('.product-card'));
+        if (originalItems.length === 0) return;
 
-    // 아이템 늘리기 (Increase Items for testing)
-    const increaseItems = () => {
-        const originalCards = Array.from(grid0.children);
-        if (originalCards.length === 0) return;
+        // 원본 아이템에도 구매횟수 데이터 추가 (고정값으로 변경)
+        originalItems.forEach((item, idx) => {
+            if (!item.dataset.purchases) {
+                item.dataset.purchases = 500 - (idx * 5);
+            }
+        });
 
-        const targetCount = 60; // 목표 개수
-        let currentCount = originalCards.length;
-
-        while (currentCount < targetCount) {
-            originalCards.forEach(card => {
-                if (currentCount >= targetCount) return;
-                const clone = card.cloneNode(true);
-
-                // 체크박스 초기화
-                clone.querySelectorAll('custom-checkbox').forEach(cb => {
-                    cb.innerHTML = '';
-                    cb.removeAttribute('checked');
-                });
-
-                // 수량 조절 버튼 재초기화
+        let currentCount = originalItems.length;
+        while (currentCount < totalItemsCount) {
+            originalItems.forEach(item => {
+                if (currentCount >= totalItemsCount) return;
+                const clone = item.cloneNode(true);
+                // 중복 ID 방지 (체크박스 등)
+                clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+                // 초기화 상태 리셋 
                 clone.querySelectorAll('.qty-box').forEach(box => {
                     delete box.dataset.initialized;
                 });
 
-                // 수량 초기화
-                const qtyInput = clone.querySelector('.qty-box input');
-                if (qtyInput) qtyInput.value = 0;
+                // 커스텀 체크박스 상태 리셋 (Reset checkbox state)
+                const itemCheck = clone.querySelector('.item-check');
+                if (itemCheck) {
+                    itemCheck.removeAttribute('checked');
+                    if (itemCheck.input) itemCheck.input.checked = false;
+                }
 
-                grid0.appendChild(clone);
+                // 데이터 고정 (데이터를 인덱스 기반으로 생성하여 리스트 고정)
+                const mockIndex = currentCount;
+                const salesValue = 1000 - (mockIndex * 10);
+                const purchasesValue = 500 - (mockIndex * 5);
+                const priceValue = (2000 + (mockIndex * 100));
+                const dateValue = `2024-01-${String(Math.max(1, 31 - (mockIndex % 31))).padStart(2, '0')}`;
+
+                clone.dataset.sales = salesValue;
+                clone.dataset.purchases = purchasesValue;
+                clone.dataset.price = priceValue;
+                clone.dataset.date = dateValue;
+
+                // 가격 텍스트 업데이트 (UI 반영)
+                const priceEl = clone.querySelector('.price');
+                if (priceEl) priceEl.textContent = priceValue.toLocaleString();
+
+                grid.appendChild(clone);
                 currentCount++;
             });
         }
     };
+    prepareMockData();
 
-    // 초기 아이템 증식 실행
-    increaseItems();
-
-    // 표시 아이템 수 및 총 개수 업데이트 (Update Visibility)
-    const updateVisibility = () => {
-        // 모든 그리드에 대해 가시성 업데이트 (탭 전환 시 상태 유지 위해)
-        grids.forEach(grid => {
-            const cards = Array.from(grid.children);
-            cards.forEach((card, index) => {
-                // limit 값에 따라 아이템 표시/숨김
-                if (index < currentLimit) {
-                    card.style.display = '';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-
-        // 현재 활성화된 탭의 실제 데이터 개수 업데이트
-        if (totalCountEl && grids[activeTabId]) {
-            const activeCards = Array.from(grids[activeTabId].children);
-            // 전체 상품 수와 설정된 limit 중 작은 값을 표시
-            totalCountEl.textContent = Math.min(activeCards.length, currentLimit);
-        }
-    };
-
-    // 그리드별 체크박스 이벤트 연결 (Attach Checkbox Events)
-    const attachCheckboxEvents = (grid, tabId) => {
-        const checks = grid.querySelectorAll('.item-check');
-        checks.forEach(check => {
-            check.addEventListener('change', () => {
-                // 현재 탭인 경우 전체 선택 상태 동기화
-                if (activeTabId === tabId && searchSelectAll) {
-                    const allChecked = Array.from(checks).every(c => c.checked);
-                    searchSelectAll.checked = allChecked;
-                    tabCheckStates[tabId] = allChecked;
-                }
-            });
-        });
-    };
-
-    // 1. 그리드 복제 생성 (Create Duplicated Grids)
-    // 0번(기본)은 이미 존재하므로 1번부터 생성
-    const paginationContainer = document.querySelector('.pagination-container');
-
-    for (let i = 1; i < tabCount; i++) {
-        const clone = grid0.cloneNode(true);
-        clone.id = `md-grid-${i}`;
-        clone.classList.remove('active');
-        clone.style.display = 'none'; // 초기 숨김 처리
-
-        // 커스텀 체크박스 재초기화 (Reset Custom Checkbox)
-        clone.querySelectorAll('custom-checkbox').forEach(cb => {
-            cb.innerHTML = '';
-        });
-
-        // 수량 조절 버튼 재초기화
-        clone.querySelectorAll('.qty-box').forEach(box => {
-            delete box.dataset.initialized;
-        });
-
-        // 자식 요소 섞기 (Shuffle Children)
-        const children = Array.from(clone.children);
-        const shuffled = shuffle(children);
-        clone.innerHTML = '';
-        shuffled.forEach(child => clone.appendChild(child));
-
-        // 페이지네이션 이전에 추가하여 순서 유지
-        if (paginationContainer) {
-            gridParent.insertBefore(clone, paginationContainer);
-        } else {
-            gridParent.appendChild(clone);
-        }
-        grids.push(clone);
+    // 초기 수량 조절 초기화
+    if (typeof initQuantityControl === 'function') {
+        initQuantityControl(grid);
     }
 
-    // 2. 모든 그리드 이벤트 초기화 (Init Events)
-    grids.forEach((grid, index) => {
-        const tabId = index.toString();
+    // 상품 리스트 실시간 조회 (Get all products)
+    const getProductItems = () => Array.from(grid.querySelectorAll('.product-card'));
 
-        // 수량 조절 기능 초기화 (Quantity Control)
+    // 화면 업데이트 함수 (Main Display Logic)
+    const updateDisplay = () => {
+        const items = getProductItems();
+
+        // 정렬/페이지네이션 적용 (Apply Pagination or Load More)
+        if (btnLoadMore && btnLoadMore.offsetParent !== null) {
+            // Mobile: 더보기 방식 (Mobile Load More)
+            items.forEach((item, index) => {
+                if (isExpanded) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = index < 4 ? 'flex' : 'none'; // Mobile 기본 5개
+                }
+            });
+            updateLoadMoreButton(items.length);
+        } else {
+            // PC: 페이지네이션 방식 (PC Pagination)
+            const start = (currentPage - 1) * threshold;
+            const end = start + threshold;
+
+            items.forEach((item, index) => {
+                if (index >= start && index < end) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            updatePaginationUI(items.length);
+        }
+    };
+
+    // 더보기 버튼 상태 업데이트 (Mobile Only)
+    const updateLoadMoreButton = (total) => {
+        if (!btnLoadMore) return;
+        const mobileThreshold = 5;
+        if (total <= mobileThreshold) {
+            btnLoadMore.style.display = 'none';
+        } else {
+            btnLoadMore.style.display = 'flex';
+            const btnText = btnLoadMore.querySelector('span') || btnLoadMore.firstChild;
+            if (isExpanded) {
+                if (btnText.nodeType === 3) btnLoadMore.firstChild.textContent = '상품 닫기 ';
+                else btnText.textContent = '상품 닫기';
+                btnLoadMore.querySelector('svg').style.transform = 'rotate(180deg)';
+            } else {
+                if (btnText.nodeType === 3) btnLoadMore.firstChild.textContent = '상품 더보기 ';
+                else btnText.textContent = '상품 더보기';
+                btnLoadMore.querySelector('svg').style.transform = 'rotate(0deg)';
+            }
+        }
+    };
+
+    // 페이지네이션 UI 업데이트 (PC Only)
+    const updatePaginationUI = (total) => {
+        if (!paginationContainer) return;
+        const totalPages = Math.ceil(total / threshold);
+        const navItems = paginationContainer.querySelectorAll('.btn-pagination:not(.btn-prev):not(.btn-next):not(.btn-prev-end):not(.btn-next-end)');
+
+        navItems.forEach((btn, idx) => {
+            const pageNum = idx + 1;
+            if (pageNum > totalPages) {
+                btn.style.display = 'none';
+            } else {
+                btn.style.display = '';
+                if (pageNum === currentPage) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            }
+        });
+    };
+
+    // 더보기 버튼 클릭 이벤트 (Load More Click)
+    if (btnLoadMore) {
+        btnLoadMore.addEventListener('click', () => {
+            isExpanded = !isExpanded;
+            updateDisplay();
+            if (selectAllBtn) selectAllBtn.checked = false; // 보이기/숨기기 시 전체 선택 해제 (Uncheck Select All on toggle)
+
+            if (!isExpanded) {
+                const headerOffset = 150;
+                const elementPosition = grid.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            }
+        });
+    }
+
+    // 페이지네이션 클릭 이벤트 (Pagination Click)
+    if (paginationContainer) {
+        paginationContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('.btn-pagination');
+            if (!btn) return;
+            e.preventDefault();
+
+            if (btn.classList.contains('btn-prev-end')) currentPage = 1;
+            else if (btn.classList.contains('btn-prev')) currentPage = Math.max(1, currentPage - 1);
+            else if (btn.classList.contains('btn-next')) currentPage = Math.min(Math.ceil(totalItemsCount / threshold), currentPage + 1);
+            else if (btn.classList.contains('btn-next-end')) currentPage = Math.ceil(totalItemsCount / threshold);
+            else {
+                const pageNum = parseInt(btn.textContent);
+                if (!isNaN(pageNum)) currentPage = pageNum;
+            }
+            resetSelection(); // 페이지 이동 시 선택 초기화
+            updateDisplay();
+            window.scrollTo({ top: grid.offsetTop - 200, behavior: 'smooth' });
+        });
+    }
+
+    // 2. 정렬 기능 (Sorting Functionality)
+    const sortProducts = (criteria) => {
+        const items = getProductItems();
+
+        items.sort((a, b) => {
+            const priceA = parseInt(a.dataset.price) || 0;
+            const priceB = parseInt(b.dataset.price) || 0;
+            const salesA = parseInt(a.dataset.sales) || 0;
+            const salesB = parseInt(b.dataset.sales) || 0;
+            const purchasesA = parseInt(a.dataset.purchases) || 0;
+            const purchasesB = parseInt(b.dataset.purchases) || 0;
+            const dateA = new Date(a.dataset.date || '2000-01-01').getTime();
+            const dateB = new Date(b.dataset.date || '2000-01-01').getTime();
+
+            switch (criteria) {
+                case '판매순': return salesB - salesA;
+                case '많은 구매횟수': return purchasesB - purchasesA;
+                case '낮은가격순': return priceA - priceB;
+                case '높은가격순': return priceB - priceA;
+                case '신상품순': return dateB - dateA;
+                default: return 0;
+            }
+        });
+
+        items.forEach(item => grid.appendChild(item));
+
+        // 수량 조절 재초기화 (Re-initialize quantity control for re-appended items)
         if (typeof initQuantityControl === 'function') {
             initQuantityControl(grid);
         }
 
-        // 체크박스 이벤트 연결
-        attachCheckboxEvents(grid, tabId);
-    });
+        updateDisplay();
+    };
 
-    // 3. 탭 전환 로직 (Tab Switching)
-    tabItems.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const targetId = tab.dataset.tab;
+    // 탭 메뉴 정렬 (Tab Menu Sorting)
+    const tabMenu = document.querySelector('.tab-menu');
+    if (tabMenu) {
+        const tabItems = tabMenu.querySelectorAll('.tab-item');
+        tabItems.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabItems.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentPage = 1; // 정렬 시 1페이지로 리셋
+                resetSelection(); // 탭 변경 시 선택 초기화
+                sortProducts(tab.textContent.trim());
+            });
+        });
+    }
 
-            if (activeTabId === targetId) return;
+    // 3. 드롭다운 기능 통합 관리 (Unified Dropdown Management)
+    const initDropdowns = () => {
+        const dropdownWrappers = document.querySelectorAll('.dropdown-wrapper');
 
-            // 탭 UI 업데이트
-            tabItems.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
+        dropdownWrappers.forEach(wrap => {
+            const trigger = wrap.querySelector('.select-wrap');
+            const optionsArea = wrap.querySelector('.dropdown-options');
+            const selectedValueLabel = wrap.querySelector('.selected-value');
 
-            // 그리드 표시 상태 업데이트
-            grids.forEach((g, index) => {
-                if (index == targetId) {
-                    g.classList.add('active');
-                    // display: none만 제거하고, CSS 클래스(grid-template-columns)에 의해 조절되도록 함
-                    g.style.display = '';
-                } else {
-                    g.classList.remove('active');
-                    g.style.display = 'none';
+            if (!trigger || !optionsArea) return;
+
+            // 드롭다운 토글
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdownWrappers.forEach(other => {
+                    if (other !== wrap) other.classList.remove('active');
+                });
+                wrap.classList.toggle('active');
+            });
+
+            // 옵션 선택
+            optionsArea.addEventListener('click', (e) => {
+                const li = e.target.closest('li');
+                if (li) {
+                    const text = li.textContent.trim();
+                    const val = li.dataset.value;
+
+                    optionsArea.querySelectorAll('li').forEach(item => item.classList.remove('active'));
+                    li.classList.add('active');
+                    if (selectedValueLabel) selectedValueLabel.textContent = text;
+                    wrap.classList.remove('active');
+
+                    if (trigger.id === 'itemsPerPageTrigger') {
+                        threshold = parseInt(val) || 20;
+                        currentPage = 1; // 개수 변경 시 1페이지로 리셋
+                        isExpanded = false;
+                        resetSelection(); // 개수 변경 시 선택 초기화
+                        updateDisplay();
+                    } else {
+                        // 모바일 정렬 드롭다운일 때만 선택 초기화 (Reset selection only for mobile sort dropdown)
+                        if (btnLoadMore && btnLoadMore.offsetParent !== null) {
+                            resetSelection();
+                        }
+                        sortProducts(text);
+                    }
                 }
             });
-
-            activeTabId = targetId;
-            updateVisibility(); // 탭 전환 시 개수 업데이트
-
-            // 전체 선택 상태 복원 (Restore Select All)
-            if (searchSelectAll) {
-                // 현재 그리드의 체크 상태 확인
-                const currentGrid = grids[targetId];
-                const checks = currentGrid.querySelectorAll('.item-check');
-                // 실제 체크박스 상태로 확인
-                const allChecked = checks.length > 0 && Array.from(checks).every(c => c.checked);
-                searchSelectAll.checked = allChecked;
-            }
         });
-    });
 
-    // 4. 전체 선택 로직 (Select All Logic)
-    if (searchSelectAll) {
-        searchSelectAll.addEventListener('change', (e) => {
+        document.addEventListener('click', () => {
+            dropdownWrappers.forEach(wrap => wrap.classList.remove('active'));
+        });
+    };
+    initDropdowns();
+
+    // 4. 체크박스 제어 (Checkbox Sync)
+    if (selectAllBtn) {
+        selectAllBtn.addEventListener('change', (e) => {
             const isChecked = e.target.checked;
-            tabCheckStates[activeTabId] = isChecked;
+            const isMobile = btnLoadMore && btnLoadMore.offsetParent !== null;
 
-            const activeGrid = grids[activeTabId];
-            if (activeGrid) {
-                const checks = activeGrid.querySelectorAll('.item-check');
-                checks.forEach(c => c.checked = isChecked);
-            }
-        });
-    }
+            grid.querySelectorAll('.item-check').forEach(check => {
+                const card = check.closest('.product-card');
 
-    // 5. 페이지당 아이템 수 로직 (Items Per Page)
-    if (itemsPerPageOptions.length > 0) {
-        itemsPerPageOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const value = option.dataset.value;
-                currentLimit = parseInt(value, 10);
-                updateVisibility();
-
-                // 드롭다운 활성 상태 업데이트
-                itemsPerPageOptions.forEach(o => o.classList.remove('active'));
-                option.classList.add('active');
+                if (isMobile) {
+                    // 모바일일 때는 보이는 것만 체크 (Check only visible items on mobile)
+                    if (card && card.style.display !== 'none') {
+                        check.checked = isChecked;
+                    }
+                } else {
+                    // PC는 기존 로직 유지 (Keep existing logic for PC)
+                    check.checked = isChecked;
+                }
             });
         });
+
+        grid.addEventListener('change', (e) => {
+            if (e.target.closest('.item-check')) {
+                const isMobile = btnLoadMore && btnLoadMore.offsetParent !== null;
+                const itemChecks = Array.from(grid.querySelectorAll('.item-check'));
+
+                if (isMobile) {
+                    // 모바일: 보이는 상품의 체크박스 상태만 확인 (Check state of visible items only)
+                    const visibleChecks = itemChecks.filter(check => {
+                        const card = check.closest('.product-card');
+                        return card && card.style.display !== 'none';
+                    });
+                    selectAllBtn.checked = visibleChecks.length > 0 && visibleChecks.every(c => c.checked);
+                } else {
+                    // PC: 기존 로직 유지 (Keep existing logic for PC)
+                    selectAllBtn.checked = itemChecks.every(c => c.checked);
+                }
+            }
+        });
     }
 
-    // 초기 가시성 설정 (Initial Visibility)
-    updateVisibility();
+    // 5. 수량 조절 초기화
+    if (typeof initQuantityControl === 'function') {
+        initQuantityControl(grid);
+    }
 
-    // 그리드가 복제된 후 뷰 토글 기능을 다시 초기화 (Re-init view toggle after cloning)
-    if (typeof initViewToggle === 'function') {
-        initViewToggle();
+
+
+    // 초기 실행
+    const activeTab = document.querySelector('.tab-menu .tab-item.active');
+    if (activeTab) {
+        sortProducts(activeTab.textContent.trim());
+    } else {
+        updateDisplay();
     }
 });
