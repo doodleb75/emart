@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // 헤더 영역
 .header {
     width: 100%;
@@ -1033,7 +1035,7 @@
                 }
 
                 &:hover {
-                    background-color: darken($gray-50, 5%);
+                    background-color: color.adjust($gray-50, $lightness: -5%);
 
                     &.active {
                         background-color: $gray-700; // active는 유지

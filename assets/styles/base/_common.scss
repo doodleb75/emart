@@ -14,7 +14,7 @@ body {
 // 유틸리티 클래스
 .number-font {
     font-family: $font-family-number;
-    letter-spacing: -0.5px;
+    letter-spacing: rem(-0.5);
 }
 
 .cursor-pointer {
@@ -76,29 +76,29 @@ body {
 }
 
 main {
-    position: relative; // 스티키 트랙의 기준점 (Reference point for sticky track)
+    position: relative; // 스티키 트랙 기준점
 }
 
-// 플로팅 메뉴
 // 스티키 트랙
 .sticky-track {
     position: absolute;
     top: rem(664); // 헤더 높이 반영 위치 조정
-    bottom: rem(100); // 푸터 영역 침범 방지 (Prevent footer overlap)
+    // 푸터 침범 방지
+    bottom: rem(100);
     left: 50%;
     margin-left: rem(700); // 1360/2 + 20px 간격
     width: rem(120);
-    z-index: 1000; // 헤더보다는 낮게, 다른 요소보다는 높게
-    pointer-events: none; // 트랙 자체는 클릭 무시 (Ignore clicks on track)
+    z-index: 1000; // 헤더보다 낮게 설정
+    pointer-events: none; // 트랙 클릭 방지
 
-    // 브라우저 너비가 좁아지면 컨텐츠 안쪽으로 이동 (Shift inward when narrow)
+    // 좁은 화면에서 안쪽 이동
     @media (max-width: rem(1520)) {
         margin-top: rem(96);
-        margin-left: rem(560); // 컨텐츠 우측 내부로 겹치게 설정
+        margin-left: rem(560); // 컨텐츠 우측 겹침 설정
     }
 
     .floating-menu {
-        pointer-events: auto; // 메뉴는 클릭 가능 (Menu is clickable)
+        pointer-events: auto; // 메뉴 클릭 허용
     }
 }
 
@@ -109,7 +109,7 @@ main {
     width: 100%;
 
     background: $white;
-    border: 1.5px solid $gray-700;
+    border: rem(1.5) solid $gray-700;
     border-radius: $space-xs;
     text-align: center;
     overflow: hidden;
@@ -136,7 +136,7 @@ main {
 
         .divider {
             width: 100%;
-            height: 1px;
+            height: rem(1);
             background-color: $gray-100;
             margin: 0;
         }
@@ -162,7 +162,7 @@ main {
                 font-weight: 500;
                 color: $gray-700;
                 margin-bottom: 0;
-                letter-spacing: -0.5px;
+                letter-spacing: rem(-0.5);
             }
 
             .count {
@@ -182,7 +182,7 @@ main {
         width: 100%;
         padding: rem(12) 0;
         border: none;
-        border-top: 1.5px solid $gray-100;
+        border-top: rem(1.5) solid $gray-100;
         background: $white;
 
         color: $gray-700;
@@ -193,7 +193,7 @@ main {
         gap: $space-xs;
 
         span {
-            font-size: $font-size-sm; // Adjusted to match image
+            font-size: $font-size-sm; // 이미지 레이아웃 맞춤
             font-weight: 700;
             color: $gray-700;
             margin-top: rem(-2);
@@ -222,7 +222,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1.5px solid $gray-200;
+    border: rem(1.5) solid $gray-200;
     border-radius: $space-xs;
     height: 100%;
 
@@ -254,7 +254,6 @@ main {
         background: transparent;
         text-align: center;
         font-size: $font-size-md;
-        font-weight: 600;
         color: $gray-700;
         outline: none;
         padding: 0;
@@ -271,7 +270,7 @@ main {
         }
 
         &:focus {
-            outline: 2px solid $gray-700;
+            outline: rem(2) solid $gray-700;
         }
     }
 }
@@ -280,7 +279,7 @@ main {
 .btn-icon {
     width: rem(40);
     height: rem(40);
-    border: 1.5px solid $gray-300;
+    border: rem(1.5) solid $gray-300;
     border-radius: $space-xs;
     background: transparent;
     cursor: pointer;

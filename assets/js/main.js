@@ -2125,26 +2125,36 @@ async function initZoomControl() {
     const step = 0.1;
     const maxZoom = 1.2; // 120% 제한
     const minZoom = 0.7; // 70% 제한
+    const pcThreshold = 1024; // PC 기준 너비
 
-    // 초기 줌 즉시 적용
-    document.body.style.zoom = currentZoom;
+    // 줌 적용 로직 (PC에서만 적용)
+    const applyZoom = () => {
+        const isPC = window.innerWidth >= pcThreshold;
+        document.body.style.zoom = isPC ? currentZoom : 1;
+
+        // GNB 너비 재계산 호출
+        if (isPC && window.adjustNavWidth) window.adjustNavWidth();
+    };
+
+    // 초기 적용 및 리사이즈 대응
+    applyZoom();
+    window.addEventListener('resize', applyZoom);
 
     const zoomInBtn = document.getElementById('btnZoomIn');
     const zoomOutBtn = document.getElementById('btnZoomOut');
     const zoomResetBtn = document.getElementById('btnZoomReset');
     const zoomDisplay = document.getElementById('zoomDisplay');
 
-    // UI 요소가 없으면 적용만 하고 리턴
+    // UI 요소가 없으면 리턴
     if (!zoomInBtn || !zoomOutBtn || !zoomResetBtn || !zoomDisplay) return;
 
     // UI 및 상태 업데이트
     const updateZoomDisplay = async () => {
         const percent = Math.round(currentZoom * 100);
         zoomDisplay.textContent = `${percent}%`;
-        document.body.style.zoom = currentZoom;
 
-        // GNB 너비 재계산 호출
-        if (window.adjustNavWidth) window.adjustNavWidth();
+        // 줌 적용
+        applyZoom();
 
         // 데이터 저장 (비동기)
         await saveUserZoom(currentZoom);
@@ -2183,7 +2193,7 @@ function positionLayerPopup(trigger, modalEl, options = { align: 'center' }) {
     if (dialog) {
         const zoom = parseFloat(document.body.style.zoom) || 1;
         const rect = trigger.getBoundingClientRect();
-        const margin = 20;
+        const margin = 50;
 
         // 스타일 초기 설정
         dialog.style.margin = '0';
