@@ -1,3 +1,7 @@
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/mixins";
+@use "../../abstracts/variables" as *;
+
 // 검색 결과 페이지
 .search-result-page {
     padding-top: rem(40);
@@ -259,7 +263,7 @@
                     cursor: pointer;
                     white-space: nowrap;
                     min-width: max-content;
-                    @include btn-hover-effect;
+                    @include mixins.btn-hover-effect;
                 }
             }
 
@@ -284,7 +288,7 @@
                         padding: 0;
                         cursor: pointer;
                         color: $gray-300;
-                        @include btn-hover-effect;
+                        @include mixins.btn-hover-effect;
 
                         &.active {
                             color: $black;
@@ -482,7 +486,7 @@
                         align-items: center;
                         justify-content: center;
 
-                        @include btn-hover-effect;
+                        @include mixins.btn-hover-effect;
                     }
                 }
             }
@@ -636,7 +640,7 @@
                         align-items: center;
                         justify-content: center;
 
-                        @include btn-hover-effect;
+                        @include mixins.btn-hover-effect;
                     }
                 }
             }

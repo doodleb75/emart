@@ -1,0 +1,23 @@
+@use "../../abstracts/functions" as *;
+@use "../../abstracts/variables";
+
+// Order Badges
+.badge-order-red {
+    background-color: variables.$badge-red-bg;
+    color: variables.$badge-red-text;
+    height: rem(48);
+    font-size: variables.$font-size-base;
+    font-weight: 600;
+    border-radius: variables.$space-xs;
+    padding: rem(10) rem(12);
+}
+
+.badge-order-blue {
+    background-color: variables.$badge-blue-bg;
+    color: variables.$badge-blue-text;
+    height: rem(48);
+    font-size: variables.$font-size-base;
+    font-weight: 600;
+    border-radius: variables.$space-xs;
+    padding: rem(10) rem(12);
+}

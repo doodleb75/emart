@@ -1,3 +1,7 @@
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/mixins";
+@use "../../abstracts/variables" as *;
+
 // 주간 랭킹 섹션
 .weekly-ranking {
     padding-bottom: rem(60);
@@ -53,7 +57,7 @@
         justify-content: center;
         border-radius: $space-xs;
         cursor: pointer;
-        @include btn-hover-effect;
+        @include mixins.btn-hover-effect;
         transition: background-color 0.2s;
 
         img {
@@ -304,7 +308,7 @@
         text-decoration: none;
         transition: all 0.2s;
 
-        @include btn-hover-effect;
+        @include mixins.btn-hover-effect;
 
         svg {
             width: rem(16);

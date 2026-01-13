@@ -1,4 +1,8 @@
-@charset "UTF-8";
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/mixins";
+@use "../../abstracts/variables" as *;
+
+
 
 // 모바일 푸터 스타일
 .mobile-footer {
@@ -49,7 +53,7 @@
                 display: flex;
                 align-items: center;
                 gap: rem(4);
-                @include mobile-touch-effect; // 터치 피드백 추가
+                @include mixins.mobile-touch-effect; // 터치 피드백 추가
 
                 &.bold {
                     font-weight: 600;
@@ -74,7 +78,7 @@
         font-weight: 600;
         color: $gray-800;
         justify-content: space-between;
-        @include mobile-touch-effect; // 터치 피드백 추가
+        @include mixins.mobile-touch-effect; // 터치 피드백 추가
 
         .icon-arrow {
             width: rem(16);
@@ -191,13 +195,13 @@
             border-radius: rem(4);
             color: $gray-800;
             box-shadow: 0 rem(2) rem(8) rgba(0, 0, 0, 0.1); // Add shadow for better visibility
-            @include mobile-touch-effect; // 터치 피드백 추가
+            @include mixins.mobile-touch-effect; // 터치 피드백 추가
 
             &.btn-cart {
                 background-color: $gray-800;
                 border-color: $gray-800;
                 color: $white;
-                @include mobile-touch-effect($gray-800); // 어두운 배경 피드백 추가
+                @include mixins.mobile-touch-effect($gray-800); // 어두운 배경 피드백 추가
             }
 
             svg {

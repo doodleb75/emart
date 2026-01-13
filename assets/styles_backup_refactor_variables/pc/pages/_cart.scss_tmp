@@ -1,0 +1,58 @@
+@use "../../abstracts/functions" as *;  
+@use "../../abstracts/mixins";
+@use "../../abstracts/variables";
+
+// 장바구니 페이지 스타일
+.cart-page {
+    padding-top: rem(40);
+    font-weight: 600;
+
+    // 페이지 헤더
+    .page-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: rem(40);
+
+        .page-title {
+            display: flex;
+            align-items: baseline;
+            font-size: rem(32); // 시각적 강조: 32px
+
+            font-weight: 700;
+            color: variables.$black;
+            margin-bottom: 0;
+            line-height: 1;
+
+            .count {
+                color: variables.$system-info;
+                margin-left: rem(12);
+                font-family: variables.$font-family-number;
+            }
+        }
+
+        // 장바구니 단계 표시
+        .page-steps {
+            display: flex;
+            align-items: center;
+            margin-left: rem(20);
+            gap: rem(12);
+
+            .step {
+                font-size: rem(32); // Figma 디자인 스케일 반영
+                color: variables.$gray-200; // $gray-200
+                font-weight: 300;
+                letter-spacing: -0.02em;
+            }
+
+            .icon-step-arrow {
+                width: rem(9);
+                height: rem(14);
+
+                path {
+                    stroke: variables.$gray-200;
+                }
+            }
+        }
+    }
+
+    // 레이아웃 그리드 설정

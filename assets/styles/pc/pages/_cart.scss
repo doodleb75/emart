@@ -1,4 +1,6 @@
-@charset "UTF-8";
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/mixins";
+@use "../../abstracts/variables" as *;
 
 // 장바구니 페이지 스타일
 .cart-page {
@@ -118,7 +120,7 @@
             gap: $space-xs;
             color: $gray-700; // 텍스트 색상 일치
             cursor: pointer;
-            @include btn-hover-effect;
+            @include mixins.btn-hover-effect;
         }
     }
 
@@ -492,7 +494,7 @@
                 align-items: center;
                 justify-content: center;
 
-                @include btn-hover-effect;
+                @include mixins.btn-hover-effect;
             }
 
             input {
@@ -612,7 +614,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    @include btn-hover-effect;
+                    @include mixins.btn-hover-effect;
                 }
             }
 

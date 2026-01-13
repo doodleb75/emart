@@ -1,36 +1,29 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 
 // 1. Abstracts (변수, 함수, 믹스인)
-@import "abstracts/functions";
-@import "abstracts/variables";
-@import "abstracts/mixins";
+@use "abstracts/functions" as *;
+@use "abstracts/variables" as *;
+@use "abstracts/mixins";
 
 // 2. Base (리셋, 타이포그래피, 공통 스타일)
-@import "base/reset";
-@import "base/typography";
-@import "base/common"; // 공통 클래스
+@use "base/reset";
+@use "base/typography";
+@use "base/common";
+@use "mobile/base/mobile-body";
 
-// 모바일 본문 스타일 초기화
-body.mobile-body {
-    min-width: 0 !important;
-    width: 100%;
-    margin: 0;
-    overflow-x: hidden;
-}
+// 3. Components (모바일 전용 컴포넌트)
+@use "mobile/components/offcanvas";
+@use "mobile/components/cards";
+@use "mobile/components/toast";
 
-// 3. Components (PC 전용 컴포넌트)
-@import "mobile/components/offcanvas"; // 오프캔버스
-@import "mobile/components/cards"; // 모바일 상품 카드
-@import "mobile/components/toast"; // 모바일 전용 토스트
+// 4. Layout (모바일 헤더, 푸터, 하단 네비게이션)
+@use "mobile/layout/header";
+@use "mobile/layout/footer";
+@use "mobile/layout/bottom_nav";
 
-// 4. Layout (PC 헤더, 푸터, 하단 네비게이션)
-@import "mobile/layout/header";
-@import "mobile/layout/footer";
-@import "mobile/layout/bottom_nav";
-
-// 5. Pages (PC 페이지별 스타일)
-@import "mobile/pages/main";
-@import "mobile/pages/app-download";
-@import "mobile/pages/join";
-@import "mobile/pages/login";
-@import "mobile/pages/search_result";
+// 5. Pages (모바일 페이지별 스타일)
+@use "mobile/pages/main";
+@use "mobile/pages/app-download";
+@use "mobile/pages/join";
+@use "mobile/pages/login";
+@use "mobile/pages/search_result";
