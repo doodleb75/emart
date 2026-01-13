@@ -1,13 +1,5 @@
-// 좌측 메뉴 데이터 정의
-const menuData = {
-    sales: ['판매등록', '판매TR조회', '저널조회', '무이자정보', '품번매출', '점검', '정산'],
-    query: ['매출조회', '영수증조회', '포인트조회', '쿠폰조회'],
-    system: ['사용자관리', '기기관리', '네트워크설정', '업데이트'],
-    settings: ['화면설정', '소리설정', '언어설정', '기타설정']
-};
-
 // ==========================================
-// Toast Notification System (Global)
+// 토스트 알림 (전역)
 // ==========================================
 class ToastManager {
     static getIcon(type) {
@@ -47,31 +39,35 @@ class ToastManager {
             container.className = 'custom-toast-container position-absolute';
             document.body.appendChild(container);
 
+            // 현재 적용된 줌 수치 파악
+            const zoom = parseFloat(document.body.style.zoom) || 1;
             const rect = target.getBoundingClientRect();
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
-            let top = rect.bottom + scrollTop + 10;
-            let left = rect.left + scrollLeft + (rect.width / 2);
+            // 줌 보정된 좌표 계산 (좌표값을 줌으로 나누어 CSS 절대 위치 환산)
+            let top = (rect.bottom + scrollTop) / zoom + 10;
+            let left = (rect.left + scrollLeft + (rect.width / 2)) / zoom;
             let transform = 'translateX(-50%)';
-            let width = 'auto';
 
-            // 화면 가로 세로 기준 위치 파악 (Determine position relative to screen)
-            const isRightSide = (rect.left + rect.width / 2) > (window.innerWidth / 2);
+            // 화면 내 위치 계산 (줌 보정된 뷰포트 기준)
+            const viewportWidth = window.innerWidth / zoom;
+            const targetCenterX = (rect.left + rect.width / 2) / zoom;
+            const isRightSide = targetCenterX > (viewportWidth / 2);
             const align = options.align === 'auto' ? (isRightSide ? 'right' : 'left') : (options.align || 'center');
 
             if (align === 'start' || align === 'left') {
-                left = rect.left + scrollLeft;
+                left = (rect.left + scrollLeft) / zoom;
                 transform = 'none';
                 container.style.justifyContent = 'flex-start';
             } else if (align === 'end' || align === 'right') {
-                left = rect.right + scrollLeft;
+                left = (rect.right + scrollLeft) / zoom;
                 transform = 'translateX(-100%)';
                 container.style.justifyContent = 'flex-end';
             }
 
             if (options.width === 'match') {
-                container.style.minWidth = `${rect.width}px`;
+                container.style.minWidth = `${rect.width / zoom}px`;
                 container.style.width = 'auto';
             }
 
@@ -118,6 +114,7 @@ class ToastManager {
         }, 2000);
     }
 }
+
 window.Toast = ToastManager;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -157,6 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!navList || !searchContainer) return;
 
         const performAdjustment = () => {
+            // 현재 적용된 줌 수치 파악 (보정용)
+            const zoom = parseFloat(document.body.style.zoom) || 1;
+
             // 1. 측정 방해 요소(Transition) 일시 제거
             const originalTransition = searchContainer.style.transition;
             searchContainer.style.transition = 'none';
@@ -170,7 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const firstRect = listItems[0].getBoundingClientRect();
             const lastRect = listItems[listItems.length - 1].getBoundingClientRect();
-            const navWidth = lastRect.right - firstRect.left;
+            // 줌 수치만큼 나누어 실제 CSS 픽셀 너비 계산
+            const navWidth = (lastRect.right - firstRect.left) / zoom;
 
             // 3. 먼저 너비를 확정 (너비가 변하면 주변 요소의 flex 배치가 변하므로 선행 필수)
             searchContainer.style.width = `${navWidth}px`;
@@ -184,8 +185,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // 4. 안정된 상태에서 위치 재측정
                 const updatedSearchRect = searchContainer.getBoundingClientRect();
 
-                // 목표 위치(GNB 시작점)와 현재 위치(Search 시작점)의 차이 계산
-                const offset = firstRect.left - updatedSearchRect.left;
+                // 목표 위치(GNB 시작점)와 현재 위치(Search 시작점)의 차이 계산 후 줌 보정
+                const offset = (firstRect.left - updatedSearchRect.left) / zoom;
 
                 // 5. 최종 오프셋 적용
                 searchContainer.style.marginLeft = `${offset}px`;
@@ -199,6 +200,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         performAdjustment();
     }
+
+    // 전역에서 접근 가능하도록 설정
+    window.adjustNavWidth = adjustNavWidth;
 
     // 초기화 및 이벤트 관리
     if (document.fonts) {
@@ -227,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
             new ResizeObserver(adjustNavWidth).observe(newHeaderInner);
         }
 
-        // 바텀 시트 드래그 서브 기능 초기화 (Init drag-to-close for bottom sheet)
+        // 바텀 시트 드래그 초기화
         initOffcanvasDrag();
 
         setTimeout(adjustNavWidth, 100);
@@ -275,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 toggleBtn.classList.add('active');
                 body.classList.add('show');
 
-                // 높이 업데이트 (Height Update)
+                // 높이 업데이트
                 setTimeout(() => {
                     const pcSection = item.closest('.weekly-ranking');
                     const mbSection = item.closest('.ranking-carousel-container');
@@ -286,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 주간 랭킹 더보기 로직 (Ranking item more/less logic)
+    // 주간 랭킹 더보기
     const initRankingItem = (item) => {
         const btnMore = item.querySelector('.btn-more');
         const grid = item.querySelector('.ranking-body .ranking-grid') ||
@@ -301,18 +305,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const threshold = window.innerWidth >= 1024 ? 4 : 2;
             const isExpanded = item.classList.contains('is-expanded');
 
-            // 카드 노출 상태 업데이트 (Update card visibility)
+            // 카드 노출 상태 업데이트
             cards.forEach((card, index) => {
                 card.style.display = (isExpanded || index < threshold) ? 'flex' : 'none';
             });
 
-            // 버튼 표시 여부 결정 (Determine button visibility)
+            // 버튼 표시 여부 결정
             if (cards.length <= threshold) {
                 btnMore.style.setProperty('display', 'none', 'important');
             } else {
                 btnMore.style.display = 'flex';
 
-                // 텍스트 업데이트 (Update button text)
+                // 텍스트 업데이트
                 let textNode = Array.from(btnMore.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
                 if (!textNode) {
                     textNode = document.createTextNode('');
@@ -320,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 textNode.textContent = isExpanded ? '상품 닫기 ' : '상품 더보기 ';
 
-                // 아이콘 경로 업데이트 (Update SVG icon path)
+                // 아이콘 경로 업데이트
                 const svgPath = btnMore.querySelector('svg path');
                 if (svgPath) {
                     const upPath = 'M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z';
@@ -341,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
             item.classList.toggle('is-expanded');
             updateState();
 
-            // 접을 때 상단 이동 (Scroll to top when collapsing)
+            // 접을 때 상단 이동
             if (wasExpanded) {
                 const header = item.querySelector('.ranking-header');
                 if (header) {
@@ -350,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // 높이 동기화 (Height sync for carousel)
+            // 높이 동기화
             if (typeof updatePcRankingHeight === 'function') updatePcRankingHeight();
             if (typeof updateMbRankingHeight === 'function') updateMbRankingHeight();
         });
@@ -359,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateState();
     };
 
-    // 리사이즈 대응 (Handle window resize for ranking items)
+    // 리사이즈 대응
     window.addEventListener('resize', () => {
         const rankingItems = document.querySelectorAll('.ranking-item');
         rankingItems.forEach(item => {
@@ -626,7 +630,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // PC 버전 로직 (weekly-ranking 존재 시)
     const pcRankingSection = document.querySelector('.weekly-ranking');
 
-    if (pcRankingSection && window.matchMedia('(min-width: 1024px)').matches) {
+    if (pcRankingSection && window.matchMedia('(min-width: 1024px)').matches && !mobileRankingContainer) {
         const pcTrack = pcRankingSection.querySelector('.ranking-carousel-track');
         const pcFirstList = pcTrack.querySelector('.ranking-list');
         const btnPrev = pcRankingSection.querySelector('.btn-prev');
@@ -762,16 +766,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 mobileRankingTrack.appendChild(clone);
 
-                // DOM에 추가 후 초기화 실행 (Fix: Init after append to ensure events work and offsetHeight is calcable)
-                // 복제 아이템 더보기 로직 초기화
+                // DOM 추가 후 초기화
+                // 복제 아이템 더보기 초기화
                 const clonedItems = clone.querySelectorAll('.ranking-item');
                 clonedItems.forEach(item => {
-                    // 데이터 속성 초기화 및 로직 재실행
+                    // 데이터 속성 초기화
                     delete item.dataset.loadMoreInitialized;
                     initRankingItem(item);
                 });
 
-                // 수량 조절 버튼 기능 재연결 (Fix: Re-init quantity control for clones)
+                // 수량 조절 기능 재연결
                 const qtyBoxes = clone.querySelectorAll('.qty-box');
                 qtyBoxes.forEach(box => {
                     delete box.dataset.initialized;
@@ -785,7 +789,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (totalPageEl) totalPageEl.textContent = String(totalItems).padStart(2, '0');
             if (currentPageEl) currentPageEl.textContent = String(currentIndex).padStart(2, '0');
 
-            // 초기 current 클래스 설정 (Set initial current class)
+            // 초기 클래스 설정
             Array.from(mobileRankingTrack.children).forEach((slide, index) => {
                 if (index === currentIndex - 1) slide.classList.add('current');
                 else slide.classList.remove('current');
@@ -794,7 +798,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const updateCarousel = () => {
                 if (currentPageEl) currentPageEl.textContent = String(currentIndex).padStart(2, '0');
 
-                // 활성 슬라이드 클래스 업데이트 (Update active slide class)
+                // 활성 슬라이드 클래스 갱신
                 Array.from(mobileRankingTrack.children).forEach((slide, index) => {
                     if (index === currentIndex - 1) slide.classList.add('current');
                     else slide.classList.remove('current');
@@ -840,13 +844,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+
     // ==========================================
-    // 수량 증감 기능 (Shared Quantity Control)
+    // 수량 제어
     // ==========================================
     if (typeof initQuantityControl === 'function') {
         initQuantityControl(document);
-    } else {
-        console.warn('initQuantityControl function not found. Please load quantity-control.js');
     }
 
 
@@ -984,88 +987,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ==========================================
-    // 보기 옵션 드롭다운 기능
-    // ==========================================
-    // const itemsPerPageTrigger = document.getElementById('itemsPerPageTrigger');
-    // if (itemsPerPageTrigger) {
-    //     const dropdownWrapper = itemsPerPageTrigger.closest('.dropdown-wrapper');
-    //     const optionsList = dropdownWrapper.querySelector('.dropdown-options');
-    //     const options = optionsList.querySelectorAll('li');
-    //     const selectedText = itemsPerPageTrigger.querySelector('.selected-value');
-
-    //     // 드롭다운 토글
-    //     itemsPerPageTrigger.addEventListener('click', (e) => {
-    //         e.stopPropagation();
-    //         dropdownWrapper.classList.toggle('active');
-    //     });
-
-    //     // 옵션 선택
-    //     options.forEach(option => {
-    //         option.addEventListener('click', (e) => {
-    //             e.stopPropagation();
-
-    //             // 선택값 표시 업데이트
-    //             const valueText = option.textContent;
-    //             if (selectedText) selectedText.textContent = valueText;
-
-    //             // 활성 옵션 변경
-    //             options.forEach(opt => opt.classList.remove('active'));
-    //             option.classList.add('active');
-
-    //             // 드롭다운 닫기
-    //             dropdownWrapper.classList.remove('active');
-
-    //             // Optional: Trigger Reload/Search here
-    //             console.log(`Changed to ${option.dataset.value} items per page`);
-    //         });
-    //     });
-
-    //     // 외부 클릭 감지 (닫기)
-    //     document.addEventListener('click', (e) => {
-    //         if (!dropdownWrapper.contains(e.target)) {
-    //             dropdownWrapper.classList.remove('active');
-    //         }
-    //     });
-
-    //     // ---------------------------------------------------------
-    //     // 드롭다운 너비 자동 조정
-    //     // ---------------------------------------------------------
-    //     function adjustDropdownWidth() {
-    //         // 텍스트 측정용 임시 요소 생성
-    //         const tempSpan = document.createElement('span');
-    //         tempSpan.style.visibility = 'hidden';
-    //         tempSpan.style.position = 'absolute';
-    //         tempSpan.style.fontSize = '14px'; // Match CSS rem(14)
-    //         tempSpan.style.fontWeight = '400'; // Standard weight
-    //         tempSpan.style.whiteSpace = 'nowrap';
-    //         document.body.appendChild(tempSpan);
-
-    //         let maxWidth = 0;
-    //         const texts = Array.from(options).map(o => o.textContent.trim());
-    //         // 선택된 텍스트 포함
-    //         if (selectedText) texts.push(selectedText.textContent.trim());
-
-    //         texts.forEach(text => {
-    //             tempSpan.textContent = text;
-    //             const w = tempSpan.offsetWidth;
-    //             if (w > maxWidth) maxWidth = w;
-    //         });
-
-    //         document.body.removeChild(tempSpan);
-
-    //         // 전체 필요 너비 계산
-    //         const extraSpace = 32 + 12 + 20 + 4;
-    //         const requiredWidth = maxWidth + extraSpace;
-
-    //         // 최소 너비 적용
-    //         dropdownWrapper.style.width = `${Math.max(requiredWidth, 130)}px`;
-    //     }
-
-    //     // 초기 실행
-    //     adjustDropdownWidth();
-    // }
-
     // 찜하기 버튼 토글 기능
     document.body.addEventListener('click', (e) => {
         // 아이콘 버튼 확인
@@ -1092,7 +1013,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================
-    // 공통 모바일 스크롤 슬라이더 (Mobile Scroll Slider)
+    // 모바일 스크롤 슬라이더
     // ==========================================
     const initMobileScrollSlider = (wrapperSelector, trackSelector, autoPlay = true) => {
         const wrapper = document.querySelector(wrapperSelector);
@@ -1104,23 +1025,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const slides = track.querySelectorAll('.slide-item');
         if (slides.length === 0) return;
 
-        // Controller Elements
+        // 컨트롤 요소
         const btnPrev = wrapper.querySelector('.btn-prev');
         const btnNext = wrapper.querySelector('.btn-next');
         const btnPause = wrapper.querySelector('.btn-pause');
         const currentEl = wrapper.querySelector('.page-count .current');
         const totalEl = wrapper.querySelector('.page-count .total');
 
-        // State
+        // 상태
         let currentIndex = 0;
         const totalSlides = slides.length;
         let isPaused = false;
         let autoPlayInterval;
 
-        // Init Pagination
+        // 페이지네이션 초기화
         if (totalEl) totalEl.textContent = String(totalSlides).padStart(2, '0');
 
-        // Observer for Active Slide
+        // 활성 슬라이드 감지
         const observerOptions = {
             root: track,
             threshold: 0.5
@@ -1142,7 +1063,7 @@ document.addEventListener('DOMContentLoaded', () => {
         slides.forEach(slide => observer.observe(slide));
 
         const updateNavButtons = () => {
-            // Loop mode: buttons always active if there are multiple slides
+            // 루프 모드: 다중 슬라이드 시 버튼 활성
             const hasMultipleSlides = totalSlides > 1;
 
             if (btnPrev) {
@@ -1166,19 +1087,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (btnPrev) btnPrev.addEventListener('click', () => {
             let nextIndex = currentIndex - 1;
-            if (nextIndex < 0) nextIndex = totalSlides - 1; // Loop to last
+            if (nextIndex < 0) nextIndex = totalSlides - 1; // 마지막으로 이동
             stopAutoPlayIfNeeded();
             scrollToSlide(nextIndex);
         });
 
         if (btnNext) btnNext.addEventListener('click', () => {
             let nextIndex = currentIndex + 1;
-            if (nextIndex >= totalSlides) nextIndex = 0; // Loop to first
+            if (nextIndex >= totalSlides) nextIndex = 0; // 처음으로 이동
             stopAutoPlayIfNeeded();
             scrollToSlide(nextIndex);
         });
 
-        // AutoPlay Logic
+        // 자동 재생 로직
         const startAutoPlay = () => {
             if (!autoPlay) return;
             stopAutoPlay();
@@ -1218,17 +1139,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (autoPlay) startAutoPlay();
 
-        // Touch interaction pauses autoplay
+        // 터치 시 자동 재생 일시 정지
         track.addEventListener('touchstart', () => stopAutoPlay());
         track.addEventListener('touchend', () => startAutoPlay());
     };
 
-    // Initialize logic
+    // 로직 초기화
     initMobileScrollSlider('.mobile-main-slider', '#mobileMainTrack');
     initMobileScrollSlider('.popcorn-banner-wrapper', '#popcornBannerTrack');
     initOffcanvasDrag();
 
-    // 동적으로 추가되는 Offcanvas 감지 (Observe dynamic offcanvas additions)
+    // 동적 오프캔버스 감지
     if (window.MutationObserver) {
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
@@ -1249,9 +1170,9 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(document.body, { childList: true, subtree: true });
     }
 });
-// 바텀 시트 드래그 종료 로직 (Drag to close bottom sheet)
+// 바텀 시트 드래그 종료
 function initOffcanvasDrag(target) {
-    // 내부 함수: 개별 요소에 드래그 로직 부착
+    // 드래그 로직 바인딩
     const attach = (offcanvasEl) => {
         if (!offcanvasEl || offcanvasEl.dataset.dragInitialized) return;
         const handle = offcanvasEl.querySelector('.offcanvas-handle');
@@ -1264,7 +1185,7 @@ function initOffcanvasDrag(target) {
         let isDragging = false;
         let startTime = 0;
 
-        // 닫기 함수 (Close function)
+        // 닫기 실행
         const closeOffcanvas = () => {
             let bsOffcanvas = null;
             if (window.bootstrap && window.bootstrap.Offcanvas) {
@@ -1274,7 +1195,7 @@ function initOffcanvasDrag(target) {
             if (bsOffcanvas) bsOffcanvas.hide();
         };
 
-        // 드래그 시작 (Start)
+        // 드래그 시작
         const onStart = (y) => {
             startY = y;
             currentY = y;
@@ -1283,19 +1204,19 @@ function initOffcanvasDrag(target) {
             offcanvasEl.style.transition = 'none';
         };
 
-        // 드래그 이동 (Move)
+        // 드래그 이동
         const onMove = (y) => {
             if (!isDragging) return;
             currentY = y;
             const diff = currentY - startY;
 
-            // 아래로 드래그 시에만 이동 (Only move down)
+            // 하단 드래그 이동
             if (diff > 0) {
                 offcanvasEl.style.transform = `translateY(${diff}px)`;
             }
         };
 
-        // 드래그 종료 (End)
+        // 드래그 종료
         const onEnd = () => {
             if (!isDragging) return;
 
@@ -1306,7 +1227,7 @@ function initOffcanvasDrag(target) {
             if (diff > 100 || (diff > 50 && timeDiff < 300)) {
                 closeOffcanvas();
             } else {
-                // 원위치 복귀 (Revert position)
+                // 위치 복귀
                 offcanvasEl.style.transition = 'transform 0.3s ease-out';
                 offcanvasEl.style.transform = 'translateY(0)';
             }
@@ -1314,15 +1235,15 @@ function initOffcanvasDrag(target) {
             setTimeout(() => { isDragging = false; }, 50);
         };
 
-        // 클릭 핸들러: 드래그가 거의 없었을 때만 닫기 트리거 (Click handler)
+        // 클릭 시 닫기 처리
         handle.addEventListener('click', (e) => {
             if (Math.abs(currentY - startY) < 5) {
                 closeOffcanvas();
             }
         });
 
-        // Touch Events
-        // Touch Events
+        // 터치 이벤트
+
         handle.addEventListener('touchstart', (e) => {
             // 핸들 터치 시 스크롤 방지 의도라면 preventDefault 사용 가능, 여기서는 드래그 로직 우선
             onStart(e.touches[0].clientY);
@@ -1335,7 +1256,7 @@ function initOffcanvasDrag(target) {
 
         handle.addEventListener('touchend', onEnd);
 
-        // Mouse Events (PC Testing)
+        // 마우스 이벤트 (PC 테스트)
         const onMouseMove = (e) => onMove(e.clientY);
         const onMouseUp = () => {
             onEnd();
@@ -1445,7 +1366,7 @@ const initSearchDropdown = function () {
         });
 
         window.addEventListener('mouseup', () => {
-            // 클릭 이벤트가 완전히 처리될 때까지 플래그 유지 (Keep flag until other events process)
+            // 클릭 이벤트 처리 대기
             setTimeout(() => {
                 isClickInside = false;
             }, 300);
@@ -1460,7 +1381,7 @@ const initSearchDropdown = function () {
             searchInput.addEventListener('focus', openSearch);
             searchInput.addEventListener('input', updateDropdownView);
 
-            // 포커스 아웃 시 드롭다운 닫기 (Close on blur)
+            // 포커스 해제 시 닫기
             searchInput.addEventListener('blur', (e) => {
                 const relatedTarget = e.relatedTarget;
 
@@ -1540,8 +1461,8 @@ const initSearchDropdown = function () {
             });
         });
 
-        // 영역 외 클릭 시 닫기 (Close when clicking outside)
-        // searchContainer 블록 안으로 이동하여 스코프 문제 해결
+        // 영역 외 클릭 시 닫기
+        // 스코프 문제 해결
         document.addEventListener('click', (event) => {
             if (searchContainer.classList.contains('active')) {
                 // 내부 클릭이 아니고, 플래그도 꺼져있을 때만 닫기
@@ -1560,11 +1481,11 @@ document.addEventListener('headerLoaded', initSearchDropdown);
 if (document.querySelector('.search-container')) {
     initSearchDropdown();
 }
-// 모바일 슬라이더 로직 (Mobile Slider Logic)
+// 모바일 슬라이더
 document.addEventListener('DOMContentLoaded', () => {
     const track = document.getElementById('mobileMainTrack');
 
-    // 모바일 전용 슬라이더 초기화 (Init mobile slider only if track exists)
+    // 모바일 슬라이더 초기화
     if (track) {
         let originalSlides = Array.from(track.querySelectorAll('.slide-item'));
         if (originalSlides.length >= 2) {
@@ -1759,9 +1680,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 시작
             startAutoplay();
-        } // if (track) end
+        }
     }
-    // 공통 상품 더보기 기능 (오늘의 특가, MD 추천 등)
+    // 공통 더보기 (특가, MD 추천)
     const initLoadMoreStep = (btnId, step = 2) => {
         const btn = document.getElementById(btnId);
         if (!btn) return;
@@ -1841,7 +1762,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDisplay();
     };
 
-    // 공통 더보기 버튼 리사이즈 대응
+    // 더보기 리사이즈 대응
     window.addEventListener('resize', () => {
         ['btnLoadMoreSpecial'].forEach(id => {
             const btn = document.getElementById(id);
@@ -1853,9 +1774,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initLoadMoreStep('btnLoadMoreSpecial', 2, 2);
 
     // ==========================================
-    // 브랜드관 더보기 (Brand Pavilion Load More)
+    // 브랜드관 더보기
     // ==========================================
-    // PC 버전 토글 (.brand-club-zone)
+    // PC 버전 토글
     const brandClubZone = document.querySelector('.brand-club-zone');
     if (brandClubZone) {
         const btnMore = brandClubZone.querySelector('.btn-brand-more');
@@ -1863,7 +1784,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (btnMore) {
             btnMore.addEventListener('click', function () {
-                // is-expanded 클래스 토글 (Toggle is-expanded class)
+                // 확장 클래스 토글
                 const isExpanded = brandClubZone.classList.toggle('is-expanded');
                 if (span) {
                     span.textContent = isExpanded ? '브랜드관 닫기' : '브랜드관 더보기';
@@ -1872,7 +1793,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 모바일 버전 토글 (.brand-pavilion)
+    // 모바일 버전 토글
     const brandPavilion = document.querySelector('.brand-story-list');
     const brandSection = document.querySelector('.brand-pavilion');
     if (brandPavilion && brandSection) {
@@ -1884,12 +1805,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const updateState = () => {
                 const isExpanded = brandPavilion.classList.contains('is-expanded');
 
-                // 아이템 노출 상태 (Update item visibility)
+                // 아이템 노출 상태
                 items.forEach((item, index) => {
                     item.style.display = (isExpanded || index < initialCount) ? 'flex' : 'none';
                 });
 
-                // 버튼 텍스트 및 아이콘 업데이트 (Update button text and icon)
+                // 버튼 텍스트 및 아이콘 변경
                 let textNode = Array.from(btnMore.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
                 if (!textNode) textNode = btnMore.appendChild(document.createTextNode(''));
                 textNode.textContent = isExpanded ? '브랜드관 닫기 ' : '브랜드관 더보기 ';
@@ -1908,7 +1829,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 brandPavilion.classList.toggle('is-expanded');
                 updateState();
 
-                // 접을 때 상단 이동 (Scroll to section header when collapsing)
+                // 접을 때 상단 이동
                 if (wasExpanded) {
                     const header = brandSection.querySelector('.section-header');
                     if (header) {
@@ -1924,7 +1845,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 사용자 포인트 프로그레스 설정 (User Point Progress Setup)
+    // 사용자 포인트 진행률 설정
     // ==========================================
     window.setUserPointProgress = function (percentage) {
         const fillEl = document.getElementById("userPointFill");
@@ -1935,35 +1856,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // 초기 실행 (1000원 단위 등 실제 로직 적용 전 시각적 테스트용)
+    // 테스트용 초기 실행
     // 10%
     if (window.setUserPointProgress) window.setUserPointProgress(60);
 
     // ==========================================
-    // 카테고리 전체보기 오버레이 (Category Overlay)
+    // 카테고리 전체보기 오버레이
     // ==========================================
-    // 카테고리 전체보기 오버레이 (Category Overlay)
-    // ==========================================
+
     const initCategoryMenu = () => {
         const categoryLink = document.querySelector('.category-link');
         const categoryOverlay = document.querySelector('.category-overlay');
         const categoryCloseBtn = document.querySelector('.btn-category-close');
 
         if (categoryLink && categoryOverlay) {
-            // 토글 기능 (Toggle)
+            // 토글
             categoryLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 categoryOverlay.classList.toggle('active');
             });
 
-            // 닫기 버튼 (Close)
+            // 닫기
             if (categoryCloseBtn) {
                 categoryCloseBtn.addEventListener('click', () => {
                     categoryOverlay.classList.remove('active');
                 });
             }
 
-            // 영역 외 클릭 시 닫기 (Close on outside click)
+            // 영역 외 클릭 시 닫기
             document.addEventListener('click', (e) => {
                 if (!categoryLink.contains(e.target) && !categoryOverlay.contains(e.target)) {
                     categoryOverlay.classList.remove('active');
@@ -1981,7 +1901,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            // 탭 기능 (Tab Switching)
+            // 탭 기능
             const sidebarItems = categoryOverlay.querySelectorAll('.category-sidebar li');
             const detailContents = categoryOverlay.querySelectorAll('.category-detail');
 
@@ -2033,12 +1953,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const modalEl = document.getElementById('cartWarningModal');
                     if (modalEl) {
-                        // 부모 요소에 따른 위치 계산 오류 방지 (Body 직계로 이동)
+                        // 위치 계산 오류 방지
                         if (modalEl.parentElement !== document.body) {
                             document.body.appendChild(modalEl);
                         }
 
-                        // 모달 옵션 강제 및 인스턴스 생성
+                        // 모달 옵션 및 생성
                         const modal = bootstrap.Modal.getOrCreateInstance(modalEl, {
                             backdrop: false,
                             keyboard: true
@@ -2052,7 +1972,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         modal.show();
                     }
                 } else if (currentVal === 0) {
-                    // 수량이 이미 0인 경우 최소수량 알림 토스트 (card-control 너비 맞춤)
+                    // 최소 수량 알림
                     e.preventDefault();
                     e.stopImmediatePropagation();
                     if (window.Toast) {
@@ -2064,7 +1984,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, true);
 
-    // 장바구니 버튼 클릭 시 수량 1로 설정 및 상태 저장 (Set quantity to 1 and save state)
+    // 장바구니 버튼 클릭 시 수량 설정
     document.addEventListener('click', (e) => {
         const btn = e.target.closest('.btn-icon');
         const cartBtn = (btn && btn.querySelector('.icon-cart')) ? btn : e.target.closest('.btn-cart');
@@ -2080,11 +2000,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (input) {
                     const currentVal = parseInt(input.value, 10) || 0;
                     if (currentVal === 0) {
-                        input.value = 1; // 0인 경우에만 1로 설정 (Set to 1 only if current value is 0)
+                        input.value = 1; // 0일 경우 1로 설정
                     }
-                    qtyBox.dataset.inCart = 'true'; // 장바구니 상태 플래그 저장 (Save cart status flag)
+                    qtyBox.dataset.inCart = 'true'; // 장바구니 상태 저장
 
-                    // 장바구니 담김 토스트 표시 (Show toast with quantity)
+                    // 장바구니 토스트 표시
                     if (window.Toast) {
                         const toastTarget = cartBtn.closest('.card-control') || cartBtn;
                         const finalQty = input.value;
@@ -2096,32 +2016,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }, true);
 
     // ==========================================
-    // 공통 드롭다운 토글 (Global Dropdown Toggle)
+    // 공통 드롭다운 토글
     // ==========================================
     const initDropdowns = () => {
         document.addEventListener('click', (e) => {
             const trigger = e.target.closest('.dropdown-wrapper .select-wrap');
             const wrapper = trigger?.closest('.dropdown-wrapper');
 
-            // 드롭다운 토글 (Toggle dropdown)
+            // 드롭다운 토글
             if (trigger && wrapper) {
                 e.preventDefault();
                 e.stopPropagation();
 
-                // 다른 드롭다운 닫기 (Close other dropdowns)
+                // 타 드롭다운 닫기
                 document.querySelectorAll('.dropdown-wrapper.active').forEach(w => {
                     if (w !== wrapper) w.classList.remove('active');
                 });
 
                 wrapper.classList.toggle('active');
             } else {
-                // 외부 클릭 시 모든 드롭다운 닫기 (Close all on outside click)
+                // 외부 클릭 시 전체 닫기
                 document.querySelectorAll('.dropdown-wrapper.active').forEach(w => {
                     w.classList.remove('active');
                 });
             }
 
-            // 옵션 선택 (Select option)
+            // 옵션 선택
             const option = e.target.closest('.dropdown-wrapper .dropdown-options li');
             if (option) {
                 const wrap = option.closest('.dropdown-wrapper');
@@ -2136,7 +2056,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 option.classList.add('active');
                 wrap?.classList.remove('active');
 
-                // 커스텀 이벤트 발생 (Dispatch custom event if needed)
+                // 커스텀 이벤트 발생
                 const event = new CustomEvent('dropdownChange', {
                     detail: {
                         value: option.dataset.value || option.textContent,
@@ -2153,7 +2073,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================
-// 모달 독점 표시 로직 (Exclusive Modal Display)
+// 모달 독점 표시
 // ==========================================
 document.addEventListener('show.bs.modal', (event) => {
     const targetModal = event.target;
@@ -2168,71 +2088,108 @@ document.addEventListener('show.bs.modal', (event) => {
 });
 
 document.addEventListener('shown.bs.modal', () => {
-    // 모달이 완전히 떴을 때 Body 스타일 강제 초기화 (Prevent layout shift/gap)
+    // 모달 표시 후 스타일 초기화
     document.body.style.overflow = 'auto';
     document.body.style.paddingRight = '0px';
 });
 
 /**
- * 화면 확대/축소 기능 (Screen Zoom Functionality)
+ * 사용자 줌 설정 저장 (나중에 DB 연동 시 API 호출로 교체)
  */
-function initZoomControl() {
-    let currentZoom = 1;
+async function saveUserZoom(zoomValue) {
+    // 로컬 저장소 우선 저장
+    localStorage.setItem('pageZoom', zoomValue);
+
+    // TODO: 로그인 상태라면 서버 DB에 저장하는 API 호출 로직 추가 예정
+    // if (isLoggedIn) {
+    //     await fetch('/api/user/settings/zoom', { method: 'POST', body: JSON.stringify({ zoom: zoomValue }) });
+    // }
+}
+
+/**
+ * 사용자 줌 설정 로드 (나중에 DB 연동 시 API 호출로 교체)
+ */
+function loadUserZoom() {
+    // DB 연동 전까지는 localStorage에서 값 반환
+    const savedZoom = localStorage.getItem('pageZoom');
+    return savedZoom ? parseFloat(savedZoom) : 1;
+}
+
+/**
+ * 화면 확대/축소 기능
+ */
+async function initZoomControl() {
+    // 저장된 설정 로드
+    let currentZoom = loadUserZoom();
+
     const step = 0.1;
-    const maxZoom = 1.4; // 140% 제한
-    const minZoom = 0.8; // 80% 제한
+    const maxZoom = 1.2; // 120% 제한
+    const minZoom = 0.7; // 70% 제한
+
+    // 초기 줌 즉시 적용
+    document.body.style.zoom = currentZoom;
 
     const zoomInBtn = document.getElementById('btnZoomIn');
     const zoomOutBtn = document.getElementById('btnZoomOut');
     const zoomResetBtn = document.getElementById('btnZoomReset');
     const zoomDisplay = document.getElementById('zoomDisplay');
 
+    // UI 요소가 없으면 적용만 하고 리턴
     if (!zoomInBtn || !zoomOutBtn || !zoomResetBtn || !zoomDisplay) return;
 
-    // 수치 업데이트 함수 (Update display value)
-    const updateZoomDisplay = () => {
+    // UI 및 상태 업데이트
+    const updateZoomDisplay = async () => {
         const percent = Math.round(currentZoom * 100);
         zoomDisplay.textContent = `${percent}%`;
         document.body.style.zoom = currentZoom;
+
+        // GNB 너비 재계산 호출
+        if (window.adjustNavWidth) window.adjustNavWidth();
+
+        // 데이터 저장 (비동기)
+        await saveUserZoom(currentZoom);
     };
 
-    // 확대 버튼 클릭 (Zoom In)
-    zoomInBtn.addEventListener('click', () => {
+    // 확대
+    zoomInBtn.addEventListener('click', async () => {
         if (currentZoom < maxZoom) {
             currentZoom = Math.min(maxZoom, parseFloat((currentZoom + step).toFixed(1)));
-            updateZoomDisplay();
+            await updateZoomDisplay();
         }
     });
 
-    // 축소 버튼 클릭 (Zoom Out)
-    zoomOutBtn.addEventListener('click', () => {
+    // 축소
+    zoomOutBtn.addEventListener('click', async () => {
         if (currentZoom > minZoom) {
             currentZoom = Math.max(minZoom, parseFloat((currentZoom - step).toFixed(1)));
-            updateZoomDisplay();
+            await updateZoomDisplay();
         }
     });
 
-    // 100% 리셋 버튼 클릭 (Reset to 100%)
-    zoomResetBtn.addEventListener('click', () => {
+    // 리셋
+    zoomResetBtn.addEventListener('click', async () => {
         currentZoom = 1;
-        updateZoomDisplay();
+        await updateZoomDisplay();
     });
 
-    // 초기값 설정 (Set initial value)
-    updateZoomDisplay();
+    // 초기 UI 수치 동기화
+    const percent = Math.round(currentZoom * 100);
+    zoomDisplay.textContent = `${percent}%`;
 }
 
-// 레이어 팝업 위치 지정 코어 (Position logic extracted)
+// 레이어 팝업 위치 지정
 function positionLayerPopup(trigger, modalEl, options = { align: 'center' }) {
     const dialog = modalEl.querySelector('.modal-dialog');
     if (dialog) {
+        const zoom = parseFloat(document.body.style.zoom) || 1;
         const rect = trigger.getBoundingClientRect();
         const margin = 20;
 
         // 스타일 초기 설정
         dialog.style.margin = '0';
         dialog.style.position = 'fixed';
-        dialog.style.top = `${rect.bottom + 12}px`;
+        // 줌 보정된 상단 위치
+        dialog.style.top = `${(rect.bottom / zoom) + 12}px`;
         dialog.style.zIndex = '2000';
 
         // 정확한 너비 측정을 위해 임시 노출
@@ -2247,15 +2204,15 @@ function positionLayerPopup(trigger, modalEl, options = { align: 'center' }) {
         let leftPos;
 
         if (options.align === 'right') {
-            // 트리거 우측 끝 기준 (Align right)
-            leftPos = rect.right - dialogWidth;
+            // 우측 정렬 (줌 보정)
+            leftPos = (rect.right / zoom) - dialogWidth;
         } else {
-            // 중앙 정렬 (Align center)
-            leftPos = rect.left + (rect.width / 2) - (dialogWidth / 2);
+            // 중앙 정렬 (줌 보정)
+            leftPos = (rect.left / zoom) + ((rect.width / zoom) / 2) - (dialogWidth / 2);
         }
 
-        // 화면 영역 이탈 방지
-        const viewportWidth = window.innerWidth;
+        // 화면 영역 이탈 방지 (줌 보정된 뷰포트 기준)
+        const viewportWidth = window.innerWidth / zoom;
         if (leftPos + dialogWidth > viewportWidth - margin) {
             leftPos = viewportWidth - margin - dialogWidth;
         }
@@ -2264,13 +2221,13 @@ function positionLayerPopup(trigger, modalEl, options = { align: 'center' }) {
         }
 
         dialog.style.left = `${leftPos}px`;
-        dialog.style.transform = 'none'; // Bootstrap transform 과의 충돌 방지
+        dialog.style.transform = 'none'; // Bootstrap transform 충돌 방지
     }
 }
 
 function initLayerPopup(triggerSelector, modalId) {
     const setupModal = () => {
-        // Bootstrap 로드 확인 (Check if Bootstrap is loaded)
+        // 부트스트랩 로드 확인
         if (typeof bootstrap === 'undefined' || !bootstrap.Modal) {
             setTimeout(setupModal, 50);
             return;
@@ -2280,7 +2237,7 @@ function initLayerPopup(triggerSelector, modalId) {
             ? triggerSelector
             : `#${triggerSelector}, .${triggerSelector}`;
 
-        // 이벤트 위임 방식 적용 (Use event delegation for robustness)
+        // 이벤트 위임
         document.addEventListener('click', (e) => {
             const trigger = e.target.closest(selector);
             if (!trigger) return;
@@ -2308,17 +2265,17 @@ const initAllHeaderPopups = () => {
     initLayerPopup('logOutTrigger', 'logOutModal');
     initLayerPopup('productDeleteTrigger', 'productDeleteModal');
 
-    // 확대/축소 기능 초기화 (Initialize Zoom)
+    // 확대/축소 초기화
     initZoomControl();
 
-    // 앱 다운로드 바텀시트 자동 오픈 체크 (Check for App Download Trigger)
+    // 앱 다운로드 바텀시트 확인
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('openAppDownload') === 'true') {
         const appDownloadModal = document.getElementById('appDownloadOffcanvas');
         if (appDownloadModal && window.bootstrap && window.bootstrap.Offcanvas) {
             const bsOffcanvas = new bootstrap.Offcanvas(appDownloadModal);
             bsOffcanvas.show();
-            // 파라미터 제거 (Optional: Clean URL)
+            // 파라미터 제거
             // history.replaceState(null, '', window.location.pathname);
         }
     }
@@ -2326,7 +2283,7 @@ const initAllHeaderPopups = () => {
 
 document.addEventListener('headerLoaded', initAllHeaderPopups);
 
-// 이미 로드된 경우 대응 (Handle already loaded case)
+// 로드 완료 시 대응
 if (document.getElementById('monthPurchaseTrigger') || document.getElementById('btnZoomIn')) {
     initAllHeaderPopups();
 }

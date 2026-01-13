@@ -821,7 +821,6 @@ body.mobile-body {
 .product-card .card-control {
   display: flex;
   align-items: center;
-  margin-top: auto;
 }
 .product-card .card-thumb {
   border-radius: 0.25rem;
@@ -885,6 +884,7 @@ body.mobile-body {
 .product-card .card-info {
   padding: 1rem;
   padding-bottom: 0.5rem;
+  min-height: 6.5rem;
   -webkit-tap-highlight-color: transparent;
 }
 .product-card .card-info:active {
@@ -1012,7 +1012,8 @@ body.mobile-body {
 }
 .product-card .bottom-info {
   padding: 0 1rem 1rem;
-  margin-top: 0;
+  margin-top: auto;
+  min-height: 3.75rem;
   border-top: none;
 }
 .product-card .bottom-info > * {
@@ -3874,7 +3875,7 @@ custom-checkbox .custom-checkbox-wrap .label-text {
 .search-result-page .product-grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr) !important;
-  gap: 1.5rem 0.25rem !important;
+  gap: 0.25rem 0.25rem !important;
   align-items: stretch !important;
 }
 .search-result-page .product-grid-2 .product-card {

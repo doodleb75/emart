@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const originalRows = Array.from(targetTableBody.querySelectorAll('tr'));
             if (originalRows.length === 0) return;
 
-            const targetCount = 60; // 테스트를 위해 60개까지 복제
+            const targetCount = 100; // 테스트를 위해 60개까지 복제
             let currentCount = originalRows.length;
 
             while (currentCount < targetCount) {

@@ -72,6 +72,7 @@
     .card-info {
         padding: rem(16);
         padding-bottom: rem(8);
+        min-height: rem(104); // 상품명 2줄 및 가격 영역 높이 고정 (Align buttons regardless of name length)
         @include mobile-touch-effect;
 
         &>* {
@@ -185,7 +186,8 @@
     // 하단 추가 정보
     .bottom-info {
         padding: 0 rem(16) rem(16);
-        margin-top: 0;
+        margin-top: auto; // 하단으로 밀착 (Push to bottom)
+        min-height: rem(60); // 3줄 기준 최소 높이 확보 (Consistent footer height)
         border-top: none;
 
         >* {

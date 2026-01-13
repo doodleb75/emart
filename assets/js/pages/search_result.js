@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const paginationContainer = document.querySelector('.pagination-container'); // PC 전용
     if (!grid) return;
 
-    // 1. 초기 상태 및 데이터 확장 (Initial State & Mock Data Extension)
+    // 1. 초기 상태 및 데이터 확장
     let isExpanded = false;
-    let threshold = 5; // PC 기본 20개씩 보기 (Default 20 items for PC)
+    let threshold = 5; // PC 기본 20개씩 보기
     let currentPage = 1;
     const totalItemsCount = 41; // HTML에 표시된 '총 41개'와 동기화
 
@@ -22,15 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     };
-    // 데이터 확장을 위한 복제 (Clone items to match mock count)
+    // 데이터 확장을 위한 복제 
     const prepareMockData = () => {
         const originalItems = Array.from(grid.querySelectorAll('.product-card'));
         if (originalItems.length === 0) return;
 
-        // 원본 아이템에도 구매횟수 데이터 추가 (고정값으로 변경)
+        // 원본 아이템에도 구매횟수 데이터 추가 
         originalItems.forEach((item, idx) => {
             if (!item.dataset.purchases) {
-                item.dataset.purchases = 500 - (idx * 5);
+                item.dataset.purchases = (100 + (idx * 43) % 400); // 분산된 구매횟수 (Distributed purchase counts)
             }
         });
 
@@ -46,26 +46,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     delete box.dataset.initialized;
                 });
 
-                // 커스텀 체크박스 상태 리셋 (Reset checkbox state)
+                // 커스텀 체크박스 상태 리셋 
                 const itemCheck = clone.querySelector('.item-check');
                 if (itemCheck) {
                     itemCheck.removeAttribute('checked');
                     if (itemCheck.input) itemCheck.input.checked = false;
                 }
 
-                // 데이터 고정 (데이터를 인덱스 기반으로 생성하여 리스트 고정)
+                // 일반적인 룰에 따라 데이터가 겹치지 않도록 분산 배분 (Spread values to avoid identical sorting)
                 const mockIndex = currentCount;
-                const salesValue = 1000 - (mockIndex * 10);
-                const purchasesValue = 500 - (mockIndex * 5);
-                const priceValue = (2000 + (mockIndex * 100));
-                const dateValue = `2024-01-${String(Math.max(1, 31 - (mockIndex % 31))).padStart(2, '0')}`;
+                const salesValue = (100 + (mockIndex * 71) % 900); // 100~1000 사이
+                const purchasesValue = (50 + (mockIndex * 37) % 450); // 50~500 사이
+                const priceValue = (12000 + (mockIndex * 157) % 23000); // 12,000~35,000 사이
+                const day = 1 + (mockIndex * 13) % 28;
+                const dateValue = `2024-01-${String(day).padStart(2, '0')}`;
 
                 clone.dataset.sales = salesValue;
                 clone.dataset.purchases = purchasesValue;
                 clone.dataset.price = priceValue;
                 clone.dataset.date = dateValue;
 
-                // 가격 텍스트 업데이트 (UI 반영)
+                // 가격 텍스트 업데이트 
                 const priceEl = clone.querySelector('.price');
                 if (priceEl) priceEl.textContent = priceValue.toLocaleString();
 
@@ -81,16 +82,16 @@ document.addEventListener('DOMContentLoaded', () => {
         initQuantityControl(grid);
     }
 
-    // 상품 리스트 실시간 조회 (Get all products)
+    // 상품 리스트 실시간 조회
     const getProductItems = () => Array.from(grid.querySelectorAll('.product-card'));
 
     // 화면 업데이트 함수 (Main Display Logic)
     const updateDisplay = () => {
         const items = getProductItems();
 
-        // 정렬/페이지네이션 적용 (Apply Pagination or Load More)
+        // 정렬/페이지네이션 적용 
         if (btnLoadMore && btnLoadMore.offsetParent !== null) {
-            // Mobile: 더보기 방식 (Mobile Load More)
+            // Mobile: 더보기 방식
             items.forEach((item, index) => {
                 if (isExpanded) {
                     item.style.display = 'flex';
@@ -100,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             updateLoadMoreButton(items.length);
         } else {
-            // PC: 페이지네이션 방식 (PC Pagination)
+            // PC: 페이지네이션 방식 
             const start = (currentPage - 1) * threshold;
             const end = start + threshold;
 
@@ -157,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 더보기 버튼 클릭 이벤트 (Load More Click)
+    // 더보기 버튼 클릭 이벤트 
     if (btnLoadMore) {
         btnLoadMore.addEventListener('click', () => {
             isExpanded = !isExpanded;
@@ -173,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 페이지네이션 클릭 이벤트 (Pagination Click)
+    // 페이지네이션 클릭 이벤트 
     if (paginationContainer) {
         paginationContainer.addEventListener('click', (e) => {
             const btn = e.target.closest('.btn-pagination');
@@ -194,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. 정렬 기능 (Sorting Functionality)
+    // 2. 정렬 기능 
     const sortProducts = (criteria) => {
         const items = getProductItems();
 
@@ -220,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         items.forEach(item => grid.appendChild(item));
 
-        // 수량 조절 재초기화 (Re-initialize quantity control for re-appended items)
+        // 수량 조절 재초기화 
         if (typeof initQuantityControl === 'function') {
             initQuantityControl(grid);
         }
@@ -228,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDisplay();
     };
 
-    // 탭 메뉴 정렬 (Tab Menu Sorting)
+    // 탭 메뉴 정렬 
     const tabMenu = document.querySelector('.tab-menu');
     if (tabMenu) {
         const tabItems = tabMenu.querySelectorAll('.tab-item');
@@ -243,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. 드롭다운 기능 통합 관리 (Unified Dropdown Management)
+    // 3. 드롭다운 기능 통합 관리 
     const initDropdowns = () => {
         const dropdownWrappers = document.querySelectorAll('.dropdown-wrapper');
 
@@ -282,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         resetSelection(); // 개수 변경 시 선택 초기화
                         updateDisplay();
                     } else {
-                        // 모바일 정렬 드롭다운일 때만 선택 초기화 (Reset selection only for mobile sort dropdown)
+                        // 모바일 정렬 드롭다운일 때만 선택 초기화
                         if (btnLoadMore && btnLoadMore.offsetParent !== null) {
                             resetSelection();
                         }
@@ -298,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     initDropdowns();
 
-    // 4. 체크박스 제어 (Checkbox Sync)
+    // 4. 체크박스 제어 
     if (selectAllBtn) {
         selectAllBtn.addEventListener('change', (e) => {
             const isChecked = e.target.checked;
@@ -308,12 +309,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const card = check.closest('.product-card');
 
                 if (isMobile) {
-                    // 모바일일 때는 보이는 것만 체크 (Check only visible items on mobile)
+                    // 모바일일 때는 보이는 것만 체크 
                     if (card && card.style.display !== 'none') {
                         check.checked = isChecked;
                     }
                 } else {
-                    // PC는 기존 로직 유지 (Keep existing logic for PC)
+                    // PC는 기존 로직 유지 
                     check.checked = isChecked;
                 }
             });
@@ -325,14 +326,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const itemChecks = Array.from(grid.querySelectorAll('.item-check'));
 
                 if (isMobile) {
-                    // 모바일: 보이는 상품의 체크박스 상태만 확인 (Check state of visible items only)
+                    // 모바일: 보이는 상품의 체크박스 상태만 확인 
                     const visibleChecks = itemChecks.filter(check => {
                         const card = check.closest('.product-card');
                         return card && card.style.display !== 'none';
                     });
                     selectAllBtn.checked = visibleChecks.length > 0 && visibleChecks.every(c => c.checked);
                 } else {
-                    // PC: 기존 로직 유지 (Keep existing logic for PC)
+                    // PC: 기존 로직 유지
                     selectAllBtn.checked = itemChecks.every(c => c.checked);
                 }
             }
@@ -346,11 +347,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // 초기 실행
+    // 초기 실행 (Initial execution)
     const activeTab = document.querySelector('.tab-menu .tab-item.active');
+    const activeOption = document.querySelector('.dropdown-options li.active');
+
     if (activeTab) {
         sortProducts(activeTab.textContent.trim());
+    } else if (activeOption) {
+        sortProducts(activeOption.textContent.trim());
     } else {
-        updateDisplay();
+        // 기본 정렬 기준 강제 적용 (판매순)
+        sortProducts('판매순');
     }
 });
