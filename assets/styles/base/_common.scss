@@ -1,3 +1,7 @@
+﻿@use "../abstracts/functions" as *;
+@use "../abstracts/mixins";
+@use "../abstracts/variables" as *;
+
 html {
     scroll-behavior: smooth;
 }
@@ -244,7 +248,7 @@ main {
             height: rem(18);
         }
 
-        @include btn-hover-effect;
+        @include mixins.btn-hover-effect;
     }
 
     input {

@@ -1,3 +1,6 @@
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/variables" as *;
+
 // Order Badges
 .badge-order-red {
     background-color: $badge-red-bg;

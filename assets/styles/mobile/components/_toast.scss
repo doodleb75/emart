@@ -1,4 +1,7 @@
-@charset "UTF-8";
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/variables" as *;
+
+
 
 // Mobile Toast Notification System
 // 이미지와 동일하게 폰트, SVG 크기, 패딩을 조정한 모바일 전용 토스트

@@ -1,3 +1,7 @@
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/mixins";
+@use "../../abstracts/variables" as *;
+
 // 메인 홈 스타일
 
 // Main Slider
@@ -113,7 +117,7 @@
 
         // 호버 효과
         &:hover:after {
-            @include btn-active-styles;
+            @include mixins.btn-active-styles;
         }
     }
 }
@@ -351,7 +355,7 @@
         border: none;
         cursor: pointer;
         padding: 0;
-        @include btn-hover-effect;
+        @include mixins.btn-hover-effect;
 
         img {
             width: rem(14);
@@ -432,7 +436,7 @@
                 transition: transform 0.2s; // 회전 애니메이션 (Rotation animation)
             }
 
-            @include btn-hover-effect;
+            @include mixins.btn-hover-effect;
         }
     }
 

@@ -1,4 +1,6 @@
-﻿@charset "UTF-8";
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/mixins";
+@use "../../abstracts/variables" as *;
 
 // 모바일 메인 페이지 레이아웃 (Mobile Main Page Layout)
 
@@ -47,15 +49,13 @@
         text-decoration: none;
         display: flex;
         align-items: center;
-        gap: rem(8); // 텍스트 간격 (Text gap)
-        font-weight: 600;
-
+        gap: rem(8); // 텍스트 간격
         height: auto;
         padding: 0;
         border: none;
         border-radius: 0;
         background-color: transparent;
-        @include mobile-touch-effect; // 터치 피드백 추가
+        @include mixins.mobile-touch-effect; // 터치 피드백 추가
 
         // 전체보기 링크 화살표 (Full view arrow)
         &:after {
@@ -72,17 +72,18 @@
         }
 
         &:hover:after {
-            @include btn-active-styles;
+            @include mixins.btn-active-styles;
         }
     }
 }
 
-// 상품 그리드 레이아웃 (Product Grid Layout)
+// 상품 그리드 레이아웃
 .product-grid-4,
 .product-grid-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: rem(4) rem(4);
+    gap: rem(4);
+    align-items: stretch; // 카드 높이 균등화
 }
 
 // 주간 랭킹 섹션 (Weekly Ranking Section)
@@ -127,7 +128,7 @@
             justify-content: center;
             color: $gray-700;
             border-color: $gray-700;
-            @include mobile-touch-effect; // 터치 피드백 추가
+            @include mixins.mobile-touch-effect; // 터치 피드백 추가
 
             svg {
                 width: rem(24);
@@ -244,7 +245,7 @@
             align-items: center;
             justify-content: center;
             transition: all 0.2s;
-            @include mobile-touch-effect; // 터치 피드백 추가
+            @include mixins.mobile-touch-effect; // 터치 피드백 추가
 
             svg {
                 transition: transform 0.2s;
@@ -316,9 +317,9 @@
     background: $white;
     border-radius: rem(2);
     font-size: rem(14);
-    font-weight: 600;
+    font-weight: 700;
     color: $gray-700;
-    @include mobile-touch-effect; // 더보기 버튼 터치 피드백
+    @include mixins.mobile-touch-effect; // 더보기 버튼 터치 피드백
 
     svg {
         width: rem(20);
@@ -366,7 +367,7 @@
         position: relative;
         background-color: $gray-50;
         aspect-ratio: 320/411;
-        @include mobile-touch-effect($gray-50); // 슬라이드 터치 피드백
+        @include mixins.mobile-touch-effect($gray-50); // 슬라이드 터치 피드백
 
         .slider-card-img-wrap {
             width: 100%;
@@ -429,7 +430,6 @@
 
                 .slider-title {
                     font-size: rem(20);
-                    font-weight: 600;
                     margin: 0;
                     line-height: 1.3;
                     white-space: nowrap;
@@ -439,7 +439,6 @@
 
                 .slider-desc {
                     font-size: rem(14);
-                    font-weight: 600;
                     margin: 0;
                     white-space: nowrap;
                     overflow: hidden;
@@ -507,7 +506,7 @@
             width: rem(24);
             height: rem(24);
             color: $gray-300;
-            @include mobile-touch-effect; // 컨트롤러 버튼 터치 피드백
+            @include mixins.mobile-touch-effect; // 컨트롤러 버튼 터치 피드백
 
             svg {
                 width: rem(20);
@@ -572,12 +571,11 @@
             background-color: $gray-50;
             color: $gray-600;
             font-size: rem(14);
-            font-weight: 600;
             white-space: nowrap;
             flex-shrink: 0;
             cursor: pointer;
             transition: all 0.2s;
-            @include mobile-touch-effect; // 탭 버튼 터치 피드백
+            @include mixins.mobile-touch-effect; // 탭 버튼 터치 피드백
 
             &.active {
                 background-color: $black;
@@ -638,9 +636,8 @@
 
             .brand-desc {
                 font-size: rem(14);
-                color: $gray-500;
-                font-weight: 400;
-                line-height: normal;
+                color: $gray-300;
+                letter-spacing: -0.02em;
                 word-break: keep-all;
 
                 display: -webkit-box;
@@ -729,7 +726,7 @@
             justify-content: center;
             cursor: pointer;
             color: $gray-300;
-            @include mobile-touch-effect; // 컨트롤러 버튼 터치 피드백
+            @include mixins.mobile-touch-effect; // 컨트롤러 버튼 터치 피드백
 
             svg {
                 width: rem(20);

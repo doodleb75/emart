@@ -2122,18 +2122,17 @@ async function initZoomControl() {
     // 저장된 설정 로드
     let currentZoom = loadUserZoom();
 
-    const step = 0.1;
+    const step = 0.05;
     const maxZoom = 1.2; // 120% 제한
     const minZoom = 0.7; // 70% 제한
-    const pcThreshold = 1024; // PC 기준 너비
-
-    // 줌 적용 로직 (PC에서만 적용)
+    // 줌 적용 로직 (PC용 화면인 경우에만 적용)
     const applyZoom = () => {
-        const isPC = window.innerWidth >= pcThreshold;
-        document.body.style.zoom = isPC ? currentZoom : 1;
+        // 모바일 경로(/mobile/)가 포함되지 않은 경우를 PC 화면으로 판별
+        const isPCPage = !window.location.pathname.includes('/mobile/');
+        document.body.style.zoom = isPCPage ? currentZoom : 1;
 
         // GNB 너비 재계산 호출
-        if (isPC && window.adjustNavWidth) window.adjustNavWidth();
+        if (isPCPage && window.adjustNavWidth) window.adjustNavWidth();
     };
 
     // 초기 적용 및 리사이즈 대응
@@ -2163,7 +2162,7 @@ async function initZoomControl() {
     // 확대
     zoomInBtn.addEventListener('click', async () => {
         if (currentZoom < maxZoom) {
-            currentZoom = Math.min(maxZoom, parseFloat((currentZoom + step).toFixed(1)));
+            currentZoom = Math.min(maxZoom, parseFloat((currentZoom + step).toFixed(2)));
             await updateZoomDisplay();
         }
     });
@@ -2171,7 +2170,7 @@ async function initZoomControl() {
     // 축소
     zoomOutBtn.addEventListener('click', async () => {
         if (currentZoom > minZoom) {
-            currentZoom = Math.max(minZoom, parseFloat((currentZoom - step).toFixed(1)));
+            currentZoom = Math.max(minZoom, parseFloat((currentZoom - step).toFixed(2)));
             await updateZoomDisplay();
         }
     });
@@ -2297,4 +2296,3 @@ document.addEventListener('headerLoaded', initAllHeaderPopups);
 if (document.getElementById('monthPurchaseTrigger') || document.getElementById('btnZoomIn')) {
     initAllHeaderPopups();
 }
-

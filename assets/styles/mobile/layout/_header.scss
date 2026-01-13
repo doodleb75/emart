@@ -1,4 +1,8 @@
-@charset "UTF-8";
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/mixins";
+@use "../../abstracts/variables" as *;
+
+
 
 // 모바일 헤더
 .mobile-header {
@@ -33,7 +37,7 @@
             a {
                 display: flex;
                 align-items: center;
-                @include mobile-touch-effect;
+                @include mixins.mobile-touch-effect;
             }
         }
 
@@ -81,7 +85,7 @@
                 background: none;
                 border: none;
                 cursor: pointer;
-                @include mobile-touch-effect;
+                @include mixins.mobile-touch-effect;
             }
         }
     }
@@ -108,7 +112,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            @include mobile-touch-effect;
+            @include mixins.mobile-touch-effect;
 
             .noti-dot {
                 position: absolute;
@@ -196,7 +200,7 @@
                 justify-content: center;
                 color: $gray-500;
                 flex-shrink: 0;
-                @include mobile-touch-effect;
+                @include mixins.mobile-touch-effect;
             }
         }
 
@@ -646,7 +650,7 @@
                     border-bottom: 3px solid transparent;
                     transition: all 0.2s;
                     box-sizing: border-box;
-                    @include mobile-touch-effect;
+                    @include mixins.mobile-touch-effect;
                 }
 
                 &.active a {

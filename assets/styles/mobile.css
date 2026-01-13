@@ -460,10 +460,10 @@ body.mobile-body {
 .offcanvas-bottom.user-info-offcanvas .offcanvas-handle::after {
   content: "";
   position: absolute;
-  top: -15px;
-  bottom: -15px;
-  left: -20px;
-  right: -20px;
+  top: -0.9375rem;
+  bottom: -0.9375rem;
+  left: -1.25rem;
+  right: -1.25rem;
 }
 .offcanvas-bottom.user-info-offcanvas .sep-divider {
   border-color: #eeeeee;
@@ -478,14 +478,13 @@ body.mobile-body {
   margin-bottom: 1rem;
 }
 .offcanvas-bottom.user-info-offcanvas .user-summary .badge-gold {
-  background-color: #FFAA00;
+  background-color: #ffaa00;
   color: #ffffff;
   height: 100%;
   line-height: 1.75;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   font-size: 0.875rem;
-  font-weight: 600;
   margin-right: 0.625rem;
 }
 .offcanvas-bottom.user-info-offcanvas .user-summary .user-detail-text {
@@ -509,7 +508,7 @@ body.mobile-body {
 }
 .offcanvas-bottom.user-info-offcanvas .point-progress-track .point-progress-fill {
   height: 100%;
-  background-color: #FFAA00;
+  background-color: #ffaa00;
   border-radius: 1.25rem;
   display: flex;
   align-items: center;
@@ -726,7 +725,6 @@ body.mobile-body {
 }
 .category-filter-offcanvas .category-grid .category-item-wrap custom-checkbox .label-text {
   font-size: 0.875rem;
-  font-weight: 600;
   color: #444444;
   margin-left: 0.5rem;
   display: flex;
@@ -735,7 +733,6 @@ body.mobile-body {
 .category-filter-offcanvas .category-grid .category-item-wrap custom-checkbox .count {
   color: #1f95ff;
   font-size: 0.875rem;
-  font-weight: 600;
   margin-left: 0.25rem;
 }
 .category-filter-offcanvas .btn-group-half {
@@ -875,12 +872,13 @@ body.mobile-body {
 .product-card .card-thumb .delivery-tags .tag.tag-outline {
   background-color: #ffffe0 !important;
   border: none;
-  color: #222222 !important;
+  color: #444444 !important;
 }
 .product-card .card-thumb .delivery-tags .tag.tag-green {
   color: #00b87a;
 }
 .product-card .card-info {
+  flex: 1;
   padding: 1rem;
   padding-bottom: 0.5rem;
   min-height: 6.5rem;
@@ -894,7 +892,6 @@ body.mobile-body {
 }
 .product-card .card-info .product-name {
   font-size: 0.875rem;
-  font-weight: 600;
   line-height: 1.4;
   letter-spacing: -0.0175rem;
 }
@@ -917,7 +914,6 @@ body.mobile-body {
 }
 .product-card .card-info .unit-info .unit-highlight {
   color: #333333;
-  font-weight: 600;
 }
 .product-card .card-info .total-price-area {
   display: flex;
@@ -939,19 +935,20 @@ body.mobile-body {
   color: #444444;
 }
 .product-card .card-control {
+  margin-top: auto;
   padding: 0 1rem 0.5rem;
   gap: 0.25rem;
 }
 .product-card .card-control .btn-icon {
   width: 2rem;
   height: 2rem;
-  border: 1px solid #cccccc;
+  border: 0.0625rem solid #cccccc;
   border-radius: 0.125rem;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #ffffff;
-  color: #222222;
+  color: #444444;
   -webkit-tap-highlight-color: transparent;
 }
 .product-card .card-control .btn-icon:active {
@@ -1011,7 +1008,6 @@ body.mobile-body {
 }
 .product-card .bottom-info {
   padding: 0 1rem 1rem;
-  margin-top: auto;
   min-height: 3.75rem;
   border-top: none;
 }
@@ -1025,7 +1021,6 @@ body.mobile-body {
   font-size: 0.625rem;
   color: #aaaaaa;
   letter-spacing: -0.02em;
-  font-weight: 600;
 }
 .product-card .bottom-info .info-row:last-child {
   margin-bottom: 0;
@@ -1928,7 +1923,6 @@ body.mobile-body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
   z-index: 1000;
   box-sizing: border-box;
 }
@@ -2025,7 +2019,6 @@ body.mobile-body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-weight: 600;
   height: auto;
   padding: 0;
   border: none;
@@ -2057,7 +2050,8 @@ body.mobile-body {
 .product-grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.25rem 0.25rem;
+  gap: 0.25rem;
+  align-items: stretch;
 }
 
 .weekly-ranking {
@@ -2256,7 +2250,7 @@ body.mobile-body {
   background: #ffffff;
   border-radius: 0.125rem;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 700;
   color: #444444;
   -webkit-tap-highlight-color: transparent;
 }
@@ -2358,7 +2352,6 @@ body.mobile-body {
 }
 .mobile-main-slider .slide-item .slider-card-body .text-group .slider-title {
   font-size: 1.25rem;
-  font-weight: 600;
   margin: 0;
   line-height: 1.3;
   white-space: nowrap;
@@ -2367,7 +2360,6 @@ body.mobile-body {
 }
 .mobile-main-slider .slide-item .slider-card-body .text-group .slider-desc {
   font-size: 0.875rem;
-  font-weight: 600;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -2479,7 +2471,6 @@ body.mobile-body {
   background-color: #f4f4f4;
   color: #888888;
   font-size: 0.875rem;
-  font-weight: 600;
   white-space: nowrap;
   flex-shrink: 0;
   cursor: pointer;
@@ -2536,9 +2527,8 @@ body.mobile-body {
 }
 .brand-pavilion .brand-story-item .story-content .brand-desc {
   font-size: 0.875rem;
-  color: #999999;
-  font-weight: 400;
-  line-height: normal;
+  color: #aaaaaa;
+  letter-spacing: -0.02em;
   word-break: keep-all;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -3563,7 +3553,6 @@ custom-checkbox .custom-checkbox-wrap .label-text {
 }
 .search-result-page .page-header .search-result-title {
   font-size: 1.125rem;
-  font-weight: 600;
   color: #444444;
 }
 .search-result-page .page-header .search-result-title .keyword {
@@ -3589,7 +3578,6 @@ custom-checkbox .custom-checkbox-wrap .label-text {
   border-bottom: 0.09375rem solid #444444;
   margin-bottom: 1rem;
   font-size: 0.875rem;
-  font-weight: 600;
   color: #444444;
   letter-spacing: -0.0175rem;
 }
@@ -3604,7 +3592,6 @@ custom-checkbox .custom-checkbox-wrap .label-text {
 }
 .search-result-page .search-top-area .related-keywords-row .label {
   font-size: 0.875rem;
-  font-weight: 600;
   color: #444444;
   flex-shrink: 0;
   margin-right: 0.75rem;
@@ -3738,7 +3725,6 @@ custom-checkbox .custom-checkbox-wrap .label-text {
 }
 .search-result-page .search-top-area .search-control-row .label {
   font-size: 0.875rem;
-  font-weight: 600;
   color: #444444;
   width: 5.25rem;
   flex-shrink: 0;
@@ -3759,7 +3745,6 @@ custom-checkbox .custom-checkbox-wrap .label-text {
   border: none;
   background: transparent;
   font-size: 0.875rem;
-  font-weight: 600;
   color: #444444;
 }
 .search-result-page .search-top-area .search-control-row .input-wrap input::placeholder {
@@ -3774,7 +3759,6 @@ custom-checkbox .custom-checkbox-wrap .label-text {
   border: 0.0625rem solid #444444;
   background-color: #ffffff;
   font-size: 0.875rem;
-  font-weight: 600;
   color: #444444;
   display: flex;
   align-items: center;
@@ -3796,7 +3780,6 @@ custom-checkbox .custom-checkbox-wrap .label-text {
 }
 .search-result-page .product-control-bar .left-group custom-checkbox {
   font-size: 0.875rem;
-  font-weight: 600;
   color: #444444;
   letter-spacing: -0.0175rem;
 }
@@ -3806,10 +3789,9 @@ custom-checkbox .custom-checkbox-wrap .label-text {
 .search-result-page .product-control-bar .left-group .btn-add-selected {
   height: 2.5rem;
   padding: 0 0.5rem;
-  border: 0.0625rem solid #222222;
+  border: 0.0625rem solid #444444;
   background-color: #ffffff;
   font-size: 0.875rem;
-  font-weight: 600;
   color: #444444;
   border-radius: 0.125rem;
 }
@@ -3872,18 +3854,12 @@ custom-checkbox .custom-checkbox-wrap .label-text {
   transform: rotate(180deg);
 }
 .search-result-page .product-grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap: 0.25rem 0.25rem !important;
-  align-items: stretch !important;
+  -webkit-tap-highlight-color: transparent;
+}
+.search-result-page .product-grid-2:active {
+  background-color: hsla(0, 0%, -10%, 0);
 }
 .search-result-page .product-grid-2 .product-card {
-  width: 100% !important;
-  position: relative;
-  display: flex;
-  flex-direction: column !important;
-  height: 100% !important;
-  min-height: 100%;
   background-color: #ffffff;
 }
 .search-result-page .product-grid-2 .product-card .card-thumb {
@@ -3897,7 +3873,7 @@ custom-checkbox .custom-checkbox-wrap .label-text {
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
 }
 .search-result-page .product-grid-2 .product-card .card-thumb .card-checkbox {
   position: absolute;
@@ -3921,16 +3897,15 @@ custom-checkbox .custom-checkbox-wrap .label-text {
 }
 .search-result-page .product-grid-2 .product-card .product-name {
   font-size: 0.875rem;
-  font-weight: 600;
   color: #444444;
   margin-bottom: 0.25rem;
   line-height: 1.4;
   height: auto;
-  overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  line-clamp: 2;
   -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .search-result-page .product-grid-2 .product-card .card-info {
   display: flex !important;
@@ -3970,7 +3945,6 @@ custom-checkbox .custom-checkbox-wrap .label-text {
   width: 76%;
   color: #ffffff;
   font-size: 1.25rem;
-  font-weight: 600;
   height: 48%;
 }
 .search-result-page .product-grid-2 .product-card.state-dimmed .card-thumb .status-overlay .btn-substitute {
@@ -3984,7 +3958,6 @@ custom-checkbox .custom-checkbox-wrap .label-text {
   font-size: 0.875rem;
   color: #444444;
   cursor: pointer;
-  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;

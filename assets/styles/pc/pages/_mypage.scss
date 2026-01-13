@@ -1,6 +1,8 @@
-@use "sass:math";
-@import "../../abstracts/variables";
-@import "../../abstracts/mixins";
+﻿@use "sass:math";
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/mixins";
+@use "../../abstracts/functions" as *;
+
 
 // 마이페이지 스타일 (My Page Styles)
 .mypage-section-wrapper {
@@ -28,7 +30,7 @@
                     display: flex;
                     align-items: center;
                     gap: rem(8);
-                    @include btn-hover-effect;
+                    @include mixins.btn-hover-effect;
                 }
             }
         }
@@ -86,7 +88,7 @@
                 color: $gray-700;
                 margin-left: auto;
                 transition: $transition-base;
-                @include btn-hover-effect;
+                @include mixins.btn-hover-effect;
             }
         }
     }
@@ -1004,7 +1006,7 @@
                     color: $gray-700;
                     cursor: pointer;
                     transition: background-color 0.2s ease;
-                    @include btn-hover-effect;
+                    @include mixins.btn-hover-effect;
 
                     svg {
                         flex-shrink: 0;

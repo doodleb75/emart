@@ -1,4 +1,7 @@
-@charset "UTF-8";
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/variables" as *;
+
+
 
 // Toast Notification System
 // 4가지 타입 (Success, Danger, Warning, Info) 지원

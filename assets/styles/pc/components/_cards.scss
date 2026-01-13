@@ -1,4 +1,8 @@
-@charset "UTF-8";
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/mixins";
+@use "../../abstracts/variables" as *;
+
+
 
 // 슬라이더 카드 컴포넌트
 .slider-card {
@@ -122,7 +126,7 @@
 
 // 상품 카드 컴포넌트
 .product-card {
-    @include product-card-base;
+    @include mixins.product-card-base;
 
     .card-thumb {
         margin-bottom: rem(20);
@@ -300,7 +304,7 @@
             justify-content: center;
             cursor: pointer;
 
-            @include btn-hover-effect;
+            @include mixins.btn-hover-effect;
         }
     }
 
@@ -325,27 +329,27 @@
             font-weight: 500;
 
             .icon-tag {
-                @include icon-mask('/assets/icons/product-tag.svg');
+                @include mixins.icon-mask('/assets/icons/product-tag.svg');
                 margin-right: rem(4);
             }
 
             .icon-time {
-                @include icon-mask('/assets/icons/product-time.svg');
+                @include mixins.icon-mask('/assets/icons/product-time.svg');
                 margin-right: rem(4);
             }
 
             .icon-ban {
-                @include icon-mask('/assets/icons/icon-ban.svg');
+                @include mixins.icon-mask('/assets/icons/icon-ban.svg');
                 margin-right: rem(4);
             }
 
             .icon-cart-limit {
-                @include icon-mask('/assets/icons/icon-cart-limit.svg');
+                @include mixins.icon-mask('/assets/icons/icon-cart-limit.svg');
                 margin-right: rem(4);
             }
 
             .icon-sparkle {
-                @include icon-mask('/assets/icons/sparkling.svg');
+                @include mixins.icon-mask('/assets/icons/sparkling.svg');
                 margin-right: rem(4);
             }
 
