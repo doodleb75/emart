@@ -4,7 +4,7 @@
   "description": "Figma to HTML implementation",
   "main": "index.html",
   "scripts": {
-    "sass": "node node_modules/sass/sass.js assets/styles:assets/styles",
+    "sass": "node node_modules/sass/sass.js assets/styles:assets/styles --no-source-map",
     "watch": "node node_modules/sass/sass.js --watch assets/styles:assets/styles --no-source-map",
     "dev": "concurrently \"npm run watch\" \"live-server --browser=chrome\""
   },

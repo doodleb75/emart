@@ -1,6 +1,4 @@
-@charset "utf-8";
-
-// 주간 랭킹 섹션 (Weekly Ranking Section)
+// 주간 랭킹 섹션
 .weekly-ranking {
     padding-bottom: rem(60);
 
@@ -18,7 +16,7 @@
     .section-title {
         font-size: $font-size-xl;
         font-weight: 700;
-        color: $black;
+        color: $gray-700;
         letter-spacing: -0.02em;
         line-height: 1;
         margin: 0;
@@ -38,7 +36,7 @@
     }
 }
 
-// 컨트롤 (Controls)
+// 컨트롤
 .ranking-control-area {
     display: flex;
     align-items: center;
@@ -48,7 +46,7 @@
     .control-btn {
         width: rem(48);
         height: rem(48);
-        border: rem(1) solid $black;
+        border: rem(1) solid $gray-700;
         background-color: $white;
         display: flex;
         align-items: center;
@@ -65,7 +63,7 @@
         }
     }
 
-    // Specific adjustments if needed for pause
+    // 일시정지 버튼 추가 조정
     .btn-pause img {}
 
     .btn-prev {}
@@ -75,13 +73,12 @@
         align-items: center;
         justify-content: center;
         gap: $space-sm;
-        font-family: 'Pretendard', sans-serif;
+        font-family: $font-family-base;
         min-width: rem(60);
 
         .current {
             font-size: $font-size-md;
-            font-weight: 600;
-            color: $black;
+            color: $gray-700;
         }
 
         .divider {
@@ -112,8 +109,7 @@
     }
 }
 
-// 랭킹 리스트 (Ranking List)
-
+// 랭킹 리스트
 .ranking-carousel-view {
     width: 100%;
     overflow: hidden;
@@ -137,8 +133,8 @@
     border-bottom: rem(1) solid $gray-100;
 
     &.active {
-        border-bottom: rem(2) solid $black !important;
-        border-top: rem(2) solid $black;
+        border-bottom: rem(2) solid $gray-700 !important;
+        border-top: rem(2) solid $gray-700;
         position: relative;
         z-index: 10;
 
@@ -159,20 +155,20 @@
 
     }
 
-    // 순위 번호 (Rank Number)
+    // 순위 번호
     .rank-num {
         display: inline-block;
         width: rem(40);
         text-align: center;
-        font-family: 'Pretendard', sans-serif;
+        font-family: $font-family-base;
         font-size: $font-size-xl;
         font-weight: 700;
-        color: $black;
+        color: $gray-700;
         margin-right: rem(10);
         line-height: 1;
     }
 
-    // 순위 변동 아이콘 (Rank Change Icon)
+    // 순위 변동 아이콘
     .rank-change {
         width: rem(24);
         display: flex;
@@ -197,7 +193,7 @@
         }
     }
 
-    // 타이틀 & 카테고리 (Title & Category)
+    // 타이틀 및 카테고리
     .rank-info {
         display: flex;
         align-items: center;
@@ -206,12 +202,12 @@
         .rank-title {
             font-size: rem(18);
             font-weight: 700;
-            color: $black;
+            color: $gray-700;
             position: relative;
             display: flex;
             align-items: center;
 
-            // 수직 구분선 (Vertical separator)
+            // 수직 구분선
             &::after {
                 content: '';
                 display: block;
@@ -230,11 +226,11 @@
         }
     }
 
-    // 토글 버튼 (Toggle Button)
+    // 토글 버튼
     .btn-toggle-rank {
         width: rem(44);
         height: rem(44);
-        border: rem(1) solid $black;
+        border: rem(1) solid $gray-700;
         background-color: $white;
         border-radius: $space-xs;
         display: flex;
@@ -253,13 +249,13 @@
             background-color: transparent;
 
             transform: rotate(0deg);
-            color: $black;
+            color: $gray-700;
         }
 
-        // 활성 상태 (Active State)
+        // 활성 상태
         &.active {
-            background-color: $black;
-            border-color: $black;
+            background-color: $gray-700;
+            border-color: $gray-700;
 
             svg {
                 transform: rotate(180deg);
@@ -269,7 +265,7 @@
         }
     }
 
-    // 확장 본문 (Expanded Body)
+    // 확장 본문
     .ranking-body {
         padding: rem(30) 0 rem(40) 0;
         display: none;
@@ -280,14 +276,14 @@
     }
 }
 
-// 랭킹 상품 그리드 (Ranking Product Grid)
+// 랭킹 상품 그리드
 .ranking-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: rem(20);
 }
 
-// 더보기 버튼 영역 (Show More Button Area)
+// 더보기 영역
 .ranking-more-link {
     display: flex;
     justify-content: center;
@@ -300,11 +296,11 @@
         gap: $space-xs;
         height: rem(48);
         padding: rem(10) $space-lg;
-        border: rem(1) solid $black;
+        border: rem(1) solid $gray-700;
         border-radius: $space-xs;
         font-size: $font-size-base;
         font-weight: 500;
-        color: $black;
+        color: $gray-700;
         text-decoration: none;
         transition: all 0.2s;
 

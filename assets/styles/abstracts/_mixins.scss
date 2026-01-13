@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // Mixins
 // -----------------------------------------------------------------------------
 
@@ -30,7 +32,7 @@
     -webkit-tap-highlight-color: transparent;
 
     &:active {
-        background-color: darken($bg, 10%); // 버튼 배경 darken 적용
+        background-color: color.adjust($bg, $lightness: -10%); // 버튼 배경 darken 대신 color.adjust 적용
     }
 }
 

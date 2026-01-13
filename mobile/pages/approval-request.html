@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>승인요청 확정 - 이마트 에브리데이</title>
+    <title>승인요청 - 이마트 에브리데이</title>
     <!-- CSS 로드 (CSS load) -->
-    <link rel="stylesheet" href="../assets/styles/mobile.css">
+    <link rel="stylesheet" href="../../assets/styles/mobile.css">
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" as="style" crossorigin
@@ -21,13 +21,13 @@
             <!-- 경고 아이콘 (Warning icon) -->
             <div class="warning-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
-                    <g clip-path="url(#clip0_389_2045)">
+                    <g clip-path="url(#clip0_389_1965)">
                         <path
-                            d="M31.9997 5.33331C17.2797 5.33331 5.33301 17.28 5.33301 32C5.33301 46.72 17.2797 58.6666 31.9997 58.6666C46.7197 58.6666 58.6663 46.72 58.6663 32C58.6663 17.28 46.7197 5.33331 31.9997 5.33331ZM26.6663 45.3333L13.333 32L17.093 28.24L26.6663 37.7866L46.9063 17.5466L50.6663 21.3333L26.6663 45.3333Z"
-                            fill="#00B87A" />
+                            d="M2.66699 56H61.3337L32.0003 5.33331L2.66699 56ZM34.667 48H29.3337V42.6666H34.667V48ZM34.667 37.3333H29.3337V26.6666H34.667V37.3333Z"
+                            fill="#FFAA00" />
                     </g>
                     <defs>
-                        <clipPath id="clip0_389_2045">
+                        <clipPath id="clip0_389_1965">
                             <rect width="64" height="64" fill="white" />
                         </clipPath>
                     </defs>
@@ -36,8 +36,9 @@
 
             <!-- 타이틀 및 설명 (Title and Description) -->
             <div class="title-group">
-                <h1 class="approval-title">승인요청 되었습니다.​</h1>
-                <p class="approval-desc">승인시까지 최대 00분이 소요될 수 있습니다.​<br>승인완료 후 로그인 해주세요​​</p>
+                <h1 class="approval-title">승인요청 해주세요</h1>
+                <p class="approval-desc">사용승인이 필요한 모바일 기기입니다.
+                    영업담당자 승인 후 사용하실 수 있습니다.</p>
             </div>
 
             <!-- 담당자 정보 (Inforamtion box) -->
@@ -49,7 +50,8 @@
 
             <!-- 버튼 그룹 (Button group) -->
             <div class="button-group">
-                <a href="login.html" class="btn-action request">로그인으로 이동</a>
+                <button class="btn-action cancel" onclick="history.back()">취소</button>
+                <a href="approval-request-confirm.html" class="btn-action request">승인요청</a>
             </div>
         </main>
     </div>

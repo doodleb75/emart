@@ -1,16 +1,16 @@
 @charset "UTF-8";
 
-// 1. Abstracts (Variables, Mixins, Functions)
+// 1. Abstracts (변수, 함수, 믹스인)
 @import "abstracts/functions";
 @import "abstracts/variables";
 @import "abstracts/mixins";
 
-// 2. Base (Reset, Typography)
+// 2. Base (리셋, 타이포그래피, 공통 스타일)
 @import "base/reset";
 @import "base/typography";
-@import "base/common"; // Common classes
+@import "base/common"; // 공통 클래스
 
-// Reset PC styles for mobile
+// 모바일 본문 스타일 초기화
 body.mobile-body {
     min-width: 0 !important;
     width: 100%;
@@ -18,17 +18,17 @@ body.mobile-body {
     overflow-x: hidden;
 }
 
-// 3. Components (Mobile Specific)
-@import "mobile/components/offcanvas"; // Offcanvas 스타일
-@import "mobile/components/cards"; // Mobile product cards
-@import "mobile/components/toast"; // Mobile Specific Toast Style
+// 3. Components (PC 전용 컴포넌트)
+@import "mobile/components/offcanvas"; // 오프캔버스
+@import "mobile/components/cards"; // 모바일 상품 카드
+@import "mobile/components/toast"; // 모바일 전용 토스트
 
-// 4. Layout
+// 4. Layout (PC 헤더, 푸터, 하단 네비게이션)
 @import "mobile/layout/header";
 @import "mobile/layout/footer";
 @import "mobile/layout/bottom_nav";
 
-// 5. Pages
+// 5. Pages (PC 페이지별 스타일)
 @import "mobile/pages/main";
 @import "mobile/pages/app-download";
 @import "mobile/pages/join";
