@@ -623,7 +623,6 @@ body {
 .product-card .card-control {
   display: flex;
   align-items: center;
-  margin-top: auto;
 }
 .product-card .card-thumb {
   margin-bottom: 1.25rem;

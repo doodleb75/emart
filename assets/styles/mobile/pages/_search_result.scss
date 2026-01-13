@@ -403,7 +403,7 @@
     .product-grid-2 {
         display: grid;
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: $space-lg rem(4) !important; // 수직 간격 확보 (Ensure vertical gap)
+        gap: $space-xs rem(4) !important; // 수직 간격 확보 (Ensure vertical gap)
         align-items: stretch !important;
 
         .product-card {

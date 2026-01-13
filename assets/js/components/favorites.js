@@ -1,4 +1,4 @@
-// 하트(찜) 클릭 감지 및 상태 전환 (Heart/Favorite Toggle Logic)
+// 하트(찜) 클릭 감지 및 상태 전환
 document.addEventListener('click', (e) => {
     const btn = e.target.closest('.btn-icon');
 

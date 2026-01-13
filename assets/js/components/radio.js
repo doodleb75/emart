@@ -1,5 +1,3 @@
-// Custom Radio Web Component
-
 class CustomRadio extends HTMLElement {
     static get observedAttributes() {
         return ['checked', 'disabled', 'label', 'id', 'name', 'value'];

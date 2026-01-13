@@ -1,6 +1,6 @@
-// 푸터 상호작용 로직 (Footer Interaction Logic)
+// 푸터 상호작용 로직 
 document.addEventListener('click', (e) => {
-    // 사업자 정보 토글 (Company Info Toggle)
+    // 사업자 정보 토글
     const footerToggle = e.target.closest('.footer-info-toggle');
     if (footerToggle) {
         const footerDetails = document.querySelector('.footer-details');
@@ -22,14 +22,14 @@ document.addEventListener('click', (e) => {
         }
     }
 
-    // 최상단 이동 (Scroll to top)
+    // 최상단 이동 
     const btnTop = e.target.closest('.btn-top');
     if (btnTop) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 });
 
-// 상단 이동 버튼 노출 제어 (Top button visibility)
+// 상단 이동 버튼 노출 제어 
 const scrollTopBtn = document.getElementById('scrollTopBtn');
 if (scrollTopBtn) {
     window.addEventListener('scroll', () => {
