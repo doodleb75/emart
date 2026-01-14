@@ -221,7 +221,9 @@
     top: 0;
     z-index: 999;
     background-color: $white;
-    padding: $space-lg 0; // Sticky 배경 커버를 위해 Margin을 Padding으로 통합
+    padding: $space-lg 0;
+    transform: translate3d(0, 0, 0); // 레이아웃 변화 시 이탈 방지용 GPU 가속
+    backface-visibility: hidden;
 
     .tab-item {
         flex: 1;
@@ -575,10 +577,12 @@
     }
 }
 
-// 요약 사이드바 (결제 정보)
 .summary-sidebar {
     position: sticky;
     top: rem(20);
+    z-index: 990; // 카테고리 탭(999) 보다는 낮게 설정
+    transform: translate3d(0, 0, 0); // 레이아웃 변화 시 이탈 방지용 GPU 가속
+    backface-visibility: hidden;
 
     .summary-box {
         border: 1.5px solid $gray-700;
