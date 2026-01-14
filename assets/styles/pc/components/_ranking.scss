@@ -67,10 +67,7 @@
         }
     }
 
-    // 일시정지 버튼 추가 조정
-    .btn-pause img {}
 
-    .btn-prev {}
 
     .page-count {
         display: flex;
@@ -285,6 +282,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: rem(20);
+    align-items: stretch; // 카드 높이 균등화
 }
 
 // 더보기 영역

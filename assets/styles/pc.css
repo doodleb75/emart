@@ -684,8 +684,9 @@ body {
   color: #00b87a;
 }
 .product-card .card-info {
+  flex: 1;
   padding: 0;
-  margin-bottom: 2.4375rem;
+  margin-bottom: 1rem;
 }
 .product-card .card-info > * {
   line-height: 150% !important;
@@ -750,6 +751,7 @@ body {
   font-weight: 800;
 }
 .product-card .card-control {
+  margin-top: auto;
   gap: 0.375rem;
   margin-bottom: 0.75rem;
 }
@@ -1201,6 +1203,7 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
+  align-items: stretch;
 }
 
 .ranking-more-link {
@@ -1739,6 +1742,11 @@ body.modal-open .summary-sidebar {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+.header-logo-group a img {
+  width: 6.1875rem;
+  height: 2.5625rem;
+  display: block;
 }
 
 .header-icon-group {
@@ -2748,8 +2756,22 @@ body.modal-open .summary-sidebar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
+  align-items: stretch;
+}
+.product-grid-4.md-rec-content.active {
+  animation: fadeInUp 0.4s ease-out forwards;
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .tab-menu {
   display: flex;
   gap: 0.5rem;
@@ -3993,7 +4015,9 @@ body.modal-open .summary-sidebar {
 .search-result-page .product-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
   row-gap: 3.75rem;
+  align-items: stretch;
   margin-bottom: 5rem;
   margin-top: 2.5rem;
 }

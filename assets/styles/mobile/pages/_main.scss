@@ -84,7 +84,26 @@
     grid-template-columns: repeat(2, 1fr);
     gap: rem(4);
     align-items: stretch; // 카드 높이 균등화
+
+    // MD 추천 상품 애니메이션 적용
+    .md-rec-content.active & {
+        animation: fadeInUp 0.4s ease-out forwards;
+    }
 }
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(rem(20));
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 // 주간 랭킹 섹션 (Weekly Ranking Section)
 .weekly-ranking {

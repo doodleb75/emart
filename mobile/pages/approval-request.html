@@ -2,13 +2,12 @@
 <html lang="ko">
 
 <head>
-    <base href="../../">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>승인요청 - 이마트 에브리데이</title>
-    <!-- CSS 로드 (CSS load) -->
-    <link rel="stylesheet" href="assets/styles/mobile.css">
-    <!-- Google Fonts -->
+    <!-- CSS 로드 -->
+    <link rel="stylesheet" href="/assets/styles/mobile.css">
+    <!-- 구글 폰트 -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
@@ -17,9 +16,9 @@
 <body class="mobile-body">
 
     <div class="approval-request-page">
-        <!-- 메인 컨텐츠 (Main content) -->
+        <!-- 승인요청 컨텐츠 -->
         <main class="approval-container">
-            <!-- 경고 아이콘 (Warning icon) -->
+            <!-- 경고 아이콘 -->
             <div class="warning-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
                     <g clip-path="url(#clip0_389_1965)">
@@ -35,21 +34,21 @@
                 </svg>
             </div>
 
-            <!-- 타이틀 및 설명 (Title and Description) -->
+            <!-- 제목 및 설명 -->
             <div class="title-group">
                 <h1 class="approval-title">승인요청 해주세요</h1>
                 <p class="approval-desc">사용승인이 필요한 모바일 기기입니다.
                     영업담당자 승인 후 사용하실 수 있습니다.</p>
             </div>
 
-            <!-- 담당자 정보 (Inforamtion box) -->
+            <!-- 담당자 정보 -->
             <div class="info-box">
                 <span class="label">영업담당자</span>
                 <span class="divider"></span>
                 <span class="value">안민규 ·<a href="tel:01023006075">010-2300-6075</a></span>
             </div>
 
-            <!-- 버튼 그룹 (Button group) -->
+            <!-- 하단 버튼 -->
             <div class="button-group">
                 <button class="btn-action cancel" onclick="history.back()">취소</button>
                 <a href="approval-request-confirm.html" class="btn-action request">승인요청</a>

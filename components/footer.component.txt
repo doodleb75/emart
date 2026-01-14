@@ -22,7 +22,7 @@
         <div class="section-container">
             <!-- Logo Row -->
             <div class="logo-row">
-                <img src="/assets/icons/logo_eclub.svg" alt="eClub" class="footer-logo">
+                <img src="/assets/images/common/icon_eclub_title.svg" alt="이클럽 로고" class="footer-logo">
             </div>
 
             <!-- Main Grid -->
@@ -58,7 +58,7 @@
 
                 <!-- Center: App Install -->
                 <div class="app-install-box">
-                    <img src="/assets/icons/logo_eclub.svg" alt="eClub" class="app-logo">
+                    <img src="/assets/images/common/icon_eclub_title.svg" alt="이클럽 로고" class="app-logo">
                     <span class="title">모바일 APP 설치하기</span>
                     <div class="qr-box">
                         <img src="/assets/images/footer/footer_qr_code.png" alt="QR Code">

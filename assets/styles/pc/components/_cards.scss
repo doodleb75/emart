@@ -204,8 +204,9 @@
     }
 
     .card-info {
+        flex: 1; // 가용 공간 채움
         padding: 0;
-        margin-bottom: rem(39);
+        margin-bottom: $space-md;
 
         &>* {
             line-height: 150% !important;
@@ -289,6 +290,7 @@
 
     // 컨트롤 버튼 (수량, 하트, 장바구니)
     .card-control {
+        margin-top: auto; // 하단 밀착
         gap: rem(6);
         margin-bottom: rem(12);
 
