@@ -38,6 +38,12 @@
                 display: flex;
                 align-items: center;
                 @include mixins.mobile-touch-effect;
+
+                img {
+                    width: rem(80);
+                    height: rem(32);
+                    display: block;
+                }
             }
         }
 

@@ -4,11 +4,11 @@
 // _app-download.scss
 
 .app-download-page {
-    background-color: $white; // 배경 흰색 (White background)
+    background-color: $white; // 배경 흰색
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-bottom: rem(60); // 하단 버튼 공간 (Bottom button space)
+    padding-bottom: rem(60); // 하단 버튼 공간
 
     & * {
         font-weight: 600;
@@ -22,13 +22,13 @@
         width: 100%;
     }
 
-    // 헤더 영역 (Header section)
+    // 헤더 영역
     .app-header {
         width: 100%;
         padding-top: rem(40);
         padding-bottom: rem(20);
         text-align: center;
-        animation: fadeInDown 0.8s ease-out; // 페이드 인 애니메이션 (Fade in animation)
+        animation: fadeInDown 0.8s ease-out; // 페이드 인 효과
 
         .logo-wrap {
             margin-bottom: rem(32);
@@ -36,9 +36,11 @@
             justify-content: center;
             flex-shrink: 0;
 
+            img,
             svg {
                 width: rem(98);
-                height: auto;
+                height: rem(40);
+                display: block;
             }
         }
 
@@ -61,14 +63,14 @@
         }
     }
 
-    // 메인 컨텐츠 영역 (Main content section)
+    // 메인 콘텐츠
     .app-content {
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: rem(20) $layout-mobile-padding rem(40);
-        animation: fadeInUp 1s ease-out; // 페이드 인 애니메이션 (Fade in animation)
+        animation: fadeInUp 1s ease-out; // 페이드 인 효과
 
         .mockup-wrap {
             width: 100%;
@@ -76,11 +78,11 @@
             margin-bottom: rem(20);
             display: flex;
             justify-content: center;
-            filter: drop-shadow(0 rem(10) rem(20) rgba(0, 0, 0, 0.05)); // 그림자 효과 (Subtle shadow)
+            filter: drop-shadow(0 rem(10) rem(20) rgba(0, 0, 0, 0.05)); // 그림자 효과
             transition: transform 0.3s ease;
 
             &:hover {
-                transform: translateY(rem(-10)); // 호버 시 살짝 상승 (Lift on hover)
+                transform: translateY(rem(-10)); // 호버 시 상승
             }
 
             .iphone-img {
@@ -92,7 +94,7 @@
 
         .desc-wrap {
             text-align: center;
-            margin-top: rem(0); // 이미지 여백 조정 (Adjust image margin)
+            margin-top: rem(0); // 이미지와의 유격 조정
 
             .desc-text {
                 font-size: rem(14);
@@ -102,7 +104,7 @@
         }
     }
 
-    // 탑 버튼 (Scroll top button)
+    // 상단 이동 버튼
     .btn-top {
         position: fixed;
         right: rem(20);
@@ -116,20 +118,20 @@
         align-items: center;
         justify-content: center;
         z-index: 100;
-        opacity: 0; // 초기 숨김 (Initially hidden)
-        visibility: hidden; // 클릭 방지 (Prevent clicks)
-        pointer-events: none; // 이벤트 방지 (Prevent events)
-        transition: all 0.3s ease; // 부드러운 전환 (Smooth transition)
+        opacity: 0; // 초기 숨김
+        visibility: hidden; // 클릭 방지
+        pointer-events: none; // 이벤트 차단
+        transition: all 0.3s ease; // 부드러운 노출 전환
         box-shadow: 0 rem(4) rem(12) rgba(0, 0, 0, 0.1);
 
         &.is-visible {
-            opacity: 1; // 표시 (Show)
-            visibility: visible; // 클릭 가능 (Make clickable)
-            pointer-events: auto; // 이벤트 허용 (Allow events)
+            opacity: 1; // 노출
+            visibility: visible; // 클릭 가능
+            pointer-events: auto; // 이벤트 허용
         }
 
         &:active {
-            transform: scale(0.9); // 클릭 시 축소 (Scale down on click)
+            transform: scale(0.9); // 클릭 피드백
         }
 
         svg {
@@ -138,7 +140,7 @@
         }
     }
 
-    // 섹션 구분선 (Section divider)
+    // 섹션 구분선
     .section-divider {
         width: 100%;
         height: rem(4);
@@ -147,10 +149,9 @@
         margin: 0;
     }
 
-    // 공통 섹션 스타일 (Common section style)
+    // 공통 섹션 스타일
     .club-section {
         width: 100%;
-        // padding: rem(40) 0;
         animation: fadeInUp 1s ease-out;
 
         &.club-intro-wrap {
@@ -172,7 +173,7 @@
             font-size: rem(24);
             font-weight: 700;
             color: $gray-700;
-            line-height: 1; // 텍스트 높이와 아이콘 높이 일치 (Match text and icon height)
+            line-height: 1; // 텍스트와 아이콘 높이 정렬
             margin-bottom: rem(24);
 
             .title-in-span {
@@ -188,13 +189,12 @@
                 display: block;
                 width: rem(59);
                 height: rem(24);
-                background: url('/assets/images/mobile/app-download/icon_eclub_title.svg') no-repeat center / contain;
-                // margin-top: rem(1); // 시각적 보정 (Visual correction)
+                background: url('/assets/images/common/icon_eclub_title.svg') no-repeat center / contain;
             }
         }
 
         .section-desc {
-            font-size: rem(16); // Figma 16px
+            font-size: rem(16);
             color: $gray-700;
             line-height: 1.5;
             margin-bottom: rem(24);
@@ -205,7 +205,6 @@
     .club-intro-wrap {
         .intro-text {
             font-size: rem(16);
-            font-weight: 600;
             color: $gray-700;
             line-height: 1.5;
             letter-spacing: -0.02em;
@@ -221,30 +220,28 @@
         margin-top: rem(24);
         display: flex;
         flex-direction: column;
-        gap: rem(4); // 항목 간 간격 (Gap between items)
+        gap: rem(4); // 항목 간 간격
 
         .method-item {
             display: flex;
-            gap: rem(4); // 번호와 텍스트 간격 (Gap between number and text)
-            font-size: rem(16); // 폰트 크기 (Font size)
+            gap: rem(4); // 번호와 텍스트 간격
+            font-size: rem(16);
             color: $gray-700;
-            line-height: 1.5; // 행간 (Line height)
-            letter-spacing: -0.02em; // 자간 (Letter spacing)
+            line-height: 1.5;
+            letter-spacing: -0.02em;
 
             .num {
                 color: $gray-700;
-                font-weight: 600;
                 flex-shrink: 0;
             }
 
             p {
                 color: $gray-700;
-                font-weight: 600;
             }
         }
     }
 
-    // 클럽 혜택 (Club benefits)
+    // 클럽 혜택
     .club-benefit-wrap {
         .benefit-group {
             &+.benefit-group {
@@ -252,7 +249,7 @@
             }
 
             .group-title {
-                font-size: rem(20); // Figma 20px
+                font-size: rem(20);
                 font-weight: 700;
                 color: $gray-700;
                 margin-bottom: rem(12);
@@ -263,22 +260,20 @@
                 display: flex;
                 flex-direction: column;
                 padding-left: rem(8);
-                // gap: rem(8);
 
                 .benefit-item {
                     position: relative;
                     padding-left: rem(12);
-                    font-size: rem(14); // Figma 14px
+                    font-size: rem(14);
                     color: $gray-700;
                     line-height: 1.5;
-                    font-weight: 600;
 
                     &::before {
                         content: '';
                         position: absolute;
                         left: 0;
                         top: rem(8);
-                        width: rem(4); // 불렛 크기 확대 (Increase bullet size)
+                        width: rem(4); // 불렛 크기 확대
                         height: rem(4);
                         background-color: $gray-700;
                         border-radius: 50%;
@@ -286,14 +281,14 @@
 
                     .highlight {
                         color: $accent-base;
-                        font-weight: 500; // 포인트 지급 문구 weight (Point message weight)
+                        font-weight: 500; // 포인트 강조용
                     }
                 }
             }
         }
     }
 
-    // 클럽 등급 (Club grade)
+    // 클럽 등급
     .club-grade-wrap {
         .grade-info-text {
             font-size: rem(16);
@@ -318,24 +313,23 @@
                 flex-direction: column;
                 align-items: center;
                 flex: 1;
-                min-width: 0; // flex-item 내부 이미지 찌그러짐 방지 (Prevent image distortion)
+                min-width: 0; // 이미지 왜곡 방지
 
                 img {
-                    width: 100%; // 부모 너비의 % 적용 (Responsive width)
+                    width: 100%; // 부모 너비 기반 가변 처리
                     height: auto;
-                    // max-width: rem(52); // 최대 크기 제한 (Limit max size)
-                    aspect-ratio: 1 / 1; // 정비율 유지 (Maintain aspect ratio)
+                    aspect-ratio: 1 / 1; // 정비율 유지
                     object-fit: contain;
                 }
 
                 span {
                     font-size: rem(11);
                     color: $gray-500;
-                    font-weight: 700; // 가독성 향상 (Improve readability)
+                    font-weight: 700; // 가독성 향상
                     white-space: nowrap;
                 }
 
-                // 등급별 텍스트 색상 (Grade text colors)
+                // 등급별 텍스트 색상
                 &.vvip span {
                     color: #a4539e;
                 }
@@ -370,7 +364,7 @@
         }
     }
 
-    // 클럽 이용안내 (Club usage info)
+    // 클럽 이용안내
     .club-delivery-list {
         display: flex;
         flex-direction: column;
@@ -378,36 +372,33 @@
 
         .delivery-item {
             .item-title {
-                font-size: rem(20); // Figma 20px
-                font-weight: 600; // Figma semi-bold
-                color: $gray-700; // Figma #444444
+                font-size: rem(20);
+                color: $gray-700;
                 margin-bottom: rem(16);
                 letter-spacing: -0.02em;
             }
 
             .item-desc {
-                font-size: rem(16); // Figma 16px
-                color: $gray-700; // Figma #444444
+                font-size: rem(16);
+                color: $gray-700;
                 line-height: 1.5;
                 margin-top: rem(8);
                 letter-spacing: -0.02em;
 
                 .highlight {
                     color: $accent-75;
-                    font-weight: 600;
                 }
 
                 .highlight-blue {
                     color: $system-info-75;
-                    font-weight: 600;
                 }
             }
 
 
             .sub-desc {
                 margin-top: rem(8);
-                font-size: rem(14); // Figma 14px
-                color: $primary-100; // Figma #FFAA00
+                font-size: rem(14);
+                color: $primary-100;
                 line-height: 1.5;
                 letter-spacing: -0.02em;
 
@@ -418,11 +409,11 @@
         }
     }
 
-    // 클럽 전화문의 (Club call info)
+    // 클럽 전화문의
     .club-call-list {
         display: flex;
         flex-direction: column;
-        border-top: rem(1) solid $gray-700; // 상단 구분선 (Top divider)
+        border-top: rem(1) solid $gray-700; // 상단 구분선
         padding: rem(8) 0;
         margin-top: rem(24);
 
@@ -431,33 +422,29 @@
             justify-content: space-between;
             align-items: center;
             padding: rem(12) 0;
-            // border-bottom: rem(1) solid $gray-200; // 항목 구분선 (Item divider)
             font-size: rem(14);
             letter-spacing: -0.02em;
 
             &:last-child {
-                border-bottom: rem(1) solid $gray-700; // 하단 구분선 (Bottom divider)
+                border-bottom: rem(1) solid $gray-700; // 하단 구분선
                 padding-bottom: rem(16);
             }
 
             .leader {
                 flex: 1;
                 color: $gray-700;
-                font-weight: 600;
                 text-align: left;
             }
 
             .region {
                 flex: 1.2;
                 color: $gray-700;
-                font-weight: 600;
                 text-align: left;
             }
 
             .tel {
                 flex: 1.5;
                 color: $gray-700;
-                font-weight: 600;
                 text-align: right;
                 text-decoration: none;
             }
@@ -483,14 +470,12 @@
 
         .cs-tel {
             font-size: rem(20);
-            font-weight: 600;
             color: $gray-700;
             letter-spacing: -0.02em;
         }
 
         .cs-time {
             font-size: rem(14);
-            font-weight: 600;
             color: $gray-700;
             letter-spacing: -0.02em;
         }
@@ -502,7 +487,7 @@
         }
     }
 
-    // 유의사항 및 하단 정보 (Club footer)
+    // 유의사항 및 하단 정보
     .club-footer-info {
         padding: rem(40) $layout-mobile-padding rem(100);
         background-color: $white;
@@ -521,7 +506,7 @@
                 display: inline-block;
                 width: rem(16);
                 height: rem(16);
-                background: url('../assets/images/mobile/app-download/icon_eclub_title.svg') no-repeat center / contain;
+                background: url('/assets/images/common/icon_eclub_title.svg') no-repeat center / contain;
             }
         }
 
@@ -571,7 +556,7 @@
         }
     }
 
-    // 하단 고정 버튼 (Bottom fixed buttons)
+    // 하단 고정 버튼
     .app-footer-buttons {
         position: fixed;
         bottom: 0;
@@ -597,12 +582,12 @@
         }
 
         .btn-join {
-            background-color: $gray-300; // 회원가입 회색 (Sign up gray)
+            background-color: $gray-300; // 회원가입 배경색
             color: $white;
         }
 
         .btn-download {
-            background-color: $primary-gold; // 앱다운로드 골드 (Download gold)
+            background-color: $primary-gold; // 앱다운로드 배경색
             color: $white;
         }
     }
@@ -614,7 +599,7 @@
     }
 }
 
-// 애니메이션 키프레임 (Animation keyframes)
+// 애니메이션
 @keyframes fadeInDown {
     from {
         opacity: 0;

@@ -382,6 +382,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const mdTabContents = document.querySelectorAll('.md-rec-content');
 
     if (mdTabItems && mdTabContents.length > 0) {
+        // 상품 카드 순서 섞기 함수
+        const shuffleCards = (container) => {
+            // 실제 카드가 담긴 그리드 컨테이너 찾기 (PC는 본인, 모바일은 하위 div)
+            const gridContainer = container.classList.contains('product-grid-4') || container.classList.contains('product-grid-2')
+                ? container
+                : container.querySelector('.product-grid-4, .product-grid-2');
+
+            if (!gridContainer) return;
+
+            const cards = Array.from(gridContainer.querySelectorAll('.product-card'));
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                gridContainer.appendChild(cards[j]); // appendChild는 기존 요소를 이동시킴
+            }
+        };
+
+        // 페이지 로드 시 모든 탭의 상품 순서를 물리적으로 1회 섞어서 고정
+        mdTabContents.forEach(content => {
+            shuffleCards(content);
+        });
+
         mdTabItems.forEach((item) => {
             item.addEventListener('click', () => {
                 const index = item.dataset.tab;
@@ -395,6 +416,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 mdTabContents.forEach(content => {
                     content.style.display = 'none';
                     content.classList.remove('active');
+                    // 애니메이션 재실행을 위해 스타일 강제 리셋
+                    content.style.animation = 'none';
+                    void content.offsetWidth;
+                    content.style.animation = '';
                 });
 
                 // 선택 콘텐츠 표시
@@ -406,6 +431,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
 
     // 메인 배너 슬라이더 기능
     const mainCarouselEl = document.getElementById('eclubMainSlider');

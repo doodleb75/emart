@@ -220,7 +220,13 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+
     // width handled by flexbox context or specific width if needed
+    a img {
+        width: rem(99);
+        height: rem(41);
+        display: block;
+    }
 }
 
 .header-icon-group {
