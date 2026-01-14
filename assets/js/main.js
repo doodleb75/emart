@@ -1969,7 +1969,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const cartBtn = cardControl?.querySelector('.icon-cart')?.closest('button') || cardControl?.querySelector('.btn-cart');
 
                         positionLayerPopup(cartBtn || minusBtn, modalEl, { align: 'right' });
-                        modal.show();
+                        modal.show(cartBtn || minusBtn); // 트리거 전달하여 포커스 관리 개선
                     }
                 } else if (currentVal === 0) {
                     // 최소 수량 알림
@@ -2087,10 +2087,19 @@ document.addEventListener('show.bs.modal', (event) => {
     });
 });
 
-document.addEventListener('shown.bs.modal', () => {
-    // 모달 표시 후 스타일 초기화
-    document.body.style.overflow = 'auto';
-    document.body.style.paddingRight = '0px';
+document.addEventListener('shown.bs.modal', (e) => {
+    // 레이어 팝업인 경우 바디 스크롤 유지를 위해 스타일 초기화 (CSS !important와 병행)
+    if (e.target.classList.contains('layer-popup')) {
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+    }
+});
+
+// 모달 닫기 시 내부 포커스 해제 (aria-hidden 경고 방지)
+document.addEventListener('hide.bs.modal', (e) => {
+    if (document.activeElement && e.target.contains(document.activeElement)) {
+        document.activeElement.blur();
+    }
 });
 
 /**
@@ -2231,6 +2240,9 @@ function positionLayerPopup(trigger, modalEl, options = { align: 'center' }) {
 
         dialog.style.left = `${leftPos}px`;
         dialog.style.transform = 'none'; // Bootstrap transform 충돌 방지
+
+        // Sticky 요소 재계산 유도를 위한 미세 스크롤 보정 트리거 (필요 시)
+        // window.scrollBy(0, 0); 
     }
 }
 
@@ -2260,7 +2272,7 @@ function initLayerPopup(triggerSelector, modalId) {
                     keyboard: true
                 });
                 positionLayerPopup(trigger, modalEl);
-                modal.show();
+                modal.show(trigger); // 트리거 전달하여 포커스 복원 위치 지정
             }
         });
     };

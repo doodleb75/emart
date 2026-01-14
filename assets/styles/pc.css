@@ -1386,8 +1386,20 @@ body {
 }
 
 body.modal-open {
-  overflow: auto !important;
+  overflow: unset !important;
   padding-right: 0 !important;
+}
+body.modal-open .category-tabs,
+body.modal-open .summary-sidebar {
+  position: sticky !important;
+}
+
+.modal.layer-popup {
+  overflow: visible !important;
+  pointer-events: none;
+}
+.modal.layer-popup .modal-dialog {
+  pointer-events: auto;
 }
 
 .custom-toast-container {
@@ -3233,6 +3245,8 @@ body.modal-open {
   z-index: 999;
   background-color: #ffffff;
   padding: 1.5rem 0;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 .category-tabs .tab-item {
   flex: 1;
@@ -3536,6 +3550,9 @@ body.modal-open {
 .summary-sidebar {
   position: sticky;
   top: 1.25rem;
+  z-index: 990;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 .summary-sidebar .summary-box {
   border: 1.5px solid #444444;

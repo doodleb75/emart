@@ -192,8 +192,24 @@
     }
 }
 
-// 부트스트랩 모달 오픈 시 강제 padding 및 overflow 방지
+// 부트스트랩 모달 오픈 시 강제 padding 및 overflow 방지 (Sticky 요소 이탈 방지)
 body.modal-open {
-    overflow: auto !important;
+    overflow: unset !important;
     padding-right: 0 !important;
+
+    // Sticky 요소가 모달 오픈 시 static으로 돌아가는 현상 방지
+    .category-tabs,
+    .summary-sidebar {
+        position: sticky !important;
+    }
+}
+
+// 레이어 팝업 형태의 모달은 스크롤에 영향을 주지 않도록 설정
+.modal.layer-popup {
+    overflow: visible !important;
+    pointer-events: none;
+
+    .modal-dialog {
+        pointer-events: auto;
+    }
 }
