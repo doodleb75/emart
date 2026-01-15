@@ -9,7 +9,7 @@
     </a>
     <a href="#" class="nav-item nav-center">
         <span class="eclub-logo">
-            <img src="/assets/images/common/icon_eclub_title.svg" alt="e-Club">
+            <img src="/emart/assets/images/common/icon_eclub_title.svg" alt="e-Club">
         </span>
     </a>
     <a href="#" class="nav-item">

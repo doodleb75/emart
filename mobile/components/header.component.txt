@@ -3,7 +3,7 @@
         <div class="header-left">
             <h1 class="logo">
                 <a href="#" class="d-flex align-items-center text-decoration-none">
-                    <img src="/assets/images/common/icon_eclub_title.svg" alt="이클럽 로고">
+                    <img src="/emart/assets/images/common/icon_eclub_title.svg" alt="이클럽 로고">
                 </a>
             </h1>
             <div class="header-divider"></div>
@@ -346,7 +346,7 @@
             <div class="app-icon-wrap">
                 <!-- Figma: 80x80 Icon -->
                 <div class="app-icon">
-                    <img src="/assets/images/common/app_icon_80.png" alt="App Icon">
+                    <img src="/emart/assets/images/common/app_icon_80.png" alt="App Icon">
                 </div>
             </div>
             <div class="btn-group-half">

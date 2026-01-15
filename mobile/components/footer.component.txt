@@ -1,6 +1,6 @@
 <footer class="mobile-footer">
     <div class="footer-logo">
-        <img src="/assets/images/common/icon_eclub_title.svg" alt="이클럽 로고">
+        <img src="/emart/assets/images/common/icon_eclub_title.svg" alt="이클럽 로고">
     </div>
 
     <div class="footer-links-grid">

@@ -77,8 +77,8 @@
         <div class="header-inner header-main-inner">
             <!-- 로고 -->
             <div class="header-col header-logo-group">
-                <a href="/" class="text-decoration-none">
-                    <img src="/assets/images/common/icon_eclub_title.svg" alt="이클럽 로고">
+                <a href="/emart/" class="text-decoration-none">
+                    <img src="/emart/assets/images/common/icon_eclub_title.svg" alt="이클럽 로고">
                 </a>
             </div>
 
@@ -89,7 +89,7 @@
                     <button type="button" class="btn-clear">
                         <i class="icon-close-x"></i>
                     </button>
-                    <button type="button" class="btn-search" onclick="location.href='/pages/search_result.html'">
+                    <button type="button" class="btn-search" onclick="location.href='/emart/pages/search_result.html'">
                         <i class="icon-search"></i>
                     </button>
                 </div>
@@ -341,11 +341,11 @@
 
             <!-- 아이콘 그룹 -->
             <div class="header-col header-icon-group">
-                <a href="/pages/cart.html">
+                <a href="/emart/pages/cart.html">
                     <span class="cart-count">100</span>
                     <i class="icon-header-cart"></i></a>
                 <a href="#"><i class="icon-header-heart"></i></a>
-                <a href="/pages/mypage.html" >
+                <a href="/emart/pages/mypage.html" >
                     <i class="icon-header-mypage"></i>
                 </a>
                 <div class="vr-custom"></div>
@@ -407,39 +407,39 @@
                                 </div>
                                 <div class="detail-grid">
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb01.png" alt="커피/차" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Coffee'">
+                                        <img src="/emart/assets/images/category/category-thumb01.png" alt="커피/차" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Coffee'">
                                         <span class="item-name">커피・차</span>
                                     </a>
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb02.png" alt="생수/음료" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Water'">
+                                        <img src="/emart/assets/images/category/category-thumb02.png" alt="생수/음료" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Water'">
                                         <span class="item-name">생수・음료・건강</span>
                                     </a>
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb03.png" alt="라면" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Noodle'">
+                                        <img src="/emart/assets/images/category/category-thumb03.png" alt="라면" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Noodle'">
                                         <span class="item-name">라면・통조림・상온 즉석</span>
                                     </a>
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb04.png" alt="과자" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Snack'">
+                                        <img src="/emart/assets/images/category/category-thumb04.png" alt="과자" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Snack'">
                                         <span class="item-name">과자・씨리얼・초콜릿</span>
                                     </a>
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb05.png" alt="조미료" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Sauce'">
+                                        <img src="/emart/assets/images/category/category-thumb05.png" alt="조미료" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Sauce'">
                                         <span class="item-name">조미료・장류</span>
                                     </a>
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb06.png" alt="냉동" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Frozen'">
+                                        <img src="/emart/assets/images/category/category-thumb06.png" alt="냉동" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Frozen'">
                                         <span class="item-name">냉동・냉장・간편식</span>
                                     </a>
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb07.png" alt="유제품" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Milk'">
+                                        <img src="/emart/assets/images/category/category-thumb07.png" alt="유제품" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Milk'">
                                         <span class="item-name">유제품・아이스크림</span>
                                     </a>
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb08.png" alt="과일" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Fruit'">
+                                        <img src="/emart/assets/images/category/category-thumb08.png" alt="과일" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Fruit'">
                                         <span class="item-name">과일・채소</span>
                                     </a>
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb09.png" alt="정육" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Meat'">
+                                        <img src="/emart/assets/images/category/category-thumb09.png" alt="정육" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Meat'">
                                         <span class="item-name">축산・수산・건해산</span>
                                     </a>
                                 </div>
@@ -455,31 +455,31 @@
                                 </div>
                                 <div class="detail-grid">
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb10.png" alt="화장지" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Tissue'">
+                                        <img src="/emart/assets/images/category/category-thumb10.png" alt="화장지" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Tissue'">
                                         <span class="item-name">화장지・티슈・위생용품</span>
                                     </a>
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb11.png" alt="세제" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Detergent'">
+                                        <img src="/emart/assets/images/category/category-thumb11.png" alt="세제" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Detergent'">
                                         <span class="item-name">세제・주방・욕실</span>
                                     </a>
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb12.png" alt="헤어" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Body'">
+                                        <img src="/emart/assets/images/category/category-thumb12.png" alt="헤어" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Body'">
                                         <span class="item-name">헤어・바디・구강케어</span>
                                     </a>
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb13.png" alt="일회용품" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Etc'">
+                                        <img src="/emart/assets/images/category/category-thumb13.png" alt="일회용품" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Etc'">
                                         <span class="item-name">일회용품・건전지・기타</span>
                                     </a>
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb14.png" alt="속옷" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Underwear'">
+                                        <img src="/emart/assets/images/category/category-thumb14.png" alt="속옷" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Underwear'">
                                         <span class="item-name">속옷</span>
                                     </a>
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb15.png" alt="분유" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Baby'">
+                                        <img src="/emart/assets/images/category/category-thumb15.png" alt="분유" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Baby'">
                                         <span class="item-name">분유</span>
                                     </a>
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb16.png" alt="반려동물" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Pet'">
+                                        <img src="/emart/assets/images/category/category-thumb16.png" alt="반려동물" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Pet'">
                                         <span class="item-name">반려동물용품</span>
                                     </a>
                                 </div>
@@ -495,15 +495,15 @@
                                 </div>
                                 <div class="detail-grid">
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb01.png" alt="단독" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Only'">
+                                        <img src="/emart/assets/images/category/category-thumb01.png" alt="단독" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Only'">
                                         <span class="item-name">이클럽 단독</span>
                                     </a>
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb02.png" alt="PB" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=PB'">
+                                        <img src="/emart/assets/images/category/category-thumb02.png" alt="PB" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=PB'">
                                         <span class="item-name">자체브랜드(PB)</span>
                                     </a>
                                     <a href="#" class="detail-item">
-                                        <img src="/assets/images/category/category-thumb03.png" alt="대용량" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Bulk'">
+                                        <img src="/emart/assets/images/category/category-thumb03.png" alt="대용량" class="item-img" onerror="this.src='https://via.placeholder.com/80/f4f4f4/aaa?text=Bulk'">
                                         <span class="item-name">대용량 추천</span>
                                     </a>
                                 </div>
@@ -569,7 +569,7 @@
             <div class="popup-footer">
                 <div class="btn-group-half">
                     <div class="btn-area">
-                        <button type="button" class="btn-popup btn-gray" onclick="location.href='/pages/mypage.html'">마이페이지 이동</button>
+                        <button type="button" class="btn-popup btn-gray" onclick="location.href='/emart/pages/mypage.html'">마이페이지 이동</button>
                     </div>
                     <div class="btn-area">
                         <button type="button" class="btn-popup btn-primary" data-bs-dismiss="modal">확인</button>
@@ -645,7 +645,7 @@
                         <button type="button" class="btn-popup btn-gray" data-bs-dismiss="modal">계속 쇼핑하기</button>
                     </div>
                     <div class="btn-area">
-                        <button type="button" class="btn-popup btn-primary" onclick="location.href='/pages/cart.html'">장바구니이동</button>
+                        <button type="button" class="btn-popup btn-primary" onclick="location.href='/emart/pages/cart.html'">장바구니이동</button>
                     </div>
                 </div>
             </div>
