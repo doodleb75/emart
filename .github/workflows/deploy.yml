@@ -1,0 +1,38 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Path Correction for GitHub Pages (Root to Repo-Relative)
+        run: |
+          # HTML, CSS, JS 파일에서 절대 경로(/)를 저장소 이름(/emart/)으로 변환
+          # 예: src="/assets/..." -> src="/emart/assets/..."
+          
+          # 1. HTML/CSS/JS 파일 찾기
+          # 2. sed를 사용하여 경로 치환
+          find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -exec sed -i 's|src="/|src="/emart/|g' {} +
+          find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -exec sed -i 's|href="/|href="/emart/|g' {} +
+          find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -exec sed -i "s|url('/|url('/emart/|g" {} +
+          find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -exec sed -i 's|url(/|url(/emart/|g' {} +
+          
+          echo "Path correction complete."
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages  # 배포될 브랜치
