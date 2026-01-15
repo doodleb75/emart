@@ -2047,7 +2047,7 @@ async function saveUserZoom(zoomValue) {
 
     // TODO: 로그인 상태라면 서버 DB에 저장하는 API 호출 로직 추가 예정
     // if (isLoggedIn) {
-    //     await fetch('/api/user/settings/zoom', { method: 'POST', body: JSON.stringify({ zoom: zoomValue }) });
+    //     await fetch('/emart/api/user/settings/zoom', { method: 'POST', body: JSON.stringify({ zoom: zoomValue }) });
     // }
 }
 
