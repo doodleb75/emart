@@ -1,0 +1,57 @@
+<footer class="mobile-footer">
+    <div class="footer-logo">
+        <img src="/assets/images/common/icon_eclub_title.svg" alt="이클럽 로고">
+    </div>
+
+    <div class="footer-links-grid">
+        <div class="link-column">
+            <a href="#">공지사항</a>
+            <a href="#">자주하는질문</a>
+            <a href="#">설문조사</a>
+            <a href="#">이용약관</a>
+        </div>
+        <div class="link-column">
+            <a href="#">고객의 소리</a>
+            <a href="#">자료실</a>
+            <a href="#" class="bold">개인정보처리방침 <i class="icon icon-diagonal-arrow"></i></a>
+        </div>
+    </div>
+
+    <button class="footer-info-toggle">
+        주식회사 이마트 사업자 정보
+        <i class="icon icon-chevron-down"></i>
+    </button>
+
+    <div class="footer-details">
+        <div class="info-row">
+            <div class="icon-wrap">
+                <i class="icon icon-cs-manager"></i>
+            </div>
+            <span class="label">회원점 담당자 :</span>
+            <span class="value">도담매니저</span>
+        </div>
+        <div class="contact-large">
+            <div class="icon-wrap">
+                <i class="icon icon-cs-phone"></i>
+            </div>
+            010 · 1234 · 5678
+        </div>
+        <div class="info-row">
+            <div class="icon-wrap">
+                <i class="icon icon-cs-clock"></i>
+            </div>
+            <span class="value">평일: 08시 30분 ~ 17시 30분 · 공휴일 휴무</span>
+        </div>
+    </div>
+
+    <div class="copyright">Copyright @ E-MART Inc. All Rights Reserved.</div>
+
+    <div class="floating-buttons">
+        <button class="btn-float btn-cart">
+            <i class="icon icon-cart"></i>
+        </button>
+        <button class="btn-float btn-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+            <i class="icon icon-top-arrow"></i>
+        </button>
+    </div>
+</footer>

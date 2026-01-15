@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지 - e-Club</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/emart/assets/styles/pc.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- 헤더 Placeholder -->
+    <div id="header-placeholder"></div>
+    <main class="mypage-page">
+        <div class="section-container">
+
+            <div class="page-header">
+                <h2 class="page-title">마이페이지</h2>
+            </div>
+
+            <!-- 상단 요약/필터 그룹 -->
+            <div class="mypage-top-wrapper">
+                <!-- 프로필 섹션 -->
+                <div class="profile-container">
+                    <div class="profile-info">
+                        <div class="profile-top-row">
+                            <div class="user-info-group">
+                                <span class="badge-grade family">
+                                    <i class="icon icon-star-badge"></i>
+                                    FAMILY</span>
+                                <div class="user-detail">
+                                    <span class="name">박********수</span>
+                                    <span class="dot"></span>
+                                    <span class="join-date">가입일 : 2025년 08월 06일</span>
+                                </div>
+                                <button class="btn-edit">
+                                    <i class="icon icon-edit"></i>
+                                    회원정보 수정
+                                </button>
+                            </div>
+                            <div class="v-divider"></div>
+                            <div class="qna-info-group">
+                                <div class="qna-item">
+                                    <span class="label">질문 :</span>
+                                    <span class="count highlight">0</span>건
+                                </div>
+                                <span class="dot"></span>
+                                <div class="qna-item">
+                                    <span class="label">답변 :</span>
+                                    <span class="count highlight">0</span>건
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-summary-row">
+                        <a href="#" class="summary-item">
+                            <span class="label">진행중 주문</span>
+                            <span class="count">0</span>
+                        </a>
+                        <div class="v-divider"></div>
+                        <a href="#" class="summary-item">
+                            <span class="label">금일 배송예정 품목</span>
+                            <span class="count">6</span>
+                        </a>
+                        <div class="v-divider"></div>
+                        <a href="#" class="summary-item">
+                            <span class="label">관심상품</span>
+                            <span class="count">5</span>
+                        </a>
+                        <div class="v-divider"></div>
+                        <a href="/emart/pages/cart.html" class="summary-item">
+                            <span class="label">장바구니</span>
+                            <span class="count">69</span>
+                        </a>
+                        <div class="v-divider"></div>
+                        <a href="#" class="summary-item">
+                            <span class="label">보유쿠폰</span>
+                            <span class="count">0</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 등급 혜택 및 다음 달 예상 등급 -->
+                <div class="grade-benefit-section">
+                    <div class="grade-row">
+                        <div class="info-title">
+                            <i class="icon icon-info-circle-mypage"></i>
+                            <span>회원등급 혜택 안내 | 다음 달 예상 등급</span>
+                        </div>
+                        <div class="v-divider"></div>
+                        <div class="grade-status">
+                            <span class="label">현재 등급</span>
+                            <span class="badge-grade family">
+                                <i class="icon icon-star-badge"></i>
+                                FAMILY</span>
+                            <i class="icon icon-arrow-right-mypage"></i>
+                            <span class="label label-next">다음 달 예상 등급</span>
+                            <span class="badge-grade bronze">
+                                <i class="icon icon-star-badge"></i>
+                                BRONZE</span>
+                        </div>
+                    </div>
+                    <div class="condition-row">
+                        <div class="condition-msg">
+                            <i class="icon icon-chat-dots"></i>
+                            <span>다음 조건을 달성하면 등급이 업그레이드됩니다.</span>
+                        </div>
+                        <div class="v-divider"></div>
+                        <div class="conditions">
+                            <div class="condition-item">
+                                <span class="label">배송금액 :</span>
+                                <span class="value">9,000,000 원</span>
+                            </div>
+                            <div class="condition-item">
+                                <span class="label">배송일수 :</span>
+                                <span class="value">9 일</span>
+                            </div>
+                            <div class="condition-item">
+                                <span class="label">배송품목수 :</span>
+                                <span class="value">150 품목</span>
+                            </div>
+                        </div>
+                        <button class="btn-benefit">
+                            <i class="icon icon-external-link"></i>
+                            회원등급 혜택보기
+                        </button>
+                    </div>
+                </div>
+
+
+
+                <!-- 데이터 카드 요약 -->
+                <div class="stats-grid">
+                    <a href="mypage.html?pageFlag=1" class="stat-card" id="card-1">
+                        <span class="label">이번 달 배송금액</span>
+                        <span class="value">9,000,000 <span class="unit">원</span></span>
+                    </a>
+                    <a href="mypage.html?pageFlag=2" class="stat-card" id="card-2">
+                        <span class="label">이번 달 장려금</span>
+                        <span class="value">0 <span class="unit">원</span></span>
+                    </a>
+                    <a href="mypage.html?pageFlag=3" class="stat-card" id="card-3">
+                        <span class="label">오늘 주문 총액</span>
+                        <span class="value">9,000,000 <span class="unit">원</span></span>
+                    </a>
+                    <a href="mypage.html?pageFlag=4" class="stat-card" id="card-4">
+                        <span class="label">오늘 취소 · 환불금액</span>
+                        <span class="value">0 <span class="unit">원</span></span>
+                    </a>
+                    <a href="mypage.html?pageFlag=5" class="stat-card" id="card-5">
+                        <span class="label">사용 가능 포인트</span>
+                        <span class="value">9,000,000 <span class="unit">원</span></span>
+                    </a>
+                </div>
+
+                <div class="mypage-section-wrapper">
+                    <!-- 이번 달 배송금액 (flag=1) -->
+                    <div id="section-1" class="mypage-section">
+                        <!-- 필터 섹션 -->
+                        <div class="filter-container">
+                            <div class="filter-row">
+                                <div class="filter-label">일자 <span class="required">*</span></div>
+                                <div class="filter-content">
+                                    <div class="date-group">
+                                        <div class="date-input-wrap">
+                                            <input type="date" value="2026-01-01" class="form-input" id="startDate">
+                                            <button type="button" class="btn-calendar"
+                                                aria-label="Open calendar"></button>
+                                            <div id="calendar-start" class="calendar-popup"></div>
+                                        </div>
+                                        <span class="sep">-</span>
+                                        <div class="date-input-wrap">
+                                            <input type="date" value="2026-01-01" class="form-input" id="endDate">
+                                            <button type="button" class="btn-calendar"
+                                                aria-label="Open calendar"></button>
+                                            <div id="calendar-end" class="calendar-popup"></div>
+                                        </div>
+                                    </div>
+                                    <div class="period-btn-group">
+                                        <input type="radio" class="btn-check" name="period" id="today" checked>
+                                        <label class="btn-period" for="today">당일</label>
+
+                                        <input type="radio" class="btn-check" name="period" id="week">
+                                        <label class="btn-period" for="week">일주일</label>
+
+                                        <input type="radio" class="btn-check" name="period" id="month">
+                                        <label class="btn-period" for="month">한달</label>
+                                    </div>
+                                    <div class="filter-sub-group">
+                                        <label>익일배송구분</label>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap">
+                                                <span class="selected-value">전체</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li class="active">전체</li>
+                                                <li>익일</li>
+                                                <li>일반</li>
+                                                <li>당일</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-row">
+                                <div class="filter-label">상품 <span class="required">*</span></div>
+                                <div class="filter-content">
+                                    <input type="text" class="product-input" placeholder="상품명을 입력하세요">
+                                    <div class="filter-sub-group">
+                                        <label>과면세</label>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap">
+                                                <span class="selected-value">전체</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li class="active">전체</li>
+                                                <li>면세</li>
+                                                <li>과세</li>
+                                                <li>명세</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="filter-sub-group">
+                                        <label>경로</label>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap">
+                                                <span class="selected-value">전체</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li class="active">전체</li>
+                                                <li>TC</li>
+                                                <li>DC</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="filter-sub-group">
+                                        <label>상품구분</label>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap">
+                                                <span class="selected-value">전체</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li class="active">전체</li>
+                                                <li>상온</li>
+                                                <li>저온</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn-search">
+                                        <i class="icon icon-search-filter"></i>
+                                        조회
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-container">
+                            <div class="list-header">
+                                <div class="info">
+                                    <span class="total">총 주문금액 : <span class="val highlight">2,830,470</span> 원</span>
+                                    <span class="sep-dot"></span>
+                                    <span class="total">총 배송예정금액 : <span class="val highlight">0</span> 원</span>
+                                </div>
+                                <div class="actions">
+                                    <button class="btn-excel-download">
+
+                                        <i class="icon-excel"></i>
+                                        엑셀 다운로드
+
+                                        <i class="icon icon-download-arrow"></i>
+                                    </button>
+                                    <div class="dropdown-wrapper">
+                                        <div class="select-wrap" id="itemsPerPageTrigger">
+                                            <span class="selected-value">5개씩 보기</span>
+                                            <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                        </div>
+                                        <ul class="dropdown-options">
+                                            <li data-value="5" class="active">5개씩 보기</li>
+                                            <li data-value="10">10개씩 보기</li>
+                                            <li data-value="20">20개씩 보기</li>
+                                            <li data-value="30">30개씩 보기</li>
+                                            <li data-value="50">50개씩 보기</li>
+                                            <li data-value="100">100개씩 보기</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table custom-table">
+                                    <thead>
+                                        <tr>
+                                            <th>배송일자</th>
+                                            <th>주문일자</th>
+                                            <th>익일배송</th>
+                                            <th>상품코드</th>
+                                            <th>상품명</th>
+                                            <th>원단가</th>
+                                            <th>구매단가</th>
+                                            <th>입수</th>
+                                            <th>주문수량</th>
+                                            <th>배송수량</th>
+                                            <th>주문금액</th>
+                                            <th>배송금액</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-info"><a class="text-info">2026-01-06</a></td>
+                                            <td>2026-01-06</td>
+                                            <td>일반</td>
+                                            <td>8801759016647</td>
+                                            <td class="text-start">칠갑 우리쌀 떡국떡2kg</td>
+                                            <td class="text-end">7,450</td>
+                                            <td class="text-end">7,450</td>
+                                            <td>24</td>
+                                            <td>24</td>
+                                            <td>0</td>
+                                            <td class="text-accent text-end">18,960</td>
+                                            <td class="text-accent text-end">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-info"><a class="text-info">2026-01-06</a></td>
+                                            <td>2026-01-06</td>
+                                            <td>일반</td>
+                                            <td>8801007826011</td>
+                                            <td class="text-start">해태 고향만두+잡채 300g*3, 외 5건</td>
+                                            <td class="text-end">2,970</td>
+                                            <td class="text-end">2,970</td>
+                                            <td>1</td>
+                                            <td>2</td>
+                                            <td>0</td>
+                                            <td class="text-accent text-end">14,900</td>
+                                            <td class="text-accent text-end">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-info"><a class="text-info">2026-01-06</a></td>
+                                            <td>2026-01-06</td>
+                                            <td>일반</td>
+                                            <td>8809009553355</td>
+                                            <td class="text-start">프링글스 양파맛 110g, 외 8건</td>
+                                            <td class="text-end">1,240</td>
+                                            <td class="text-end">1,240</td>
+                                            <td>12</td>
+                                            <td>12</td>
+                                            <td>0</td>
+                                            <td class="text-accent text-end">81,840</td>
+                                            <td class="text-accent text-end">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-info"><a class="text-info">2026-01-06</a></td>
+                                            <td>2026-01-06</td>
+                                            <td>일반</td>
+                                            <td>8801759016647</td>
+                                            <td class="text-start">칠갑 우리쌀 떡국떡2kg</td>
+                                            <td class="text-end">7,450</td>
+                                            <td class="text-end">7,450</td>
+                                            <td>24</td>
+                                            <td>24</td>
+                                            <td>0</td>
+                                            <td class="text-accent text-end">18,960</td>
+                                            <td class="text-accent text-end">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-info"><a class="text-info">2026-01-06</a></td>
+                                            <td>2026-01-06</td>
+                                            <td>일반</td>
+                                            <td>8801007826011</td>
+                                            <td class="text-start">해태 고향만두+잡채 300g*3, 외 5건</td>
+                                            <td class="text-end">2,970</td>
+                                            <td class="text-end">2,970</td>
+                                            <td>1</td>
+                                            <td>2</td>
+                                            <td>0</td>
+                                            <td class="text-accent text-end">14,900</td>
+                                            <td class="text-accent text-end">0</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- 최근 주문 내역 리스트 -->
+                        <div class="list-container">
+                            <div class="list-title">최근 주문 내역리스트</div>
+                            <div class="table-responsive">
+                                <table class="table custom-table">
+                                    <thead>
+                                        <tr>
+                                            <th>주문일자 (주문번호)</th>
+                                            <th>상품명</th>
+                                            <th>결제수단</th>
+                                            <th>주문금액</th>
+                                            <th>배송구분</th>
+                                            <th>배송금액</th>
+                                            <th>배송예정일</th>
+                                            <th>상태</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-start">2026-01-06<br><span
+                                                    class="order-no">202601050001</span></td>
+                                            <td class="text-start">칠갑 우리쌀 떡국떡2kg, 외 6건</td>
+                                            <td>가상계좌</td>
+                                            <td class="text-accent text-end">1,274,700</td>
+                                            <td>일반</td>
+                                            <td class="text-end text-accent">0</td>
+                                            <td>2026-01-08</td>
+                                            <td>주문취소</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start">2026-01-06<br><span
+                                                    class="order-no">202601050001</span></td>
+                                            <td class="text-start">해태 고향만두+잡채 300g*3, 외 5건</td>
+                                            <td>가상계좌</td>
+                                            <td class="text-accent text-end">954,550</td>
+                                            <td>일반</td>
+                                            <td class="text-end text-accent">0</td>
+                                            <td>2025-12-31</td>
+                                            <td>주문취소</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start">2026-01-06<br><span
+                                                    class="order-no">202601050001</span></td>
+                                            <td class="text-start">프링글스 양파맛 110g, 외 8건</td>
+                                            <td>가상계좌</td>
+                                            <td class="text-accent text-end">601,220</td>
+                                            <td>일반</td>
+                                            <td class="text-end text-accent">0</td>
+                                            <td>2025-12-31</td>
+                                            <td>주문취소</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- 식용란 선별 포장 확인서 확인 -->
+                        <div class="list-container">
+                            <div class="list-title">식용란 선별 포장 확인서 확인</div>
+                            <div class="table-responsive">
+                                <table class="table custom-table">
+                                    <thead>
+                                        <tr>
+                                            <th>주문일자 (주문번호)</th>
+                                            <th>상품명</th>
+                                            <th>구매단가</th>
+                                            <th>주문수량</th>
+                                            <th>협력사명</th>
+                                            <th>확인서 파일</th>
+                                            <th>확인서 파일 만료일</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="7" class="empty-cell">조회된 내역이 없습니다.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 이번 달 장려금 (flag=2) -->
+                    <div id="section-2" class="mypage-section" style="display:none;">
+
+                        <!-- 필터 섹션 -->
+                        <div class="filter-container">
+                            <div class="filter-row">
+                                <div class="filter-label sep-line">상품 <span class="required">*</span></div>
+                                <div class="filter-content">
+                                    <input type="text" class="product-input" placeholder="상품명을 입력하세요">
+
+                                </div>
+
+                                <div class="filter-sub-group">
+                                    <div class="filter-label-group">
+                                        <label>과면세</label>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap">
+                                                <span class="selected-value">전체</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li class="active">전체</li>
+                                                <li>면세</li>
+                                                <li>과세</li>
+                                                <li>명세</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="filter-label-group">
+                                        <label>경로</label>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap">
+                                                <span class="selected-value">전체</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li class="active">전체</li>
+                                                <li>TC</li>
+                                                <li>DC</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="filter-label-group">
+                                        <label>상품구분</label>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap">
+                                                <span class="selected-value">전체</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li class="active">전체</li>
+                                                <li>상온</li>
+                                                <li>저온</li>
+                                            </ul>
+                                        </div>
+                                        <button type="button" class="btn-search">
+                                            <i class="icon icon-search-filter"></i>
+                                            조회
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-container">
+                                <div class="list-header">
+                                    <div class="info deposit-info">
+                                        <span class="info-item">입금은행 : <span class="val"></span></span>
+                                        <span class="v-divider"></span>
+                                        <span class="info-item">입금계좌 : <span class="val"></span></span>
+                                        <span class="v-divider"></span>
+                                        <span class="info-item">입금주 : <span class="val"></span></span>
+                                    </div>
+                                    <div class="actions">
+                                        <button class="btn-edit">
+                                            <i class="icon icon-edit"></i>
+                                            회원정보 수정
+                                        </button>
+                                        <button class="btn-excel-download">
+
+                                            <i class="icon-excel"></i>
+                                            엑셀 다운로드
+
+                                            <i class="icon icon-download-arrow"></i>
+                                        </button>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap" id="itemsPerPageTrigger">
+                                                <span class="selected-value">5개씩 보기</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li data-value="5">5개씩 보기</li>
+                                                <li data-value="10">10개씩 보기</li>
+                                                <li data-value="20">20개씩 보기</li>
+                                                <li data-value="30">30개씩 보기</li>
+                                                <li data-value="50" class="active">50개씩 보기</li>
+                                                <li data-value="100">100개씩 보기</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th>상품코드</th>
+                                                <th>상품명</th>
+                                                <th>원단가</th>
+                                                <th>구매단가</th>
+                                                <th>입수</th>
+                                                <th>주문 수량</th>
+                                                <th>배송예정 수량</th>
+                                                <th>주문금액</th>
+                                                <th>배송예정금액</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>8801759016647</td>
+                                                <td class="text-start">칠갑 우리쌀 떡국떡2kg</td>
+                                                <td class="text-end">7,450</td>
+                                                <td class="text-end">7,450</td>
+                                                <td>24</td>
+                                                <td>24</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">18,960</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td>8801007826011</td>
+                                                <td class="text-start">해태 고향만두+잡채 300g*3, 외 5건</td>
+                                                <td class="text-end">2,970</td>
+                                                <td class="text-end">2,970</td>
+                                                <td>1</td>
+                                                <td>2</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">14,900</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td>8809009553355</td>
+                                                <td class="text-start">프링글스 양파맛 110g, 외 8건</td>
+                                                <td class="text-end">1,240</td>
+                                                <td class="text-end">1,240</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">81,840</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td>8801759016647</td>
+                                                <td class="text-start">칠갑 우리쌀 떡국떡2kg</td>
+                                                <td class="text-end">7,450</td>
+                                                <td class="text-end">7,450</td>
+                                                <td>24</td>
+                                                <td>24</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">18,960</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td>8801007826011</td>
+                                                <td class="text-start">해태 고향만두+잡채 300g*3, 외 5건</td>
+                                                <td class="text-end">2,970</td>
+                                                <td class="text-end">2,970</td>
+                                                <td>1</td>
+                                                <td>2</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">14,900</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- 최근 주문 내역 리스트 -->
+                            <div class="list-container">
+                                <div class="list-title">최근 주문 내역리스트</div>
+                                <div class="table-responsive">
+                                    <table class="table custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-order">주문일자 (주문번호)</th>
+                                                <th>상품명</th>
+                                                <th>결제수단</th>
+                                                <th>주문금액</th>
+                                                <th>배송구분</th>
+                                                <th>배송금액</th>
+                                                <th>배송예정일</th>
+                                                <th>상태</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-start col-order">2026-01-06<br><span
+                                                        class="order-no">202601050001</span>
+                                                </td>
+                                                <td class="text-start">칠갑 우리쌀 떡국떡2kg, 외 6건</td>
+                                                <td>가상계좌</td>
+                                                <td class="text-accent text-end">1,274,700</td>
+                                                <td>일반</td>
+                                                <td class="text-end text-accent">0</td>
+                                                <td>2026-01-08</td>
+                                                <td>주문취소</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-start col-order">2026-01-06<br><span
+                                                        class="order-no">202601050001</span>
+                                                </td>
+                                                <td class="text-start">해태 고향만두+잡채 300g*3, 외 5건</td>
+                                                <td>가상계좌</td>
+                                                <td class="text-accent text-end">954,550</td>
+                                                <td>일반</td>
+                                                <td class="text-end text-accent">0</td>
+                                                <td>2025-12-31</td>
+                                                <td>주문취소</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-start col-order">2026-01-06<br><span
+                                                        class="order-no">202601050001</span>
+                                                </td>
+                                                <td class="text-start">프링글스 양파맛 110g, 외 8건</td>
+                                                <td>가상계좌</td>
+                                                <td class="text-accent text-end">601,220</td>
+                                                <td>일반</td>
+                                                <td class="text-end text-accent">0</td>
+                                                <td>2025-12-31</td>
+                                                <td>주문취소</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- 식용란 선별 포장 확인서 확인 -->
+                            <div class="list-container">
+                                <div class="list-title">식용란 선별 포장 확인서 확인</div>
+                                <div class="table-responsive">
+                                    <table class="table custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-order">주문일자 (주문번호)</th>
+                                                <th>상품명</th>
+                                                <th>구매단가</th>
+                                                <th>주문수량</th>
+                                                <th>협력사명</th>
+                                                <th>확인서 파일</th>
+                                                <th>확인서 파일 만료일</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="7" class="empty-cell">조회된 내역이 없습니다.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- 오늘 주문 총액 (flag=3) -->
+                    <div id="section-3" class="mypage-section" style="display:none;">
+
+                        <!-- 필터 섹션 -->
+                        <div class="filter-container">
+                            <div class="filter-row">
+                                <div class="filter-label sep-line">상품 <span class="required">*</span></div>
+                                <div class="filter-content">
+                                    <input type="text" class="product-input" placeholder="상품명을 입력하세요">
+
+                                </div>
+
+                                <div class="filter-sub-group">
+                                    <div class="filter-label-group">
+                                        <label>과면세</label>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap">
+                                                <span class="selected-value">전체</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li class="active">전체</li>
+                                                <li>면세</li>
+                                                <li>과세</li>
+                                                <li>명세</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="filter-label-group">
+                                        <label>경로</label>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap">
+                                                <span class="selected-value">전체</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li class="active">전체</li>
+                                                <li>TC</li>
+                                                <li>DC</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="filter-label-group">
+                                        <label>상품구분</label>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap">
+                                                <span class="selected-value">전체</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li class="active">전체</li>
+                                                <li>상온</li>
+                                                <li>저온</li>
+                                            </ul>
+                                        </div>
+                                        <button type="button" class="btn-search">
+                                            <i class="icon icon-search-filter"></i>
+                                            조회
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-container">
+                                <div class="list-header">
+                                    <div class="info">
+                                        <span class="total">총 주문금액 : <span class="val highlight">2,830,470</span>
+                                            원</span>
+                                        <span class="sep-dot"></span>
+                                        <span class="total">총 배송예정금액 : <span class="val highlight">0</span> 원</span>
+                                    </div>
+                                    <div class="actions">
+                                        <button class="btn-excel-download">
+
+                                            <i class="icon-excel"></i>
+                                            엑셀 다운로드
+
+                                            <i class="icon icon-download-arrow"></i>
+                                        </button>
+                                        <div class="dropdown-wrapper" style="width: 147px;">
+                                            <div class="select-wrap" id="itemsPerPageTrigger">
+                                                <span class="selected-value">5개씩 보기</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li data-value="5">5개씩 보기</li>
+                                                <li data-value="10">10개씩 보기</li>
+                                                <li data-value="20">20개씩 보기</li>
+                                                <li data-value="30">30개씩 보기</li>
+                                                <li data-value="50" class="active">50개씩 보기</li>
+                                                <li data-value="100">100개씩 보기</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th>배송일자</th>
+                                                <th>주문일자</th>
+                                                <th>익일배송</th>
+                                                <th>상품코드</th>
+                                                <th>상품명</th>
+                                                <th>원단가</th>
+                                                <th>구매단가</th>
+                                                <th>입수</th>
+                                                <th>주문 수량</th>
+                                                <th>배송 수량</th>
+                                                <th>주문금액</th>
+                                                <th>배송금액</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-info">2026-01-06</td>
+                                                <td>2026-01-06</td>
+                                                <td>일반</td>
+                                                <td>8801759016647</td>
+                                                <td class="text-start">칠갑 우리쌀 떡국떡2kg</td>
+                                                <td class="text-end">7,450</td>
+                                                <td class="text-end">7,450</td>
+                                                <td>24</td>
+                                                <td>24</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">18,960</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-info">2026-01-06</td>
+                                                <td>2026-01-06</td>
+                                                <td>일반</td>
+                                                <td>8801007826011</td>
+                                                <td class="text-start">해태 고향만두+잡채 300g*3, 외 5건</td>
+                                                <td class="text-end">2,970</td>
+                                                <td class="text-end">2,970</td>
+                                                <td>1</td>
+                                                <td>2</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">14,900</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-info">2026-01-06</td>
+                                                <td>2026-01-06</td>
+                                                <td>일반</td>
+                                                <td>8809009553355</td>
+                                                <td class="text-start">프링글스 양파맛 110g, 외 8건</td>
+                                                <td class="text-end">1,240</td>
+                                                <td class="text-end">1,240</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">81,840</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-info">2026-01-06</td>
+                                                <td>2026-01-06</td>
+                                                <td>일반</td>
+                                                <td>8801759016647</td>
+                                                <td class="text-start">칠갑 우리쌀 떡국떡2kg</td>
+                                                <td class="text-end">7,450</td>
+                                                <td class="text-end">7,450</td>
+                                                <td>24</td>
+                                                <td>24</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">18,960</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-info">2026-01-06</td>
+                                                <td>2026-01-06</td>
+                                                <td>일반</td>
+                                                <td>8801007826011</td>
+                                                <td class="text-start">해태 고향만두+잡채 300g*3, 외 5건</td>
+                                                <td class="text-end">2,970</td>
+                                                <td class="text-end">2,970</td>
+                                                <td>1</td>
+                                                <td>2</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">14,900</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- 최근 주문 내역 리스트 -->
+                            <div class="list-container">
+                                <div class="list-title">최근 주문 내역리스트</div>
+                                <div class="table-responsive">
+                                    <table class="table custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-order">주문일자 (주문번호)</th>
+                                                <th>상품명</th>
+                                                <th>결제수단</th>
+                                                <th>주문금액</th>
+                                                <th>배송구분</th>
+                                                <th>배송금액</th>
+                                                <th>배송예정일</th>
+                                                <th>상태</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-start col-order">2026-01-06<br><span
+                                                        class="order-no">202601050001</span>
+                                                </td>
+                                                <td class="text-start">칠갑 우리쌀 떡국떡2kg, 외 6건</td>
+                                                <td>가상계좌</td>
+                                                <td class="text-accent text-end">1,274,700</td>
+                                                <td>일반</td>
+                                                <td class="text-end text-accent">0</td>
+                                                <td>2026-01-08</td>
+                                                <td>주문취소</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-start col-order">2026-01-06<br><span
+                                                        class="order-no">202601050001</span>
+                                                </td>
+                                                <td class="text-start">해태 고향만두+잡채 300g*3, 외 5건</td>
+                                                <td>가상계좌</td>
+                                                <td class="text-accent text-end">954,550</td>
+                                                <td>일반</td>
+                                                <td class="text-end text-accent">0</td>
+                                                <td>2025-12-31</td>
+                                                <td>주문취소</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-start col-order">2026-01-06<br><span
+                                                        class="order-no">202601050001</span>
+                                                </td>
+                                                <td class="text-start">프링글스 양파맛 110g, 외 8건</td>
+                                                <td>가상계좌</td>
+                                                <td class="text-accent text-end">601,220</td>
+                                                <td>일반</td>
+                                                <td class="text-end text-accent">0</td>
+                                                <td>2025-12-31</td>
+                                                <td>주문취소</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- 식용란 선별 포장 확인서 확인 -->
+                            <div class="list-container">
+                                <div class="list-title">식용란 선별 포장 확인서 확인</div>
+                                <div class="table-responsive">
+                                    <table class="table custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-order">주문일자 (주문번호)</th>
+                                                <th>상품명</th>
+                                                <th>구매단가</th>
+                                                <th>주문수량</th>
+                                                <th>협력사명</th>
+                                                <th>확인서 파일</th>
+                                                <th>확인서 파일 만료일</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="7" class="empty-cell">조회된 내역이 없습니다.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 오늘 취소 · 환불금액 (flag=4) -->
+                    <div id="section-4" class="mypage-section" style="display:none;">
+
+                        <!-- 필터 섹션 -->
+                        <div class="filter-container">
+                            <div class="filter-row">
+                                <div class="filter-label sep-line">상품 <span class="required">*</span></div>
+                                <div class="filter-content">
+                                    <input type="text" class="product-input" placeholder="상품명을 입력하세요">
+
+                                </div>
+
+                                <div class="filter-sub-group">
+                                    <div class="filter-label-group">
+                                        <label>과면세</label>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap">
+                                                <span class="selected-value">전체</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li class="active">전체</li>
+                                                <li>면세</li>
+                                                <li>과세</li>
+                                                <li>명세</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="filter-label-group">
+                                        <label>경로</label>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap">
+                                                <span class="selected-value">전체</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li class="active">전체</li>
+                                                <li>TC</li>
+                                                <li>DC</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="filter-label-group">
+                                        <label>상품구분</label>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap">
+                                                <span class="selected-value">전체</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li class="active">전체</li>
+                                                <li>상온</li>
+                                                <li>저온</li>
+                                            </ul>
+                                        </div>
+                                        <button type="button" class="btn-search">
+                                            <i class="icon icon-search-filter"></i>
+                                            조회
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-container">
+                                <div class="list-header">
+                                    <div class="info deposit-info">
+                                        <span class="info-item">입금은행 : <span class="val"></span></span>
+                                        <span class="v-divider"></span>
+                                        <span class="info-item">입금계좌 : <span class="val"></span></span>
+                                        <span class="v-divider"></span>
+                                        <span class="info-item">입금주 : <span class="val"></span></span>
+                                    </div>
+                                    <div class="actions">
+                                        <button class="btn-edit">
+                                            <i class="icon icon-edit"></i>
+                                            회원정보 수정
+                                        </button>
+                                        <button class="btn-excel-download">
+
+                                            <i class="icon-excel"></i>
+                                            엑셀 다운로드
+
+                                            <i class="icon icon-download-arrow"></i>
+                                        </button>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap" id="itemsPerPageTrigger">
+                                                <span class="selected-value">5개씩 보기</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li data-value="5">5개씩 보기</li>
+                                                <li data-value="10">10개씩 보기</li>
+                                                <li data-value="20">20개씩 보기</li>
+                                                <li data-value="30">30개씩 보기</li>
+                                                <li data-value="50" class="active">50개씩 보기</li>
+                                                <li data-value="100">100개씩 보기</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-order">배송일자</th>
+                                                <th>주문일자</th>
+                                                <th>익일배송</th>
+                                                <th>상품코드</th>
+                                                <th>상품명</th>
+                                                <th>원단가</th>
+                                                <th>구매단가</th>
+                                                <th>입수</th>
+                                                <th>주문 수량</th>
+                                                <th>배송 수량</th>
+                                                <th>주문금액</th>
+                                                <th>배송금액</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-info">2026-01-06</td>
+                                                <td>2026-01-06</td>
+                                                <td>일반</td>
+                                                <td>8801759016647</td>
+                                                <td class="text-start">칠갑 우리쌀 떡국떡2kg</td>
+                                                <td class="text-end">7,450</td>
+                                                <td class="text-end">7,450</td>
+                                                <td>24</td>
+                                                <td>24</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">18,960</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-info">2026-01-06</td>
+                                                <td>2026-01-06</td>
+                                                <td>일반</td>
+                                                <td>8801007826011</td>
+                                                <td class="text-start">해태 고향만두+잡채 300g*3, 외 5건</td>
+                                                <td class="text-end">2,970</td>
+                                                <td class="text-end">2,970</td>
+                                                <td>1</td>
+                                                <td>2</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">14,900</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-info">2026-01-06</td>
+                                                <td>2026-01-06</td>
+                                                <td>일반</td>
+                                                <td>8809009553355</td>
+                                                <td class="text-start">프링글스 양파맛 110g, 외 8건</td>
+                                                <td class="text-end">1,240</td>
+                                                <td class="text-end">1,240</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">81,840</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-info">2026-01-06</td>
+                                                <td>2026-01-06</td>
+                                                <td>일반</td>
+                                                <td>8801759016647</td>
+                                                <td class="text-start">칠갑 우리쌀 떡국떡2kg</td>
+                                                <td class="text-end">7,450</td>
+                                                <td class="text-end">7,450</td>
+                                                <td>24</td>
+                                                <td>24</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">18,960</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-info">2026-01-06</td>
+                                                <td>2026-01-06</td>
+                                                <td>일반</td>
+                                                <td>8801007826011</td>
+                                                <td class="text-start">해태 고향만두+잡채 300g*3, 외 5건</td>
+                                                <td class="text-end">2,970</td>
+                                                <td class="text-end">2,970</td>
+                                                <td>1</td>
+                                                <td>2</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">14,900</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- 최근 주문 내역 리스트 -->
+                            <div class="list-container">
+                                <div class="list-title">최근 주문 내역리스트</div>
+                                <div class="table-responsive">
+                                    <table class="table custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-order">주문일자 (주문번호)</th>
+                                                <th>상품명</th>
+                                                <th>결제수단</th>
+                                                <th>주문금액</th>
+                                                <th>배송구분</th>
+                                                <th>배송금액</th>
+                                                <th>배송예정일</th>
+                                                <th>상태</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-start col-order">2026-01-06<br><span
+                                                        class="order-no">202601050001</span>
+                                                </td>
+                                                <td class="text-start">칠갑 우리쌀 떡국떡2kg, 외 6건</td>
+                                                <td>가상계좌</td>
+                                                <td class="text-accent text-end">1,274,700</td>
+                                                <td>일반</td>
+                                                <td class="text-end text-accent">0</td>
+                                                <td>2026-01-08</td>
+                                                <td>주문취소</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-start col-order">2026-01-06<br><span
+                                                        class="order-no">202601050001</span>
+                                                </td>
+                                                <td class="text-start">해태 고향만두+잡채 300g*3, 외 5건</td>
+                                                <td>가상계좌</td>
+                                                <td class="text-accent text-end">954,550</td>
+                                                <td>일반</td>
+                                                <td class="text-end text-accent">0</td>
+                                                <td>2025-12-31</td>
+                                                <td>주문취소</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-start col-order">2026-01-06<br><span
+                                                        class="order-no">202601050001</span>
+                                                </td>
+                                                <td class="text-start">프링글스 양파맛 110g, 외 8건</td>
+                                                <td>가상계좌</td>
+                                                <td class="text-accent text-end">601,220</td>
+                                                <td>일반</td>
+                                                <td class="text-end text-accent">0</td>
+                                                <td>2025-12-31</td>
+                                                <td>주문취소</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- 식용란 선별 포장 확인서 확인 -->
+                            <div class="list-container">
+                                <div class="list-title">식용란 선별 포장 확인서 확인</div>
+                                <div class="table-responsive">
+                                    <table class="table custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-order">주문일자 (주문번호)</th>
+                                                <th>상품명</th>
+                                                <th>구매단가</th>
+                                                <th>주문수량</th>
+                                                <th>협력사명</th>
+                                                <th>확인서 파일</th>
+                                                <th>확인서 파일 만료일</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="7" class="empty-cell">조회된 내역이 없습니다.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 사용 가능 포인트 (flag=5) -->
+                    <div id="section-5" class="mypage-section" style="display:none;">
+                        <div class="filter-container">
+                            <div class="filter-row">
+                                <div class="filter-label sep-line">상품 <span class="required">*</span></div>
+                                <div class="filter-content">
+                                    <input type="text" class="product-input" placeholder="상품명을 입력하세요">
+
+                                </div>
+
+                                <div class="filter-sub-group">
+                                    <div class="filter-label-group">
+                                        <label>과면세</label>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap">
+                                                <span class="selected-value">전체</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li class="active">전체</li>
+                                                <li>면세</li>
+                                                <li>과세</li>
+                                                <li>명세</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="filter-label-group">
+                                        <label>경로</label>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap">
+                                                <span class="selected-value">전체</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li class="active">전체</li>
+                                                <li>TC</li>
+                                                <li>DC</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="filter-label-group">
+                                        <label>상품구분</label>
+                                        <div class="dropdown-wrapper">
+                                            <div class="select-wrap">
+                                                <span class="selected-value">전체</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li class="active">전체</li>
+                                                <li>상온</li>
+                                                <li>저온</li>
+                                            </ul>
+                                        </div>
+                                        <button type="button" class="btn-search">
+                                            <i class="icon icon-search-filter"></i>
+                                            조회
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-container">
+                                <div class="list-header">
+                                    <div class="info">
+                                        <span class="total">총 주문금액 : <span class="val highlight">2,830,470</span>
+                                            원</span>
+                                        <span class="sep-dot"></span>
+                                        <span class="total">총 배송예정금액 : <span class="val highlight">0</span> 원</span>
+                                    </div>
+                                    <div class="actions">
+                                        <button class="btn-excel-download">
+
+                                            <i class="icon-excel"></i>
+                                            엑셀 다운로드
+
+                                            <i class="icon icon-download-arrow"></i>
+                                        </button>
+                                        <div class="dropdown-wrapper" style="width: 147px;">
+                                            <div class="select-wrap" id="itemsPerPageTrigger">
+                                                <span class="selected-value">5개씩 보기</span>
+                                                <i class="icon icon-chevron-down-fill icon-arrow"></i>
+                                            </div>
+                                            <ul class="dropdown-options">
+                                                <li data-value="5">5개씩 보기</li>
+                                                <li data-value="10">10개씩 보기</li>
+                                                <li data-value="20">20개씩 보기</li>
+                                                <li data-value="30">30개씩 보기</li>
+                                                <li data-value="50" class="active">50개씩 보기</li>
+                                                <li data-value="100">100개씩 보기</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th>배송일자</th>
+                                                <th>주문일자</th>
+                                                <th>익일배송</th>
+                                                <th>상품코드</th>
+                                                <th>상품명</th>
+                                                <th>원단가</th>
+                                                <th>구매단가</th>
+                                                <th>입수</th>
+                                                <th>주문 수량</th>
+                                                <th>배송 수량</th>
+                                                <th>주문금액</th>
+                                                <th>배송금액</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-info">2026-01-06</td>
+                                                <td>2026-01-06</td>
+                                                <td>일반</td>
+                                                <td>8801759016647</td>
+                                                <td class="text-start">칠갑 우리쌀 떡국떡2kg</td>
+                                                <td class="text-end">7,450</td>
+                                                <td class="text-end">7,450</td>
+                                                <td>24</td>
+                                                <td>24</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">18,960</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-info">2026-01-06</td>
+                                                <td>2026-01-06</td>
+                                                <td>일반</td>
+                                                <td>8801007826011</td>
+                                                <td class="text-start">해태 고향만두+잡채 300g*3, 외 5건</td>
+                                                <td class="text-end">2,970</td>
+                                                <td class="text-end">2,970</td>
+                                                <td>1</td>
+                                                <td>2</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">14,900</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-info">2026-01-06</td>
+                                                <td>2026-01-06</td>
+                                                <td>일반</td>
+                                                <td>8809009553355</td>
+                                                <td class="text-start">프링글스 양파맛 110g, 외 8건</td>
+                                                <td class="text-end">1,240</td>
+                                                <td class="text-end">1,240</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">81,840</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-info">2026-01-06</td>
+                                                <td>2026-01-06</td>
+                                                <td>일반</td>
+                                                <td>8801759016647</td>
+                                                <td class="text-start">칠갑 우리쌀 떡국떡2kg</td>
+                                                <td class="text-end">7,450</td>
+                                                <td class="text-end">7,450</td>
+                                                <td>24</td>
+                                                <td>24</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">18,960</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-info">2026-01-06</td>
+                                                <td>2026-01-06</td>
+                                                <td>일반</td>
+                                                <td>8801007826011</td>
+                                                <td class="text-start">해태 고향만두+잡채 300g*3, 외 5건</td>
+                                                <td class="text-end">2,970</td>
+                                                <td class="text-end">2,970</td>
+                                                <td>1</td>
+                                                <td>2</td>
+                                                <td>0</td>
+                                                <td class="text-accent text-end">14,900</td>
+                                                <td class="text-accent text-end">0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- 최근 주문 내역 리스트 -->
+                            <div class="list-container">
+                                <div class="list-title">최근 주문 내역리스트</div>
+                                <div class="table-responsive">
+                                    <table class="table custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-order">주문일자 (주문번호)</th>
+                                                <th>상품명</th>
+                                                <th>결제수단</th>
+                                                <th>주문금액</th>
+                                                <th>배송구분</th>
+                                                <th>배송금액</th>
+                                                <th>배송예정일</th>
+                                                <th>상태</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-start col-order">2026-01-06<br><span
+                                                        class="order-no">202601050001</span>
+                                                </td>
+                                                <td class="text-start">칠갑 우리쌀 떡국떡2kg, 외 6건</td>
+                                                <td>가상계좌</td>
+                                                <td class="text-accent text-end">1,274,700</td>
+                                                <td>일반</td>
+                                                <td class="text-end text-accent">0</td>
+                                                <td>2026-01-08</td>
+                                                <td>주문취소</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-start col-order">2026-01-06<br><span
+                                                        class="order-no">202601050001</span>
+                                                </td>
+                                                <td class="text-start">해태 고향만두+잡채 300g*3, 외 5건</td>
+                                                <td>가상계좌</td>
+                                                <td class="text-accent text-end">954,550</td>
+                                                <td>일반</td>
+                                                <td class="text-end text-accent">0</td>
+                                                <td>2025-12-31</td>
+                                                <td>주문취소</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-start col-order">2026-01-06<br><span
+                                                        class="order-no">202601050001</span>
+                                                </td>
+                                                <td class="text-start">프링글스 양파맛 110g, 외 8건</td>
+                                                <td>가상계좌</td>
+                                                <td class="text-accent text-end">601,220</td>
+                                                <td>일반</td>
+                                                <td class="text-end text-accent">0</td>
+                                                <td>2025-12-31</td>
+                                                <td>주문취소</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- 식용란 선별 포장 확인서 확인 -->
+                            <div class="list-container">
+                                <div class="list-title">식용란 선별 포장 확인서 확인</div>
+                                <div class="table-responsive">
+                                    <table class="table custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-order">주문일자 (주문번호)</th>
+                                                <th>상품명</th>
+                                                <th>구매단가</th>
+                                                <th>주문수량</th>
+                                                <th>협력사명</th>
+                                                <th>확인서 파일</th>
+                                                <th>확인서 파일 만료일</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="7" class="empty-cell">조회된 내역이 없습니다.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+
+    <!-- 푸터 Placeholder -->
+    <div id="footer-placeholder"></div>
+    <script>
+        function loadComponent(url, placeholderId) {
+            fetch(url + '?v=' + new Date().getTime())
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById(placeholderId).innerHTML = data;
+                    if (placeholderId === 'header-placeholder') {
+                        document.dispatchEvent(new Event('headerLoaded'));
+                    }
+                    if (placeholderId === 'footer-placeholder') {
+                        document.dispatchEvent(new Event('footerLoaded'));
+                    }
+                })
+                .catch(error => console.error('Error loading component:', error));
+        }
+
+        loadComponent('/components/header.component.txt', 'header-placeholder');
+        loadComponent('/components/footer.component.txt', 'footer-placeholder');
+    </script>
+
+    <script src="/emart/assets/js/pages/mypage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/emart/assets/js/main.js"></script>
+    <script src="/emart/assets/js/components/checkbox.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,213 @@
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/mixins";
+@use "../../abstracts/variables" as *;
+
+// 모달 (레이어 팝업) 공통 스타일
+// Bootstrap Modal 구조(modal > modal-dialog > ...)를 기반 커스텀 스타일링
+
+// custom width 설정
+#monthPurchaseModal {
+    pointer-events: none;
+
+    .modal-dialog {
+        min-width: rem(480);
+        pointer-events: auto;
+    }
+}
+
+#minOrderModal {
+    .modal-dialog {
+        min-width: rem(400);
+    }
+}
+
+#logOutModal {
+    .modal-dialog {
+        min-width: rem(320);
+    }
+}
+
+#cartWarningModal {
+    .modal-dialog {
+        min-width: rem(300);
+        max-width: rem(300);
+    }
+}
+
+#productDeleteModal {
+    .modal-dialog {
+        min-width: rem(300);
+        max-width: rem(300);
+    }
+}
+
+.layer-popup {
+    pointer-events: none; // 모달 컨테이너 자체가 클릭을 가로채지 않도록 설정
+
+    .modal-dialog {
+        max-width: rem(400); // 팝업 너비 커스텀
+        pointer-events: auto; // 모달 내부는 클릭 가능하도록 복구
+
+        @include mixins.mobile {
+            max-width: calc(100% - #{$space-xl});
+            margin: $space-md auto;
+        }
+    }
+
+    .popup-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background-color: $white;
+        border: 1.5px solid $gray-300;
+        border-radius: $space-xs;
+        box-shadow: 0 rem(4) rem(20) rgba(0, 0, 0, 0.15);
+        outline: 0;
+        overflow: hidden;
+
+        &.no-header {
+            .popup-body {
+                margin-top: rem(36);
+
+                &.dark-text {
+                    font-size: $font-size-base;
+                    color: $gray-700;
+                }
+            }
+        }
+
+    }
+
+
+    .popup-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: rem(36) $space-lg $space-md;
+
+        .popup-title {
+            margin: 0;
+            font-size: $font-size-lg;
+            font-weight: 600;
+            color: $gray-700;
+            line-height: 1.5;
+        }
+
+
+    }
+
+    .btn-close {
+        padding: 0;
+        background-image: none;
+        position: absolute;
+        top: $space-md;
+        right: $space-md;
+        // background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+        width: rem(20);
+        height: rem(20);
+        border: 0;
+        opacity: 1;
+        cursor: pointer;
+
+        .icon-close-x {
+            color: $gray-700;
+        }
+
+        &:hover {
+            opacity: 0.75;
+        }
+    }
+
+    .popup-body {
+        position: relative;
+        flex: 1 1 auto;
+        padding: 0 $space-lg $space-lg;
+        font-size: $font-size-base;
+        line-height: 150%;
+        color: $gray-600;
+
+        p {
+            font-size: $font-size-base;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: $space-sm;
+            word-break: keep-all;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &.mb-0 {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .popup-footer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 $space-lg $space-lg;
+        border-top: none;
+
+        .btn-group-half {
+            display: flex;
+            width: 100%;
+            gap: $space-sm;
+        }
+
+        .btn-area {
+            display: flex;
+            flex: 1;
+        }
+
+        .btn-popup {
+            width: 100%;
+            height: rem(48);
+            border: none;
+            border-radius: $space-xs;
+            font-size: $font-size-base;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            cursor: pointer;
+
+            &.btn-gray {
+                background-color: $gray-200;
+                color: $gray-700;
+            }
+
+            &.btn-primary {
+                background-color: $secondary-75;
+                color: $gray-700;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+// 부트스트랩 모달 오픈 시 강제 padding 및 overflow 방지 (Sticky 요소 이탈 방지)
+body.modal-open {
+    overflow: unset !important;
+    padding-right: 0 !important;
+
+    // Sticky 요소가 모달 오픈 시 static으로 돌아가는 현상 방지
+    .category-tabs,
+    .summary-sidebar {
+        position: sticky !important;
+    }
+}
+
+// 레이어 팝업 형태의 모달은 스크롤에 영향을 주지 않도록 설정
+.modal.layer-popup {
+    overflow: visible !important;
+    pointer-events: none;
+
+    .modal-dialog {
+        pointer-events: auto;
+    }
+}

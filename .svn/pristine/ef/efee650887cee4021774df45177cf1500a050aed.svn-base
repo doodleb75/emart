@@ -1,0 +1,318 @@
+@charset "utf-8";
+
+// 주간 랭킹 섹션 (Weekly Ranking Section)
+.weekly-ranking {
+    padding-bottom: rem(60);
+
+    .section-header {
+        margin-bottom: $space-lg;
+        align-items: flex-end !important;
+    }
+
+    .section-title-group {
+        display: flex;
+        align-items: center;
+        gap: $space-md;
+    }
+
+    .section-title {
+        font-size: $font-size-xl;
+        font-weight: 700;
+        color: $black;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        margin: 0;
+    }
+
+    .title-divider {
+        width: rem(1);
+        height: $space-md;
+        background-color: $gray-200;
+        display: block;
+    }
+
+    .date-text {
+        font-size: $font-size-base;
+        color: $gray-300;
+        letter-spacing: -0.01em;
+    }
+}
+
+// 컨트롤 (Controls)
+.ranking-control-area {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
+    height: rem(48);
+
+    .control-btn {
+        width: rem(48);
+        height: rem(48);
+        border: rem(1) solid $black;
+        background-color: $white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: $space-xs;
+        cursor: pointer;
+        @include btn-hover-effect;
+        transition: background-color 0.2s;
+
+        img {
+            width: rem(18);
+            height: rem(18);
+            display: block;
+        }
+    }
+
+    // Specific adjustments if needed for pause
+    .btn-pause img {}
+
+    .btn-prev {}
+
+    .page-count {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: $space-sm;
+        font-family: 'Pretendard', sans-serif;
+        min-width: rem(60);
+
+        .current {
+            font-size: $font-size-md;
+            font-weight: 600;
+            color: $black;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: rem(12);
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .total {
+            font-size: $font-size-md;
+            font-weight: 400;
+
+            color: $gray-300;
+        }
+    }
+
+    .control-group {
+        display: flex;
+        align-items: center;
+        gap: $space-sm;
+
+    }
+}
+
+// 랭킹 리스트 (Ranking List)
+
+.ranking-carousel-view {
+    width: 100%;
+    overflow: hidden;
+}
+
+.ranking-carousel-track {
+    display: flex;
+    align-items: flex-start;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+
+
+.ranking-list {
+    flex: 0 0 100%;
+    width: 100%;
+    border-top: none;
+}
+
+.ranking-item {
+    border-bottom: rem(1) solid $gray-100;
+
+    &.active {
+        border-bottom: rem(2) solid $black !important;
+        border-top: rem(2) solid $black;
+        position: relative;
+        z-index: 10;
+
+        .ranking-header {
+            border-bottom: none;
+        }
+    }
+
+
+
+    .ranking-header {
+        display: flex;
+        align-items: center;
+        padding: $space-lg 0;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+
+    }
+
+    // 순위 번호 (Rank Number)
+    .rank-num {
+        display: inline-block;
+        width: rem(40);
+        text-align: center;
+        font-family: 'Pretendard', sans-serif;
+        font-size: $font-size-xl;
+        font-weight: 700;
+        color: $black;
+        margin-right: rem(10);
+        line-height: 1;
+    }
+
+    // 순위 변동 아이콘 (Rank Change Icon)
+    .rank-change {
+        width: rem(24);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: rem(30);
+
+        .icon-rank-dash {
+            color: $gray-500;
+        }
+
+        .icon-rank-up {
+            color: $accent-base;
+        }
+
+        .icon-rank-down {
+            color: $system-info;
+        }
+
+        img {
+            display: block;
+        }
+    }
+
+    // 타이틀 & 카테고리 (Title & Category)
+    .rank-info {
+        display: flex;
+        align-items: center;
+        gap: rem(12);
+
+        .rank-title {
+            font-size: rem(18);
+            font-weight: 700;
+            color: $black;
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            // 수직 구분선 (Vertical separator)
+            &::after {
+                content: '';
+                display: block;
+                width: rem(1);
+                width: rem(1);
+                height: rem(12);
+                background-color: $gray-100;
+                margin-left: rem(12);
+            }
+        }
+
+        .rank-category {
+            font-size: $font-size-base;
+            color: $gray-500;
+            font-weight: 400;
+        }
+    }
+
+    // 토글 버튼 (Toggle Button)
+    .btn-toggle-rank {
+        width: rem(44);
+        height: rem(44);
+        border: rem(1) solid $black;
+        background-color: $white;
+        border-radius: $space-xs;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        cursor: pointer;
+        padding: 0;
+        transition: all 0.2s;
+
+        svg {
+            width: rem(10);
+            height: rem(6);
+            transition: transform 0.3s;
+
+            background-color: transparent;
+
+            transform: rotate(0deg);
+            color: $black;
+        }
+
+        // 활성 상태 (Active State)
+        &.active {
+            background-color: $black;
+            border-color: $black;
+
+            svg {
+                transform: rotate(180deg);
+                opacity: 1;
+                color: $white;
+            }
+        }
+    }
+
+    // 확장 본문 (Expanded Body)
+    .ranking-body {
+        padding: rem(30) 0 rem(40) 0;
+        display: none;
+
+        &.show {
+            display: block;
+        }
+    }
+}
+
+// 랭킹 상품 그리드 (Ranking Product Grid)
+.ranking-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: rem(20);
+}
+
+// 더보기 버튼 영역 (Show More Button Area)
+.ranking-more-link {
+    display: flex;
+    justify-content: center;
+    padding-top: rem(40);
+
+    .btn-more {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: $space-xs;
+        height: rem(48);
+        padding: rem(10) $space-lg;
+        border: rem(1) solid $black;
+        border-radius: $space-xs;
+        font-size: $font-size-base;
+        font-weight: 500;
+        color: $black;
+        text-decoration: none;
+        transition: all 0.2s;
+
+        @include btn-hover-effect;
+
+        svg {
+            width: rem(16);
+            margin-top: rem(1);
+        }
+    }
+}

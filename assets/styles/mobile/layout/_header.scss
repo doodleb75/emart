@@ -1,0 +1,669 @@
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/mixins";
+@use "../../abstracts/variables" as *;
+
+
+
+// 모바일 헤더
+.mobile-header {
+    width: 100%;
+    background-color: $white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    &.search-active {
+        z-index: 3000; // 하단 내비게이션(1000) 위로 노출
+    }
+
+    .header-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 rem(16);
+        height: rem(48);
+    }
+
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: rem(12);
+
+        .logo {
+            margin: 0;
+            display: flex;
+            align-items: center;
+
+            a {
+                display: flex;
+                align-items: center;
+                @include mixins.mobile-touch-effect;
+
+                img {
+                    width: rem(80);
+                    height: rem(32);
+                    display: block;
+                }
+            }
+        }
+
+        .header-divider {
+            width: 1px;
+            height: rem(32);
+            background-color: $gray-100;
+        }
+
+        // 멤버십 정보 영역
+        .membership-info {
+            display: flex;
+            align-items: center;
+            gap: rem(4);
+            cursor: pointer; // 바텀시트 호출 영역 보정
+
+            .badge-grade {
+                background-color: $primary-gold;
+                color: $white;
+                font-size: rem(14);
+                font-weight: 600;
+                padding: 0 rem(8);
+                height: rem(32);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: rem(2);
+                letter-spacing: rem(-0.28);
+            }
+
+            .user-name {
+                font-size: rem(14);
+                font-weight: 600;
+                color: $gray-700;
+                letter-spacing: rem(-0.28);
+                margin-left: rem(4); // 배지와의 최소 간격
+            }
+
+            .btn-dropdown {
+                width: rem(20);
+                height: rem(20);
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: none;
+                border: none;
+                cursor: pointer;
+                @include mixins.mobile-touch-effect;
+            }
+        }
+    }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: rem(16);
+
+        .point-count {
+            font-size: rem(14);
+            font-weight: 600;
+            color: $gray-700;
+            font-family: $font-family-number;
+        }
+
+        .btn-notifications {
+            position: relative;
+            width: rem(28);
+            height: rem(28);
+            padding: 0;
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include mixins.mobile-touch-effect;
+
+            .noti-dot {
+                position: absolute;
+                top: rem(2);
+                right: rem(2);
+                width: rem(12);
+                height: rem(12);
+                background-color: $accent-base;
+                border: rem(2) solid $white;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    .search-container {
+        padding: rem(8) rem(16) rem(16);
+        background-color: $white;
+        transition: all 0.2s ease;
+        width: 100% !important;
+        margin-left: 0 !important;
+
+        .search-header {
+            display: flex;
+            align-items: center;
+            gap: rem(12);
+            height: rem(48);
+        }
+
+        .btn-back-search {
+            display: none;
+            width: rem(24);
+            height: rem(24);
+            padding: 0;
+            border: none;
+            background: none;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .search-input-box {
+            position: relative;
+            background-color: $gray-50;
+            border-radius: rem(4);
+            height: rem(48);
+            display: flex;
+            align-items: center;
+            flex: 1;
+            padding: 0 0 0 rem(16);
+
+            input {
+                flex: 1;
+                border: none;
+                background: transparent;
+                height: 100%;
+                font-size: rem(15);
+                color: $gray-700;
+                outline: none;
+                min-width: 0; // flex item shrink fix
+
+                &::placeholder {
+                    color: $gray-300;
+                }
+            }
+
+            .btn-clear {
+                display: none; // JS control
+                width: rem(24);
+                height: rem(24);
+                padding: 0;
+                border: none;
+                background: none;
+                align-items: center;
+                justify-content: center;
+                margin-right: rem(4);
+            }
+
+            .btn-search-icon {
+                border: none;
+                background: transparent;
+                width: rem(48);
+                height: rem(48);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $gray-500;
+                flex-shrink: 0;
+                @include mixins.mobile-touch-effect;
+            }
+        }
+
+        // 드롭다운 기본 숨김
+        .search-dropdown,
+        .search-dropdown-autocomplete {
+            display: none;
+        }
+
+        // 검색 활성화 상태 (Active Mode)
+        &.active {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 2000;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: $white;
+
+            .search-header {
+                padding: 0 rem(16);
+                height: rem(80);
+                border-bottom: 6px solid $gray-50;
+                gap: rem(8);
+            }
+
+            .btn-back-search {
+                display: flex;
+            }
+
+            .search-input-box {
+                background-color: $gray-50; // 배경색 유지
+                height: rem(48);
+                border-radius: rem(4);
+            }
+
+            // 드롭다운 영역 표시
+            .search-dropdown {
+                display: block;
+                flex: 1;
+                overflow-y: auto;
+                background-color: $white;
+
+                // 자동완성 (Autocomplete) - .search-dropdown의 자식
+                .search-dropdown-autocomplete {
+                    background-color: $white;
+                    display: none; // JS에서 제어
+                    flex-direction: column;
+                    width: 100%;
+
+                    .autocomplete-column {
+                        width: 100%;
+
+                        &.keyword-column {
+                            padding: rem(12) 0;
+
+                            .autocomplete-list {
+                                li {
+                                    a {
+                                        display: block;
+                                        padding: rem(13) rem(20);
+                                        font-size: rem(14);
+                                        color: $gray-700;
+                                        text-decoration: none;
+                                        font-weight: 500;
+
+                                        .highlight {
+                                            color: $system-info;
+                                            font-weight: 600;
+                                        }
+
+                                        &:hover {
+                                            background-color: $gray-50;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        &.promotion-column {
+                            background-color: $white;
+                            padding: rem(24) rem(20);
+                            border-top: rem(8) solid $gray-50;
+
+                            .promo-header {
+                                font-size: rem(14);
+                                color: $gray-300;
+                                padding-bottom: rem(16);
+                                font-weight: 500;
+                                border-bottom: 1px solid $gray-50;
+
+                                .highlight {
+                                    color: $gray-700;
+                                    font-weight: 600;
+                                }
+                            }
+
+                            .promo-list {
+                                // margin-bottom: rem(24);
+                                border-bottom: 1px solid $gray-50;
+
+                                li {
+                                    margin-bottom: rem(16);
+
+                                    a {
+                                        color: $gray-700;
+                                        padding: rem(13) rem(0);
+                                        font-size: rem(14);
+                                        font-weight: 500;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        white-space: nowrap;
+                                        display: block;
+                                        text-decoration: none;
+
+                                        .highlight {
+                                            color: $system-info;
+                                            font-weight: 600;
+                                        }
+
+
+                                        &:hover {
+                                            background-color: $gray-50;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .collection-list {
+                                margin: 0 rem(-20);
+                                padding: rem(20);
+                                display: flex;
+                                flex-direction: column;
+                                gap: rem(20);
+
+                                .collection-item {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    font-size: rem(14);
+                                    font-weight: 600;
+                                    color: $gray-700;
+                                    text-decoration: none;
+
+                                    svg {
+                                        width: rem(20);
+                                        height: rem(20);
+
+                                        path {
+                                            fill: $gray-200;
+                                        }
+                                    }
+
+                                    &:hover {
+                                        color: $gray-700;
+
+                                        svg path {
+                                            fill: $gray-700;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // 드롭다운 공통 스타일
+        .search-default-view,
+        .search-dropdown-autocomplete {
+            height: 100%;
+        }
+
+        .search-dropdown-inner {
+            display: flex;
+            flex-direction: column; // 모바일은 세로 배치
+            height: 100%;
+        }
+
+        .search-column {
+            width: 100%;
+            border-bottom: rem(8) solid $gray-50;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &.promotion-column {
+                border-bottom: none;
+            }
+
+            .column-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: rem(20) rem(20) rem(12);
+
+                .title {
+                    font-size: rem(16);
+                    font-weight: 600;
+                    color: $gray-700;
+                    margin: 0;
+                }
+
+                .btn-delete-all {
+                    font-size: rem(14);
+                    color: $gray-500;
+                    background: none;
+                    border: none;
+                    display: flex;
+                    align-items: center;
+                    gap: rem(4);
+                    padding: 0;
+                }
+
+                .date {
+                    font-size: rem(14);
+                    color: $gray-300;
+                }
+            }
+
+            &.recent-column {
+                .column-header {
+                    padding: rem(20) rem(20) 0;
+                    margin-bottom: rem(12);
+                }
+
+                .keyword-list {
+                    padding: 0 rem(20) rem(24);
+
+                    li {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        height: rem(40);
+
+                        .keyword-wrap {
+                            display: flex;
+                            align-items: center;
+                            gap: rem(8);
+                            flex: 1;
+                            min-width: 0;
+                            cursor: pointer;
+
+                            .icon-wrap {
+                                flex-shrink: 0;
+                                background-color: $gray-200;
+                                width: rem(24);
+                                height: rem(24);
+                                border-radius: 50%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+
+                                svg path {
+                                    fill: $gray-300;
+                                }
+                            }
+
+                            .keyword {
+                                font-size: rem(15);
+                                color: $gray-700;
+                                font-weight: 500;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                            }
+
+                            &:hover .keyword {
+                                text-decoration: underline;
+                            }
+                        }
+
+                        .recent-delete-btn {
+                            width: rem(32);
+                            height: rem(32);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background: none;
+                            border: none;
+                            padding: 0;
+                            cursor: pointer;
+                            color: $gray-200; // #cccccc 보정
+
+                            .icon-close-x {
+                                color: inherit;
+                            }
+
+                            &:hover svg path {
+                                fill: $accent-75;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // 인기 검색어 리스트
+            &.popular-column {
+                padding-bottom: rem(40);
+
+                .rank-tabs {
+                    display: flex;
+                    padding: 0 rem(20) rem(16);
+                    gap: rem(4);
+
+                    .tab-item {
+                        flex: 1;
+                        height: rem(40);
+                        border: 0;
+                        background-color: $gray-50;
+                        color: $gray-500;
+                        font-size: rem(16);
+                        font-weight: 500;
+                        border-radius: rem(4);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 0; // 버튼 초기화 필요 시
+
+                        &.active {
+                            background-color: $gray-700;
+                            color: $white;
+                            border-color: $gray-700;
+                        }
+                    }
+                }
+
+                .keyword-list {
+                    padding: 0 rem(20) rem(24);
+
+                    &#rank-list-2 {
+                        display: none; // 탭 전환용 기본 숨김
+                    }
+
+                    li {
+                        display: flex;
+                        align-items: center;
+                        height: rem(44);
+                        line-height: rem(44);
+                        gap: rem(12);
+                        cursor: pointer;
+
+                        .rank {
+                            width: rem(20);
+                            font-size: rem(15);
+                            font-weight: 600;
+                            color: $gray-700;
+                            font-family: $font-family-number;
+                            text-align: center;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            // 시각적 중앙 정렬을 위해 불필요한 마진 제거
+                        }
+
+                        .keyword {
+                            flex: 1;
+                            font-size: rem(15);
+                            color: $gray-700;
+                            font-weight: 500;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            margin-top: rem(-1); // 텍스트가 미세하게 높아 보여 보정
+                        }
+
+                        .status {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: rem(40);
+                            height: rem(44); // 부모 li 높이와 동일하게 설정하여 중앙 정렬 보장
+                            margin-left: auto;
+
+                            &.dash {
+                                color: $gray-300;
+                                width: rem(16); // SVG 크기에 맞춤
+                                height: rem(16);
+                                margin-left: rem(12); // width(40) 대신 마진으로 간격 조정
+                            }
+
+                            &.up,
+                            &.down {
+                                width: rem(20);
+                                height: rem(20);
+                                margin-left: rem(10);
+                            }
+
+                            &.new {
+                                width: auto;
+                                min-width: rem(30);
+                                font-size: rem(10);
+                                font-weight: 600;
+                                color: $accent-75;
+                                letter-spacing: -0.5px;
+                                line-height: 1;
+                                margin-left: rem(10);
+                            }
+                        }
+
+                        &:hover .keyword {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    // GNB 탭
+    .gnb-scroll {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gnb-list {
+            display: flex;
+            padding: 0 rem(20);
+            gap: rem(24);
+            white-space: nowrap;
+            height: rem(40);
+            align-items: center;
+
+            li {
+                height: 100%;
+                display: flex;
+                align-items: center;
+
+                a {
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
+                    font-size: rem(16);
+                    font-weight: 600;
+                    color: $gray-700;
+                    border-bottom: 3px solid transparent;
+                    transition: all 0.2s;
+                    box-sizing: border-box;
+                    @include mixins.mobile-touch-effect;
+                }
+
+                &.active a {
+                    color: $gray-700;
+                    border-bottom-color: $primary-gold;
+                }
+            }
+        }
+    }
+}

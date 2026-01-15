@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색결과 - e-Club</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/emart/assets/styles/pc.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- 헤더 -->
+    <div id="header-placeholder"></div>
+
+    <!-- Search Result Page Content -->
+    <main class="search-result-page">
+        <div class="section-container">
+
+            <!-- Title Area -->
+            <div class="page-header">
+                <h2 class="search-result-title">
+                    <span class="keyword">‘햇반’</span>(으)로 검색한 결과입니다.
+                </h2>
+            </div>
+
+            <!-- Top Info Area -->
+            <div class="search-top-area">
+                <!-- 1. Total Count -->
+                <div class="total-count-row">
+                    총 <span class="count">41</span>개의 상품이 있습니다
+                </div>
+
+                <!-- 2. Related Keywords -->
+                <div class="related-keywords-row">
+                    <span class="label">연관검색어</span>
+                    <div class="divider-vertical"></div>
+                    <div class="keyword-list">
+                        <span class="keyword-item">햇반 흑미밥</span>
+                        <span class="keyword-item">햇반 윤기가득쌀밥</span>
+                        <span class="keyword-item">햇반 잡곡밥</span>
+                        <span class="keyword-item">햇반 잡곡</span>
+                        <span class="keyword-item">현미 햇반</span>
+                        <span class="keyword-item">햇반 전복내장죽</span>
+                        <span class="keyword-item">햇반 흑미</span>
+                        <span class="keyword-item">햇반 전복죽</span>
+                        <span class="keyword-item">cj 햇반</span>
+                        <span class="keyword-item">햇반 이천쌀밥</span>
+                        <span class="keyword-item">햇반 곤약밥</span>
+                        <span class="keyword-item">정회원 햇반</span>
+                        <span class="keyword-item">햇반통곡물밥</span>
+                        <span class="keyword-item">햇반솥밥</span>
+                    </div>
+                </div>
+
+                <!-- 3. Filter Options -->
+                <div class="filter-options-row">
+                    <!-- Links Group -->
+                    <div class="filter-group">
+                        <a href="" class="filter-link-link">
+                            <span class="filter-label">협력업체</span>
+                            <i class="icon icon-external-link"></i>
+                        </a>
+                    </div>
+                    <div class="divider-vertical"></div>
+                    <div class="filter-group">
+                        <a href="" class="filter-link-link">
+                            <span class="filter-label">카테고리 <span class="text-blue">5</span></span>
+                            <i class="icon icon-external-link"></i>
+                        </a>
+                    </div>
+                    <div class="divider-vertical"></div>
+                    <div class="filter-group">
+                        <a href="" class="filter-link-link">
+                            <span class="filter-label">상품형태</span>
+                            <i class="icon icon-external-link"></i>
+                        </a>
+                    </div>
+                    <div class="divider-vertical"></div>
+                    <div class="filter-group">
+
+                        <a href="" class="filter-link-link">
+                            <span class="filter-label">배송방법</span>
+                            <i class="icon icon-info-circle-lg" style="color: #CCCCCC;"></i>
+                        </a>
+                    </div>
+
+                    <!-- Checkboxes Group -->
+                    <div class="checkbox-group">
+                        <custom-checkbox label="상온"></custom-checkbox>
+                        <custom-checkbox label="저온"></custom-checkbox>
+                        <custom-checkbox label="TC"></custom-checkbox>
+                        <custom-checkbox label="DC"></custom-checkbox>
+                        <custom-checkbox label="직납"></custom-checkbox>
+
+                        <div class="divider-vertical"></div>
+
+                        <custom-checkbox label="품절 제외" class="dark-label"></custom-checkbox>
+                        <custom-checkbox label="곧 주문 제외" class="dark-label"></custom-checkbox>
+                    </div>
+                </div>
+
+                <!-- 4. Search Control Row -->
+                <div class="search-control-row">
+                    <div class="left-col">
+                        <span class="label">결과 내 검색</span>
+                        <div class="input-wrap">
+                            <input type="text" placeholder="상품을 검색해보세요">
+                        </div>
+                        <button class="btn-search">조회</button>
+                    </div>
+                    <div class="right-col">
+                        <!-- Dropdown -->
+                        <div class="dropdown-wrapper">
+                            <div class="select-wrap" id="itemsPerPageTrigger">
+                                <span class="selected-value">5개씩 보기</span>
+                                <i class="icon-chevron-down-fill icon-arrow"></i>
+                            </div>
+                            <ul class="dropdown-options">
+                                <li data-value="5" class="active">5개씩 보기</li>
+                                <li data-value="10">10개씩 보기</li>
+                                <li data-value="20">20개씩 보기</li>
+                                <li data-value="30">30개씩 보기</li>
+                                <li data-value="50">50개씩 보기</li>
+                                <li data-value="100">100개씩 보기</li>
+                            </ul>
+                        </div>
+                        <!-- View Toggles -->
+                        <div class="view-toggles">
+                            <button class="btn-toggle btn-grid active" aria-label="Grid View">
+                                <i class="icon icon-view-grid"></i>
+                            </button>
+                            <button class="btn-toggle btn-list" aria-label="List View">
+                                <i class="icon icon-view-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Menu -->
+            <nav class="tab-menu">
+                <div class="tab-item active" data-tab="0">판매순</div>
+                <div class="tab-item" data-tab="1">많은 구매횟수</div>
+                <div class="tab-item" data-tab="2">신상품순</div>
+                <div class="tab-item" data-tab="3">낮은가격순</div>
+            </nav>
+
+            <!-- Control Bar -->
+            <div class="product-control-bar">
+                <custom-checkbox id="searchSelectAll" label="전체선택"></custom-checkbox>
+                <button class="btn-add-selected">선택상품담기</button>
+            </div>
+
+            <!-- Tab Content Grid -->
+            <div class="product-grid-4 search-result-grid active" id="md-grid-0">
+                <!-- Product 1: Matcha Cream Bread -->
+                <article class="product-card" data-price="25200" data-sales="500" data-date="2024-01-01">
+                    <a href="#" class="card-thumb">
+                        <div class="card-checkbox">
+                            <custom-checkbox class="item-check"></custom-checkbox>
+                        </div>
+                        <img src="/emart/assets/images/products/md_product_1.png" alt="Product">
+                        <div class="badge-corner">
+                            <i class="icon-smile"></i> MD 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-ambient"><i class="icon-thermometer"></i> 상온</span>
+                            <span class="tag tag-outline">TC</span>
+                            <span class="tag tag-green">소비기한 9개월</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">밥누스 말차크림빵 150g</h3>
+                        <div class="unit-info">
+                            <div class="price-wrap">
+                                <span class="strike">2,900</span>
+                                <span class="unit-highlight">2,100</span>
+                            </div>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">10</span>
+                            <span class="price">25,200</span>
+                        </div>
+                    </a>
+                    <div class="card-control">
+                        <button class="btn-icon">
+                            <i class="icon-heart"></i>
+                        </button>
+                        <div class="qty-box">
+                            <button><i class="icon-minus"></i></button>
+                            <input type="number" value="0">
+                            <button><i class="icon-plus"></i></button>
+                        </div>
+
+                        <button class="btn-icon">
+                            <i class="icon-cart"></i>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+                            <i class="icon-sparkle"></i> 다다익선 할인
+                        </div>
+                        <div class="info-row">
+                            <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 2: Mozza Cheese Salad -->
+                <article class="product-card" data-price="22900" data-sales="800" data-date="2024-01-05">
+                    <a href="#" class="card-thumb">
+                        <div class="card-checkbox">
+                            <custom-checkbox class="item-check"></custom-checkbox>
+                        </div>
+                        <img src="/emart/assets/images/products/md_product_2.png" alt="Product">
+                        <div class="badge-corner">
+                            <i class="icon-smile"></i> MD 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-ambient"><i class="icon-thermometer"></i> 상온</span>
+                            <span class="tag tag-outline">TC</span>
+                            <span class="tag tag-green">소비기한 24개월</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">모짜치즈과일샐러드</h3>
+                        <div class="unit-info">
+                            <div class="price-wrap">
+                                <span class="strike">2,290</span>
+                                <span class="unit-highlight">1,908</span>
+                            </div>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">12</span>
+                            <span class="price">22,900</span>
+                        </div>
+                    </a>
+                    <div class="card-control">
+                        <button class="btn-icon">
+                            <i class="icon-heart"></i>
+                        </button>
+                        <div class="qty-box">
+                            <button><i class="icon-minus"></i></button>
+                            <input type="number" value="0">
+                            <button><i class="icon-plus"></i></button>
+                        </div>
+                        <button class="btn-icon">
+                            <i class="icon-cart"></i>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+                            <i class="icon-sparkle"></i> 다다익선 할인
+                        </div>
+                        <div class="info-row">
+                            <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 3: Bibimbap -->
+                <article class="product-card state-dimmed" data-price="24900" data-sales="300" data-date="2023-12-20">
+                    <a href="#" class="card-thumb">
+                        <div class="card-checkbox">
+                            <custom-checkbox class="item-check"></custom-checkbox>
+                        </div>
+                        <img src="/emart/assets/images/products/md_product_3.png" alt="Product">
+                        <div class="status-overlay">
+                            <p>곧 입고예정</p>
+                            <button class="btn-substitute">대체상품보기</button>
+                        </div>
+                        <div class="badge-corner">
+                            <i class="icon-thumbs-up"></i> 강력추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-ambient"><i class="icon-thermometer"></i> 상온</span>
+                            <span class="tag tag-outline">TC</span>
+                            <span class="tag tag-green">소비기한 9개월</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">영진 문문문_소불고기비빔밥</h3>
+                        <div class="unit-info">
+                            <div class="price-wrap">
+                                <span class="strike">3,120</span>
+                                <span class="unit-highlight">2,075</span>
+                            </div>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">20</span>
+                            <span class="price">24,900</span>
+                        </div>
+                    </a>
+                    <div class="card-control">
+                        <button class="btn-icon">
+                            <i class="icon-heart"></i>
+                        </button>
+                        <div class="qty-box">
+                            <button><i class="icon-minus"></i></button>
+                            <input type="number" value="0">
+                            <button><i class="icon-plus"></i></button>
+                        </div>
+
+                        <button class="btn-icon">
+                            <i class="icon-cart"></i>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <i class="icon-ban"></i> 쿠폰 미적용 상품 &nbsp;·&nbsp;
+                            <i class="icon-cart-limit"></i> 최대 3BOX 구매 가능
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 8: Bacon Sandwich -->
+                <article class="product-card state-dimmed" data-price="24900" data-sales="100" data-date="2024-01-10">
+                    <a href="#" class="card-thumb">
+                        <!-- 품절 항목 체크박스 제거 -->
+                        <!-- <div class="card-checkbox">
+                            <custom-checkbox class="item-check"></custom-checkbox>
+                        </div> -->
+                        <img src="/emart/assets/images/products/md_product_8.png" alt="Product">
+                        <div class="status-overlay">
+                            <p>품절</p>
+                            <button class="btn-substitute">대체상품보기</button>
+                        </div>
+                        <div class="badge-corner">
+                            <i class="icon-smile"></i> MD 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-ambient"><i class="icon-thermometer"></i> 상온</span>
+                            <span class="tag tag-outline">TC</span>
+                            <span class="tag tag-green">소비기한 9개월</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">손종원 뉴욕스타일베이컨샌드위치</h3>
+                        <div class="unit-info">
+                            <div class="price-wrap">
+                                <span class="strike">2,490</span>
+                                <span class="unit-highlight">2,075</span>
+                            </div>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">20</span>
+                            <span class="price">24,900</span>
+                        </div>
+                    </a>
+                    <div class="card-control sold-out">
+                        <button class="btn-icon">
+                            <i class="icon-heart"></i>
+                        </button>
+                        <div class="qty-box">
+                            <button disabled><i class="icon icon-minus"></i></button>
+                            <input type="number" value="0">
+                            <button disabled><i class="icon-plus"></i></button>
+                        </div>
+
+                        <button disabled class="btn-icon">
+                            <i class="icon-cart"></i>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <i class="icon-ban"></i> 쿠폰 미적용 상품 &nbsp;·&nbsp;
+                            <i class="icon-cart-limit"></i> 최대 3BOX 구매 가능
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-container">
+                <div class="pagination-nav-group">
+                    <button class="btn-pagination btn-prev-end" aria-label="First Page">
+                        <i class="icon icon-page-prev-end"></i>
+                    </button>
+                    <button class="btn-pagination btn-prev" aria-label="Previous Page">
+                        <i class="icon icon-page-prev"></i>
+                    </button>
+                </div>
+
+                <!-- Page Numbers -->
+                <a href="#" class="btn-pagination active">1</a>
+                <a href="#" class="btn-pagination">2</a>
+                <a href="#" class="btn-pagination">3</a>
+                <a href="#" class="btn-pagination">4</a>
+                <a href="#" class="btn-pagination">5</a>
+                <a href="#" class="btn-pagination">6</a>
+                <a href="#" class="btn-pagination">7</a>
+                <a href="#" class="btn-pagination">8</a>
+                <a href="#" class="btn-pagination">9</a>
+                <a href="#" class="btn-pagination">10</a>
+
+                <div class="pagination-nav-group">
+                    <button class="btn-pagination btn-next" aria-label="Next Page">
+                        <i class="icon icon-page-next"></i>
+                    </button>
+                    <button class="btn-pagination btn-next-end" aria-label="Last Page">
+                        <i class="icon icon-page-next-end"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        function loadComponent(url, placeholderId) {
+            fetch(url + '?v=' + new Date().getTime())
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.text();
+                })
+                .then(data => {
+                    // Adjust relative paths for pages in subfolders
+                    if (window.location.pathname.includes('/pages/')) {
+                        data = data.replace(/src="assets\//g, 'src="../assets/');
+                    }
+                    document.getElementById(placeholderId).innerHTML = data;
+                    if (placeholderId === 'header-placeholder') {
+                        document.dispatchEvent(new Event('headerLoaded'));
+                    }
+                    if (placeholderId === 'footer-placeholder') {
+                        document.dispatchEvent(new Event('footerLoaded'));
+                    }
+                })
+                .catch(error => console.error('Error loading component:', error));
+        }
+
+        loadComponent('/components/header.component.txt', 'header-placeholder');
+        loadComponent('/components/footer.component.txt', 'footer-placeholder');
+    </script>
+
+    <script src="/emart/assets/js/main.js"></script>
+    <script src="/emart/assets/js/components/favorites.js"></script>
+    <script src="/emart/assets/js/components/quantity-control.js"></script>
+    <script src="/emart/assets/js/pages/search_result.js"></script>
+    <script src="/emart/assets/js/components/view-toggle.js"></script>
+    <script src="/emart/assets/js/components/checkbox.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

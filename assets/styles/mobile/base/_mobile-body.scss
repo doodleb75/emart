@@ -1,0 +1,7 @@
+// 모바일 본문 스타일 초기화
+body.mobile-body {
+    min-width: 0 !important;
+    width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}

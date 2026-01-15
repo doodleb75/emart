@@ -1,0 +1,311 @@
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/variables" as *;
+
+// 로그인 페이지 스타일 (Login Page Styles)
+
+.login-page {
+    background-color: $white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    // 헤더 스타일 (Header - Figma based: 60px)
+    .join-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: rem(60);
+        position: sticky;
+        top: 0;
+        background-color: $white;
+        z-index: 10;
+
+        .btn-back {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: rem(56);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+
+            svg {
+                width: rem(24);
+                height: rem(24);
+            }
+        }
+
+        .header-title {
+            font-size: rem(20);
+            font-weight: 600;
+            color: $gray-700;
+            margin: 0;
+            line-height: 1.5;
+            letter-spacing: -0.02em;
+        }
+    }
+
+    .login-container {
+        padding: rem(40) rem(16) rem(24); // 상단 여백 40px (Top margin 40px)
+        display: flex;
+        flex-direction: column;
+        gap: rem(32);
+    }
+
+    .login-title {
+        font-size: rem(18);
+        font-weight: 600;
+        line-height: 1.5;
+        letter-spacing: -0.02em;
+        color: $gray-700;
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: rem(16);
+
+        .input-group {
+            input {
+                width: 100%;
+                height: rem(56); // 입력창 높이 (Input height)
+                padding: rem(0) rem(16);
+                background-color: $gray-50;
+                border: none;
+                border-radius: rem(4);
+                font-size: rem(16);
+                ;
+                line-height: 1.5;
+                letter-spacing: -0.02em;
+                color: $gray-700;
+
+                &::placeholder {
+                    color: $gray-200;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+    }
+
+    .login-options {
+        display: flex;
+        align-items: flex-start;
+        gap: rem(24);
+        margin-top: rem(0); // 레이아웃 gap(24) 사용 (Using container gap)
+
+        custom-checkbox {
+            flex: 1;
+            justify-content: flex-start;
+
+            // custom-checkbox 내부 스타일은 전역 또는 수동 적용 필요 (Manual style application for custom-checkbox)
+            .label-text {
+                font-size: rem(16);
+                ;
+                color: $gray-700;
+            }
+
+            .hidden-checkbox {
+                display: none;
+                appearance: none;
+                -webkit-appearance: none;
+            }
+        }
+    }
+
+    .btn-login {
+        width: 100%;
+        height: rem(56); // 버튼 높이 (Button height)
+        background-color: $gray-700;
+        color: $white;
+        border: none;
+        border-radius: rem(4);
+        font-size: rem(16);
+        font-weight: 600;
+        line-height: 1.5;
+        margin-top: rem(16);
+        letter-spacing: -0.02em;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $system-info-75;
+        }
+
+        &:active {
+            opacity: 0.9;
+        }
+    }
+
+    .login-links {
+        display: flex;
+        justify-content: center;
+
+        .link-find-pw {
+            font-size: rem(16);
+            color: $gray-300;
+            text-decoration: none;
+        }
+    }
+
+    .login-notice {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: rem(4);
+        color: $gray-300;
+        font-size: rem(16);
+        letter-spacing: -0.02em;
+        margin-top: rem(16);
+
+        .icon-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: rem(20);
+            height: rem(20);
+
+            svg {
+                width: rem(16.67);
+                height: rem(16.67);
+            }
+        }
+    }
+}
+
+// Custom Checkbox 스타일 보정 (Custom Checkbox internal alignment)
+custom-checkbox {
+    .custom-checkbox-wrap {
+        display: flex;
+        align-items: center;
+        gap: rem(4);
+
+        .label-text {
+            font-size: rem(16);
+            font-weight: 600;
+            color: $gray-700;
+        }
+    }
+}
+
+// 승인요청 페이지 스타일 (Approval Request Page Styles)
+.approval-request-page {
+    background-color: $white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .approval-container {
+        padding: rem(64) rem(16) rem(40); // 상단 여백 (Top margin)
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .warning-icon {
+        width: rem(80);
+        height: rem(80);
+        margin-bottom: rem(34); // 아이콘과 타이틀 사이 (Icon to Title)
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .title-group {
+        display: flex;
+        flex-direction: column;
+        gap: rem(16);
+        margin-bottom: rem(32);
+    }
+
+    .approval-title {
+        font-size: rem(24);
+        font-weight: 700;
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+        color: $gray-700;
+    }
+
+    .approval-desc {
+        font-size: rem(16);
+        font-weight: 600;
+        line-height: 1.5;
+        letter-spacing: -0.02em;
+        color: $gray-700;
+        white-space: pre-line;
+    }
+
+    .info-box {
+        width: 100%;
+        background-color: $system-info-25; // #E4F0FA
+        border-radius: rem(4);
+        padding: rem(16);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: rem(10);
+        margin-bottom: rem(32);
+        min-height: rem(52);
+
+        .label {
+            font-size: rem(18);
+            font-weight: 600;
+            color: $gray-700;
+        }
+
+        .divider {
+            width: 1px;
+            height: rem(16);
+            background-color: $gray-200;
+        }
+
+        .value {
+            font-size: rem(18);
+            font-weight: 600;
+            color: $gray-700;
+        }
+    }
+
+    .button-group {
+        display: flex;
+        width: 100%;
+        gap: rem(10);
+
+        .btn-action {
+            flex: 1;
+            height: rem(56);
+            border: none;
+            border-radius: rem(2);
+            font-size: rem(16);
+            font-weight: 600;
+            text-decoration: none; // a 태그의 밑줄 제거 (Remove underline from a tag)
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &.cancel {
+                background-color: $gray-300;
+                color: $white;
+            }
+
+            &.request {
+                background-color: $gray-700;
+                color: $white;
+            }
+
+            &:active {
+                opacity: 0.9;
+            }
+        }
+    }
+}

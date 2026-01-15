@@ -1,0 +1,612 @@
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/mixins";
+@use "../../abstracts/variables" as *;
+
+// _search_result.scss
+
+.search-result-page {
+    background-color: $white;
+    padding-bottom: rem(40);
+
+
+
+    custom-checkbox {
+        display: flex;
+        align-items: center;
+        font-size: rem(14);
+        color: $gray-300;
+    }
+
+    .hidden-checkbox {
+        display: none;
+    }
+
+    .page-header {
+        padding: rem(31) 0;
+        text-align: center;
+
+        .search-result-title {
+            font-size: rem(18);
+            color: $gray-700; // 가장 어두운 색
+
+            .keyword {
+                color: $system-info-75; // 브랜드 포인트 컬러
+            }
+        }
+    }
+
+    .search-top-area {
+        padding: 0 rem(16);
+        background-color: $white;
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: rem(8);
+
+            &>div {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .total-count-row {
+            height: rem(40);
+            display: flex;
+            align-items: center;
+            border-bottom: rem(1.5) solid $gray-700; // 회색 구분선
+            margin-bottom: rem(16);
+            font-size: rem(14);
+            color: $gray-700; // 가장 어두운 텍스트
+            letter-spacing: rem(-0.28);
+
+            .count {
+                color: $system-info-75; // 파란색 강조
+                margin: 0 rem(4);
+            }
+        }
+
+        .related-keywords-row {
+            display: flex;
+            align-items: center;
+            height: rem(40);
+
+            .label {
+                font-size: rem(14);
+                color: $gray-700;
+                flex-shrink: 0;
+                margin-right: rem(12);
+            }
+
+            .divider-vertical {
+                width: rem(1);
+                height: rem(12);
+                background-color: $gray-100;
+                margin-right: rem(12);
+                flex-shrink: 0;
+            }
+
+            .keyword-list {
+                display: flex;
+                gap: rem(16);
+                overflow-x: auto;
+                white-space: nowrap;
+                flex: 1;
+                -webkit-overflow-scrolling: touch;
+                height: 100%;
+                align-items: center;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
+                .keyword-item {
+                    font-size: rem(14);
+                    font-weight: 600;
+                    color: $gray-200; // 비활성 상태
+
+                    &.active {
+                        color: $gray-700; // 활성 상태
+                    }
+                }
+
+
+            }
+        }
+
+        .filter-options-row {
+            display: flex;
+            align-items: center;
+            height: rem(40);
+            // margin-bottom: rem(24);
+
+            .filter-link {
+                display: flex;
+                align-items: center;
+                gap: rem(4);
+                text-decoration: none;
+
+                .filter-label {
+                    font-size: rem(14);
+                    font-weight: 600;
+                    color: $gray-700;
+                    white-space: nowrap;
+
+                    .text-blue {
+                        color: $system-info-75;
+                    }
+                }
+
+                svg {
+                    width: rem(20);
+                    height: rem(20);
+                    color: $gray-700;
+                }
+            }
+
+            .divider-vertical {
+                width: rem(1);
+                height: rem(12);
+                background-color: $gray-100;
+                margin: 0 rem(12);
+                flex-shrink: 0;
+            }
+        }
+
+        .filter-row {
+            display: flex;
+            align-items: flex-start;
+            gap: $space-sm; // 요소 간 간격
+
+            .label-group {
+                display: flex;
+                align-items: center;
+                gap: rem(4);
+                width: rem(84); // 라벨 너비 고정
+                flex-shrink: 0;
+
+                svg {
+                    width: rem(20);
+                    height: rem(20);
+                }
+            }
+
+            .label {
+                font-size: rem(14);
+                font-weight: 600;
+                color: $gray-700;
+                line-height: rem(20);
+            }
+
+            .checkbox-group {
+                display: flex;
+                flex-wrap: wrap;
+                gap: rem(12) rem(16);
+                flex: 1;
+
+                custom-checkbox {
+                    font-size: rem(14);
+                    font-weight: 600;
+                    color: $gray-300;
+
+                    .label-text {
+                        font-size: rem(14);
+                        color: $gray-300;
+                    }
+
+                    // &[checked] {
+                    //     .label-text {
+                    //         color: $gray-700 !important;
+                    //     }
+                    // }
+                }
+            }
+
+            &.product-status {
+                .label {
+                    width: rem(84);
+                    flex-shrink: 0;
+                }
+            }
+        }
+
+        .delivery-method {
+            min-height: rem(80);
+            align-items: flex-start;
+
+            .row-align {
+                display: flex;
+                align-items: flex-start;
+                gap: rem(8);
+            }
+
+            .label-group {
+                align-items: flex-start;
+            }
+
+            .custom-checkbox-wrap {
+                width: rem(60);
+
+                .label-text {
+                    font-size: rem(14);
+                }
+            }
+        }
+
+        .search-control-row {
+            display: flex;
+            align-items: center;
+            margin-top: rem(8);
+            padding-bottom: rem(16);
+            border-bottom: rem(1.5) solid $gray-100; // 하단 구분선
+            gap: $space-sm; // 요소 간 간격
+
+            .label {
+                font-size: rem(14);
+                color: $gray-700;
+                width: rem(84); // 라벨 너비 통일
+                flex-shrink: 0;
+                white-space: nowrap;
+            }
+
+            .input-wrap {
+                flex: 1;
+                height: rem(40);
+                background-color: $gray-50;
+                border-radius: rem(2);
+                padding: 0 rem(12);
+                display: flex;
+                align-items: center;
+                margin-right: rem(4);
+
+                input {
+                    width: 100%;
+                    border: none;
+                    background: transparent;
+                    font-size: rem(14);
+                    color: $gray-700;
+
+                    &::placeholder {
+                        color: $gray-300;
+                    }
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+
+            .btn-search {
+                width: rem(52);
+                height: rem(40);
+                border: rem(1) solid $gray-700;
+                background-color: $white;
+                font-size: rem(14);
+                color: $gray-700;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: rem(2);
+                flex-shrink: 0;
+            }
+        }
+    }
+
+
+    .product-control-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; // 양측 정렬
+        // height: rem(40); // 고정 높이
+        padding: rem(32) rem(16) 0; // 좌우 여백
+        margin-bottom: rem(16);
+
+        .left-group {
+            display: flex;
+            align-items: center;
+            gap: rem(16); // 항목 간 간격
+
+            custom-checkbox {
+                font-size: rem(14);
+                color: $gray-700;
+                letter-spacing: rem(-0.28);
+
+                .label-text {
+                    font-size: rem(14);
+                }
+            }
+
+            .btn-add-selected {
+                height: rem(40);
+                padding: 0 rem(8);
+                border: rem(1) solid $gray-700; // 가장 어두운 테두리
+                background-color: $white;
+                font-size: rem(14);
+                color: $gray-700;
+                border-radius: rem(2);
+            }
+        }
+
+        .dropdown-wrapper {
+            width: rem(100);
+            height: rem(40);
+            position: relative;
+
+            .select-wrap {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 100%;
+                padding: 0 rem(8);
+                background-color: $gray-50; // #f4f4f4
+                border-radius: rem(2);
+                cursor: pointer;
+
+                .selected-value {
+                    font-size: rem(14);
+                    font-weight: 600;
+                    color: $gray-700;
+                    letter-spacing: rem(-0.28);
+                }
+
+                svg {
+                    width: rem(20);
+                    height: rem(20);
+                    color: $gray-700;
+                    transition: transform 0.2s;
+                }
+            }
+
+            .dropdown-options {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 100%;
+                background-color: $white;
+                border: rem(1) solid $gray-100;
+                border-radius: rem(2);
+                z-index: 100;
+                padding: 0;
+                list-style: none;
+                box-shadow: 0 rem(4) rem(8) rgba(0, 0, 0, 0.1);
+
+                li {
+                    padding: rem(10) rem(12);
+                    font-size: rem(14);
+                    color: $gray-700;
+                    cursor: pointer;
+                    text-align: left;
+
+                    &:hover,
+                    &.active {
+                        background-color: $gray-20;
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            &.active {
+                .dropdown-options {
+                    display: block;
+                }
+
+                .select-wrap svg {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+
+    .product-grid-2 {
+        @include mixins.mobile-touch-effect(transparent); // 그리드 영역 터치 피드백 제외
+
+        .product-card {
+            background-color: $white;
+
+
+            .card-thumb {
+                position: relative;
+                display: block;
+                flex-shrink: 0;
+                aspect-ratio: 1/1; // 정사각형 유지
+                border-radius: rem(2);
+
+                img {
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                    object-fit: cover;
+                    border-radius: rem(4);
+                }
+
+                .card-checkbox {
+                    position: absolute;
+                    top: rem(12);
+                    right: rem(12);
+                    z-index: 20;
+                }
+
+                .status-overlay {
+                    display: none;
+                }
+            }
+
+            .badge-bar {
+                display: flex;
+                gap: $space-xs;
+                margin-bottom: $space-sm;
+                flex-wrap: wrap;
+
+                .badge {
+                    font-size: $font-size-xs;
+                    padding: $space-xs rem(6);
+                    border-radius: $space-xs;
+
+                }
+            }
+
+            .product-name {
+                font-size: $font-size-base;
+                color: $gray-700;
+                margin-bottom: $space-xs;
+                line-height: 1.4;
+                height: auto;
+                @include mixins.truncate(2);
+            }
+
+            .card-info {
+                display: flex !important;
+                flex-direction: column !important;
+                flex: 1 1 auto !important; // 남은 공간 차지
+            }
+
+            .card-control {
+                margin-top: auto !important; // 하단 밀착
+                display: flex !important;
+                gap: $space-xs;
+            }
+
+            .bottom-info {
+                // 수량 조절 노출
+            }
+
+            .price-info {
+                .original {
+                    display: inline-block;
+                }
+            }
+
+            // 품절/준비중 상태
+            &.state-dimmed {
+                a {
+                    cursor: default;
+                }
+
+                .card-thumb {
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        inset: 0;
+                        background-color: rgba(0, 0, 0, 0.4);
+                        z-index: 10;
+                        border-radius: $space-xs;
+                    }
+
+                    .status-overlay {
+                        display: flex; // 텍스트 표시
+                        align-items: center;
+                        justify-content: space-between;
+                        flex-direction: column;
+                        gap: $space-xs; // 간격 축소
+                        position: absolute;
+                        bottom: 5%;
+                        left: 50%;
+                        transform: translate(-50%, -5%);
+                        z-index: 15;
+                        width: 76%;
+                        color: $white;
+                        font-size: $font-size-lg;
+
+                        height: 48%;
+
+                        .btn-substitute {
+                            min-height: rem(32); // 높이 조절
+                            width: 100%;
+                            padding: 0 $space-xs;
+                            font-size: $font-size-sm;
+                            background-color: $white;
+                            border: 1.5px solid $gray-700;
+                            border-radius: rem(2);
+                            font-size: $font-size-base;
+                            color: $gray-700;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            @include mixins.btn-hover-effect;
+                        }
+                    }
+                }
+
+                .card-info {
+                    display: flex !important;
+                    flex-direction: column !important;
+                    flex: 1 1 auto !important;
+
+                    * {
+                        color: $gray-300 !important;
+                    }
+
+                    // 색상 재정의
+                    .product-name,
+                    .price,
+                    .discount,
+                    .unit-highlight,
+                    .unit-desc,
+                    .unit-info span {
+                        color: $gray-300 !important;
+                    }
+                }
+
+                .card-control {
+                    margin-top: auto !important;
+                    display: flex !important;
+                    gap: $space-xs;
+
+                    &.sold-out {
+
+
+
+                        *:disabled,
+                        .qty-box {
+                            cursor: default;
+                            background: $gray-50;
+
+                            &.btn-icon {
+                                &:hover {
+                                    border-color: $gray-200;
+                                }
+                            }
+                        }
+
+                        input,
+                        svg:not(.icon-heart) {
+
+                            color: $gray-300;
+                            pointer-events: none;
+
+                            &:focus {
+                                outline: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .btn-more {
+            flex: 1;
+        }
+    }
+
+    .more-container {
+        margin-top: rem(32);
+
+        .btn-more {
+            width: 100%;
+            height: rem(40);
+            border: rem(1) solid $gray-700;
+            background-color: $white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: rem(4);
+            font-size: rem(14);
+            font-weight: 600;
+            color: $gray-700;
+            border-radius: rem(2);
+        }
+    }
+
+}

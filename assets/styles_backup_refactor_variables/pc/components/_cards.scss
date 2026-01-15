@@ -1,0 +1,505 @@
+@use "../../abstracts/functions" as *;
+@use "../../abstracts/mixins";
+@use "../../abstracts/variables";
+
+
+
+// 슬라이더 카드 컴포넌트
+.slider-card {
+    flex: 0 0 auto;
+    width: rem(440);
+    height: rem(440);
+    border-radius: variables.$space-xs;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+
+    &.card-coffee {
+        background-color: #59996d;
+    }
+
+    &.card-snack {
+        background-color: #d4893e;
+    }
+
+    &.card-pasta {
+        background-color: #5bbfd1;
+    }
+
+    &.card-beverage {
+        background-color: #e7ca9e;
+    }
+
+    &.card-juice {
+        background-color: #e83a31;
+    }
+
+    // 마우스 호버 효과
+    &:hover {
+        .slider-card-img-wrap img {
+            transform: scale(1.1);
+        }
+
+        .slider-title {
+            text-decoration: underline;
+            text-underline-offset: variables.$space-xs;
+        }
+    }
+
+    .slider-card-img-wrap {
+        width: 100%;
+        aspect-ratio: 440 / 360;
+        background-color: #f8f7f0;
+        overflow: hidden;
+        position: relative;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center bottom;
+            transition: transform 0.3s ease;
+        }
+    }
+
+    .slider-card-body {
+        flex-grow: 1;
+        padding: variables.$space-lg;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        color: variables.$white;
+
+        .text-group {
+            display: flex;
+            flex-direction: column;
+            gap: variables.$space-sm;
+            max-width: 85%;
+        }
+
+        .slider-title {
+            font-size: variables.$font-size-xl;
+            font-weight: 700;
+            line-height: 1.3;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: variables.$white;
+            letter-spacing: -1;
+            margin: 0;
+        }
+
+        .slider-desc {
+            font-size: variables.$font-size-md;
+            opacity: 0.9;
+            font-weight: 400;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            letter-spacing: -1;
+            line-height: 1.4;
+        }
+
+        .slider-arrow {
+            width: rem(32);
+            height: rem(32);
+            min-width: rem(32);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: variables.$space-xs;
+
+            svg {
+                width: rem(20);
+                height: rem(20);
+                color: variables.$white;
+            }
+        }
+    }
+}
+
+// 상품 카드 컴포넌트
+.product-card {
+    @include mixins.product-card-base;
+
+    .card-thumb {
+        margin-bottom: rem(20);
+
+        >img {
+            width: 75%;
+            height: 75%;
+        }
+
+        // 좌측 상단 배지
+        .badge-corner {
+            top: rem(10);
+            left: rem(10);
+            background-color: variables.$secondary-bg;
+            padding: rem(10) rem(12);
+            border-radius: variables.$space-xs;
+            display: flex;
+            align-items: center;
+            gap: variables.$space-xs;
+            font-size: variables.$font-size-base;
+            font-weight: 700;
+            color: variables.$gray-700;
+
+            svg {
+                width: rem(14);
+                height: rem(14);
+            }
+        }
+
+        // 하단 배송 태그 컨테이너
+        .delivery-tags {
+            bottom: rem(10);
+            left: rem(10);
+            gap: rem(10);
+
+            .tag {
+                font-size: variables.$font-size-base;
+                font-weight: 600;
+                padding: rem(10) rem(12);
+                border-radius: rem(2);
+                display: flex;
+                align-items: center;
+                background-color: variables.$secondary-bg;
+
+                svg {
+                    width: rem(16);
+                    height: rem(16);
+                    margin-right: rem(4);
+                }
+            }
+
+            .tag-frozen {
+                color: variables.$system-info;
+            }
+
+            .tag-ambient {
+                color: variables.$accent-base;
+            }
+
+            // 아웃라인 태그
+            .tag-outline {
+                background-color: variables.$secondary-bg !important;
+                border: none;
+                color: variables.$black !important;
+
+                &:before {
+                    display: none !important;
+                }
+            }
+
+            .tag-green {
+                color: variables.$system-success;
+            }
+        }
+    }
+
+    .card-info {
+        padding: 0;
+        margin-bottom: rem(39);
+
+        &>* {
+            line-height: 150% !important;
+        }
+
+        &:hover {
+            .product-name {
+                text-decoration: underline;
+                text-underline-offset: rem(2);
+            }
+        }
+
+        // 상품명
+        .product-name {
+            font-size: variables.$font-size-lg;
+            font-weight: 600;
+            margin-bottom: variables.$space-xs;
+            line-height: 1.5;
+            letter-spacing: rem(0.4);
+            margin-top: 0;
+        }
+
+        // 단위 정보
+        .unit-info {
+            font-size: variables.$font-size-base;
+            color: variables.$gray-700;
+            margin-bottom: rem(2);
+            display: flex;
+            align-items: center;
+            gap: rem(6);
+
+            .price-wrap {
+                display: flex;
+                align-items: center;
+                gap: rem(4);
+            }
+
+            .strike {
+                text-decoration: line-through;
+                color: variables.$gray-300;
+                font-size: variables.$font-size-base;
+                font-weight: 600;
+            }
+
+            .unit-highlight {
+                font-weight: 700;
+            }
+
+            .unit-desc {
+                color: variables.$gray-700;
+                font-size: variables.$font-size-base;
+                font-weight: 600;
+            }
+        }
+
+        // 가격 정보
+        .total-price-area {
+            display: flex;
+            align-items: baseline;
+            gap: rem(6);
+            font-size: variables.$font-size-xl;
+            font-weight: 800;
+            color: variables.$gray-700;
+
+            .discount {
+                color: variables.$accent-75;
+                font-weight: 700;
+
+                &:after {
+                    content: '%';
+                    font-size: variables.$font-size-base;
+                    margin-left: rem(1);
+                }
+            }
+
+            .price {
+                font-weight: 800;
+            }
+        }
+    }
+
+    // 컨트롤 버튼 (수량, 하트, 장바구니)
+    .card-control {
+        gap: rem(6);
+        margin-bottom: rem(12);
+
+
+        .btn-icon {
+            width: rem(48);
+            height: rem(48);
+            border: 1.5px solid variables.$gray-200;
+            border-radius: variables.$space-xs;
+            background: variables.$white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            @include mixins.btn-hover-effect;
+        }
+    }
+
+    // 하단 추가 정보
+    .bottom-info {
+        font-size: variables.$font-size-xs;
+        color: variables.$gray-600;
+        display: flex;
+        flex-direction: column;
+        min-height: rem(62);
+        padding-bottom: variables.$space-md;
+
+        >* {
+            line-height: 150% !important;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            font-size: variables.$font-size-base;
+            color: variables.$gray-300;
+            font-weight: 500;
+
+            .icon-tag {
+                @include mixins.icon-mask('/assets/icons/product-tag.svg');
+                margin-right: rem(4);
+            }
+
+            .icon-time {
+                @include mixins.icon-mask('/assets/icons/product-time.svg');
+                margin-right: rem(4);
+            }
+
+            .icon-ban {
+                @include mixins.icon-mask('/assets/icons/icon-ban.svg');
+                margin-right: rem(4);
+            }
+
+            .icon-cart-limit {
+                @include mixins.icon-mask('/assets/icons/icon-cart-limit.svg');
+                margin-right: rem(4);
+            }
+
+            .icon-sparkle {
+                @include mixins.icon-mask('/assets/icons/sparkling.svg');
+                margin-right: rem(4);
+            }
+
+            .text-highlight {
+                color: variables.$accent-75;
+            }
+        }
+    }
+}
+
+// 브랜드 카드
+.brand-card {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$space-md;
+    transition: transform 0.2s ease;
+
+    &:hover {
+        transform: translateY(rem(-4));
+    }
+
+    .card-img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background-color: variables.$gray-50;
+        border-radius: variables.$space-sm;
+        overflow: hidden;
+        border: 1.5px solid variables.$gray-100;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+    }
+
+    // 이미지 호버 효과
+    &:hover .card-img img {
+        transform: scale(1.05);
+    }
+
+    .text-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .brand-name {
+        font-size: rem(18); // Refined size
+        font-weight: 700;
+        color: variables.$black;
+        margin: 0;
+    }
+
+    .brand-desc {
+        font-size: variables.$font-size-sm; // Refined size
+        color: variables.$gray-600;
+        line-height: 1.5;
+        margin: 0;
+        word-break: keep-all;
+    }
+}
+
+// 슬라이드 컨트롤 (페이지네이션)
+.pagination-control {
+    display: flex;
+    align-items: center;
+    gap: rem(0); // 요소 간격 처리
+
+    .btn-control {
+        width: rem(48);
+        height: rem(48);
+        border-radius: rem(100);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: background-color 0.2s;
+
+        img {
+            width: rem(20);
+            height: rem(20);
+            display: block;
+        }
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    }
+
+    .page-info {
+        display: flex;
+        align-items: center;
+
+        .current-page {
+            width: rem(48);
+            text-align: center;
+            font-family: 'Pretendard', sans-serif;
+            font-weight: 600;
+            font-size: variables.$font-size-md;
+            color: variables.$black;
+        }
+
+        .divider {
+            width: rem(24);
+            height: rem(48);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                width: rem(12);
+                height: rem(2); // 대략적인 dash 크기
+            }
+        }
+
+        .total-page {
+            width: rem(48);
+            text-align: center;
+            font-family: 'Pretendard', sans-serif;
+            font-weight: 600;
+            font-size: variables.$font-size-md;
+            color: variables.$black;
+            opacity: 0.3;
+            color: variables.$gray-500;
+        }
+    }
+}
+
+// 메인 캐러셀 멀티 아이템 스타일링
+#eclubMainSlider {
+    overflow: hidden;
+}
+
+.carousel-inner {
+    overflow: visible;
+    gap: rem(20);
+
+    .carousel-item.active,
+    .carousel-item-next,
+    .carousel-item-prev {
+        display: flex;
+        gap: variables.$space-lg;
+    }
+
+    .slider-card {
+        flex-shrink: 0;
+    }
+}

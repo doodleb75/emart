@@ -1,0 +1,89 @@
+<footer class="footer">
+    <!-- 푸터 상단 (링크 영역) -->
+    <div class="footer-top">
+        <div class="section-container">
+            <div class="footer-link-grid">
+                <a href="#">공지사항</a>
+                <a href="#">고객의 소리</a>
+                <a href="#">자주하는질문</a>
+                <a href="#">자료실</a>
+                <a href="#">설문조사</a>
+                <a href="#" class="d-flex align-items-center gap-1">
+                    개인정보처리방침
+                    <img src="/assets/icons/footer_arrow_right.svg" alt="Arrow">
+                </a>
+                <a href="#">이용약관</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 하단 -->
+    <div class="footer-bottom">
+        <div class="section-container">
+            <!-- 로고 영역 -->
+            <div class="logo-row">
+                <img src="/assets/images/common/icon_eclub_title.svg" alt="이클럽 로고" class="footer-logo">
+            </div>
+
+            <!-- 하단 메인 레이아웃 -->
+            <div class="info-grid">
+                <!-- 왼쪽: 기업 상세 정보 -->
+                <div class="company-info">
+                    <div class="info-row">
+                        <span>주식회사 이마트</span>
+                        <span class="dot-divider"></span>
+                        <span>사업자등록번호 : 206-86-50913</span>
+                        <span class="dot-divider"></span>
+                        <a href="#">사업자등록번호 확인</a>
+                        <span class="dot-divider"></span>
+                        <span>대표자 : 한채양</span>
+                    </div>
+                    <div class="info-row">
+                        <span>서울특별시 중구 세종대로7길 37(순화동)</span>
+                    </div>
+                    <div class="info-row">
+                        <span>통신판매업신고번호 : 제2023-서울중구-0921호</span>
+                        <span class="dot-divider"></span>
+                        <span>이메일 : b2b_admin@emarteveryday.co.kr</span>
+                    </div>
+                    <div class="info-row">
+                        <span>호스팅제공자 : (주)신세계아이앤씨</span>
+                        <span class="dot-divider"></span>
+                        <span>전화 : 02-380-5052, 02-6488-1173</span>
+                    </div>
+                    <div class="copyright">
+                        Copyright @ E-MART Inc. All Rights Reserved.
+                    </div>
+                </div>
+
+                <!-- 중앙: 모바일 앱 설치 안내 -->
+                <div class="app-install-box">
+                    <img src="/assets/images/common/icon_eclub_title.svg" alt="이클럽 로고" class="app-logo">
+                    <span class="title">모바일 APP 설치하기</span>
+                    <div class="qr-box">
+                        <img src="/assets/images/footer/footer_qr_code.png" alt="QR Code">
+                    </div>
+                </div>
+
+                <!-- 오른쪽: 고객센터 정보 -->
+                <div class="cs-list">
+                    <div class="cs-item">
+                        <i class="icon icon-cs-manager"></i>
+                        <span class="label">회원점 담당자 :</span>
+                        <span class="value">도담매니저</span>
+                    </div>
+                    <div class="cs-item">
+                        <i class="icon icon-cs-phone"></i>
+                        <span class="value-lg">010 · 1234 · 5678</span>
+                    </div>
+                    <div class="cs-item">
+                        <i class="icon icon-cs-clock"></i>
+                        <span class="label">평일: 08시 30분 ~ 17시 30분</span>
+                        <span class="value">· 공휴일 휴무</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>

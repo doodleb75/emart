@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장바구니 - e-Club</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/emart/assets/styles/pc.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- 헤더 -->
+    <div id="header-placeholder"></div>
+
+    <!-- 장바구니 본문 -->
+    <!-- 빈 장바구니 상태 제어 -->
+    <main class="cart-page ">
+        <div class="section-container">
+
+            <!-- 페이지 헤더 -->
+            <div class="page-header">
+                <h2 class="page-title">
+                    장바구니 <span class="count">150</span>
+                </h2>
+                <div class="page-steps">
+                    <i class="icon icon-step-arrow"></i>
+                    <span class="step">주문결제</span>
+                    <i class="icon icon-step-arrow"></i>
+                    <span class="step">주문완료</span>
+                </div>
+            </div>
+
+            <!-- 장바구니 메인 레이아웃 -->
+            <div class="custom-cart-layout">
+                <!-- 상품 목록 영역 -->
+                <div class="cart-content">
+
+                    <!-- 편집 및 엑셀 제어바 -->
+                    <div class="control-bar">
+                        <div class="left-controls">
+                            <custom-checkbox id="selectAll" label="전체 선택"></custom-checkbox>
+
+                            <button class="btn-delete">
+                                <i class="icon icon-close-thin"></i>
+                                선택 삭제
+                            </button>
+                        </div>
+                        <div class="right-controls">
+                            <button class="btn-excel-upload">
+
+                                <i class="icon-excel"></i>
+                                엑셀 업로드
+
+                                <i class="icon icon-upload"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 카테고리 탭 -->
+                    <div class="category-tabs">
+                        <a href="#section-ambient" class="tab-item active" data-target="section-ambient">
+                            상온 <span class="count highlight">100</span>
+                        </a>
+                        <a href="#section-lowtemp" class="tab-item" data-target="section-lowtemp">
+                            저온 <span class="count">47</span>
+                        </a>
+                        <a href="#section-direct" class="tab-item" data-target="section-direct">
+                            직납 <span class="count">2</span>
+                        </a>
+                        <a href="#section-appliances" class="tab-item" data-target="section-appliances">
+                            가전 <span class="count">1</span>
+                        </a>
+                    </div>
+
+                    <!-- 상온 상품 목록 -->
+                    <div class="cart-section" id="section-ambient">
+                        <div class="section-title-group">
+                            <custom-checkbox class="section-check section-title-checkbox"
+                                label="상온 상품"></custom-checkbox>
+                        </div>
+
+                        <div class="cart-item">
+                            <div class="item-checkbox-col">
+                                <custom-checkbox class="item-check" name="cartItem"></custom-checkbox>
+                            </div>
+
+                            <div class="item-image">
+                                <img src="/emart/assets/images/cart/Product Image.png" alt="에비앙 500ml"
+                                    onerror="this.src='https://placehold.jp/24/f4f4f4/cccccc/150x150.png?text=%EC%97%90%EB%B9%84%EC%95%99%20500ml'">
+                            </div>
+
+                            <div class="item-info">
+                                <div class="delivery-bottom-base">
+                                    <div class="product-name">에비앙 500ml</div>
+                                    <div class="brand-name">입수 24 · BOX</div>
+                                    <div class="promo-text">
+                                        <i class="icon icon-promo"></i>
+                                        프로모션
+                                    </div>
+                                </div>
+                                <div class="delivery-tags">
+                                    <span class="tag tag-outline">
+                                        <i class="icon-thermometer"></i> 상온
+                                    </span>
+                                    <span class="tag">TC</span>
+                                    <span class="tag tag-green">소비기한 50일</span>
+                                </div>
+                            </div>
+
+                            <div class="item-middle">
+                                <div class="unit-box">
+                                    <div>낱개환산 24개</div>
+                                    <div>개당 925 <span class="old">2,490</span></div>
+                                    <div class="relay-text">
+                                        <i class="icon icon-relay"></i> 릴레이 적용
+                                    </div>
+                                </div>
+
+                                <div class="qty-box">
+                                    <button><i class="icon-minus"></i></button>
+                                    <input type="number" value="0">
+                                    <button><i class="icon-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="item-right">
+                                <div class="price-box">
+                                    <div class="main-price">
+                                        <span class="rate">20<span class="percent">%</span></span>
+                                        <span class="val">95,760</span>
+                                    </div>
+                                    <div class="sub-price">
+                                        7,980
+                                        <i class="icon icon-info-chevron"></i>
+                                    </div>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="btn-icon">
+                                        <i class="icon-heart"></i>
+                                    </button>
+                                    <button class="btn-icon productDeleteTrigger">
+                                        <i class="icon icon-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cart-item">
+                            <div class="item-checkbox-col">
+                                <custom-checkbox class="item-check" name="cartItem"></custom-checkbox>
+                            </div>
+
+                            <div class="item-image">
+                                <img src="/emart/assets/images/cart/Product Image-1.png" alt="애경 엑츠"
+                                    onerror="this.src='https://placehold.jp/24/f4f4f4/cccccc/150x150.png?text=%EC%95%A0%EA%B2%BD%20%EC%97%91%EC%B8%A0'">
+                            </div>
+
+                            <div class="item-info">
+
+                                <div class="delivery-bottom-base">
+                                    <div class="product-name">애경 엑츠 드럼세탁세제 2.5L</div>
+                                    <div class="brand-name">입수 12 · BOX</div>
+                                </div>
+                                <div class="delivery-tags">
+                                    <span class="tag tag-outline">
+                                        <i class="icon-thermometer"></i> 상온
+                                    </span>
+                                    <span class="tag">TC</span>
+                                    <span class="tag tag-green">소비기한 50일</span>
+                                </div>
+                            </div>
+
+                            <div class="item-middle">
+                                <div class="unit-box">
+                                    <div>낱개환산 12개</div>
+                                    <div>개당 925 <span class="old">2,490</span></div>
+                                    <div class="relay-text">
+                                        <i class="icon icon-relay"></i> 릴레이 적용
+                                    </div>
+                                </div>
+
+                                <div class="qty-box">
+                                    <button><i class="icon-minus"></i></button>
+                                    <input type="number" value="0">
+                                    <button><i class="icon-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="item-right">
+                                <div class="price-box">
+                                    <div class="main-price">
+                                        <span class="rate">20<span class="percent">%</span></span>
+                                        <span class="val">95,760</span>
+                                    </div>
+                                    <div class="sub-price">
+                                        7,980
+                                        <i class="icon icon-info-chevron"></i>
+                                    </div>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="btn-icon">
+                                        <i class="icon-heart"></i>
+                                    </button>
+                                    <button class="btn-icon productDeleteTrigger">
+                                        <i class="icon icon-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cart-item">
+                            <div class="item-checkbox-col">
+                                <custom-checkbox class="item-check" name="cartItem"></custom-checkbox>
+                            </div>
+
+                            <div class="item-image">
+                                <img src="/emart/assets/images/cart/Product Image.png" alt="에비앙 500ml"
+                                    onerror="this.src='https://placehold.jp/24/f4f4f4/cccccc/150x150.png?text=%EC%97%90%EB%B9%84%EC%95%99%20500ml'">
+                            </div>
+
+                            <div class="item-info">
+                                <div class="delivery-bottom-base">
+                                    <div class="product-name">에비앙 500ml</div>
+                                    <div class="brand-name">입수 24 · BOX</div>
+                                    <div class="promo-text">
+                                        <i class="icon icon-promo"></i>
+                                        프로모션
+                                    </div>
+                                </div>
+                                <div class="delivery-tags">
+                                    <span class="tag tag-outline">
+                                        <i class="icon-thermometer"></i> 상온
+                                    </span>
+                                    <span class="tag">TC</span>
+                                    <span class="tag tag-green">소비기한 50일</span>
+                                </div>
+                            </div>
+
+                            <div class="item-middle">
+                                <div class="unit-box">
+                                    <div>낱개환산 24개</div>
+                                    <div>개당 925 <span class="old">2,490</span></div>
+                                    <div class="relay-text">
+                                        <i class="icon icon-relay"></i> 릴레이 적용
+                                    </div>
+                                </div>
+
+                                <div class="qty-box">
+                                    <button><i class="icon-minus"></i></button>
+                                    <input type="number" value="0">
+                                    <button><i class="icon-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="item-right">
+                                <div class="price-box">
+                                    <div class="main-price">
+                                        <span class="rate">20<span class="percent">%</span></span>
+                                        <span class="val">95,760</span>
+                                    </div>
+                                    <div class="sub-price">
+                                        7,980
+                                        <i class="icon icon-info-chevron"></i>
+                                    </div>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="btn-icon">
+                                        <i class="icon-heart"></i>
+                                    </button>
+                                    <button class="btn-icon productDeleteTrigger">
+                                        <i class="icon icon-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cart-item">
+                            <div class="item-checkbox-col">
+                                <custom-checkbox class="item-check" name="cartItem"></custom-checkbox>
+                            </div>
+
+                            <div class="item-image">
+                                <img src="/emart/assets/images/cart/Product Image-1.png" alt="애경 엑츠"
+                                    onerror="this.src='https://placehold.jp/24/f4f4f4/cccccc/150x150.png?text=%EC%95%A0%EA%B2%BD%20%EC%97%91%EC%B8%A0'">
+                            </div>
+
+                            <div class="item-info">
+
+                                <div class="delivery-bottom-base">
+                                    <div class="product-name">애경 엑츠 드럼세탁세제 2.5L</div>
+                                    <div class="brand-name">입수 12 · BOX</div>
+                                </div>
+                                <div class="delivery-tags">
+                                    <span class="tag tag-outline">
+                                        <i class="icon-thermometer"></i> 상온
+                                    </span>
+                                    <span class="tag">TC</span>
+                                    <span class="tag tag-green">소비기한 50일</span>
+                                </div>
+                            </div>
+
+                            <div class="item-middle">
+                                <div class="unit-box">
+                                    <div>낱개환산 12개</div>
+                                    <div>개당 925 <span class="old">2,490</span></div>
+                                    <div class="relay-text">
+                                        <i class="icon icon-relay"></i> 릴레이 적용
+                                    </div>
+                                </div>
+
+                                <div class="qty-box">
+                                    <button><i class="icon-minus"></i></button>
+                                    <input type="number" value="0">
+                                    <button><i class="icon-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="item-right">
+                                <div class="price-box">
+                                    <div class="main-price">
+                                        <span class="rate">20<span class="percent">%</span></span>
+                                        <span class="val">95,760</span>
+                                    </div>
+                                    <div class="sub-price">
+                                        7,980
+                                        <i class="icon icon-info-chevron"></i>
+                                    </div>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="btn-icon">
+                                        <i class="icon-heart"></i>
+                                    </button>
+                                    <button class="btn-icon productDeleteTrigger">
+                                        <i class="icon icon-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- 저온 상품 목록 -->
+                    <div class="cart-section" id="section-lowtemp">
+                        <div class="section-title-group">
+                            <custom-checkbox class="section-check section-title-checkbox"
+                                label="저온 상품"></custom-checkbox>
+                        </div>
+
+
+                        <div class="cart-item">
+                            <div class="item-checkbox-col">
+                                <custom-checkbox class="item-check" name="cartItem"></custom-checkbox>
+                            </div>
+
+                            <div class="item-image">
+                                <img src="/emart/assets/images/cart/Product Image.png" alt="에비앙 500ml"
+                                    onerror="this.src='https://placehold.jp/24/f4f4f4/cccccc/150x150.png?text=%EC%97%90%EB%B9%84%EC%95%99%20500ml'">
+                            </div>
+
+                            <div class="item-info">
+                                <div class="delivery-bottom-base">
+                                    <div class="product-name">에비앙 500ml</div>
+                                    <div class="brand-name">입수 24 · BOX</div>
+                                    <div class="promo-text">
+                                        <i class="icon icon-promo"></i>
+                                        프로모션
+                                    </div>
+                                </div>
+                                <div class="delivery-tags">
+                                    <span class="tag tag-outline">
+                                        <i class="icon-thermometer"></i> 상온
+                                    </span>
+                                    <span class="tag">TC</span>
+                                    <span class="tag tag-green">소비기한 50일</span>
+                                </div>
+                            </div>
+
+                            <div class="item-middle">
+                                <div class="unit-box">
+                                    <div>낱개환산 24개</div>
+                                    <div>개당 925 <span class="old">2,490</span></div>
+                                    <div class="relay-text">
+                                        <i class="icon icon-relay"></i> 릴레이 적용
+                                    </div>
+                                </div>
+
+                                <div class="qty-box">
+                                    <button><i class="icon-minus"></i></button>
+                                    <input type="number" value="0">
+                                    <button><i class="icon-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="item-right">
+                                <div class="price-box">
+                                    <div class="main-price">
+                                        <span class="rate">20<span class="percent">%</span></span>
+                                        <span class="val">95,760</span>
+                                    </div>
+                                    <div class="sub-price">
+                                        7,980
+                                        <i class="icon icon-info-chevron"></i>
+                                    </div>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="btn-icon">
+                                        <i class="icon-heart"></i>
+                                    </button>
+                                    <button class="btn-icon productDeleteTrigger">
+                                        <i class="icon icon-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="cart-item">
+                            <div class="item-checkbox-col">
+                                <custom-checkbox class="item-check" name="cartItem"></custom-checkbox>
+                            </div>
+
+                            <div class="item-image">
+                                <img src="/emart/assets/images/cart/Product Image-1.png" alt="애경 엑츠"
+                                    onerror="this.src='https://placehold.jp/24/f4f4f4/cccccc/150x150.png?text=%EC%95%A0%EA%B2%BD%20%EC%97%91%EC%B8%A0'">
+                            </div>
+
+                            <div class="item-info">
+
+                                <div class="delivery-bottom-base">
+                                    <div class="product-name">애경 엑츠 드럼세탁세제 2.5L</div>
+                                    <div class="brand-name">입수 12 · BOX</div>
+                                </div>
+                                <div class="delivery-tags ">
+                                    <span class="tag tag-outline">
+                                        <i class="icon-thermometer"></i> 상온
+                                    </span>
+                                    <span class="tag">TC</span>
+                                    <span class="tag tag-green">소비기한 50일</span>
+                                </div>
+                            </div>
+
+                            <div class="item-middle">
+                                <div class="unit-box">
+                                    <div>낱개환산 12개</div>
+                                    <div>개당 925 <span class="old">2,490</span></div>
+                                    <div class="relay-text">
+                                        <i class="icon icon-relay"></i> 릴레이 적용
+                                    </div>
+                                </div>
+
+                                <div class="qty-box">
+                                    <button><i class="icon-minus"></i></button>
+                                    <input type="number" value="0">
+                                    <button><i class="icon-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="item-right">
+                                <div class="price-box">
+                                    <div class="main-price">
+                                        <span class="rate">20<span class="percent">%</span></span>
+                                        <span class="val">95,760</span>
+                                    </div>
+                                    <div class="sub-price">
+                                        7,980
+                                        <i class="icon icon-info-chevron"></i>
+                                    </div>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="btn-icon">
+                                        <i class="icon-heart"></i>
+                                    </button>
+                                    <button class="btn-icon productDeleteTrigger">
+                                        <i class="icon icon-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- 직납 상품 목록 -->
+                    <div class="cart-section" id="section-direct">
+                        <div class="section-title-group">
+                            <custom-checkbox class="section-check section-title-checkbox"
+                                label="직납 상품"></custom-checkbox>
+                        </div>
+
+                        <div class="cart-item">
+                            <div class="item-checkbox-col">
+                                <custom-checkbox class="item-check" name="cartItem"></custom-checkbox>
+                            </div>
+
+                            <div class="item-image">
+                                <img src="/emart/assets/images/cart/Product Image.png" alt="에비앙 500ml"
+                                    onerror="this.src='https://placehold.jp/24/f4f4f4/cccccc/150x150.png?text=%EC%97%90%EB%B9%84%EC%95%99%20500ml'">
+                            </div>
+
+                            <div class="item-info">
+                                <div class="delivery-bottom-base">
+                                    <div class="product-name">에비앙 500ml</div>
+                                    <div class="brand-name">입수 24 · BOX</div>
+                                    <div class="promo-text">
+                                        <i class="icon icon-promo"></i>
+                                        프로모션
+                                    </div>
+                                </div>
+                                <div class="delivery-tags ">
+                                    <span class="tag tag-outline">
+                                        <i class="icon-thermometer"></i> 상온
+                                    </span>
+                                    <span class="tag">TC</span>
+                                    <span class="tag tag-green">소비기한 50일</span>
+                                </div>
+                            </div>
+
+                            <div class="item-middle">
+                                <div class="unit-box">
+                                    <div>낱개환산 24개</div>
+                                    <div>개당 925 <span class="old">2,490</span></div>
+                                    <div class="relay-text">
+                                        <i class="icon icon-relay"></i> 릴레이 적용
+                                    </div>
+                                </div>
+
+                                <div class="qty-box">
+                                    <button><i class="icon-minus"></i></button>
+                                    <input type="number" value="0">
+                                    <button><i class="icon-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="item-right">
+                                <div class="price-box">
+                                    <div class="main-price">
+                                        <span class="rate">20<span class="percent">%</span></span>
+                                        <span class="val">95,760</span>
+                                    </div>
+                                    <div class="sub-price">
+                                        7,980
+                                        <i class="icon icon-info-chevron"></i>
+                                    </div>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="btn-icon">
+                                        <i class="icon-heart"></i>
+                                    </button>
+                                    <button class="btn-icon productDeleteTrigger">
+                                        <i class="icon icon-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="cart-item">
+                            <div class="item-checkbox-col">
+                                <custom-checkbox class="item-check" name="cartItem"></custom-checkbox>
+                            </div>
+
+                            <div class="item-image">
+                                <img src="/emart/assets/images/cart/Product Image-1.png" alt="애경 엑츠"
+                                    onerror="this.src='https://placehold.jp/24/f4f4f4/cccccc/150x150.png?text=%EC%95%A0%EA%B2%BD%20%EC%97%91%EC%B8%A0'">
+                            </div>
+
+                            <div class="item-info">
+
+                                <div class="delivery-bottom-base">
+                                    <div class="product-name">애경 엑츠 드럼세탁세제 2.5L</div>
+                                    <div class="brand-name">입수 12 · BOX</div>
+                                </div>
+                                <div class="delivery-tags ">
+                                    <span class="tag tag-outline">
+                                        <i class="icon-thermometer"></i> 상온
+                                    </span>
+                                    <span class="tag">TC</span>
+                                    <span class="tag tag-green">소비기한 50일</span>
+                                </div>
+                            </div>
+
+                            <div class="item-middle">
+                                <div class="unit-box">
+                                    <div>낱개환산 12개</div>
+                                    <div>개당 925 <span class="old">2,490</span></div>
+                                    <div class="relay-text">
+                                        <i class="icon icon-relay"></i> 릴레이 적용
+                                    </div>
+                                </div>
+
+                                <div class="qty-box">
+                                    <button><i class="icon-minus"></i></button>
+                                    <input type="number" value="0">
+                                    <button><i class="icon-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="item-right">
+                                <div class="price-box">
+                                    <div class="main-price">
+                                        <span class="rate">20<span class="percent">%</span></span>
+                                        <span class="val">95,760</span>
+                                    </div>
+                                    <div class="sub-price">
+                                        7,980
+                                        <i class="icon icon-info-chevron"></i>
+                                    </div>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="btn-icon">
+                                        <i class="icon-heart"></i>
+                                    </button>
+                                    <button class="btn-icon productDeleteTrigger">
+                                        <i class="icon icon-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 가전 상품 목록 -->
+                    <div class="cart-section" id="section-appliances">
+                        <div class="section-title-group">
+                            <custom-checkbox class="section-check section-title-checkbox"
+                                label="가전 상품"></custom-checkbox>
+                        </div>
+
+                        <div class="cart-item">
+                            <div class="item-checkbox-col">
+                                <custom-checkbox class="item-check" name="cartItem"></custom-checkbox>
+                            </div>
+
+                            <div class="item-image">
+                                <img src="/emart/assets/images/cart/Product Image.png" alt="에비앙 500ml"
+                                    onerror="this.src='https://placehold.jp/24/f4f4f4/cccccc/150x150.png?text=%EC%97%90%EB%B9%84%EC%95%99%20500ml'">
+                            </div>
+
+                            <div class="item-info">
+                                <div class="delivery-bottom-base">
+                                    <div class="product-name">에비앙 500ml</div>
+                                    <div class="brand-name">입수 24 · BOX</div>
+                                    <div class="promo-text">
+                                        <i class="icon icon-promo"></i>
+                                        프로모션
+                                    </div>
+                                </div>
+                                <div class="delivery-tags ">
+                                    <span class="tag tag-outline">
+                                        <i class="icon-thermometer"></i> 상온
+                                    </span>
+                                    <span class="tag">TC</span>
+                                    <span class="tag tag-green">소비기한 50일</span>
+                                </div>
+                            </div>
+
+                            <div class="item-middle">
+                                <div class="unit-box">
+                                    <div>낱개환산 24개</div>
+                                    <div>개당 925 <span class="old">2,490</span></div>
+                                    <div class="relay-text">
+                                        <i class="icon icon-relay"></i> 릴레이 적용
+                                    </div>
+                                </div>
+
+                                <div class="qty-box">
+                                    <button><i class="icon-minus"></i></button>
+                                    <input type="number" value="0">
+                                    <button><i class="icon-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="item-right">
+                                <div class="price-box">
+                                    <div class="main-price">
+                                        <span class="rate">20<span class="percent">%</span></span>
+                                        <span class="val">95,760</span>
+                                    </div>
+                                    <div class="sub-price">
+                                        7,980
+                                        <i class="icon icon-info-chevron"></i>
+                                    </div>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="btn-icon">
+                                        <i class="icon-heart"></i>
+                                    </button>
+                                    <button class="btn-icon productDeleteTrigger">
+                                        <i class="icon icon-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="cart-item">
+                            <div class="item-checkbox-col">
+                                <custom-checkbox class="item-check" name="cartItem"></custom-checkbox>
+                            </div>
+
+                            <div class="item-image">
+                                <img src="/emart/assets/images/cart/Product Image-1.png" alt="애경 엑츠"
+                                    onerror="this.src='https://placehold.jp/24/f4f4f4/cccccc/150x150.png?text=%EC%95%A0%EA%B2%BD%20%EC%97%91%EC%B8%A0'">
+                            </div>
+
+                            <div class="item-info">
+
+                                <div class="delivery-bottom-base">
+                                    <div class="product-name">애경 엑츠 드럼세탁세제 2.5L</div>
+                                    <div class="brand-name">입수 12 · BOX</div>
+                                </div>
+                                <div class="delivery-tags ">
+                                    <span class="tag tag-outline">
+                                        <i class="icon-thermometer"></i> 상온
+                                    </span>
+                                    <span class="tag">TC</span>
+                                    <span class="tag tag-green">소비기한 50일</span>
+                                </div>
+                            </div>
+
+                            <div class="item-middle">
+                                <div class="unit-box">
+                                    <div>낱개환산 12개</div>
+                                    <div>개당 925 <span class="old">2,490</span></div>
+                                    <div class="relay-text">
+                                        <i class="icon icon-relay"></i> 릴레이 적용
+                                    </div>
+                                </div>
+
+                                <div class="qty-box">
+                                    <button><i class="icon-minus"></i></button>
+                                    <input type="number" value="0">
+                                    <button><i class="icon-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="item-right">
+                                <div class="price-box">
+                                    <div class="main-price">
+                                        <span class="rate">20<span class="percent">%</span></span>
+                                        <span class="val">95,760</span>
+                                    </div>
+                                    <div class="sub-price">
+                                        7,980
+                                        <i class="icon icon-info-chevron"></i>
+                                    </div>
+                                </div>
+                                <div class="action-buttons">
+                                    <button class="btn-icon">
+                                        <i class="icon-heart"></i>
+                                    </button>
+                                    <button class="btn-icon productDeleteTrigger">
+                                        <i class="icon icon-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 상품 미등록 안내 -->
+                    <div class="cart-section empty-list">
+                        <div class="empty-list">
+                            <i class="icon icon-cart-empty"></i>
+                            <div class="empty-list-text">
+                                <p>장바구니에 담긴 상품이 없습니다​.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- 안내 섹션 -->
+                    <div class="cart-info">
+                        <div class="info-title">
+                            <i class="icon icon-info-circle-lg"></i>
+                            장바구니 안내
+                        </div>
+                        <ul class="info-list">
+                            <li>장바구니에는 최근 담은 상품이 90개까지 보관되며 90일 이후 삭제됩니다.</li>
+                            <li>공주문가능 상품은 장바구니에 담을 수 있으며, 주문가능일에 주문 가능합니다.</li>
+                            <li>수량을 변경하고 결제예정금액을 확인하고, '주문결제' 단계에서 추가할인 받을 수 있습니다.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 주문금액 요약 및 배송지 정보 -->
+                <div class="cart-sidebar">
+                    <div class="summary-sidebar">
+                        <div class="summary-box">
+                            <div class="summary-header">
+                                <div class="location-row">
+                                    <span class="location-title">배송지: 골드마트</span>
+                                    <button class="btn-change-addr">배송지변경</button>
+                                </div>
+                                <div class="address-text">
+                                    [12345] 서울 성동구 성수동 116길 11, 1층
+                                </div>
+                            </div>
+                            <div class="summary-body">
+                                <div class="price-row first-row">
+                                    <span>선택상품 <span class="sel-count">25</span></span>
+                                    <span class="price-val">497,760</span>
+                                </div>
+                                <div class="price-row c-group">
+                                    <span>상온 <span class="sel-count-sm">10</span></span>
+                                    <span class="price-val">31,000</span>
+                                </div>
+                                <div class="price-row c-group">
+                                    <span>저온 <span class="sel-count-sm">15</span></span>
+                                    <span class="price-val">21,000</span>
+                                </div>
+                                <div class="price-row mt-3 pt-3 border-top">
+                                    <span>배송비</span>
+                                    <span>무료배송</span>
+                                </div>
+                                <div class="price-row">
+                                    <span>할인내역</span>
+                                    <span>- 50,000</span>
+                                </div>
+                                <div class="discount-details-box">
+                                    <div class="price-row">
+                                        <span>프로모션 에누리</span>
+                                        <span>5,000</span>
+                                    </div>
+                                    <div class="price-row">
+                                        <span>L 일반특가(냉수) 적용1건</span>
+                                        <span>5,000</span>
+                                    </div>
+                                    <div class="price-row">
+                                        <span>쿠폰</span>
+                                        <span>45,000</span>
+                                    </div>
+                                    <div class="price-row">
+                                        <span>L 결제할인 5%</span>
+                                        <span>45,000</span>
+                                    </div>
+                                </div>
+
+                                <div class="price-row total">
+                                    <span>결제예정금액</span>
+                                    <span class="total-val">540,380</span>
+                                </div>
+                            </div>
+                            <div class="summary-footer">
+                                <button class="btn-submit">상품을 선택해주세요</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 푸터 섹션 -->
+            <div id="footer-placeholder"></div>
+
+            <script>
+                function loadComponent(url, placeholderId) {
+                    fetch(url + '?v=' + new Date().getTime())
+                        .then(response => {
+                            if (!response.ok) throw new Error('Network response was not ok');
+                            return response.text();
+                        })
+                        .then(data => {
+                            // 하위 페이지 경로 보정
+                            if (window.location.pathname.includes('/pages/')) {
+                                data = data.replace(/src="assets\//g, 'src="../assets/');
+                            }
+                            document.getElementById(placeholderId).innerHTML = data;
+                            if (placeholderId === 'header-placeholder') {
+                                document.dispatchEvent(new Event('headerLoaded'));
+                            }
+                            if (placeholderId === 'footer-placeholder') {
+                                document.dispatchEvent(new Event('footerLoaded'));
+                            }
+                        })
+                        .catch(error => console.error('Error loading component:', error));
+                }
+
+                loadComponent('/components/header.component.txt', 'header-placeholder');
+                loadComponent('/components/footer.component.txt', 'footer-placeholder');
+            </script>
+
+        </div>
+    </main>
+
+    <script src="/emart/assets/js/components/favorites.js"></script>
+    <script src="/emart/assets/js/components/quantity-control.js"></script>
+    <script src="/emart/assets/js/main.js"></script>
+    <script src="/emart/assets/js/components/checkbox.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <!-- 상품 삭제 확인 팝업 -->
+    <div class="modal fade layer-popup" id="productDeleteModal" tabindex="-1" aria-hidden="true"
+        data-bs-backdrop="false">
+        <div class="modal-dialog">
+            <div class="popup-content no-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="icon icon-close-x"></i>
+                </button>
+                <div class="popup-body dark-text">
+                    선택상품을 삭제 하시겠습니까?
+                </div>
+                <div class="popup-footer">
+                    <div class="btn-group-half">
+                        <div class="btn-area">
+                            <button type="button" class="btn-popup btn-gray" data-bs-dismiss="modal">아니오</button>
+                        </div>
+                        <div class="btn-area">
+                            <button type="button" class="btn-popup btn-primary"
+                                onclick="location.href='/pages/cart.html'">네</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/variables" as *;
+
+
+
+// Mobile Toast Notification System
+// 이미지와 동일하게 폰트, SVG 크기, 패딩을 조정한 모바일 전용 토스트
+
+.custom-toast-container {
+    position: fixed; // 기본은 화면 하단 고정
+    z-index: 1060;
+    width: 100%;
+    max-width: calc(100% - rem(32)); // 좌우 여백 16px씩 확보
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+
+    // 위치 설정 (하단 중앙)
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: rem(24); // 하단에서 24px 띄움
+
+    &.position-absolute {
+        position: absolute;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        width: auto;
+        max-width: none;
+        justify-content: flex-start;
+    }
+}
+
+.custom-toast {
+    pointer-events: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: rem(12); // 아이콘과 텍스트 간격
+    padding: rem(4) rem(8); // 상하 14, 좌우 20 패딩
+    border-radius: rem(4); // 이미지의 각진 느낌을 살림
+    box-shadow: 0 rem(4) rem(12) rgba(0, 0, 0, 0.15);
+    font-family: $font-family-base;
+    font-size: rem(12); // 가독성을 위한 최적화 사이즈
+    font-weight: 600; // 프로젝트 공식 Font weight (600)
+    line-height: rem(24);
+    color: $white;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform: translateY(rem(10));
+    white-space: nowrap; // 텍스트 줄바꿈 방지
+
+    // Bootstrap Toast Override
+    background-color: $gray-700; // 가장 어두운 컬러 (프로젝트 규칙)
+    border: none;
+
+    &.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    // 아이콘 크기 (이미지 참조)
+    .toast-icon,
+    svg {
+        width: rem(16);
+        height: rem(16);
+        flex-shrink: 0;
+
+        path {
+            fill: currentColor;
+        }
+    }
+
+    // 1. Success Type (Green) - 이미지 참조
+    &.toast-success {
+        background-color: $system-success;
+    }
+
+    // 2. Danger Type (Red)
+    &.toast-danger {
+        background-color: $system-danger;
+    }
+
+    // 3. Warning Type (Yellow/Gold)
+    &.toast-warning {
+        background-color: $system-warning;
+        color: $white;
+    }
+
+    // 4. Info Type (Blue)
+    &.toast-info {
+        background-color: $system-info;
+    }
+}

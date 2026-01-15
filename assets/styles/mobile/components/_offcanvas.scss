@@ -1,0 +1,391 @@
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/variables" as *;
+
+// 유저 정보 오프캔버스
+// -----------------------------------------------------------------------------
+
+.offcanvas-bottom.user-info-offcanvas {
+    height: auto; // 높이 자동 조절
+    min-height: rem(300); // 최소 높이
+    border-top-left-radius: rem(24); // 상단 좌측 라운드
+    border-top-right-radius: rem(24); // 상단 우측 라운드
+    border-top: none;
+    padding-bottom: rem(16);
+
+    .offcanvas-body {
+        padding: 0 rem(16) rem(64);
+    }
+
+    // 상단 핸들
+    .offcanvas-handle {
+        width: rem(80);
+        height: rem(5);
+        background-color: $gray-200;
+        border-radius: rem(5);
+        margin: rem(10) auto rem(16);
+        flex-shrink: 0;
+        cursor: pointer;
+        position: relative; // 가상 요소 기준
+        touch-action: none; // 기본 제스처 차단
+
+        // 터치 영역 확장
+        &::after {
+            content: '';
+            position: absolute;
+            top: rem(-15);
+            bottom: rem(-15);
+            left: rem(-20);
+            right: rem(-20);
+        }
+    }
+
+    .sep-divider {
+        border-color: $gray-100;
+        opacity: 1;
+    }
+
+    // 유저 요약 헤더
+    .user-summary {
+        display: flex;
+        align-items: center;
+        height: rem(32);
+        gap: rem(8);
+        margin-top: rem(16);
+        margin-bottom: rem(16);
+
+        .badge-gold {
+            background-color: $primary-100; // 배경색
+            color: $white;
+            height: 100%;
+            line-height: 1.75;
+            padding: rem(4) rem(8);
+            border-radius: rem(4);
+            font-size: rem(14);
+            margin-right: rem(10);
+        }
+
+        .user-detail-text {
+            font-size: rem(14);
+            color: $gray-700; // 유저 텍스트
+
+            span {
+                color: $gray-300;
+                margin: 0 rem(2);
+            }
+        }
+    }
+
+    // 포인트 프로그레스
+    .point-progress-section {
+        margin: rem(20) 0 rem(10);
+    }
+
+    .point-progress-track {
+        width: 100%;
+        height: rem(40);
+        background-color: $gray-100; // 트랙 배경
+        border-radius: rem(20);
+        position: relative;
+        overflow: hidden;
+
+        .point-progress-fill {
+            height: 100%;
+            background-color: $primary-100; // 프로그레스 바
+            border-radius: rem(20);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: rem(6);
+            min-width: rem(40); // 최소 너비
+            box-sizing: border-box;
+            transition: width 0.5s ease-out;
+
+            .icon-p {
+                width: rem(28);
+                height: rem(28);
+                color: $white;
+                font-weight: 700;
+                font-size: rem(15);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+
+    .progress-info {
+        display: flex;
+        align-items: center;
+        gap: rem(4);
+        font-size: rem(14);
+        color: $gray-300;
+        padding: rem(6) 0;
+
+        svg {
+            color: $gray-300;
+        }
+    }
+
+    // 유저 통계
+    .user-stat-list {
+        font-size: rem(14);
+        line-height: 150%;
+        padding: rem(0) 0;
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: rem(12);
+            padding: rem(6) 0;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .label {
+                font-size: rem(14);
+                color: $gray-700;
+                display: flex;
+                align-items: center;
+                gap: rem(4);
+
+                svg {
+                    stroke: $gray-300;
+                }
+            }
+
+            .value {
+                font-size: rem(16);
+                font-weight: 700;
+                color: $gray-700;
+                font-family: $font-family-number;
+            }
+        }
+    }
+}
+
+// 앱 다운로드 오프캔버스
+// -----------------------------------------------------------------------------
+.offcanvas-bottom.app-download-offcanvas {
+    height: auto;
+    border-top-left-radius: rem(24);
+    border-top-right-radius: rem(24);
+    border-top: none;
+    padding-bottom: rem(30);
+
+    .offcanvas-handle {
+        width: rem(80);
+        height: rem(5);
+        background-color: $gray-200;
+        border-radius: rem(5);
+        margin: rem(10) auto rem(16);
+        flex-shrink: 0;
+        cursor: pointer;
+    }
+
+    .offcanvas-body {
+        padding: 0 rem(24) rem(0);
+    }
+
+    .app-download-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: rem(20);
+
+        .app-icon-wrap {
+            width: rem(80);
+            height: rem(80);
+            margin-bottom: rem(24);
+            border-radius: rem(20);
+            overflow: hidden;
+            aspect-ratio: 1/1;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                background-color: $gray-100; // 플레이스홀더
+            }
+        }
+
+        .title {
+            font-size: rem(14);
+            font-weight: 700;
+            line-height: 1.4;
+            color: $gray-700;
+            margin-bottom: rem(32);
+            white-space: pre-wrap; // 줄바꿈
+        }
+
+        .btn-group-half {
+            display: flex;
+            width: 100%;
+            gap: rem(4);
+
+            .btn {
+                flex: 1;
+                height: rem(48);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: rem(16);
+                font-weight: 700;
+                border-radius: rem(4);
+
+                &.btn-gray {
+                    background-color: $gray-300;
+                    color: $white;
+                    border: none;
+                }
+
+                &.btn-primary {
+                    background-color: $primary-gold;
+                    color: $white;
+                    border: none;
+                }
+            }
+        }
+    }
+}
+
+// Custom Checkbox Common
+.hidden-checkbox {
+    display: none !important;
+}
+
+// 카테고리 필터 오프캔버스
+// -----------------------------------------------------------------------------
+.category-filter-offcanvas {
+    min-height: rem(460);
+    border-top-left-radius: rem(24);
+    border-top-right-radius: rem(24);
+    border-top: none;
+    padding-bottom: rem(30);
+
+    .offcanvas-handle {
+        width: rem(80);
+        height: rem(5);
+        background-color: $gray-200;
+        border-radius: rem(5);
+        margin: rem(10) auto rem(16);
+        flex-shrink: 0;
+        cursor: pointer;
+    }
+
+    .offcanvas-header {
+        padding: rem(10) rem(24) rem(18);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .offcanvas-title {
+            font-size: rem(18);
+            font-weight: 700;
+            color: $gray-700;
+        }
+
+        .btn-close-custom {
+            background: none;
+            border: none;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .offcanvas-body {
+        padding: 0 rem(24) rem(0);
+    }
+
+    .select-all-area {
+        text-align: left;
+        padding: rem(10) 0;
+
+        custom-checkbox {
+            justify-content: flex-start;
+        }
+    }
+
+    .divider {
+        height: rem(1.5);
+        background-color: $gray-700;
+        margin-top: rem(8);
+        margin-bottom: rem(8);
+
+        &.gray {
+            background-color: $gray-100;
+            margin-bottom: rem(24);
+        }
+    }
+
+    .category-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: rem(16) rem(8); // 간격
+        margin-bottom: rem(24);
+        margin-top: rem(24);
+
+        .category-item-wrap {
+            display: flex;
+            align-items: center;
+
+            custom-checkbox {
+                width: 100%;
+
+                // 라벨 영역 확장
+                .custom-checkbox-wrap {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                }
+
+                .label-text {
+                    font-size: rem(14);
+                    color: $gray-700;
+                    margin-left: rem(8);
+                    display: flex;
+                    align-items: center;
+                }
+
+                .count {
+                    color: $system-info;
+                    font-size: rem(14);
+                    margin-left: rem(4);
+                }
+            }
+        }
+    }
+
+    .btn-group-half {
+        display: flex;
+        width: 100%;
+        gap: rem(8);
+
+        .btn {
+            flex: 1;
+            height: rem(48);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: rem(16);
+            font-weight: 700;
+            border-radius: rem(2);
+
+            &.btn-gray {
+                background-color: $gray-200;
+                color: $gray-700;
+                border: none;
+            }
+
+            &.btn-primary {
+                background-color: $secondary-75;
+                color: $gray-700;
+                border: none;
+            }
+        }
+    }
+}

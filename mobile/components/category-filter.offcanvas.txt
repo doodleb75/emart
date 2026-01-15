@@ -1,0 +1,90 @@
+<!-- 카테고리 필터 바텀시트 (Category Filter Bottom Sheet) -->
+<div class="offcanvas offcanvas-bottom category-filter-offcanvas" tabindex="-1" id="categoryFilterOffcanvas" aria-labelledby="categoryFilterOffcanvasLabel">
+    <div class="offcanvas-handle" data-bs-dismiss="offcanvas"></div>
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="categoryFilterOffcanvasLabel">카테고리 필터</h5>
+        <button type="button" class="btn-close-custom" data-bs-dismiss="offcanvas" aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="#222222"/>
+            </svg>
+        </button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="select-all-area">
+            <custom-checkbox id="categorySelectAll" label="전체선택"></custom-checkbox>
+        </div>
+        
+        <div class="divider"></div>
+
+        <div class="category-grid">
+            <div class="category-item-wrap">
+                <custom-checkbox class="category-check" label="두부 <span class=&quot;count&quot;>135</span>" checked></custom-checkbox>
+            </div>
+            <div class="category-item-wrap">
+                <custom-checkbox class="category-check" label="콩가공품 <span class=&quot;count&quot;>29</span>" checked></custom-checkbox>
+            </div>
+            <div class="category-item-wrap">
+                <custom-checkbox class="category-check" label="PK냉장간편식 <span class=&quot;count&quot;>6</span>"></custom-checkbox>
+            </div>
+            <div class="category-item-wrap">
+                <custom-checkbox class="category-check" label="냉동주식 <span class=&quot;count&quot;>5</span>"></custom-checkbox>
+            </div>
+            <div class="category-item-wrap">
+                <custom-checkbox class="category-check" label="밀키트 <span class=&quot;count&quot;>2</span>"></custom-checkbox>
+            </div>
+            <div class="category-item-wrap">
+                <custom-checkbox class="category-check" label="한식소스 <span class=&quot;count&quot;>2</span>"></custom-checkbox>
+            </div>
+            <div class="category-item-wrap">
+                <custom-checkbox class="category-check" label="냉동채식 <span class=&quot;count&quot;>3</span>"></custom-checkbox>
+            </div>
+            <div class="category-item-wrap">
+                <custom-checkbox class="category-check" label="PK두부 <span class=&quot;count&quot;>2</span>"></custom-checkbox>
+            </div>
+            <div class="category-item-wrap">
+                <custom-checkbox class="category-check" label="친환경냉동냉장 <span class=&quot;count&quot;>3</span>"></custom-checkbox>
+            </div>
+            <div class="category-item-wrap">
+                <custom-checkbox class="category-check" label="냉장양념 <span class=&quot;count&quot;>3</span>"></custom-checkbox>
+            </div>
+        </div>
+
+        <div class="divider gray"></div>
+
+        <div class="btn-group-half">
+            <button type="button" class="btn btn-gray" data-bs-dismiss="offcanvas">취소</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="offcanvas">선택 적용</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const offcanvas = document.getElementById('categoryFilterOffcanvas');
+        if (!offcanvas) return;
+
+        const selectAll = offcanvas.querySelector('#categorySelectAll');
+        const items = offcanvas.querySelectorAll('.category-check');
+
+        // 전체선택 로직 (Select All Logic)
+        if (selectAll) {
+            selectAll.addEventListener('change', (e) => {
+                const isChecked = e.target.checked;
+                items.forEach(item => {
+                    item.checked = isChecked;
+                });
+            });
+        }
+
+        // 개별 체크박스 상태에 따른 전체선택 업데이트 (Update Select All based on individual checkboxes)
+        offcanvas.addEventListener('change', (e) => {
+            const item = e.target.closest('.category-check');
+            if (item) {
+                const checkedCount = Array.from(items).filter(chk => chk.checked).length;
+                if (selectAll) {
+                    selectAll.checked = (checkedCount === items.length);
+                }
+            }
+        });
+    })();
+</script>

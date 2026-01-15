@@ -1,0 +1,2838 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>e-Club Mobile</title>
+    <!-- Bootstrap CSS (optional, if used for slider) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Mobile CSS -->
+    <link href="/emart/assets/styles/mobile.css" rel="stylesheet">
+</head>
+
+<body class="mobile-body">
+
+    <!-- 모바일 헤더 -->
+    <div id="mobile-header-placeholder"></div>
+
+    <main class="main-page">
+        <!-- 메인 슬라이더 -->
+        <section class="mobile-main-slider">
+            <div class="slider-track" id="mobileMainTrack">
+                <div class="slide-item">
+                    <div class="slider-card-img-wrap">
+                        <img src="/emart/assets/images/slider/snack.png" alt="다이제">
+                    </div>
+                    <div class="slider-card-body bg-snack">
+                        <div class="text-group">
+                            <h3 class="slider-title">Dr.You 다이제 초코</h3>
+                            <p class="slider-desc">통밀의 고소함과 달콤한 초콜릿의 만남</p>
+                        </div>
+                        <div class="slider-arrow">
+                            <i class="icon-invert"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- 슬라이드 아이템 -->
+                <div class="slide-item">
+                    <div class="slider-card-img-wrap">
+                        <img src="/emart/assets/images/slider/beverage.png" alt="밸런스밀">
+                    </div>
+                    <div class="slider-card-body bg-beverage">
+                        <div class="text-group">
+                            <h3 class="slider-title">믿을 수 있는 맛, 안정적인 품질</h3>
+                            <p class="slider-desc">식사 품질을 일정하게 유지하는 검증된 레시피.</p>
+                        </div>
+                        <div class="slider-arrow">
+                            <i class="icon-invert"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-item">
+                    <div class="slider-card-img-wrap">
+                        <img src="/emart/assets/images/slider/juice.png" alt="신선한 주스">
+                    </div>
+                    <div class="slider-card-body bg-juice">
+                        <div class="text-group">
+                            <h3 class="slider-title">자연의 신선함을 담은 주스</h3>
+                            <p class="slider-desc">매일 아침 생기를 더해주는 상큼한 한 잔</p>
+                        </div>
+                        <div class="slider-arrow">
+                            <i class="icon-invert"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-item">
+                    <div class="slider-card-img-wrap">
+                        <img src="/emart/assets/images/slider/pasta.png" alt="정통 파스타">
+                    </div>
+                    <div class="slider-card-body bg-pasta">
+                        <div class="text-group">
+                            <h3 class="slider-title">정통 이탈리안 파스타의 풍미</h3>
+                            <p class="slider-desc">홈파티를 완성하는 프리미엄 파스타 세트</p>
+                        </div>
+                        <div class="slider-arrow">
+                            <i class="icon-invert"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination-container">
+                <div class="pagination-control">
+                    <!-- 이전 버튼 -->
+                    <button type="button" class="btn-control btn-prev">
+                        <i class="icon-slider-prev"></i>
+                    </button>
+
+                    <!-- 페이지 정보 -->
+                    <div class="page-info">
+                        <span class="current-page">01</span>
+                        <div class="divider">
+                            <i class="icon-slider-dash"></i>
+                        </div>
+                        <span class="total-page">04</span>
+                    </div>
+
+                    <!-- 다음 버튼 -->
+                    <button type="button" class="btn-control btn-next">
+                        <i class="icon-slider-next"></i>
+                    </button>
+
+                    <!-- 재생/일시정지 버튼 -->
+                    <button type="button" class="btn-control btn-pause">
+                        <i class="icon-slider-pause"></i>
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 오늘의 특가 -->
+        <section class="section-wrapper section-divider">
+            <header class="section-header">
+                <h2 class="section-title">오늘의 특가 상품</h2>
+                <a href="#" class="section-link"></a>
+            </header>
+            <div class="product-grid-2">
+                <!-- 상품 1 -->
+                <article class="product-card">
+                    <a href="#" class="card-thumb">
+                        <img src="/emart/assets/images/products/burger.png" alt="Product">
+                        <div class="badge-corner">
+                            <i class="icon-thumbs-up"></i> 강력 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                            <span class="tag tag-ambient">직납</span>
+                            <span class="tag tag-green">소비기한 9개월</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">고메 치즈버거 105g</h3>
+                        <div class="unit-info">
+                            <div class="price-wrap">
+                                <span class="strike">9,980</span>
+                                <span class="unit-highlight">7,980</span>
+                            </div>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">20<span class="sub-txt">% </span></span>
+                            <span class="price">95,760</span>
+                        </div>
+                    </a>
+                    <div class="card-control">
+                        <button class="btn-icon">
+                            <i class="icon-heart"></i>
+                        </button>
+                        <div class="qty-box">
+                            <button><i class="icon-minus"></i></button>
+                            <input type="number" value="0">
+                            <button><i class="icon-plus"></i></button>
+                        </div>
+                        <button class="btn-icon">
+                            <i class="icon-cart"></i>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                            <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                        </div>
+                        <div class="info-row">
+                            <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 상품 2 -->
+                <article class="product-card">
+                    <a href="#" class="card-thumb">
+                        <img src="/emart/assets/images/products/richam.png" alt="Product">
+                        <div class="badge-corner">
+                            <i class="icon-smile"></i> MD 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-ambient"><i class="icon-thermometer"></i> 상온</span>
+                            <span class="tag tag-outline">DC</span>
+                            <span class="tag tag-green">소비기한 24개월</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">리챔 오리지널 200g</h3>
+                        <div class="unit-info">
+                            <div class="price-wrap">
+                                <span class="strike">1,120</span>
+                                <span class="unit-highlight">980</span>
+                            </div>
+                            <span class="unit-desc">입수 24 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">12<span class="sub-txt">% </span></span>
+                            <span class="price">23,520</span>
+                        </div>
+                    </a>
+                    <div class="card-control">
+                        <button class="btn-icon">
+                            <i class="icon-heart"></i>
+                        </button>
+                        <div class="qty-box">
+                            <button><i class="icon-minus"></i></button>
+                            <input type="number" value="0">
+                            <button><i class="icon-plus"></i></button>
+                        </div>
+                        <button class="btn-icon">
+                            <i class="icon-cart"></i>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                            <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                        </div>
+                        <div class="info-row">
+                            <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 상품 3 -->
+                <article class="product-card">
+                    <a href="#" class="card-thumb">
+                        <img src="/emart/assets/images/products/water.png" alt="Product">
+                        <div class="badge-corner">
+                            <i class="icon-thumbs-up"></i> 강력 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉장</span>
+                            <span class="tag tag-outline">TC</span>
+                            <span class="tag tag-green">소비기한 9개월</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">농심 백산수 2L</h3>
+                        <div class="unit-info">
+                            <div class="price-wrap">
+                                <span class="strike">1,250</span>
+                                <span class="unit-highlight">1,030</span>
+                            </div>
+                            <span class="unit-desc">입수 6 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">18<span class="sub-txt">% </span></span>
+                            <span class="price">6,180</span>
+                        </div>
+                    </a>
+                    <div class="card-control">
+                        <button class="btn-icon">
+                            <i class="icon-heart"></i>
+                        </button>
+                        <div class="qty-box">
+                            <button><i class="icon-minus"></i></button>
+                            <input type="number" value="0">
+                            <button><i class="icon-plus"></i></button>
+                        </div>
+                        <button class="btn-icon">
+                            <i class="icon-cart"></i>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                            <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                        </div>
+                        <div class="info-row">
+                            <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 상품 4 -->
+                <article class="product-card">
+                    <a href="#" class="card-thumb">
+                        <img src="/emart/assets/images/products/ramen.png" alt="Product">
+                        <div class="badge-corner">
+                            <i class="icon-smile"></i> MD 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                            <span class="tag tag-ambient">직납</span>
+                            <span class="tag tag-green">소비기한 50일</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">이마트 민생라면 컵 우동맛 56.7g이마트 민생라면 컵 우동맛 56.7g</h3>
+                        <div class="unit-info">
+                            <div class="price-wrap">
+                                <span class="strike">720</span>
+                                <span class="unit-highlight">630</span>
+                            </div>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">13<span class="sub-txt">% </span></span>
+                            <span class="price">7,560</span>
+                        </div>
+                    </a>
+                    <div class="card-control">
+                        <button class="btn-icon">
+                            <i class="icon-heart"></i>
+                        </button>
+                        <div class="qty-box">
+                            <button><i class="icon-minus"></i></button>
+                            <input type="number" value="0">
+                            <button><i class="icon-plus"></i></button>
+                        </div>
+                        <button class="btn-icon">
+                            <i class="icon-cart"></i>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                            <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                        </div>
+                        <div class="info-row">
+                            <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                        </div>
+
+                    </div>
+                </article>
+                <!-- 상품 5 -->
+                <article class="product-card">
+                    <a href="#" class="card-thumb">
+                        <img src="/emart/assets/images/products/ramen.png" alt="Product">
+                        <div class="badge-corner">
+                            <i class="icon-smile"></i> MD 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                            <span class="tag tag-ambient">직납</span>
+                            <span class="tag tag-green">소비기한 50일</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">이마트 민생라면 컵 우동맛 56.7g</h3>
+                        <div class="unit-info">
+                            <div class="price-wrap">
+                                <span class="strike">720</span>
+                                <span class="unit-highlight">630</span>
+                            </div>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">13<span class="sub-txt">% </span></span>
+                            <span class="price">7,560</span>
+                        </div>
+                    </a>
+                    <div class="card-control">
+                        <button class="btn-icon">
+                            <i class="icon-heart"></i>
+                        </button>
+                        <div class="qty-box">
+                            <button><i class="icon-minus"></i></button>
+                            <input type="number" value="0">
+                            <button><i class="icon-plus"></i></button>
+                        </div>
+                        <button class="btn-icon">
+                            <i class="icon-cart"></i>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                            <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                        </div>
+                        <div class="info-row">
+                            <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                        </div>
+
+                    </div>
+                </article>
+                <!-- 상품 6 -->
+                <article class="product-card">
+                    <a href="#" class="card-thumb">
+                        <img src="/emart/assets/images/products/ramen.png" alt="Product">
+                        <div class="badge-corner">
+                            <i class="icon-smile"></i> MD 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                            <span class="tag tag-ambient">직납</span>
+                            <span class="tag tag-green">소비기한 50일</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">이마트 민생라면 컵 우동맛 56.7g</h3>
+                        <div class="unit-info">
+                            <div class="price-wrap">
+                                <span class="strike">720</span>
+                                <span class="unit-highlight">630</span>
+                            </div>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">13<span class="sub-txt">% </span></span>
+                            <span class="price">7,560</span>
+                        </div>
+                    </a>
+                    <div class="card-control">
+                        <button class="btn-icon">
+                            <i class="icon-heart"></i>
+                        </button>
+                        <div class="qty-box">
+                            <button><i class="icon-minus"></i></button>
+                            <input type="number" value="0">
+                            <button><i class="icon-plus"></i></button>
+                        </div>
+                        <button class="btn-icon">
+                            <i class="icon-cart"></i>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                            <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                        </div>
+                        <div class="info-row">
+                            <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                        </div>
+
+                    </div>
+                </article>
+                <!-- 상품 7 -->
+                <article class="product-card">
+                    <a href="#" class="card-thumb">
+                        <img src="/emart/assets/images/products/ramen.png" alt="Product">
+                        <div class="badge-corner">
+                            <i class="icon-smile"></i> MD 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                            <span class="tag tag-ambient">직납</span>
+                            <span class="tag tag-green">소비기한 50일</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">이마트 민생라면 컵 우동맛 56.7g</h3>
+                        <div class="unit-info">
+                            <div class="price-wrap">
+                                <span class="strike">720</span>
+                                <span class="unit-highlight">630</span>
+                            </div>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">13<span class="sub-txt">% </span></span>
+                            <span class="price">7,560</span>
+                        </div>
+                    </a>
+                    <div class="card-control">
+                        <button class="btn-icon">
+                            <i class="icon-heart"></i>
+                        </button>
+                        <div class="qty-box">
+                            <button><i class="icon-minus"></i></button>
+                            <input type="number" value="0">
+                            <button><i class="icon-plus"></i></button>
+                        </div>
+                        <button class="btn-icon">
+                            <i class="icon-cart"></i>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                            <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                        </div>
+                        <div class="info-row">
+                            <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                        </div>
+
+                    </div>
+                </article>
+                <!-- 상품 8 -->
+                <article class="product-card">
+                    <a href="#" class="card-thumb">
+                        <img src="/emart/assets/images/products/ramen.png" alt="Product">
+                        <div class="badge-corner">
+                            <i class="icon-smile"></i> MD 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                            <span class="tag tag-ambient">직납</span>
+                            <span class="tag tag-green">소비기한 50일</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">이마트 민생라면 컵 우동맛 56.7g</h3>
+                        <div class="unit-info">
+                            <div class="price-wrap">
+                                <span class="strike">720</span>
+                                <span class="unit-highlight">630</span>
+                            </div>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">13<span class="sub-txt">% </span></span>
+                            <span class="price">7,560</span>
+                        </div>
+                    </a>
+                    <div class="card-control">
+                        <button class="btn-icon">
+                            <i class="icon-heart"></i>
+                        </button>
+                        <div class="qty-box">
+                            <button><i class="icon-minus"></i></button>
+                            <input type="number" value="0">
+                            <button><i class="icon-plus"></i></button>
+                        </div>
+                        <button class="btn-icon">
+                            <i class="icon-cart"></i>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                            <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                        </div>
+                        <div class="info-row">
+                            <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                        </div>
+
+                    </div>
+                </article>
+                <!-- 상품 9 -->
+                <article class="product-card">
+                    <a href="#" class="card-thumb">
+                        <img src="/emart/assets/images/products/ramen.png" alt="Product">
+                        <div class="badge-corner">
+                            <i class="icon-smile"></i> MD 추천
+                        </div>
+                        <div class="delivery-tags">
+                            <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                            <span class="tag tag-ambient">직납</span>
+                            <span class="tag tag-green">소비기한 50일</span>
+                        </div>
+                    </a>
+                    <a href="#" class="card-info">
+                        <h3 class="product-name">이마트 민생라면 컵 우동맛 56.7g</h3>
+                        <div class="unit-info">
+                            <div class="price-wrap">
+                                <span class="strike">720</span>
+                                <span class="unit-highlight">630</span>
+                            </div>
+                            <span class="unit-desc">입수 12 / BOX</span>
+                        </div>
+                        <div class="total-price-area">
+                            <span class="discount">13<span class="sub-txt">% </span></span>
+                            <span class="price">7,560</span>
+                        </div>
+                    </a>
+                    <div class="card-control">
+                        <button class="btn-icon">
+                            <i class="icon-heart"></i>
+                        </button>
+                        <div class="qty-box">
+                            <button><i class="icon-minus"></i></button>
+                            <input type="number" value="0">
+                            <button><i class="icon-plus"></i></button>
+                        </div>
+                        <button class="btn-icon">
+                            <i class="icon-cart"></i>
+                        </button>
+                    </div>
+                    <div class="bottom-info">
+                        <div class="info-row">
+                            <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                            <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                        </div>
+                        <div class="info-row">
+                            <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                        </div>
+
+                    </div>
+                </article>
+
+            </div>
+            <button type="button" class="btn-more">
+                상품 더보기
+                <i class="icon-brand-arrow"></i>
+            </button>
+        </section>
+
+        <!-- MD 추천 -->
+        <section class="section-wrapper section-divider md-recommendation">
+            <header class="section-header">
+                <h2 class="section-title">MD 추천상품</h2>
+                <a href="#" class="section-link"></a>
+            </header>
+
+            <div class="tab-menu" id="mdTabMenu">
+                <div class="tab-item active" data-tab="0">조미료 · 대용식</div>
+                <div class="tab-item" data-tab="1">과자</div>
+                <div class="tab-item" data-tab="2">냉장 · 냉동</div>
+                <div class="tab-item" data-tab="3">커피 · 음료</div>
+                <div class="tab-item" data-tab="4">생활잡화</div>
+                <div class="tab-item" data-tab="5">신선식품</div>
+            </div>
+            <!-- Tab Content Wrapper -->
+            <div class="md-rec-content active" id="md-grid-0" style="display: block;">
+                <div class="product-grid-2" id="mdProductGrid">
+                    <!-- 상품 예시 -->
+                    <!-- md product 01 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_3.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-ambient">직납</span>
+                                <span class="tag tag-green">소비기한 50일</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">모짜치즈과일샐러드</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">2,290</span>
+                                    <span class="unit-highlight">1,908</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                <span class="price">22,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+                        </div>
+                    </article>
+                    <!-- md product 02 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_4.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-outline">TC</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">영진 문문문_소불고기비빔밥</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">3,120</span>
+                                    <span class="unit-highlight">2,075</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                <span class="price">24,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+                        </div>
+                    </article>
+                    <!-- md product 03 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_3.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-ambient">직납</span>
+                                <span class="tag tag-green">소비기한 50일</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">모짜치즈과일샐러드</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">2,290</span>
+                                    <span class="unit-highlight">1,908</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                <span class="price">22,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+                        </div>
+                    </article>
+                    <!-- md product 04 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_4.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-outline">TC</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">영진 문문문_소불고기비빔밥</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">3,120</span>
+                                    <span class="unit-highlight">2,075</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                <span class="price">24,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+                        </div>
+                    </article>
+                    <!-- md product 05 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_3.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-ambient">직납</span>
+                                <span class="tag tag-green">소비기한 50일</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">모짜치즈과일샐러드</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">2,290</span>
+                                    <span class="unit-highlight">1,908</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                <span class="price">22,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+                        </div>
+                    </article>
+                    <!-- md product 06 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_4.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-outline">TC</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">영진 문문문_소불고기비빔밥</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">3,120</span>
+                                    <span class="unit-highlight">2,075</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                <span class="price">24,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <button type="button" class="btn-more">
+                    상품 더보기
+                    <i class="icon-brand-arrow"></i>
+                </button>
+            </div>
+            <div class="md-rec-content" id="md-grid-1" style="display: none;">
+                <div class="product-grid-2" id="mdProductGrid">
+                    <!-- 상품 예시 -->
+                    <!-- md product 01 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_1.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-ambient">직납</span>
+                                <span class="tag tag-green">소비기한 50일</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">모짜치즈과일샐러드</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">2,290</span>
+                                    <span class="unit-highlight">1,908</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                <span class="price">22,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                    <!-- md product 02 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_4.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-outline">TC</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">영진 문문문_소불고기비빔밥</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">3,120</span>
+                                    <span class="unit-highlight">2,075</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                <span class="price">24,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                    <!-- md product 03 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_3.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-ambient">직납</span>
+                                <span class="tag tag-green">소비기한 50일</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">모짜치즈과일샐러드</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">2,290</span>
+                                    <span class="unit-highlight">1,908</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                <span class="price">22,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                    <!-- md product 04 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_4.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-outline">TC</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">영진 문문문_소불고기비빔밥</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">3,120</span>
+                                    <span class="unit-highlight">2,075</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                <span class="price">24,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                </div><button type="button" class="btn-more">
+                    상품 더보기
+                    <i class="icon-brand-arrow"></i>
+                </button>
+            </div>
+            <div class="md-rec-content" id="md-grid-2" style="display: none;">
+                <div class="product-grid-2" id="mdProductGrid">
+                    <!-- 상품 예시 -->
+                    <!-- md product 01 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_3.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-ambient">직납</span>
+                                <span class="tag tag-green">소비기한 50일</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">모짜치즈과일샐러드</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">2,290</span>
+                                    <span class="unit-highlight">1,908</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                <span class="price">22,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                    <!-- md product 02 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_4.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-outline">TC</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">영진 문문문_소불고기비빔밥</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">3,120</span>
+                                    <span class="unit-highlight">2,075</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                <span class="price">24,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                    <!-- md product 03 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_3.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-ambient">직납</span>
+                                <span class="tag tag-green">소비기한 50일</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">모짜치즈과일샐러드</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">2,290</span>
+                                    <span class="unit-highlight">1,908</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                <span class="price">22,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                    <!-- md product 04 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_4.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-outline">TC</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">영진 문문문_소불고기비빔밥</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">3,120</span>
+                                    <span class="unit-highlight">2,075</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                <span class="price">24,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                </div>
+                <button type="button" class="btn-more">
+                    상품 더보기
+                    <i class="icon-brand-arrow"></i>
+                </button>
+            </div>
+            <div class="md-rec-content" id="md-grid-3" style="display: none;">
+                <div class="product-grid-2" id="mdProductGrid">
+                    <!-- 상품 예시 -->
+                    <!-- md product 01 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_1.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-ambient">직납</span>
+                                <span class="tag tag-green">소비기한 50일</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">모짜치즈과일샐러드</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">2,290</span>
+                                    <span class="unit-highlight">1,908</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                <span class="price">22,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                    <!-- md product 02 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_4.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-outline">TC</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">영진 문문문_소불고기비빔밥</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">3,120</span>
+                                    <span class="unit-highlight">2,075</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                <span class="price">24,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                    <!-- md product 03 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_3.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-ambient">직납</span>
+                                <span class="tag tag-green">소비기한 50일</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">모짜치즈과일샐러드</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">2,290</span>
+                                    <span class="unit-highlight">1,908</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                <span class="price">22,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                    <!-- md product 04 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_4.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-outline">TC</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">영진 문문문_소불고기비빔밥</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">3,120</span>
+                                    <span class="unit-highlight">2,075</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                <span class="price">24,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                </div>
+                <button type="button" class="btn-more">
+                    상품 더보기
+                    <i class="icon-brand-arrow"></i>
+                </button>
+            </div>
+            <div class="md-rec-content" id="md-grid-4" style="display: none;">
+                <div class="product-grid-2" id="mdProductGrid">
+                    <!-- 상품 예시 -->
+                    <!-- md product 01 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_3.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-ambient">직납</span>
+                                <span class="tag tag-green">소비기한 50일</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">모짜치즈과일샐러드</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">2,290</span>
+                                    <span class="unit-highlight">1,908</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                <span class="price">22,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                    <!-- md product 02 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_4.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-outline">TC</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">영진 문문문_소불고기비빔밥</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">3,120</span>
+                                    <span class="unit-highlight">2,075</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                <span class="price">24,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                    <!-- md product 03 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_3.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-ambient">직납</span>
+                                <span class="tag tag-green">소비기한 50일</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">모짜치즈과일샐러드</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">2,290</span>
+                                    <span class="unit-highlight">1,908</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                <span class="price">22,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                    <!-- md product 04 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_4.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-outline">TC</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">영진 문문문_소불고기비빔밥</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">3,120</span>
+                                    <span class="unit-highlight">2,075</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                <span class="price">24,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                </div>
+                <button type="button" class="btn-more">
+                    상품 더보기
+                    <i class="icon-brand-arrow"></i>
+                </button>
+            </div>
+            <div class="md-rec-content" id="md-grid-5" style="display: none;">
+                <div class="product-grid-2" id="mdProductGrid">
+                    <!-- 상품 예시 -->
+                    <!-- md product 01 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_1.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-ambient">직납</span>
+                                <span class="tag tag-green">소비기한 50일</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">모짜치즈과일샐러드</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">2,290</span>
+                                    <span class="unit-highlight">1,908</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                <span class="price">22,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                    <!-- md product 02 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_4.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-outline">TC</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">영진 문문문_소불고기비빔밥</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">3,120</span>
+                                    <span class="unit-highlight">2,075</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                <span class="price">24,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                    <!-- md product 03 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_3.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-ambient">직납</span>
+                                <span class="tag tag-green">소비기한 50일</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">모짜치즈과일샐러드</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">2,290</span>
+                                    <span class="unit-highlight">1,908</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                <span class="price">22,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                    <!-- md product 04 -->
+                    <article class="product-card">
+                        <a href="#" class="card-thumb">
+                            <img src="/emart/assets/images/products/md_product_4.png" alt="Product">
+                            <div class="badge-corner">
+                                <i class="icon-smile"></i> MD 추천
+                            </div>
+                            <div class="delivery-tags">
+                                <span class="tag tag-frozen"><i class="icon-snowflake"></i> 냉동</span>
+                                <span class="tag tag-outline">TC</span>
+                            </div>
+                        </a>
+                        <a href="#" class="card-info">
+                            <h3 class="product-name">영진 문문문_소불고기비빔밥</h3>
+                            <div class="unit-info">
+                                <div class="price-wrap">
+                                    <span class="strike">3,120</span>
+                                    <span class="unit-highlight">2,075</span>
+                                </div>
+                                <span class="unit-desc">입수 12 / BOX</span>
+                            </div>
+                            <div class="total-price-area">
+                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                <span class="price">24,900</span>
+                            </div>
+                        </a>
+                        <div class="card-control">
+                            <button class="btn-icon">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <div class="qty-box">
+                                <button><i class="icon-minus"></i></button>
+                                <input type="number" value="0" min="0">
+                                <button><i class="icon-plus"></i></button>
+                            </div>
+                            <button class="btn-icon">
+                                <i class="icon-cart"></i>
+                            </button>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="info-row">
+                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span> &nbsp;·&nbsp;
+
+                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                            </div>
+
+                        </div>
+                    </article>
+                </div>
+                <button type="button" class="btn-more">
+                    상품 더보기
+                    <i class="icon-brand-arrow"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- 주간 랭킹 -->
+        <section class="section-wrapper section-divider weekly-ranking">
+            <header class="section-header">
+                <div class="title-group">
+                    <h2 class="section-title">이클럽 주간 최대 검색</h2>
+                    <span class="ranking-date">2025. 11. 14 (금) - 2025. 11. 20 (목) 기준</span>
+                </div>
+                <a href="#" class="section-link"></a>
+            </header>
+
+            <div class="ranking-nav">
+                <button type="button" class="nav-btn prev" disabled>
+                    <i class="icon-nav-prev"></i>
+                </button>
+                <div class="page-count">
+                    <span class="current" id="rankingCurrentPage">1</span>
+                    <span class="divider">/</span>
+                    <span class="total" id="rankingTotalPage">5</span>
+                </div>
+                <button type="button" class="nav-btn next">
+                    <i class="icon-nav-next"></i>
+                </button>
+            </div>
+
+            <div class="ranking-carousel-container">
+                <div class="ranking-carousel-track">
+                    <ul class="ranking-list" style="list-style: none; padding: 0; margin: 0;">
+
+                        <!-- 1위 그룹 (확장됨) -->
+                        <li class="ranking-item active">
+                            <div class="ranking-header">
+                                <div class="text-group">
+                                    <span class="rank-num">1</span>
+                                    <div class="rank-change">
+                                        <i class="icon-rank-dash"></i>
+                                    </div>
+                                    <span class="category-name">와인 750ml</span>
+                                    <span class="category-path">생수 · 음료 · 주류</span>
+                                </div>
+                                <button type="button" class="btn-toggle-rank active">
+                                    <i class="icon-chevron-down"></i>
+                                </button>
+                            </div>
+
+                            <div class="ranking-body show">
+                                <div class="product-grid-2">
+                                    <!-- 상품 1 -->
+                                    <article class="product-card">
+                                        <a href="#" class="card-thumb">
+                                            <img src="/emart/assets/images/products/wine_kendall.png" alt="RELAX 리슬링">
+                                            <div class="badge-corner">
+                                                <i class="icon-smile"></i> 강력 추천
+                                            </div>
+                                            <div class="delivery-tags">
+                                                <span class="tag tag-frozen"><i class="icon-snowflake"></i>냉동</span>
+                                                <span class="tag tag-outline">TC</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="card-info">
+                                            <h3 class="product-name">RELAX 리슬링 750ml</h3>
+                                            <div class="unit-info">
+                                                <div class="price-wrap">
+                                                    <span class="strike">9,980</span>
+                                                    <span class="unit-highlight">7,980</span>
+                                                </div>
+                                                <span class="unit-desc">입수 12 / BOX</span>
+                                            </div>
+                                            <div class="total-price-area">
+                                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                                <span class="price">75,760</span>
+                                            </div>
+                                        </a>
+                                        <div class="card-control">
+                                            <button class="btn-icon">
+                                                <i class="icon-heart"></i>
+                                            </button>
+                                            <div class="qty-box">
+                                                <button><i class="icon-minus"></i></button>
+                                                <input type="number" value="0" min="0">
+                                                <button><i class="icon-plus"></i></button>
+                                            </div>
+                                            <button class="btn-icon">
+                                                <i class="icon-cart"></i>
+                                            </button>
+                                        </div>
+                                        <div class="bottom-info">
+                                            <div class="info-row">
+                                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span>
+                                                &nbsp;·&nbsp;
+
+                                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                                            </div>
+                                            <div class="info-row">
+                                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                    <!-- 상품 2 -->
+                                    <article class="product-card">
+                                        <a href="#" class="card-thumb">
+                                            <img src="/emart/assets/images/products/wine_bonterra_red.png" alt="Bonterra">
+                                            <div class="badge-corner">
+                                                <i class="icon-smile"></i> MD 추천
+                                            </div>
+                                            <div class="delivery-tags">
+                                                <span class="tag tag-frozen"><i class="icon-snowflake"></i>냉동</span>
+                                                <span class="tag tag-outline">DC</span>
+                                                <span class="tag tag-green">소비기한 해당 없음</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="card-info">
+                                            <h3 class="product-name">Bonterra Sauvignon Blanc 750ml</h3>
+                                            <div class="unit-info">
+                                                <div class="price-wrap">
+                                                    <span class="strike">26,080</span>
+                                                    <span class="unit-highlight">22,980</span>
+                                                </div>
+                                                <span class="unit-desc">입수 12 / BOX</span>
+                                            </div>
+                                            <div class="total-price-area">
+                                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                                <span class="price">22,900</span>
+                                            </div>
+                                        </a>
+                                        <div class="card-control">
+                                            <button class="btn-icon">
+                                                <i class="icon-heart"></i>
+                                            </button>
+                                            <div class="qty-box">
+                                                <button><i class="icon-minus"></i></button>
+                                                <input type="number" value="0" min="0">
+                                                <button><i class="icon-plus"></i></button>
+                                            </div>
+                                            <button class="btn-icon">
+                                                <i class="icon-cart"></i>
+                                            </button>
+                                        </div>
+                                        <div class="bottom-info">
+                                            <div class="info-row">
+                                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span>
+                                                &nbsp;·&nbsp;
+
+                                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                                            </div>
+                                            <div class="info-row">
+                                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                    <!-- 상품 3 -->
+                                    <article class="product-card">
+                                        <a href="#" class="card-thumb">
+                                            <img src="/emart/assets/images/products/wine_kendall.png" alt="RELAX 리슬링">
+                                            <div class="badge-corner">
+                                                <i class="icon-smile"></i> 강력 추천
+                                            </div>
+                                            <div class="delivery-tags">
+                                                <span class="tag tag-frozen"><i class="icon-snowflake"></i>냉동</span>
+                                                <span class="tag tag-outline">TC</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="card-info">
+                                            <h3 class="product-name">RELAX 리슬링 750ml</h3>
+                                            <div class="unit-info">
+                                                <div class="price-wrap">
+                                                    <span class="strike">9,980</span>
+                                                    <span class="unit-highlight">7,980</span>
+                                                </div>
+                                                <span class="unit-desc">입수 12 / BOX</span>
+                                            </div>
+                                            <div class="total-price-area">
+                                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                                <span class="price">75,760</span>
+                                            </div>
+                                        </a>
+                                        <div class="card-control">
+                                            <button class="btn-icon">
+                                                <i class="icon-heart"></i>
+                                            </button>
+                                            <div class="qty-box">
+                                                <button><i class="icon-minus"></i></button>
+                                                <input type="number" value="0" min="0">
+                                                <button><i class="icon-plus"></i></button>
+                                            </div>
+                                            <button class="btn-icon">
+                                                <i class="icon-cart"></i>
+                                            </button>
+                                        </div>
+                                        <div class="bottom-info">
+                                            <div class="info-row">
+                                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span>
+                                                &nbsp;·&nbsp;
+
+                                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                                            </div>
+                                            <div class="info-row">
+                                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                    <!-- 상품 4 -->
+                                    <article class="product-card">
+                                        <a href="#" class="card-thumb">
+                                            <img src="/emart/assets/images/products/wine_bonterra_red.png" alt="Bonterra">
+                                            <div class="badge-corner">
+                                                <i class="icon-smile"></i> MD 추천
+                                            </div>
+                                            <div class="delivery-tags">
+                                                <span class="tag tag-frozen"><i class="icon-snowflake"></i>냉동</span>
+                                                <span class="tag tag-outline">DC</span>
+                                                <span class="tag tag-green">소비기한 해당 없음</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="card-info">
+                                            <h3 class="product-name">Bonterra Sauvignon Blanc 750ml</h3>
+                                            <div class="unit-info">
+                                                <div class="price-wrap">
+                                                    <span class="strike">26,080</span>
+                                                    <span class="unit-highlight">22,980</span>
+                                                </div>
+                                                <span class="unit-desc">입수 12 / BOX</span>
+                                            </div>
+                                            <div class="total-price-area">
+                                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                                <span class="price">22,900</span>
+                                            </div>
+                                        </a>
+                                        <div class="card-control">
+                                            <button class="btn-icon">
+                                                <i class="icon-heart"></i>
+                                            </button>
+                                            <div class="qty-box">
+                                                <button><i class="icon-minus"></i></button>
+                                                <input type="number" value="0" min="0">
+                                                <button><i class="icon-plus"></i></button>
+                                            </div>
+                                            <button class="btn-icon">
+                                                <i class="icon-cart"></i>
+                                            </button>
+                                        </div>
+                                        <div class="bottom-info">
+                                            <div class="info-row">
+                                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span>
+                                                &nbsp;·&nbsp;
+
+                                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                                            </div>
+                                            <div class="info-row">
+                                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                    <!-- 상품 5 -->
+                                    <article class="product-card">
+                                        <a href="#" class="card-thumb">
+                                            <img src="/emart/assets/images/products/wine_kendall.png" alt="RELAX 리슬링">
+                                            <div class="badge-corner">
+                                                <i class="icon-smile"></i> 강력 추천
+                                            </div>
+                                            <div class="delivery-tags">
+                                                <span class="tag tag-frozen"><i class="icon-snowflake"></i>냉동</span>
+                                                <span class="tag tag-outline">TC</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="card-info">
+                                            <h3 class="product-name">RELAX 리슬링 750ml</h3>
+                                            <div class="unit-info">
+                                                <div class="price-wrap">
+                                                    <span class="strike">9,980</span>
+                                                    <span class="unit-highlight">7,980</span>
+                                                </div>
+                                                <span class="unit-desc">입수 12 / BOX</span>
+                                            </div>
+                                            <div class="total-price-area">
+                                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                                <span class="price">75,760</span>
+                                            </div>
+                                        </a>
+                                        <div class="card-control">
+                                            <button class="btn-icon">
+                                                <i class="icon-heart"></i>
+                                            </button>
+                                            <div class="qty-box">
+                                                <button><i class="icon-minus"></i></button>
+                                                <input type="number" value="0" min="0">
+                                                <button><i class="icon-plus"></i></button>
+                                            </div>
+                                            <button class="btn-icon">
+                                                <i class="icon-cart"></i>
+                                            </button>
+                                        </div>
+                                        <div class="bottom-info">
+                                            <div class="info-row">
+                                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span>
+                                                &nbsp;·&nbsp;
+
+                                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                                            </div>
+                                            <div class="info-row">
+                                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                    <!-- 상품 6 -->
+                                    <article class="product-card">
+                                        <a href="#" class="card-thumb">
+                                            <img src="/emart/assets/images/products/wine_bonterra_red.png" alt="Bonterra">
+                                            <div class="badge-corner">
+                                                <i class="icon-smile"></i> MD 추천
+                                            </div>
+                                            <div class="delivery-tags">
+                                                <span class="tag tag-frozen"><i class="icon-snowflake"></i>냉동</span>
+                                                <span class="tag tag-outline">DC</span>
+                                                <span class="tag tag-green">소비기한 해당 없음</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="card-info">
+                                            <h3 class="product-name">Bonterra Sauvignon Blanc 750ml</h3>
+                                            <div class="unit-info">
+                                                <div class="price-wrap">
+                                                    <span class="strike">26,080</span>
+                                                    <span class="unit-highlight">22,980</span>
+                                                </div>
+                                                <span class="unit-desc">입수 12 / BOX</span>
+                                            </div>
+                                            <div class="total-price-area">
+                                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                                <span class="price">22,900</span>
+                                            </div>
+                                        </a>
+                                        <div class="card-control">
+                                            <button class="btn-icon">
+                                                <i class="icon-heart"></i>
+                                            </button>
+                                            <div class="qty-box">
+                                                <button><i class="icon-minus"></i></button>
+                                                <input type="number" value="0" min="0">
+                                                <button><i class="icon-plus"></i></button>
+                                            </div>
+                                            <button class="btn-icon">
+                                                <i class="icon-cart"></i>
+                                            </button>
+                                        </div>
+                                        <div class="bottom-info">
+                                            <div class="info-row">
+                                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span>
+                                                &nbsp;·&nbsp;
+
+                                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                                            </div>
+                                            <div class="info-row">
+                                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                                            </div>
+
+                                        </div>
+                                    </article>
+                                </div>
+
+                                <button type="button" class="btn-more" id="">상품 더보기 <i class="icon-brand-arrow"></i>
+                                </button>
+                            </div>
+                        </li>
+
+                        <!-- 2위 그룹 (닫힘) -->
+                        <li class="ranking-item">
+                            <div class="ranking-header">
+                                <div class="text-group">
+                                    <span class="rank-num">2</span>
+                                    <span class="rank-change">
+                                        <i class="icon-rank-down"></i>
+                                    </span>
+                                    <span class="category-name">섬유유연제</span>
+                                    <span class="category-path">청소 · 생활용품</span>
+                                </div>
+                                <button type="button" class="btn-toggle-rank">
+                                    <i class="icon-chevron-down"></i>
+                                </button>
+                            </div>
+                            <div class="ranking-body">
+                                <div class="product-grid-2">
+                                    <!-- 상품 1 -->
+                                    <article class="product-card">
+                                        <a href="#" class="card-thumb">
+                                            <img src="/emart/assets/images/products/wine_kendall.png" alt="RELAX 리슬링">
+                                            <div class="badge-corner">
+                                                <i class="icon-smile"></i> 강력 추천
+                                            </div>
+                                            <div class="delivery-tags">
+                                                <span class="tag tag-frozen"><i class="icon-snowflake"></i>냉동</span>
+                                                <span class="tag tag-outline">TC</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="card-info">
+                                            <h3 class="product-name">RELAX 리슬링 750ml</h3>
+                                            <div class="unit-info">
+                                                <div class="price-wrap">
+                                                    <span class="strike">9,980</span>
+                                                    <span class="unit-highlight">7,980</span>
+                                                </div>
+                                                <span class="unit-desc">입수 12 / BOX</span>
+                                            </div>
+                                            <div class="total-price-area">
+                                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                                <span class="price">75,760</span>
+                                            </div>
+                                        </a>
+                                        <div class="card-control">
+                                            <button class="btn-icon">
+                                                <i class="icon-heart"></i>
+                                            </button>
+                                            <div class="qty-box">
+                                                <button><i class="icon-minus"></i></button>
+                                                <input type="number" value="0" min="0">
+                                                <button><i class="icon-plus"></i></button>
+                                            </div>
+                                            <button class="btn-icon">
+                                                <i class="icon-cart"></i>
+                                            </button>
+                                        </div>
+                                        <div class="bottom-info">
+                                            <div class="info-row">
+                                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span>
+                                                &nbsp;·&nbsp;
+
+                                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                                            </div>
+                                            <div class="info-row">
+                                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                    <!-- 상품 2 -->
+                                    <article class="product-card">
+                                        <a href="#" class="card-thumb">
+                                            <img src="/emart/assets/images/products/wine_bonterra_red.png" alt="Bonterra">
+                                            <div class="badge-corner">
+                                                <i class="icon-smile"></i> MD 추천
+                                            </div>
+                                            <div class="delivery-tags">
+                                                <span class="tag tag-frozen"><i class="icon-snowflake"></i>냉동</span>
+                                                <span class="tag tag-outline">DC</span>
+                                                <span class="tag tag-green">소비기한 해당 없음</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="card-info">
+                                            <h3 class="product-name">Bonterra Sauvignon Blanc 750ml</h3>
+                                            <div class="unit-info">
+                                                <div class="price-wrap">
+                                                    <span class="strike">26,080</span>
+                                                    <span class="unit-highlight">22,980</span>
+                                                </div>
+                                                <span class="unit-desc">입수 12 / BOX</span>
+                                            </div>
+                                            <div class="total-price-area">
+                                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                                <span class="price">22,900</span>
+                                            </div>
+                                        </a>
+                                        <div class="card-control">
+                                            <button class="btn-icon">
+                                                <i class="icon-heart"></i>
+                                            </button>
+                                            <div class="qty-box">
+                                                <button><i class="icon-minus"></i></button>
+                                                <input type="number" value="0" min="0">
+                                                <button><i class="icon-plus"></i></button>
+                                            </div>
+                                            <button class="btn-icon">
+                                                <i class="icon-cart"></i>
+                                            </button>
+                                        </div>
+                                        <div class="bottom-info">
+                                            <div class="info-row">
+                                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span>
+                                                &nbsp;·&nbsp;
+
+                                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                                            </div>
+                                            <div class="info-row">
+                                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                    <!-- 상품 2 -->
+                                    <article class="product-card">
+                                        <a href="#" class="card-thumb">
+                                            <img src="/emart/assets/images/products/wine_bonterra_red.png" alt="Bonterra">
+                                            <div class="badge-corner">
+                                                <i class="icon-smile"></i> MD 추천
+                                            </div>
+                                            <div class="delivery-tags">
+                                                <span class="tag tag-frozen"><i class="icon-snowflake"></i>냉동</span>
+                                                <span class="tag tag-outline">DC</span>
+                                                <span class="tag tag-green">소비기한 해당 없음</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="card-info">
+                                            <h3 class="product-name">Bonterra Sauvignon Blanc 750ml</h3>
+                                            <div class="unit-info">
+                                                <div class="price-wrap">
+                                                    <span class="strike">26,080</span>
+                                                    <span class="unit-highlight">22,980</span>
+                                                </div>
+                                                <span class="unit-desc">입수 12 / BOX</span>
+                                            </div>
+                                            <div class="total-price-area">
+                                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                                <span class="price">22,900</span>
+                                            </div>
+                                        </a>
+                                        <div class="card-control">
+                                            <button class="btn-icon">
+                                                <i class="icon-heart"></i>
+                                            </button>
+                                            <div class="qty-box">
+                                                <button><i class="icon-minus"></i></button>
+                                                <input type="number" value="0" min="0">
+                                                <button><i class="icon-plus"></i></button>
+                                            </div>
+                                            <button class="btn-icon">
+                                                <i class="icon-cart"></i>
+                                            </button>
+                                        </div>
+                                        <div class="bottom-info">
+                                            <div class="info-row">
+                                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span>
+                                                &nbsp;·&nbsp;
+
+                                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                                            </div>
+                                            <div class="info-row">
+                                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                                            </div>
+
+                                        </div>
+                                    </article>
+                                </div>
+
+                                <button type="button" class="btn-more" id="">상품 더보기 <i class="icon-brand-arrow"></i>
+                                </button>
+                            </div>
+                        </li>
+
+                        <!-- 3위 그룹 (닫힘) -->
+                        <li class="ranking-item">
+                            <div class="ranking-header">
+                                <div class="text-group">
+                                    <span class="rank-num">3</span>
+                                    <span class="rank-change">
+                                        <i class="icon-rank-up"></i>
+                                    </span>
+                                    <span class="category-name">초코머핀</span>
+                                    <span class="category-path">베이커리 · 잼</span>
+                                </div>
+                                <button type="button" class="btn-toggle-rank">
+                                    <i class="icon-chevron-down"></i>
+                                </button>
+                            </div>
+                            <div class="ranking-body">
+                                <div class="product-grid-2">
+                                    <!-- 상품 1 -->
+                                    <article class="product-card">
+                                        <a href="#" class="card-thumb">
+                                            <img src="/emart/assets/images/products/wine_kendall.png" alt="RELAX 리슬링">
+                                            <div class="badge-corner">
+                                                <i class="icon-smile"></i> 강력 추천
+                                            </div>
+                                            <div class="delivery-tags">
+                                                <span class="tag tag-frozen"><i class="icon-snowflake"></i>냉동</span>
+                                                <span class="tag tag-outline">TC</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="card-info">
+                                            <h3 class="product-name">RELAX 리슬링 750ml</h3>
+                                            <div class="unit-info">
+                                                <div class="price-wrap">
+                                                    <span class="strike">9,980</span>
+                                                    <span class="unit-highlight">7,980</span>
+                                                </div>
+                                                <span class="unit-desc">입수 12 / BOX</span>
+                                            </div>
+                                            <div class="total-price-area">
+                                                <span class="discount">20<span class="sub-txt">% </span></span>
+                                                <span class="price">75,760</span>
+                                            </div>
+                                        </a>
+                                        <div class="card-control">
+                                            <button class="btn-icon">
+                                                <i class="icon-heart"></i>
+                                            </button>
+                                            <div class="qty-box">
+                                                <button><i class="icon-minus"></i></button>
+                                                <input type="number" value="0" min="0">
+                                                <button><i class="icon-plus"></i></button>
+                                            </div>
+                                            <button class="btn-icon">
+                                                <i class="icon-cart"></i>
+                                            </button>
+                                        </div>
+                                        <div class="bottom-info">
+                                            <div class="info-row">
+                                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span>
+                                                &nbsp;·&nbsp;
+
+                                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                                            </div>
+                                            <div class="info-row">
+                                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                    <!-- 상품 2 -->
+                                    <article class="product-card">
+                                        <a href="#" class="card-thumb">
+                                            <img src="/emart/assets/images/products/wine_bonterra_red.png" alt="Bonterra">
+                                            <div class="badge-corner">
+                                                <i class="icon-smile"></i> MD 추천
+                                            </div>
+                                            <div class="delivery-tags">
+                                                <span class="tag tag-frozen"><i class="icon-snowflake"></i>냉동</span>
+                                                <span class="tag tag-outline">DC</span>
+                                                <span class="tag tag-green">소비기한 해당 없음</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="card-info">
+                                            <h3 class="product-name">Bonterra Sauvignon Blanc 750ml</h3>
+                                            <div class="unit-info">
+                                                <div class="price-wrap">
+                                                    <span class="strike">26,080</span>
+                                                    <span class="unit-highlight">22,980</span>
+                                                </div>
+                                                <span class="unit-desc">입수 12 / BOX</span>
+                                            </div>
+                                            <div class="total-price-area">
+                                                <span class="discount">12<span class="sub-txt">% </span></span>
+                                                <span class="price">22,900</span>
+                                            </div>
+                                        </a>
+                                        <div class="card-control">
+                                            <button class="btn-icon">
+                                                <i class="icon-heart"></i>
+                                            </button>
+                                            <div class="qty-box">
+                                                <button><i class="icon-minus"></i></button>
+                                                <input type="number" value="0" min="0">
+                                                <button><i class="icon-plus"></i></button>
+                                            </div>
+                                            <button class="btn-icon">
+                                                <i class="icon-cart"></i>
+                                            </button>
+                                        </div>
+                                        <div class="bottom-info">
+                                            <div class="info-row">
+                                                <span class="text-highlight"><i class="icon-tag"></i> 오늘만 프로모션 적용</span>
+                                                &nbsp;·&nbsp;
+
+                                                <span class=""><i class="icon-sparkle"></i> 다다익선 할인</span>
+                                            </div>
+                                            <div class="info-row">
+                                                <i class="icon-time"></i> 오늘 14:00 이후 주문 가능
+                                            </div>
+
+                                        </div>
+                                    </article>
+                                </div>
+
+                                <button type="button" class="btn-more" id="">상품 더보기 <i class="icon-brand-arrow"></i>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 팝콘 배너 -->
+            <div class="popcorn-banner-wrapper">
+                <div class="slider-track" id="popcornBannerTrack">
+                    <!-- Slide 1 -->
+                    <div class="slide-item banner-popcorn">
+                        <img src="/emart/assets/images/banner/mobile/sample01.png" alt="Popcorn Banner">
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="slide-item banner-popcorn">
+                        <img src="/emart/assets/images/banner/mobile/sample01.png" alt="Popcorn Banner">
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="slide-item banner-popcorn">
+                        <img src="/emart/assets/images/banner/mobile/sample01.png" alt="Popcorn Banner">
+                    </div>
+                </div>
+
+                <div class="pagination-container">
+                    <div class="pagination-control">
+                        <!-- 이전 버튼 -->
+                        <button type="button" class="btn-control btn-prev">
+                            <i class="icon-slider-prev"></i>
+                        </button>
+
+                        <!-- 페이지 정보 -->
+                        <div class="page-info">
+                            <span class="current-page">01</span>
+                            <div class="divider">
+                                <i class="icon-slider-dash"></i>
+                            </div>
+                            <span class="total-page">20</span>
+                        </div>
+
+                        <!-- 다음 버튼 -->
+                        <button type="button" class="btn-control btn-next">
+                            <i class="icon-slider-next"></i>
+                        </button>
+
+                        <!-- 재생/일시정지 버튼 -->
+                        <button type="button" class="btn-control btn-pause">
+                            <i class="icon-slider-pause"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 브랜드관 -->
+        <section class="section-wrapper section-divider brand-pavilion">
+            <header class="section-header">
+                <h2 class="section-title">이클럽 브랜드관</h2>
+                <a href="#" class="section-link"></a>
+            </header>
+            <!-- 브랜드관 스토리 형 -->
+            <!-- 이클럽 브랜드관 -->
+            <div class="brand-story-list">
+                <!-- 아이템 1 -->
+                <div class="brand-story-item">
+                    <div class="story-image">
+                        <!-- Placeholder/Sample Image used as per design reference -->
+                        <img src="/emart/assets/images/e-club/e-club-thumb1.png" alt="몽베스트"
+                            onerror="this.src='https://placehold.co/656x480/dddddd/333333?text=Brand+Image'">
+                    </div>
+                    <div class="story-content">
+                        <div class="brand-title">동천수</div>
+                        <div class="brand-desc">지하 200m 천연 암반에서 시작된 청정수 기업. 30년 넘게 '깨끗한 물'만을 연구해온 대한민국 대표 생수 브랜드.</div>
+                    </div>
+                </div>
+                <!-- 아이템 2 (숨김) -->
+                <div class="brand-story-item" style="display:none;">
+                    <div class="story-image">
+                        <img src="/emart/assets/images/e-club/e-club-thumb2.png" alt="Brand 2"
+                            onerror="this.src='https://placehold.co/656x480/eeeeee/333333?text=Brand+Image+2'">
+                    </div>
+                    <div class="story-content">
+                        <div class="brand-title">풀무원</div>
+                        <div class="brand-desc">나와 지구의 건강을 위한 바른먹거리. 엄격한 품질 원칙을 지키는 풀무원의 브랜드 스토리를 만나보세요.</div>
+                    </div>
+                </div>
+                <!-- 아이템 3 (숨김) -->
+                <div class="brand-story-item" style="display:none;">
+                    <div class="story-image">
+                        <img src="/emart/assets/images/e-club/e-club-thumb3.png" alt="Brand 3"
+                            onerror="this.src='https://placehold.co/656x480/eeeeee/333333?text=Brand+Image+3'">
+                    </div>
+                    <div class="story-content">
+                        <div class="brand-title">CJ제일제당</div>
+                        <div class="brand-desc">건강, 즐거움, 편의를 창조하는 글로벌 생활문화기업. 맛있는 즐거움이 가득한 CJ제일제당입니다.</div>
+                    </div>
+                </div>
+
+            </div>
+            <button type="button" class="btn-more btn-brand-more">
+                브랜드관 더보기
+                <i class="icon-brand-arrow"></i>
+            </button>
+
+        </section>
+
+        <!-- 푸터 -->
+        <div id="mobile-footer-placeholder"></div>
+
+    </main>
+
+    <!-- Bottom Nav Placeholder -->
+    <div id="mobile-bottom-nav-placeholder"></div>
+
+    <!-- Category Filter Offcanvas Placeholder -->
+    <div id="category-filter-placeholder"></div>
+
+    <script src="/emart/assets/js/components/quantity-control.js"></script>
+    <script src="/emart/assets/js/main.js"></script>
+    <script src="/emart/assets/js/components/mobile-footer.js"></script>
+    <script src="/emart/assets/js/components/favorites.js"></script>
+    <script src="/emart/assets/js/components/checkbox.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Use .txt extension to prevent live-server from injecting script tags into the partial component
+        function loadComponent(url, placeholderId) {
+            fetch(url + '?v=' + new Date().getTime())
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.text();
+                })
+                .then(data => {
+                    const placeholder = document.getElementById(placeholderId);
+                    placeholder.innerHTML = data;
+
+                    // 실행 가능한 스크립트 추출 및 실행 (Extract and execute scripts)
+                    const scripts = placeholder.querySelectorAll('script');
+                    scripts.forEach(oldScript => {
+                        const newScript = document.createElement('script');
+                        Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+                        newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+                        oldScript.parentNode.replaceChild(newScript, oldScript);
+                    });
+
+                    // Dispatch event if needed
+                    if (placeholderId === 'mobile-header-placeholder') {
+                        document.dispatchEvent(new Event('headerLoaded'));
+                    }
+                    if (placeholderId === 'mobile-footer-placeholder') {
+                        document.dispatchEvent(new Event('footerLoaded'));
+                    }
+                })
+                .catch(error => console.error('Error loading component:', error));
+        }
+
+        loadComponent('/mobile/components/header.component.txt', 'mobile-header-placeholder');
+        loadComponent('/mobile/components/footer.component.txt', 'mobile-footer-placeholder');
+        loadComponent('/mobile/components/bottom-nav.component.txt', 'mobile-bottom-nav-placeholder');
+        loadComponent('/mobile/components/category-filter.offcanvas.txt', 'category-filter-placeholder');
+    </script>
+</body>
+
+</html>

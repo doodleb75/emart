@@ -1,0 +1,23 @@
+<nav class="bottom-nav">
+    <a href="javascript:void(0);" class="nav-item" data-bs-toggle="offcanvas" data-bs-target="#categoryFilterOffcanvas">
+        <i class="icon icon-nav-category"></i>
+        <span class="label">카테고리</span>
+    </a>
+    <a href="#" class="nav-item">
+        <i class="icon icon-nav-barcode"></i>
+        <span class="label">바코드스캔</span>
+    </a>
+    <a href="#" class="nav-item nav-center">
+        <span class="eclub-logo">
+            <img src="/assets/images/common/icon_eclub_title.svg" alt="e-Club">
+        </span>
+    </a>
+    <a href="#" class="nav-item">
+        <i class="icon icon-nav-my"></i>
+        <span class="label">마이</span>
+    </a>
+    <a href="#" class="nav-item">
+        <i class="icon icon-nav-search"></i>
+        <span class="label">검색</span>
+    </a>
+</nav>

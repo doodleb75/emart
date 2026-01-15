@@ -1,0 +1,318 @@
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/mixins";
+@use "../../abstracts/variables" as *;
+
+// 주간 랭킹 섹션
+.weekly-ranking {
+    padding-bottom: rem(60);
+
+    .section-header {
+        margin-bottom: $space-lg;
+        align-items: flex-end !important;
+    }
+
+    .section-title-group {
+        display: flex;
+        align-items: center;
+        gap: $space-md;
+    }
+
+    .section-title {
+        font-size: $font-size-xl;
+        font-weight: 700;
+        color: $gray-700;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        margin: 0;
+    }
+
+    .title-divider {
+        width: rem(1);
+        height: $space-md;
+        background-color: $gray-200;
+        display: block;
+    }
+
+    .date-text {
+        font-size: $font-size-base;
+        color: $gray-300;
+        letter-spacing: -0.01em;
+    }
+}
+
+// 컨트롤
+.ranking-control-area {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
+    height: rem(48);
+
+    .control-btn {
+        width: rem(48);
+        height: rem(48);
+        border: rem(1) solid $gray-700;
+        background-color: $white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: $space-xs;
+        cursor: pointer;
+        @include mixins.btn-hover-effect;
+        transition: background-color 0.2s;
+
+        img {
+            width: rem(18);
+            height: rem(18);
+            display: block;
+        }
+    }
+
+
+
+    .page-count {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: $space-sm;
+        font-family: $font-family-base;
+        min-width: rem(60);
+
+        .current {
+            font-size: $font-size-md;
+            color: $gray-700;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: rem(12);
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .total {
+            font-size: $font-size-md;
+            font-weight: 400;
+
+            color: $gray-300;
+        }
+    }
+
+    .control-group {
+        display: flex;
+        align-items: center;
+        gap: $space-sm;
+
+    }
+}
+
+// 랭킹 리스트
+.ranking-carousel-view {
+    width: 100%;
+    overflow: hidden;
+}
+
+.ranking-carousel-track {
+    display: flex;
+    align-items: flex-start;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+
+
+.ranking-list {
+    flex: 0 0 100%;
+    width: 100%;
+    border-top: none;
+}
+
+.ranking-item {
+    border-bottom: rem(1) solid $gray-100;
+
+    &.active {
+        border-bottom: rem(2) solid $gray-700 !important;
+        border-top: rem(2) solid $gray-700;
+        position: relative;
+        z-index: 10;
+
+        .ranking-header {
+            border-bottom: none;
+        }
+    }
+
+
+
+    .ranking-header {
+        display: flex;
+        align-items: center;
+        padding: $space-lg 0;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+
+    }
+
+    // 순위 번호
+    .rank-num {
+        display: inline-block;
+        width: rem(40);
+        text-align: center;
+        font-family: $font-family-base;
+        font-size: $font-size-xl;
+        font-weight: 700;
+        color: $gray-700;
+        margin-right: rem(10);
+        line-height: 1;
+    }
+
+    // 순위 변동 아이콘
+    .rank-change {
+        width: rem(24);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: rem(30);
+
+        .icon-rank-dash {
+            color: $gray-500;
+        }
+
+        .icon-rank-up {
+            color: $accent-base;
+        }
+
+        .icon-rank-down {
+            color: $system-info;
+        }
+
+        img {
+            display: block;
+        }
+    }
+
+    // 타이틀 및 카테고리
+    .rank-info {
+        display: flex;
+        align-items: center;
+        gap: rem(12);
+
+        .rank-title {
+            font-size: rem(18);
+            font-weight: 700;
+            color: $gray-700;
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            // 수직 구분선
+            &::after {
+                content: '';
+                display: block;
+                width: rem(1);
+                width: rem(1);
+                height: rem(12);
+                background-color: $gray-100;
+                margin-left: rem(12);
+            }
+        }
+
+        .rank-category {
+            font-size: $font-size-base;
+            color: $gray-500;
+            font-weight: 400;
+        }
+    }
+
+    // 토글 버튼
+    .btn-toggle-rank {
+        width: rem(44);
+        height: rem(44);
+        border: rem(1) solid $gray-700;
+        background-color: $white;
+        border-radius: $space-xs;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        cursor: pointer;
+        padding: 0;
+        transition: all 0.2s;
+
+        svg,
+        i {
+            width: rem(10);
+            height: rem(6);
+            transition: transform 0.3s;
+
+            // background-color: transparent;
+
+            transform: rotate(0deg);
+            color: $gray-700;
+        }
+
+        // 활성 상태
+        &.active {
+            background-color: $gray-700;
+            border-color: $gray-700;
+
+            svg,
+            i {
+                transform: rotate(180deg);
+                opacity: 1;
+                color: $white;
+            }
+        }
+    }
+
+    // 확장 본문
+    .ranking-body {
+        padding: rem(30) 0 rem(40) 0;
+        display: none;
+
+        &.show {
+            display: block;
+        }
+    }
+}
+
+// 랭킹 상품 그리드
+.ranking-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: rem(20);
+    align-items: stretch; // 카드 높이 균등화
+}
+
+// 더보기 영역
+.ranking-more-link {
+    display: flex;
+    justify-content: center;
+    padding-top: rem(40);
+
+    .btn-more {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: $space-xs;
+        height: rem(48);
+        padding: rem(10) $space-lg;
+        border: rem(1) solid $gray-700;
+        border-radius: $space-xs;
+        font-size: $font-size-base;
+        font-weight: 500;
+        color: $gray-700;
+        text-decoration: none;
+        transition: all 0.2s;
+
+        @include mixins.btn-hover-effect;
+
+        svg {
+            width: rem(16);
+            margin-top: rem(1);
+        }
+    }
+}

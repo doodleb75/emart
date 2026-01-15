@@ -1,0 +1,30 @@
+﻿@charset "UTF-8";
+
+// 1. Abstracts (변수, 함수, 믹스인)
+@use "abstracts/functions" as *;
+@use "abstracts/variables" as *;
+@use "abstracts/mixins";
+
+// 2. Base (리셋, 타이포그래피, 공통 스타일)
+@use "base/reset";
+@use "base/typography";
+@use "base/common";
+@use "mobile/base/mobile-body";
+
+// 3. Components (모바일 전용 컴포넌트)
+@use "mobile/components/offcanvas";
+@use "mobile/components/icons";
+@use "mobile/components/cards";
+@use "mobile/components/toast";
+
+// 4. Layout (모바일 헤더, 푸터, 하단 네비게이션)
+@use "mobile/layout/header";
+@use "mobile/layout/footer";
+@use "mobile/layout/bottom_nav";
+
+// 5. Pages (모바일 페이지별 스타일)
+@use "mobile/pages/main";
+@use "mobile/pages/app-download";
+@use "mobile/pages/join";
+@use "mobile/pages/login";
+@use "mobile/pages/search_result";

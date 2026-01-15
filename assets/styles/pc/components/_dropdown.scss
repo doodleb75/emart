@@ -1,0 +1,113 @@
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/variables" as *;
+
+// Dropdown Component (Select Wrapper Style)
+
+.dropdown-wrapper {
+    position: relative;
+    height: rem(48);
+    z-index: 50;
+    min-width: rem(130); // Default minimum width
+
+    &.active {
+        z-index: 1000; // 활성화 시 다른 요소보다 위에 표시 (Display above other elements when active)
+
+        .select-wrap {
+            border: rem(1.5) solid $gray-700;
+            background-color: $white;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+
+            .icon-arrow {
+                transform: rotate(180deg);
+            }
+        }
+
+        .dropdown-options {
+            display: block; // 메뉴 표시 (Show menu)
+        }
+    }
+
+    .select-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        padding: 0 rem(16);
+        background-color: $gray-50; // #F4F4F4
+        border-radius: rem(4);
+        font-size: rem(16);
+        cursor: pointer;
+        color: $gray-700;
+        user-select: none;
+        transition: $transition-base;
+        white-space: nowrap;
+        border: rem(1.5) solid transparent;
+
+        &:hover {
+            border-color: $gray-700;
+        }
+
+        .icon-arrow {
+            transition: transform 0.2s ease;
+            margin-left: rem(12);
+            flex-shrink: 0;
+
+            path {
+                fill: $gray-700;
+            }
+        }
+    }
+
+    .dropdown-options {
+        display: none; // 초기 숨김 (Initially hidden)
+        position: absolute;
+        top: calc(100% + rem(-1));
+        left: 0;
+        width: 100%;
+        min-width: 100%;
+        background-color: $white;
+        border: rem(1.5) solid $gray-700;
+        border-top: 0;
+        border-radius: rem(4);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        list-style: none;
+        padding: rem(8) 0;
+        margin: 0;
+        box-shadow: 0 rem(4) rem(12) rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+
+        li {
+            padding: rem(8) rem(16);
+            font-size: rem(16);
+            color: $gray-700;
+            cursor: pointer;
+            transition: background-color 0.1s;
+            line-height: 1.4;
+
+            &:hover,
+            &.active {
+                background-color: $gray-50;
+                font-weight: 600;
+                color: $black;
+            }
+        }
+    }
+
+    // Small size variation
+    &.small {
+        height: rem(36);
+
+        .select-wrap {
+            font-size: rem(14);
+            padding: 0 rem(12);
+        }
+
+        .dropdown-options li {
+            font-size: rem(14);
+            padding: rem(6) rem(12);
+        }
+    }
+}

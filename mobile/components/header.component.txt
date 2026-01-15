@@ -1,0 +1,358 @@
+<header class="mobile-header">
+    <div class="header-top">
+        <div class="header-left">
+            <h1 class="logo">
+                <a href="#" class="d-flex align-items-center text-decoration-none">
+                    <img src="/assets/images/common/icon_eclub_title.svg" alt="이클럽 로고">
+                </a>
+            </h1>
+            <div class="header-divider"></div>
+            <div class="membership-info" data-bs-toggle="offcanvas" data-bs-target="#userInfoOffcanvas">
+                <span class="badge-grade">GOLD</span>
+                <span class="user-name">이 신선님</span>
+                <button class="btn-dropdown">
+                    <i class="icon icon-dropdown-fill"></i>
+                </button>
+            </div>
+        </div>
+        <div class="header-right">
+            <span class="point-count">16</span>
+            <button class="btn-notifications">
+                <i class="icon icon-bell"></i>
+                <span class="noti-dot"></span>
+            </button>
+        </div>
+    </div>
+    <div class="search-container">
+        <div class="search-header">
+            <button type="button" class="btn-back-search">
+                <i class="icon icon-back"></i>
+            </button>
+            <div class="search-input-box">
+                <input type="text" class="search-input" placeholder="원하시는 상품을 검색해보세요.">
+                <button type="button" class="btn-clear">
+                    <i class="icon icon-search-clear"></i>
+                </button>
+                <button class="btn-search-icon">
+                    <i class="icon icon-header-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 검색 드롭다운 -->
+        <!-- 검색 드롭다운 -->
+                <div class="search-dropdown">
+                    <div class="search-default-view">
+                    <div class="search-dropdown-inner">
+                        <!-- 최근 검색어 -->
+                        <div class="search-column recent-column">
+                            <div class="column-header">
+                                <h3 class="title">최근검색어</h3>
+                                <button type="button" class="btn-delete-all">전체 삭제 
+                                <i class="icon icon-close-x"></i>
+                                </button>
+                            </div>
+                            <ul class="keyword-list recent-list">
+                                <li>
+                                    <div class="keyword-wrap">
+                                        <span class="icon-wrap">
+                                            <i class="icon icon-search-recent"></i>
+                                        </span>
+                                        <span class="keyword">두부</span>
+                                    </div>
+                                    <button class="recent-delete-btn">
+<i class="icon icon-close-x"></i>
+</button>
+                                </li>
+                                <li>
+                                    <div class="keyword-wrap">
+                                        <span class="icon-wrap">
+                                            <i class="icon icon-search-recent"></i>
+                                        </span>
+                                        <span class="keyword">햇반</span>
+                                    </div>
+                                    <button class="recent-delete-btn">
+<i class="icon icon-close-x"></i>
+</button>
+                                </li>
+                                <li>
+                                    <div class="keyword-wrap">
+                                        <span class="icon-wrap">
+                                            <i class="icon icon-search-recent"></i>
+                                        </span>
+                                        <span class="keyword">물</span>
+                                    </div>
+                                    <button class="recent-delete-btn">
+<i class="icon icon-close-x"></i>
+</button>
+                                </li>
+                                <li>
+                                    <div class="keyword-wrap">
+                                        <span class="icon-wrap">
+                                            <i class="icon icon-search-recent"></i>
+                                        </span>
+                                        <span class="keyword">과자</span>
+                                    </div>
+                                    <button class="recent-delete-btn">
+<i class="icon icon-close-x"></i>
+</button>
+                                </li>
+                                <li>
+                                    <div class="keyword-wrap">
+                                        <span class="icon-wrap">
+                                            <i class="icon icon-search-recent"></i>
+                                        </span>
+                                        <span class="keyword">라면</span>
+                                    </div>
+                                    <button class="recent-delete-btn">
+<i class="icon icon-close-x"></i>
+</button>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- 인기 검색어 -->
+                        <div class="search-column popular-column">
+                            <div class="column-header">
+                                <h3 class="title">인기검색어</h3>
+                                <span class="date">2025. 12. 25 (금) 13:00 기준</span>
+                            </div>
+                            <div class="rank-tabs">
+                                <button type="button" class="tab-item active" data-target="rank-list-1">1 ~ 10위</button>
+                                <button type="button" class="tab-item" data-target="rank-list-2">11 ~ 20위</button>
+                            </div>
+                            <!-- 1 ~ 10위 리스트 -->
+                            <ol class="keyword-list popular-list" id="rank-list-1">
+                                <li>
+                                    <span class="rank">1</span>
+                                    <span class="keyword">두부</span>
+                                    <i class="icon icon-status-dash"></i>
+                                </li>
+                                <li>
+                                    <span class="rank">2</span>
+                                    <span class="keyword">햇반</span>
+                                    <i class="icon icon-status-dash"></i>
+                                </li>
+                                <li>
+                                    <span class="rank">3</span>
+                                    <span class="keyword">물</span>
+                                    <i class="icon icon-status-dash"></i>
+                                </li>
+                                <li>
+                                    <span class="rank">4</span>
+                                    <span class="keyword">과자</span>
+                                    <i class="icon icon-status-dash"></i>
+                                </li>
+                                <li>
+                                    <span class="rank">5</span>
+                                    <span class="keyword">라면</span> 
+                                    <i class="icon icon-status-up"></i>
+                                </li>
+                                <li>
+                                    <span class="rank">6</span>
+                                    <span class="keyword">아이스크림</span>
+                                    <span class="status new">NEW</span>
+                                </li>
+                                <li>
+                                    <span class="rank">7</span>
+                                    <span class="keyword">삼양라면</span>
+                                    <i class="icon icon-status-up"></i>
+                                </li>
+                                <li>
+                                    <span class="rank">8</span>
+                                    <span class="keyword">진라면</span>
+                                    <i class="icon icon-status-down"></i>
+                                </li>
+                                <li>
+                                    <span class="rank">9</span>
+                                    <span class="keyword">냉장</span>
+                                    <i class="icon icon-status-down"></i>
+                                </li>
+                                <li>
+                                    <span class="rank">10</span>
+                                    <span class="keyword">피존</span>
+                                    <i class="icon icon-status-down"></i>
+                                </li>
+                            </ol>
+
+                            <!-- 11 ~ 20위 리스트 -->
+                            <ol class="keyword-list popular-list" id="rank-list-2">
+                                <li>
+                                    <span class="rank">11</span>
+                                    <span class="keyword">커피믹스</span>
+                                    <i class="icon icon-status-down"></i>
+                                </li>
+                                <li>
+                                    <span class="rank">12</span>
+                                    <span class="keyword">휴지</span>
+                                    <i class="icon icon-status-dash"></i>
+                                </li>
+                                <li>
+                                    <span class="rank">13</span>
+                                    <span class="keyword">생수 2L</span>
+                                    <span class="status new">NEW</span>
+                                </li>
+                                <li>
+                                    <span class="rank">14</span>
+                                    <span class="keyword">물티슈</span>
+                                    <i class="icon icon-status-up"></i>
+                                </li>
+                                <li>
+                                    <span class="rank">15</span>
+                                    <span class="keyword">계란</span>
+                                    <i class="icon icon-status-dash"></i>
+                                </li>
+                                <li>
+                                    <span class="rank">16</span>
+                                    <span class="keyword">우유</span>
+                                    <i class="icon icon-status-down"></i>
+                                </li>
+                                <li>
+                                    <span class="rank">17</span>
+                                    <span class="keyword">콜라</span>
+                                    <i class="icon icon-status-up"></i>
+                                </li>
+                                <li>
+                                    <span class="rank">18</span>
+                                    <span class="keyword">사이다</span>
+                                    <i class="icon icon-status-dash"></i>
+                                </li>
+                                <li>
+                                    <span class="rank">19</span>
+                                    <span class="keyword">식용유</span>
+                                    <span class="status new">NEW</span>
+                                </li>
+                                <li>
+                                    <span class="rank">20</span>
+                                    <span class="keyword">참치캔</span>
+                                    <i class="icon icon-status-dash"></i>
+                                </li>
+                            </ol>
+                        </div>
+                    </div><!-- 검색 드롭다운 내부 끝 -->
+                   
+                    </div><!-- 검색 기본 화면 끝 -->
+
+                <!-- 자동완성 드롭다운 (JS 제어) -->
+                <div class="search-dropdown-autocomplete">
+                    <!-- 키워드 컬럼 -->
+                    <div class="autocomplete-column keyword-column">
+                        <ul class="autocomplete-list">
+                            <li><a href="#" class="auto-item"><span class="highlight">두부</span></a></li>
+                            <li><a href="#" class="auto-item">순<span class="highlight">두부</span></a></li>
+                            <li><a href="#" class="auto-item">연<span class="highlight">두부</span></a></li>
+                            <li><a href="#" class="auto-item"><span class="highlight">두부</span>면</a></li>
+                            <li><a href="#" class="auto-item">마파<span class="highlight">두부</span></a></li>
+                            <li><a href="#" class="auto-item">초당<span class="highlight">두부</span></a></li>
+                            <li><a href="#" class="auto-item">촌<span class="highlight">두부</span></a></li>
+                            <li><a href="#" class="auto-item"><span class="highlight">두부</span>봉</a></li>
+                            <li><a href="#" class="auto-item"><span class="highlight">두부</span> 과장</a></li>
+                            <li><a href="#" class="auto-item">건<span class="highlight">두부</span></a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 프로모션 컬럼 -->
+                    <div class="autocomplete-column promotion-column">
+                        <div class="promo-header">
+                            ‘<strong class="highlight">두부</strong>’ 관련 프로모션입니다
+                        </div>
+                        <ul class="promo-list">
+                            <li><a href="#" class="promo-item"><span class="highlight">두부</span> 프로모션 오늘의 특가</a></li>
+                            <li><a href="#" class="promo-item"><span class="highlight">두부</span> 프로모션 주간행사</a></li>
+                            <li><a href="#" class="promo-item"><span class="highlight">두부</span> 프로모션 월간행사</a></li>
+                            <li><a href="#" class="promo-item">프로모션 <span class="highlight">두부</span> 식품 12월 행사</a></li>
+                            <li><a href="#" class="promo-item">프로모션 <span class="highlight">두부</span> 비식품 12월 행사</a></li>
+                            <li><a href="#" class="promo-item">이벤트 <span class="highlight">두부</span> 단독런칭 스위트콘 초특가</a></li>
+                        </ul>
+                        
+                        <div class="collection-list">
+                            <a href="#" class="collection-item">
+                                단백질 모음전 
+                                <i class="icon icon-diagonal-arrow"></i>
+                            </a>
+                            <a href="#" class="collection-item">
+                                매일장보기 모음전 
+                                <i class="icon icon-diagonal-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div><!-- 자동완성 드롭다운 끝 -->
+            </div><!-- 검색 드롭다운 끝 -->
+    </div>
+    <nav class="gnb-scroll">
+        <ul class="gnb-list list-unstyled m-0">
+            <li class="active"><a href="#" class="text-decoration-none">홈</a></li>
+            <li><a href="#" class="text-decoration-none">오늘의 특가</a></li>
+            <li><a href="#" class="text-decoration-none">MD추천</a></li>
+            <li><a href="#" class="text-decoration-none">오반장</a></li>
+            <li><a href="#" class="text-decoration-none">HOT 프로모션</a></li>
+            <li><a href="#" class="text-decoration-none">신상품</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- 사용자 정보 바텀 시트 (User Info Bottom Sheet) -->
+<div class="offcanvas offcanvas-bottom user-info-offcanvas" tabindex="-1" id="userInfoOffcanvas" aria-labelledby="userInfoOffcanvasLabel">
+    <div class="offcanvas-handle"></div>
+    <div class="offcanvas-body">
+        <!-- 유저 요약 정보 (User Summary) -->
+        <div class="user-summary">
+            <span class="badge-gold">GOLD</span>
+            <div class="user-detail-text">
+                골드마트 <span>·</span> 이 신선님 <span>·</span> 554731
+            </div>
+        </div>
+        <hr class="sep-divider">
+
+        <!-- 포인트 프로그레스 섹션 (Point Progress Section) -->
+        <div class="point-progress-section">
+            <div class="point-progress-track">
+                <div class="point-progress-fill" id="userPointFill" style="width: 40%">
+                    <div class="icon-p">P</div>
+                </div>
+            </div>            
+        </div>
+        <div class="progress-info">
+            <i class="icon icon-info-outline"></i>
+            결제금액의 일부를 포인트로 돌려드려요.
+        </div>
+
+        <hr class="sep-divider">
+
+        <!-- 유저 상세 수치 (User Statistics) -->
+        <div class="user-stat-list">
+            <div class="stat-item">
+                <span class="label">당월배송금액</span>
+                <span class="value">1,000,000</span>
+            </div>
+            <div class="stat-item">
+                <span class="label">
+                    사용 가능 포인트
+                    <i class="icon icon-info-outline"></i>
+                </span>
+                <span class="value">999,687,079</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 앱 다운로드 안내 바텀시트 (App Download Bottom Sheet) -->
+<div class="offcanvas offcanvas-bottom app-download-offcanvas" tabindex="-1" id="appDownloadOffcanvas" aria-labelledby="appDownloadOffcanvasLabel">
+    <div class="offcanvas-handle" data-bs-dismiss="offcanvas"></div>
+    <div class="offcanvas-body">
+        <div class="app-download-content">
+            <h2 class="title">‘cos.emarteveryday.co.kr에서​
+‘E-CLUB’을(를) 설치합니다.​</h2>
+            <div class="app-icon-wrap">
+                <!-- Figma: 80x80 Icon -->
+                <div class="app-icon">
+                    <img src="/assets/images/common/app_icon_80.png" alt="App Icon">
+                </div>
+            </div>
+            <div class="btn-group-half">
+                 <button type="button" class="btn btn-gray" data-bs-dismiss="offcanvas">닫기</button>
+                 <a href="#" class="btn btn-primary">앱 다운로드</a>
+            </div>
+        </div>
+    </div>
+</div>

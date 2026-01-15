@@ -1,0 +1,253 @@
+﻿@use "../../abstracts/functions" as *;
+@use "../../abstracts/mixins";
+@use "../../abstracts/variables" as *;
+
+
+
+.product-card {
+    @include mixins.product-card-base;
+
+    .card-thumb {
+        border-radius: rem(4);
+        @include mixins.mobile-touch-effect($gray-50);
+
+        .badge-corner {
+            top: rem(8);
+            left: rem(12);
+            background-color: $secondary-bg;
+            padding: rem(4) rem(8);
+            border-radius: rem(2);
+            font-size: rem(12);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: rem(4);
+            color: $gray-700;
+
+            svg {
+                width: rem(14);
+                height: rem(14);
+            }
+        }
+
+        .delivery-tags {
+            bottom: rem(8);
+            left: rem(12);
+            align-items: center;
+            gap: rem(4);
+
+            .tag {
+                display: flex;
+                align-items: center;
+                height: rem(24);
+                font-size: rem(10);
+                font-weight: 600;
+                gap: rem(4);
+                padding: rem(2) rem(6);
+                border-radius: rem(2);
+                background-color: $secondary-bg;
+
+                & svg {
+                    width: rem(14) !important;
+                    height: rem(14) !important;
+                }
+
+                &.tag-frozen {
+                    color: $system-info;
+                }
+
+                &.tag-ambient {
+                    color: $accent-base;
+                }
+
+                &.tag-outline {
+                    background-color: $secondary-bg !important;
+                    border: none;
+                    color: $gray-700 !important;
+                }
+
+                &.tag-green {
+                    color: $system-success;
+                }
+            }
+        }
+    }
+
+    .card-info {
+        flex: 1; // 가용 공간 채움
+        padding: rem(16);
+        padding-bottom: rem(8);
+        min-height: rem(104); // 최소 높이 고정 (상품명 2줄 대응)
+        @include mixins.mobile-touch-effect;
+
+        &>* {
+            line-height: 150%;
+        }
+
+        .product-name {
+            font-size: rem(14);
+            line-height: 1.4;
+            letter-spacing: rem(-0.28);
+        }
+
+        .unit-info {
+            display: flex;
+            flex-direction: column;
+            align-content: flex-start;
+            flex-wrap: wrap;
+            font-size: rem(10);
+            // height: rem(34);
+            justify-content: center;
+
+            .price-wrap {
+                display: flex;
+                align-items: center;
+                gap: rem(4);
+            }
+
+            .strike {
+                color: $gray-300;
+                text-decoration: line-through;
+            }
+
+            .unit-highlight {
+                color: $gray-800;
+            }
+        }
+
+        .total-price-area {
+            display: flex;
+            align-items: center;
+            gap: rem(8);
+
+            .discount {
+                font-size: rem(16);
+                font-weight: 700;
+                color: $accent-75;
+
+                .sub-txt {
+                    font-size: rem(10);
+                    margin-left: rem(2);
+                }
+            }
+
+            .price {
+                font-size: rem(16);
+                font-weight: 700;
+                color: $gray-700;
+            }
+        }
+    }
+
+    // 수량 조절 및 버튼 영역
+    .card-control {
+        margin-top: auto; // 하단 밀착
+        padding: 0 rem(16) rem(8);
+        gap: rem(4);
+
+        .btn-icon {
+            width: rem(32);
+            height: rem(32);
+            border: rem(1) solid $gray-200;
+            border-radius: rem(2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: $white;
+            color: $gray-700;
+            @include mixins.mobile-touch-effect;
+
+            svg {
+                width: rem(16);
+                height: rem(16);
+            }
+
+            &.active {
+                .icon-heart path {
+                    fill: $accent-base;
+                    stroke: $accent-base;
+                }
+            }
+        }
+
+        .qty-box {
+            @include mixins.qty-box-base(rem(32), rem(12));
+            flex: 1;
+            border-radius: rem(2);
+
+            button {
+                width: rem(24);
+                @include mixins.mobile-touch-effect;
+
+                svg {
+                    width: rem(12);
+                    height: rem(12);
+                }
+            }
+        }
+    }
+
+    // 하단 추가 정보
+    .bottom-info {
+        padding: 0 rem(16) rem(16);
+        min-height: rem(60); // 최소 높이 확보
+        border-top: none;
+
+        >* {
+            line-height: 150%;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: rem(10);
+            color: $gray-300;
+            letter-spacing: -0.02em;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .text-highlight {
+                color: $accent-75;
+                font-weight: 600;
+            }
+
+            span {
+                display: flex;
+                align-items: center;
+                gap: rem(4);
+            }
+
+            .icon-tag {
+                @include mixins.icon-mask('/assets/icons/product-tag.svg');
+                margin-right: rem(2);
+            }
+
+            .icon-time {
+                @include mixins.icon-mask('/assets/icons/product-time.svg');
+                margin-right: rem(2);
+            }
+
+            .icon-ban {
+                @include mixins.icon-mask('/assets/icons/icon-ban.svg');
+                margin-right: rem(2);
+            }
+
+            .icon-cart-limit {
+                @include mixins.icon-mask('/assets/icons/icon-cart-limit.svg');
+                margin-right: rem(2);
+            }
+
+            .icon-sparkle {
+                @include mixins.icon-mask('/assets/icons/sparkling.svg');
+                margin-right: rem(2);
+            }
+
+            .text-highlight {
+                color: $accent-75;
+            }
+        }
+    }
+}

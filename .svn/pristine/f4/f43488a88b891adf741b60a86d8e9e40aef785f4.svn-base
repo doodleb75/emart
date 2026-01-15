@@ -1,0 +1,148 @@
+// 모달 (레이어 팝업) 공통 스타일
+// Bootstrap Modal 구조(modal > modal-dialog > ...)를 기반으로 하되
+// 내용은 커스텀 클래스(.popup-*)를 사용하여 스타일링
+
+// custom width 설정
+#monthPurchaseModal {
+    .modal-dialog {
+        max-width: rem(480);
+    }
+}
+
+.layer-popup {
+    pointer-events: none; // 모달 컨테이너 자체가 클릭을 가로채지 않도록 설정
+
+    .modal-dialog {
+        max-width: rem(400); // 팝업 너비 커스텀
+        pointer-events: auto; // 모달 내부는 클릭 가능하도록 복구
+
+        @include mobile {
+            max-width: calc(100% - #{rem(32)});
+            margin: rem(16) auto;
+        }
+    }
+
+    .popup-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background-color: $white;
+        border-radius: rem(8);
+        box-shadow: 0 rem(4) rem(20) rgba(0, 0, 0, 0.15);
+        outline: 0;
+        overflow: hidden;
+
+    }
+
+
+    .popup-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: rem(36) rem(24) rem(16);
+
+        .popup-title {
+            margin: 0;
+            font-size: rem(20);
+            font-weight: 600;
+            color: $gray-700;
+            line-height: 1.5;
+        }
+
+
+    }
+
+    .btn-close {
+        padding: 0;
+        background-image: none;
+        position: absolute;
+        top: rem(16);
+        right: rem(16);
+        // background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+        width: rem(20);
+        height: rem(20);
+        border: 0;
+        opacity: 1;
+        cursor: pointer;
+
+        svg {
+            width: rem(11);
+            height: rem(11);
+            stroke: $gray-700;
+        }
+
+        &:hover {
+            opacity: 0.75;
+        }
+    }
+
+    .popup-body {
+        position: relative;
+        flex: 1 1 auto;
+        padding: 0 rem(24) rem(32);
+        font-size: rem(14);
+        line-height: 150%;
+        color: $gray-600;
+
+        p {
+            font-size: rem(14);
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: rem(8);
+            word-break: keep-all;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &.mb-0 {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .popup-footer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 rem(24) rem(24);
+        border-top: none;
+
+        .btn-group-half {
+            display: flex;
+            width: 100%;
+            gap: rem(8);
+
+            .btn-area {
+                flex: 1;
+                width: 50%;
+            }
+        }
+
+        .btn-popup {
+            width: 100%;
+            height: rem(48);
+            border: none;
+            border-radius: rem(4);
+            font-size: rem(14);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            &.btn-gray {
+                background-color: $gray-200;
+                color: $gray-700;
+            }
+
+            &.btn-primary {
+                background-color: $secondary-75;
+                color: $gray-700;
+                font-weight: 600;
+            }
+        }
+    }
+}

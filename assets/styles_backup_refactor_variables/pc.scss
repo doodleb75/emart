@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+// 1. Abstracts (변수, 함수, 믹스인)
+@use "abstracts/functions" as *;
+@use "abstracts/variables";
+@use "abstracts/mixins";
+
+// 2. Base (리셋, 타이포그래피, 공통 스타일)
+@use "base/reset";
+@use "base/typography";
+@use "base/common";
+@use "pc/base/pc-base";
+
+// 3. Components (PC 전용 컴포넌트)
+@use "pc/components/badges";
+@use "pc/components/cards";
+@use "pc/components/ranking";
+@use "pc/components/modal";
+@use "pc/components/toast";
+@use "pc/components/dropdown";
+
+// 4. Layout (PC 헤더, 푸터)
+@use "pc/layout/header";
+@use "pc/layout/footer";
+
+// 5. Pages (PC 페이지별 스타일)
+@use "pc/pages/main";
+@use "pc/pages/cart";
+@use "pc/pages/search";
+@use "pc/pages/mypage";
