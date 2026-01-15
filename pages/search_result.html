@@ -14,25 +14,25 @@
     <!-- 헤더 -->
     <div id="header-placeholder"></div>
 
-    <!-- Search Result Page Content -->
+    <!-- 검색 결과 컨텐츠 -->
     <main class="search-result-page">
         <div class="section-container">
 
-            <!-- Title Area -->
+            <!-- 타이틀 영역 -->
             <div class="page-header">
                 <h2 class="search-result-title">
                     <span class="keyword">‘햇반’</span>(으)로 검색한 결과입니다.
                 </h2>
             </div>
 
-            <!-- Top Info Area -->
+            <!-- 상단 검색 요약 및 필터 -->
             <div class="search-top-area">
-                <!-- 1. Total Count -->
+                <!-- 상품 총 개수 -->
                 <div class="total-count-row">
                     총 <span class="count">41</span>개의 상품이 있습니다
                 </div>
 
-                <!-- 2. Related Keywords -->
+                <!-- 연관검색어 -->
                 <div class="related-keywords-row">
                     <span class="label">연관검색어</span>
                     <div class="divider-vertical"></div>
@@ -54,9 +54,9 @@
                     </div>
                 </div>
 
-                <!-- 3. Filter Options -->
+                <!-- 검색 필터 옵션 -->
                 <div class="filter-options-row">
-                    <!-- Links Group -->
+                    <!-- 필터 링크 그룹 -->
                     <div class="filter-group">
                         <a href="" class="filter-link-link">
                             <span class="filter-label">협력업체</span>
@@ -86,7 +86,7 @@
                         </a>
                     </div>
 
-                    <!-- Checkboxes Group -->
+                    <!-- 필터 체크박스 그룹 -->
                     <div class="checkbox-group">
                         <custom-checkbox label="상온"></custom-checkbox>
                         <custom-checkbox label="저온"></custom-checkbox>
@@ -101,7 +101,7 @@
                     </div>
                 </div>
 
-                <!-- 4. Search Control Row -->
+                <!-- 검색 컨트롤 바 -->
                 <div class="search-control-row">
                     <div class="left-col">
                         <span class="label">결과 내 검색</span>
@@ -111,7 +111,7 @@
                         <button class="btn-search">조회</button>
                     </div>
                     <div class="right-col">
-                        <!-- Dropdown -->
+                        <!-- 출력 개수 선택 -->
                         <div class="dropdown-wrapper">
                             <div class="select-wrap" id="itemsPerPageTrigger">
                                 <span class="selected-value">5개씩 보기</span>
@@ -126,7 +126,7 @@
                                 <li data-value="100">100개씩 보기</li>
                             </ul>
                         </div>
-                        <!-- View Toggles -->
+                        <!-- 보기 방식 전환 -->
                         <div class="view-toggles">
                             <button class="btn-toggle btn-grid active" aria-label="Grid View">
                                 <i class="icon icon-view-grid"></i>
@@ -139,7 +139,7 @@
                 </div>
             </div>
 
-            <!-- Tab Menu -->
+            <!-- 정렬 탭 메뉴 -->
             <nav class="tab-menu">
                 <div class="tab-item active" data-tab="0">판매순</div>
                 <div class="tab-item" data-tab="1">많은 구매횟수</div>
@@ -147,15 +147,15 @@
                 <div class="tab-item" data-tab="3">낮은가격순</div>
             </nav>
 
-            <!-- Control Bar -->
+            <!-- 상품 선택 관리 바 -->
             <div class="product-control-bar">
                 <custom-checkbox id="searchSelectAll" label="전체선택"></custom-checkbox>
                 <button class="btn-add-selected">선택상품담기</button>
             </div>
 
-            <!-- Tab Content Grid -->
+            <!-- 상품 목록 그리드 -->
             <div class="product-grid-4 search-result-grid active" id="md-grid-0">
-                <!-- Product 1: Matcha Cream Bread -->
+                <!-- 상품 카드 아이템 -->
                 <article class="product-card" data-price="25200" data-sales="500" data-date="2024-01-01">
                     <a href="#" class="card-thumb">
                         <div class="card-checkbox">
@@ -210,7 +210,7 @@
                     </div>
                 </article>
 
-                <!-- Product 2: Mozza Cheese Salad -->
+                <!-- 상품 카드 아이템 -->
                 <article class="product-card" data-price="22900" data-sales="800" data-date="2024-01-05">
                     <a href="#" class="card-thumb">
                         <div class="card-checkbox">
@@ -264,7 +264,7 @@
                     </div>
                 </article>
 
-                <!-- Product 3: Bibimbap -->
+                <!-- 상품 카드 아이템 (품절/예정) -->
                 <article class="product-card state-dimmed" data-price="24900" data-sales="300" data-date="2023-12-20">
                     <a href="#" class="card-thumb">
                         <div class="card-checkbox">
@@ -320,7 +320,7 @@
                     </div>
                 </article>
 
-                <!-- Product 8: Bacon Sandwich -->
+                <!-- 상품 카드 아이템 (품절) -->
                 <article class="product-card state-dimmed" data-price="24900" data-sales="100" data-date="2024-01-10">
                     <a href="#" class="card-thumb">
                         <!-- 품절 항목 체크박스 제거 -->
@@ -378,7 +378,7 @@
                 </article>
             </div>
 
-            <!-- Pagination -->
+            <!-- 페이지네이션 -->
             <div class="pagination-container">
                 <div class="pagination-nav-group">
                     <button class="btn-pagination btn-prev-end" aria-label="First Page">
@@ -389,7 +389,7 @@
                     </button>
                 </div>
 
-                <!-- Page Numbers -->
+                <!-- 페이지 번호 -->
                 <a href="#" class="btn-pagination active">1</a>
                 <a href="#" class="btn-pagination">2</a>
                 <a href="#" class="btn-pagination">3</a>
@@ -414,7 +414,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
+    <!-- 푸터 -->
     <div id="footer-placeholder"></div>
 
     <script>
@@ -425,7 +425,7 @@
                     return response.text();
                 })
                 .then(data => {
-                    // Adjust relative paths for pages in subfolders
+                    // 하위 폴더 이미지/리소스 경로 보정
                     if (window.location.pathname.includes('/pages/')) {
                         data = data.replace(/src="assets\//g, 'src="../assets/');
                     }

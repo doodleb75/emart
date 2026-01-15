@@ -1122,7 +1122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // 로직 초기화
-    initMobileScrollSlider('.mobile-main-slider', '#mobileMainTrack');
+    // initMobileScrollSlider('.mobile-main-slider', '#mobileMainTrack'); // 메인 슬라이더는 하단 전용 로직 사용을 위해 중복 초기화 제거
     initMobileScrollSlider('.popcorn-banner-wrapper', '#popcornBannerTrack');
     initOffcanvasDrag();
 
@@ -1509,55 +1509,35 @@ document.addEventListener('DOMContentLoaded', () => {
             let autoplayInterval;
             const autoplayDelay = 3000;
 
-            // 치수 계산
+            // 치수 계산 (Calculate dimensions)
             const getMetrics = () => {
-                const realSlide = allSlides[cloneCount];
-                const slideWidth = realSlide.offsetWidth;
-                const style = window.getComputedStyle(track);
-                const gap = parseFloat(style.columnGap) || 8;
-                return { slideWidth, gap, fullWidth: slideWidth + gap };
+                if (allSlides.length < 2) return { slideWidth: 0, gap: 0, fullWidth: 0 };
+                const fullWidth = allSlides[1].offsetLeft - allSlides[0].offsetLeft; // 정적인 요소 간격 측정 (Static distance)
+                const slideWidth = allSlides[cloneCount].offsetWidth;
+                const gap = fullWidth - slideWidth;
+                return { slideWidth, gap, fullWidth };
             };
 
-            // 스크롤 위치 초기화
+            // 스크롤 위치 초기화 (Initialize scroll position)
             const initPosition = () => {
                 const { fullWidth } = getMetrics();
-                track.scrollLeft = fullWidth * cloneCount;
+                if (fullWidth <= 0) return;
+                // margin-left 방식에서는 padding이 없으므로 scrollLeft는 정확히 인덱스 배수 (With margin-left, no padding, so scrollLeft is index multiple)
+                track.scrollLeft = Math.round(fullWidth * cloneCount);
             };
 
             // 레이아웃 대기
             setTimeout(initPosition, 100);
 
-            // 페이지네이션 및 루프 체크
-            const handleScroll = () => {
+            let isJumping = false;
+
+            // 페이지 번호만 갱신 (Update pagination index only)
+            const updatePagination = () => {
                 const { fullWidth } = getMetrics();
-                if (fullWidth === 0) return;
-
+                if (fullWidth <= 0) return;
                 const scrollLeft = track.scrollLeft;
+                const rawIndex = Math.round(scrollLeft / fullWidth);
 
-                let rawIndex = Math.round(scrollLeft / fullWidth);
-                let realIndex = rawIndex - cloneCount + 1;
-
-                // 루프 로직
-                if (rawIndex < cloneCount) {
-                    const newPos = (slideCount + rawIndex) * fullWidth;
-                    track.style.scrollSnapType = 'none';
-                    track.scrollTo({ left: newPos, behavior: 'instant' });
-                    requestAnimationFrame(() => {
-                        track.style.scrollSnapType = '';
-                    });
-
-                    realIndex = rawIndex === cloneCount - 1 ? slideCount : slideCount - 1;
-                } else if (rawIndex >= slideCount + cloneCount) {
-                    const newPos = (rawIndex - slideCount) * fullWidth;
-                    track.style.scrollSnapType = 'none';
-                    track.scrollTo({ left: newPos, behavior: 'instant' });
-                    requestAnimationFrame(() => {
-                        track.style.scrollSnapType = '';
-                    });
-                    realIndex = 1;
-                }
-
-                // 표시 인덱스 계산
                 let displayIndex = (rawIndex - cloneCount) % slideCount;
                 if (displayIndex < 0) displayIndex += slideCount;
                 displayIndex += 1;
@@ -1565,14 +1545,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (currentEl) currentEl.textContent = displayIndex.toString().padStart(2, '0');
             };
 
-            let scrollTimeout;
-            track.addEventListener('scroll', () => {
-                // 점프/스냅 로직 디바운스
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(handleScroll, 50);
-            });
+            // 루프 위치 보정 (Loop positioning correction)
+            const checkLoop = () => {
+                if (isJumping) return;
+                const { fullWidth } = getMetrics();
+                if (fullWidth <= 0) return;
 
-            track.addEventListener('scrollend', handleScroll);
+                const scrollLeft = track.scrollLeft;
+                const rawIndex = Math.round(scrollLeft / fullWidth);
+
+                // 실제 슬라이드 범위를 벗어났을 때만 보정 (Jump only when out of original range)
+                if (rawIndex < cloneCount) {
+                    isJumping = true;
+                    const newPos = Math.round((slideCount + rawIndex) * fullWidth);
+                    track.style.scrollSnapType = 'none';
+                    track.scrollTo({ left: newPos, behavior: 'instant' });
+                    requestAnimationFrame(() => {
+                        track.style.scrollSnapType = '';
+                        isJumping = false;
+                    });
+                } else if (rawIndex >= slideCount + cloneCount) {
+                    isJumping = true;
+                    const newPos = Math.round((rawIndex - slideCount) * fullWidth);
+                    track.style.scrollSnapType = 'none';
+                    track.scrollTo({ left: newPos, behavior: 'instant' });
+                    requestAnimationFrame(() => {
+                        track.style.scrollSnapType = '';
+                        isJumping = false;
+                    });
+                }
+            };
+
+            track.addEventListener('scroll', () => {
+                updatePagination(); // 스크롤 중에는 번호만 변경
+            }, { passive: true });
+
+            track.addEventListener('scrollend', () => {
+                checkLoop(); // 스크롤이 끝난 뒤에 위치 보정
+            });
 
             // 네비게이션
             const nextSlide = () => {

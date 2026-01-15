@@ -388,11 +388,13 @@
     .slider-track {
         display: flex;
         gap: rem(8);
-        margin-left: rem(16);
-        padding-left: rem(16); // 왼쪽 시작 여백 (Left start margin)
+        margin-left: rem(16); // 왼쪽 여백 유지 및 클리핑 마스크 효과 (Maintain left margin and clipping mask effect)
+        padding-left: 0;
         padding-right: rem(24); // 끝부분 여백 (End margin)
         overflow-x: auto;
         scroll-snap-type: x mandatory;
+        scroll-padding-left: 0; // 마진으로 시작점을 제어하므로 스냅 패딩은 0 (Snap padding is 0 as start point is controlled by margin)
+        scroll-padding-right: rem(24);
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
 

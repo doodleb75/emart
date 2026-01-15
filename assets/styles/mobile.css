@@ -3431,10 +3431,12 @@ body.mobile-body {
   display: flex;
   gap: 0.5rem;
   margin-left: 1rem;
-  padding-left: 1rem;
+  padding-left: 0;
   padding-right: 1.5rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  scroll-padding-left: 0;
+  scroll-padding-right: 1.5rem;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
