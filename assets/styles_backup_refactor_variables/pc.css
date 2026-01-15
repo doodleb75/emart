@@ -792,8 +792,8 @@ body {
   width: 0.8125rem;
   height: 0.8125rem;
   background-color: currentColor;
-  -webkit-mask: url("/assets/icons/product-tag.svg") no-repeat 50% 50%;
-  mask: url("/assets/icons/product-tag.svg") no-repeat 50% 50%;
+  -webkit-mask: url("/emart/assets/icons/product-tag.svg") no-repeat 50% 50%;
+  mask: url("/emart/assets/icons/product-tag.svg") no-repeat 50% 50%;
   -webkit-mask-size: contain;
   mask-size: contain;
   margin-right: 0.25rem;
@@ -803,8 +803,8 @@ body {
   width: 0.8125rem;
   height: 0.8125rem;
   background-color: currentColor;
-  -webkit-mask: url("/assets/icons/product-time.svg") no-repeat 50% 50%;
-  mask: url("/assets/icons/product-time.svg") no-repeat 50% 50%;
+  -webkit-mask: url("/emart/assets/icons/product-time.svg") no-repeat 50% 50%;
+  mask: url("/emart/assets/icons/product-time.svg") no-repeat 50% 50%;
   -webkit-mask-size: contain;
   mask-size: contain;
   margin-right: 0.25rem;
@@ -814,8 +814,8 @@ body {
   width: 0.8125rem;
   height: 0.8125rem;
   background-color: currentColor;
-  -webkit-mask: url("/assets/icons/icon-ban.svg") no-repeat 50% 50%;
-  mask: url("/assets/icons/icon-ban.svg") no-repeat 50% 50%;
+  -webkit-mask: url("/emart/assets/icons/icon-ban.svg") no-repeat 50% 50%;
+  mask: url("/emart/assets/icons/icon-ban.svg") no-repeat 50% 50%;
   -webkit-mask-size: contain;
   mask-size: contain;
   margin-right: 0.25rem;
@@ -825,8 +825,8 @@ body {
   width: 0.8125rem;
   height: 0.8125rem;
   background-color: currentColor;
-  -webkit-mask: url("/assets/icons/icon-cart-limit.svg") no-repeat 50% 50%;
-  mask: url("/assets/icons/icon-cart-limit.svg") no-repeat 50% 50%;
+  -webkit-mask: url("/emart/assets/icons/icon-cart-limit.svg") no-repeat 50% 50%;
+  mask: url("/emart/assets/icons/icon-cart-limit.svg") no-repeat 50% 50%;
   -webkit-mask-size: contain;
   mask-size: contain;
   margin-right: 0.25rem;
@@ -836,8 +836,8 @@ body {
   width: 0.8125rem;
   height: 0.8125rem;
   background-color: currentColor;
-  -webkit-mask: url("/assets/icons/sparkling.svg") no-repeat 50% 50%;
-  mask: url("/assets/icons/sparkling.svg") no-repeat 50% 50%;
+  -webkit-mask: url("/emart/assets/icons/sparkling.svg") no-repeat 50% 50%;
+  mask: url("/emart/assets/icons/sparkling.svg") no-repeat 50% 50%;
   -webkit-mask-size: contain;
   mask-size: contain;
   margin-right: 0.25rem;
@@ -2722,7 +2722,7 @@ body.modal-open {
   height: 3rem;
   border: 1.5px solid #444444;
   border-radius: 0.25rem;
-  background: url("/assets/icons/fullview-arrow.svg") no-repeat center center;
+  background: url("/emart/assets/icons/fullview-arrow.svg") no-repeat center center;
   background-size: 1.5rem 1.5rem;
   box-sizing: border-box;
   transition: all 0.2s;
@@ -4997,7 +4997,7 @@ body.modal-open {
   color: #444444;
   font-family: inherit;
   cursor: text;
-  background: #f4f4f4 url("/assets/icons/calendar.svg") no-repeat right 1rem center;
+  background: #f4f4f4 url("/emart/assets/icons/calendar.svg") no-repeat right 1rem center;
   background-size: 1.25rem 1.25rem;
 }
 .mypage-page .filter-container .filter-content .date-group .date-input-wrap input[type=date]:focus {
