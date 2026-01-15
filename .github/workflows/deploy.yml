@@ -16,23 +16,29 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
+      - name: Scss Compile
+        run: |
+          npm install -g sass
+          sass assets/styles:assets/styles --no-source-map
+
       - name: Path Correction for GitHub Pages (Root to Repo-Relative)
         run: |
-          # HTML, CSS, JS 파일에서 절대 경로(/)를 저장소 이름(/emart/)으로 변환
-          # 예: src="/assets/..." -> src="/emart/assets/..."
+          # 1. fetch() 경로는 작은따옴표(')나 큰따옴표(")로 감싸져 있을 수 있으므로 모두 대응
+          find . -type f -name "*.js" -exec sed -i "s|fetch('/|fetch('/emart/|g" {} +
+          find . -type f -name "*.js" -exec sed -i 's|fetch("/|fetch("/emart/|g' {} +
+
+          # 2. HTML/JS에서 src="/...", href="/..." 패턴 처리
+          find . -type f \( -name "*.html" -o -name "*.js" \) -exec sed -i 's|src="/|src="/emart/|g' {} +
+          find . -type f \( -name "*.html" -o -name "*.js" \) -exec sed -i 's|href="/|href="/emart/|g' {} +
           
-          # 1. HTML/CSS/JS 파일 찾기
-          # 2. sed를 사용하여 경로 치환
-          find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -exec sed -i 's|src="/|src="/emart/|g' {} +
-          find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -exec sed -i 's|href="/|href="/emart/|g' {} +
-          find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -exec sed -i "s|url('/|url('/emart/|g" {} +
-          find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -exec sed -i 's|url(/|url(/emart/|g' {} +
-          
-          echo "Path correction complete."
+          # 3. CSS/SCSS에서 url('/...') 및 url(/...) 패턴 처리
+          # SCSS 파일도 처리해야 컴파일된 CSS에 반영되거나, JS에서 동적으로 CSS 조작 시 도움됨
+          find . -type f \( -name "*.css" -o -name "*.scss" -o -name "*.js" \) -exec sed -i "s|url('/|url('/emart/|g" {} +
+          find . -type f \( -name "*.css" -o -name "*.scss" -o -name "*.js" \) -exec sed -i 's|url(/|url(/emart/|g' {} +
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
-          publish_branch: gh-pages  # 배포될 브랜치
+          publish_branch: gh-pages
