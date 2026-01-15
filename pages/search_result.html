@@ -426,7 +426,7 @@
                 })
                 .then(data => {
                     // Adjust relative paths for pages in subfolders
-                    if (window.location.pathname.includes('/pages/')) {
+                    if (window.location.pathname.includes('/emart/pages/')) {
                         data = data.replace(/src="assets\//g, 'src="../assets/');
                     }
                     document.getElementById(placeholderId).innerHTML = data;
@@ -440,8 +440,8 @@
                 .catch(error => console.error('Error loading component:', error));
         }
 
-        loadComponent('/components/header.component.txt', 'header-placeholder');
-        loadComponent('/components/footer.component.txt', 'footer-placeholder');
+        loadComponent('/emart/components/header.component.txt', 'header-placeholder');
+        loadComponent('/emart/components/footer.component.txt', 'footer-placeholder');
     </script>
 
     <script src="/emart/assets/js/main.js"></script>

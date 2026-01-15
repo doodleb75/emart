@@ -2047,7 +2047,7 @@ async function saveUserZoom(zoomValue) {
 
     // TODO: 로그인 상태라면 서버 DB에 저장하는 API 호출 로직 추가 예정
     // if (isLoggedIn) {
-    //     await fetch('/emart/api/user/settings/zoom', { method: 'POST', body: JSON.stringify({ zoom: zoomValue }) });
+    //     await fetch('/api/user/settings/zoom', { method: 'POST', body: JSON.stringify({ zoom: zoomValue }) });
     // }
 }
 
@@ -2073,7 +2073,7 @@ async function initZoomControl() {
     // 줌 적용 로직 (PC용 화면인 경우에만 적용)
     const applyZoom = () => {
         // 모바일 경로(/mobile/)가 포함되지 않은 경우를 PC 화면으로 판별
-        const isPCPage = !window.location.pathname.includes('/mobile/');
+        const isPCPage = !window.location.pathname.includes('/emart/mobile/');
         document.body.style.zoom = isPCPage ? currentZoom : 1;
 
         // GNB 너비 재계산 호출
