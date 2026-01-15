@@ -58,6 +58,7 @@
             display: flex;
             align-items: center;
             gap: rem(4);
+            cursor: pointer; // 바텀시트 호출 영역 보정
 
             .badge-grade {
                 background-color: $primary-gold;
@@ -457,7 +458,7 @@
 
                             .icon-wrap {
                                 flex-shrink: 0;
-                                background-color: $gray-50;
+                                background-color: $gray-200;
                                 width: rem(24);
                                 height: rem(24);
                                 border-radius: 50%;
@@ -494,15 +495,10 @@
                             border: none;
                             padding: 0;
                             cursor: pointer;
-                            color: $gray-300;
+                            color: $gray-200; // #cccccc 보정
 
-                            svg {
-                                width: rem(12);
-                                height: rem(12);
-
-                                path {
-                                    fill: $gray-300;
-                                }
+                            .icon-close-x {
+                                color: inherit;
                             }
 
                             &:hover svg path {
@@ -546,6 +542,10 @@
 
                 .keyword-list {
                     padding: 0 rem(20) rem(24);
+
+                    &#rank-list-2 {
+                        display: none; // 탭 전환용 기본 숨김
+                    }
 
                     li {
                         display: flex;

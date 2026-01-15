@@ -1,88 +1,23 @@
 <nav class="bottom-nav">
     <a href="javascript:void(0);" class="nav-item" data-bs-toggle="offcanvas" data-bs-target="#categoryFilterOffcanvas">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <g clip-path="url(#clip0_379_1699)">
-                <path d="M3 8H21M3 16H21" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-            </g>
-            <defs>
-                <clipPath id="clip0_379_1699">
-                    <rect width="24" height="24" fill="white" />
-                </clipPath>
-            </defs>
-        </svg>
+        <i class="icon icon-nav-category"></i>
         <span class="label">카테고리</span>
     </a>
     <a href="#" class="nav-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <g clip-path="url(#clip0_406_4227)">
-                <path d="M15 4H4V20H15" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-                <path d="M11 7L11 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-                <path d="M15 7L15 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-                <path d="M19 7L19 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-            </g>
-            <defs>
-                <clipPath id="clip0_406_4227">
-                    <rect width="24" height="24" fill="white" />
-                </clipPath>
-            </defs>
-        </svg>
-        </span>
+        <i class="icon icon-nav-barcode"></i>
         <span class="label">바코드스캔</span>
     </a>
     <a href="#" class="nav-item nav-center">
-        <!-- User to insert e-Club Logo SVG here -->
-        <span class="eclub-logo-placeholder">
-            <svg xmlns="http://www.w3.org/2000/svg" width="58" height="24" viewBox="0 0 99 41" fill="none">
-                <g clip-path="url(#clip0_38_64)">
-                    <path
-                        d="M67.0151 18.4844V22.5133L36.9571 22.4661C35.8301 22.4661 34.9258 21.5483 34.9258 20.428V18.4372L57.6144 18.471C57.7696 17.4249 57.9248 16.5004 58.0463 15.5286L39.4068 16.3047C38.8264 16.3317 38.3203 15.9065 38.2393 15.3261L37.8411 12.4378L58.2825 12.0059C58.323 11.3108 58.323 10.6157 58.323 9.95429L40.4393 9.9273C39.562 9.9273 38.8534 9.21195 38.8534 8.33464V5.97266L60.28 6.0064C61.9807 6.0064 63.3574 7.38985 63.3506 9.09048V9.18496C63.3506 11.9316 63.3439 14.874 62.7163 18.471H67.0151V18.4844ZM43.4492 36.1386H63.4923C63.4923 36.1386 63.5193 36.1386 63.5193 36.1589V39.9313C63.5193 39.9313 63.4991 39.9583 63.4856 39.9583H42.7068C40.3381 39.9583 38.4148 38.035 38.4215 35.6662V30.3551L58.4849 30.3889V28.452L40.2234 28.425C39.1976 28.425 38.3608 27.5882 38.3608 26.5557V24.5851L63.5666 24.6256L63.5531 34.0331L43.4627 33.9993V36.1319L43.4492 36.1386Z"
-                        fill="#444444"></path>
-                    <path
-                        d="M88.6976 23.0481C83.7037 23.8107 79.2496 23.9254 72.7508 23.9119H72.6563C71.0839 23.9119 69.8152 22.6297 69.8152 21.064L69.8287 13.0333L80.822 13.0535V10.1921L71.9275 10.1787C70.7465 10.1787 69.7949 9.22036 69.7949 8.03936V6.10928L85.8632 6.13628L85.8429 16.8597L74.8901 16.8395V19.8223C80.1877 19.7953 83.9803 19.6468 88.3601 18.9517L88.7043 23.0549L88.6976 23.0481ZM93.2191 26.0782H98.2535L98.2333 40.0612L79.4791 40.0274C76.6649 40.0274 74.3907 37.7397 74.3907 34.9255L74.4042 26.0445H79.4723V29.1488L93.2123 29.169V26.0715L93.2191 26.0782ZM93.2123 33.0832L79.4723 33.0629V34.5949C79.4723 35.3507 80.0797 35.9648 80.8355 35.9648L93.2056 35.9851V33.0832H93.2123ZM98.2873 7.32402L98.2603 24.6138H93.1516L93.1651 15.7799H87.6313V11.7038H93.1651L93.1786 4.82031H95.797C97.1737 4.82031 98.2873 5.94057 98.2805 7.31727L98.2873 7.32402Z"
-                        fill="#444444"></path>
-                    <path
-                        d="M15.4494 39.9986C4.69894 39.9986 0.00195312 33.4188 0.00195312 25.0843V16.0885C0.00195312 4.50802 7.72228 0 16.7788 0C27.7115 0 32.4894 5.95221 32.4894 11.9044C32.4894 20.5898 23.6016 22.7156 19.6874 23.8561C18.5604 24.18 14.3966 25.4217 13.4518 25.6917C9.79408 26.7512 8.74131 27.9389 8.74131 29.2819C8.74131 31.5764 10.7456 33.574 15.4494 33.574C19.539 33.574 22.5286 32.1838 23.028 27.912H31.5851C30.7011 34.674 26.6384 39.9986 15.4494 39.9986ZM16.4211 6.44485C11.6634 6.44485 8.55235 9.61667 8.55235 15.0425V20.7248C8.55235 20.7248 14.9837 18.8487 17.6696 18.0388C19.9169 17.3572 23.9458 15.9333 23.9458 12.3768C23.9458 9.28599 21.4353 6.44485 16.4211 6.44485Z"
-                        fill="#FFBB33"></path>
-                </g>
-                <defs>
-                    <clipPath id="clip0_38_64">
-                        <rect width="98.2857" height="40.0593" fill="white"></rect>
-                    </clipPath>
-                </defs>
-            </svg>
+        <span class="eclub-logo">
+            <img src="/assets/images/common/icon_eclub_title.svg" alt="e-Club">
         </span>
     </a>
     <a href="#" class="nav-item">
-        <span class="icon icon-my">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <g clip-path="url(#clip0_406_4252)">
-                    <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" />
-                    <path d="M5 22V18C5 15.7909 6.79086 14 9 14H15C17.2091 14 19 15.7909 19 18V22"
-                        stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-                </g>
-                <defs>
-                    <clipPath id="clip0_406_4252">
-                        <rect width="24" height="24" fill="white" />
-                    </clipPath>
-                </defs>
-            </svg>
-        </span>
+        <i class="icon icon-nav-my"></i>
         <span class="label">마이</span>
     </a>
     <a href="#" class="nav-item">
-        <span class="icon icon-search">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <g clip-path="url(#clip0_379_1723)">
-                    <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
-                    <path d="M16 16L21 21" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-                </g>
-                <defs>
-                    <clipPath id="clip0_379_1723">
-                        <rect width="24" height="24" fill="white" />
-                    </clipPath>
-                </defs>
-            </svg>
-        </span>
+        <i class="icon icon-nav-search"></i>
         <span class="label">검색</span>
     </a>
 </nav>

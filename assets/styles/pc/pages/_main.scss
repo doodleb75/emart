@@ -431,25 +431,24 @@
             height: rem(48);
             padding: 0 $space-md; // Figma 좌우 여백
             background-color: $white;
-            border: 1.5px solid $black; // stroke_C5M6KF
+            border: 1.5px solid $gray-700; // 가장 어두운 톤 적용
             border-radius: $space-xs;
             cursor: pointer;
             transition: all 0.2s;
 
             span {
                 font-family: 'Pretendard', sans-serif;
-                font-size: $font-size-base; // style_69UL32
+                font-size: $font-size-base;
                 font-weight: 600;
-                color: $black; // 색상 코드fill_K4HJEM
+                color: $gray-700; // 가장 어두운 톤 적용
                 line-height: 1.5;
                 letter-spacing: -0.02em;
             }
 
 
 
-            svg {
-                margin: rem(7) rem(6);
-                transition: transform 0.2s; // 회전 애니메이션 (Rotation animation)
+            .icon-brand-arrow {
+                transition: transform 0.2s; // 상하 반전 애니메이션
             }
 
             @include mixins.btn-hover-effect;
@@ -458,8 +457,8 @@
 
     &.is-expanded {
         .btn-brand-more {
-            svg {
-                transform: rotate(180deg); // 화살표 위로 (Arrow up)
+            .icon-brand-arrow {
+                transform: rotate(180deg); // 펼침 상태 시 상하 반전
             }
         }
 

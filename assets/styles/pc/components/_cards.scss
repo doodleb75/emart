@@ -115,7 +115,8 @@
             background-color: rgba(0, 0, 0, 0.1);
             border-radius: $space-xs;
 
-            svg {
+            svg,
+            i {
                 width: rem(20);
                 height: rem(20);
                 color: $white;

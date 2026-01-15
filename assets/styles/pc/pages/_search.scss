@@ -936,7 +936,8 @@
                 color: $white;
             }
 
-            svg {
+            svg,
+            .icon {
                 width: rem(20);
                 height: rem(20);
                 fill: currentColor;

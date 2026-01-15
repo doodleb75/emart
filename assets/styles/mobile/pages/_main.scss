@@ -149,10 +149,10 @@
             border-color: $gray-700;
             @include mixins.mobile-touch-effect; // 터치 피드백 추가
 
-            svg {
-                width: rem(24);
-                height: rem(24);
-            }
+            // i {
+            //     width: rem(24);
+            //     height: rem(24);
+            // }
 
             &:disabled {
                 color: $gray-300;
@@ -266,7 +266,7 @@
             transition: all 0.2s;
             @include mixins.mobile-touch-effect; // 터치 피드백 추가
 
-            svg {
+            i {
                 transition: transform 0.2s;
             }
 
@@ -275,7 +275,7 @@
                 border-color: $gray-700;
                 color: $white;
 
-                svg {
+                i {
                     transform: rotate(180deg);
                 }
             }
@@ -310,6 +310,16 @@
 
         .btn-more {
             width: 100%;
+
+            i {
+                transition: transform 0.2s;
+            }
+        }
+
+        &.is-expanded {
+            .btn-more i {
+                transform: rotate(180deg);
+            }
         }
     }
 
@@ -331,7 +341,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: rem(4);
+    gap: rem(8);
     border: 1.5px solid $gray-700;
     background: $white;
     border-radius: rem(2);
@@ -344,6 +354,19 @@
         width: rem(20);
         height: rem(20);
         fill: currentColor;
+    }
+
+    i {
+        transition: transform 0.2s;
+    }
+
+    &.is-expanded,
+    &.is-all-shown {
+
+        i,
+        svg {
+            transform: rotate(180deg);
+        }
     }
 
     &:hover {
@@ -359,7 +382,7 @@
     overflow: hidden;
     padding-left: 0; // 내부 트랙으로 패딩 이동 (Move padding to track)
     // margin-left: rem(16);
-    padding-bottom: rem(32);
+    // padding-bottom: rem(32);
     border-bottom: 0.5rem solid $gray-50;
 
     .slider-track {
@@ -485,83 +508,74 @@
         }
     }
 
-    // 컨트롤러 영역 (Controller area)
-    .slider-controller {
+}
+
+// 페이지네이션 영역 (Pagination area)
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: rem(16) 0;
+}
+
+.pagination-control {
+    display: flex;
+    align-items: center;
+    gap: 0;
+
+    .btn-control {
+        width: rem(40);
+        height: rem(40);
+        border-radius: rem(100);
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: rem(16);
-        color: $black;
-        font-family: $font-family-number;
-        font-weight: 500;
-        font-size: rem(14);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: background-color 0.2s;
+        @include mixins.mobile-touch-effect;
 
-        &>*:not(.page-count) {
-            width: rem(32) !important;
-            height: rem(32) !important;
+        i {
+            width: rem(20);
+            height: rem(20);
+            display: block;
+        }
+    }
+
+    .page-info {
+        display: flex;
+        align-items: center;
+
+        .current-page {
+            width: rem(40);
+            text-align: center;
+            font-family: $font-family-base;
+            font-weight: 700;
+            font-size: rem(14);
+            color: $black;
         }
 
-        .page-count {
-            display: flex;
-            align-items: center;
-
-            &>*:not(.divider) {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: rem(32) !important;
-                height: rem(32) !important;
-            }
-        }
-
-        button {
-            background: none;
-            border: none;
-            padding: 0;
+        .divider {
+            width: rem(20);
+            height: rem(40);
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            width: rem(24);
-            height: rem(24);
-            color: $gray-300;
-            @include mixins.mobile-touch-effect; // 컨트롤러 버튼 터치 피드백
 
-            svg {
-                width: rem(20);
-                height: rem(20);
-                fill: currentColor;
-
-                path {
-                    fill: $gray-700;
-                }
-            }
-
-            &.active {
-                color: $black;
+            i {
+                color: $gray-300;
             }
         }
 
-        .page-count {
-            display: flex;
-            align-items: center;
-            gap: rem(8);
-
-            .current {
-                color: $black;
-                font-weight: 700;
-            }
-
-            .divider {
-                width: rem(12);
-                margin: 0 rem(8);
-                height: 2px;
-                background-color: $gray-300;
-            }
-
-            .total {
-                color: $gray-300;
-            }
+        .total-page {
+            width: rem(40);
+            text-align: center;
+            font-family: $font-family-base;
+            font-weight: 600;
+            font-size: rem(14);
+            color: $gray-300;
         }
     }
 }
@@ -670,15 +684,19 @@
     }
 
     .btn-more.btn-brand-more {
-        width: 100%;
+        width: calc(100% - 32px);
         margin-top: rem(16);
     }
 }
 
 // 팝콘 배너 (Popcorn Banner)
 .popcorn-banner-wrapper {
-    margin: rem(16) 0;
+    margin: rem(16) 0 0;
     overflow: hidden;
+
+    .pagination-container {
+        padding: rem(10) 0;
+    }
 
     .slider-track {
         display: flex;
@@ -709,78 +727,5 @@
         }
     }
 
-    .slider-controller {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: $black;
-        font-family: $font-family-number;
-        font-weight: 500;
-        font-size: rem(14);
 
-        &>*:not(.page-count) {
-            width: rem(32) !important;
-            height: rem(32) !important;
-        }
-
-        .page-count {
-            display: flex;
-            align-items: center;
-
-            &>*:not(.divider) {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: rem(32) !important;
-                height: rem(32) !important;
-            }
-        }
-
-        button {
-            background: none;
-            border: none;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: $gray-300;
-            @include mixins.mobile-touch-effect; // 컨트롤러 버튼 터치 피드백
-
-            svg {
-                width: rem(20);
-                height: rem(20);
-                fill: currentColor;
-
-                path {
-                    fill: $gray-700;
-                }
-            }
-
-            &.active {
-                color: $black;
-            }
-        }
-
-        .page-count {
-            display: flex;
-            align-items: center;
-            gap: rem(8);
-
-            .current {
-                color: $black;
-                font-weight: 700;
-            }
-
-            .divider {
-                width: rem(10);
-                height: 2px;
-                background-color: $gray-300;
-            }
-
-            .total {
-                color: $gray-300;
-            }
-        }
-    }
 }

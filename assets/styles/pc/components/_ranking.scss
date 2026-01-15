@@ -242,12 +242,13 @@
         padding: 0;
         transition: all 0.2s;
 
-        svg {
+        svg,
+        i {
             width: rem(10);
             height: rem(6);
             transition: transform 0.3s;
 
-            background-color: transparent;
+            // background-color: transparent;
 
             transform: rotate(0deg);
             color: $gray-700;
@@ -258,7 +259,8 @@
             background-color: $gray-700;
             border-color: $gray-700;
 
-            svg {
+            svg,
+            i {
                 transform: rotate(180deg);
                 opacity: 1;
                 color: $white;
