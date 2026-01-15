@@ -23,18 +23,21 @@ jobs:
 
       - name: Path Correction for GitHub Pages (Root to Repo-Relative)
         run: |
-          # 1. fetch() 경로는 작은따옴표(')나 큰따옴표(")로 감싸져 있을 수 있으므로 모두 대응
-          find . -type f -name "*.js" -exec sed -i "s|fetch('/|fetch('/emart/|g" {} +
-          find . -type f -name "*.js" -exec sed -i 's|fetch("/|fetch("/emart/|g' {} +
+          # 1. fetch() 경로는 작은따옴표('), 큰따옴표("), 백틱(`) 모두 대응
+          find . -type f -name "*.js" -not -path "*/node_modules/*" -not -path "*/.git/*" -exec sed -i "s|fetch('/|fetch('/emart/|g" {} +
+          find . -type f -name "*.js" -not -path "*/node_modules/*" -not -path "*/.git/*" -exec sed -i 's|fetch("/|fetch("/emart/|g' {} +
+          find . -type f -name "*.js" -not -path "*/node_modules/*" -not -path "*/.git/*" -exec sed -i "s|fetch(\`/|fetch(\`/emart/|g" {} +
 
-          # 2. HTML/JS에서 src="/...", href="/..." 패턴 처리
-          find . -type f \( -name "*.html" -o -name "*.js" \) -exec sed -i 's|src="/|src="/emart/|g' {} +
-          find . -type f \( -name "*.html" -o -name "*.js" \) -exec sed -i 's|href="/|href="/emart/|g' {} +
+          # 2. HTML/JS에서 src="/...", href="/..." 패턴 처리 (따옴표 종류 모두 확인)
+          find . -type f \( -name "*.html" -o -name "*.js" \) -not -path "*/node_modules/*" -not -path "*/.git/*" -exec sed -i 's|src="/|src="/emart/|g' {} +
+          find . -type f \( -name "*.html" -o -name "*.js" \) -not -path "*/node_modules/*" -not -path "*/.git/*" -exec sed -i "s|src='/|src='/emart/|g" {} +
+          find . -type f \( -name "*.html" -o -name "*.js" \) -not -path "*/node_modules/*" -not -path "*/.git/*" -exec sed -i 's|href="/|href="/emart/|g' {} +
+          find . -type f \( -name "*.html" -o -name "*.js" \) -not -path "*/node_modules/*" -not -path "*/.git/*" -exec sed -i "s|href='/|href='/emart/|g" {} +
           
-          # 3. CSS/SCSS에서 url('/...') 및 url(/...) 패턴 처리
-          # SCSS 파일도 처리해야 컴파일된 CSS에 반영되거나, JS에서 동적으로 CSS 조작 시 도움됨
-          find . -type f \( -name "*.css" -o -name "*.scss" -o -name "*.js" \) -exec sed -i "s|url('/|url('/emart/|g" {} +
-          find . -type f \( -name "*.css" -o -name "*.scss" -o -name "*.js" \) -exec sed -i 's|url(/|url(/emart/|g' {} +
+          # 3. CSS/SCSS에서 url() 패턴 처리 (따옴표 없음, 작은따옴표, 큰따옴표)
+          find . -type f \( -name "*.css" -o -name "*.scss" -o -name "*.js" \) -not -path "*/node_modules/*" -not -path "*/.git/*" -exec sed -i "s|url('/|url('/emart/|g" {} +
+          find . -type f \( -name "*.css" -o -name "*.scss" -o -name "*.js" \) -not -path "*/node_modules/*" -not -path "*/.git/*" -exec sed -i 's|url("/|url("/emart/|g' {} +
+          find . -type f \( -name "*.css" -o -name "*.scss" -o -name "*.js" \) -not -path "*/node_modules/*" -not -path "*/.git/*" -exec sed -i 's|url(/|url(/emart/|g' {} +
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
