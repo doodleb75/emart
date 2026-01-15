@@ -104,41 +104,7 @@
         }
     }
 
-    // 상단 이동 버튼
-    .btn-top {
-        position: fixed;
-        right: rem(20);
-        bottom: rem(80);
-        width: rem(48);
-        height: rem(48);
-        background: $white;
-        border: rem(1) solid $gray-700;
-        border-radius: rem(8);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 100;
-        opacity: 0; // 초기 숨김
-        visibility: hidden; // 클릭 방지
-        pointer-events: none; // 이벤트 차단
-        transition: all 0.3s ease; // 부드러운 노출 전환
-        box-shadow: 0 rem(4) rem(12) rgba(0, 0, 0, 0.1);
 
-        &.is-visible {
-            opacity: 1; // 노출
-            visibility: visible; // 클릭 가능
-            pointer-events: auto; // 이벤트 허용
-        }
-
-        &:active {
-            transform: scale(0.9); // 클릭 피드백
-        }
-
-        svg {
-            width: rem(24);
-            height: rem(24);
-        }
-    }
 
     // 섹션 구분선
     .section-divider {
@@ -592,11 +558,7 @@
         }
     }
 
-    .floating-buttons {
-        .btn-float {
-            box-shadow: none !important;
-        }
-    }
+
 }
 
 // 애니메이션

@@ -29,16 +29,16 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// 상단 이동 버튼 노출 제어 
-const scrollTopBtn = document.getElementById('scrollTopBtn');
-if (scrollTopBtn) {
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            scrollTopBtn.classList.add('is-visible');
-        } else {
-            scrollTopBtn.classList.remove('is-visible');
-        }
-    });
-}
+// 플로팅 버튼 노출 제어 
+window.addEventListener('scroll', () => {
+    const floatingButtons = document.querySelector('.floating-buttons');
+    if (!floatingButtons) return;
+
+    if (window.scrollY > 100) {
+        floatingButtons.classList.add('is-visible');
+    } else {
+        floatingButtons.classList.remove('is-visible');
+    }
+});
 
 

@@ -1,0 +1,512 @@
+@use "../../abstracts/functions" as *;
+@use "../../abstracts/mixins" as *;
+@use "../../abstracts/variables" as *;
+
+// 공통 아이콘 스타일
+.icon {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    background-color: currentColor;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+
+.icon-slider-arrow,
+.icon-invert {
+    @include icon-mask('/assets/images/icons/icon-slider-arrow.svg', rem(20));
+    color: $white; // 슬라이더 내부 화살표 (흰색)
+}
+
+.icon-slider-prev {
+    @include icon-mask('/assets/images/icons/icon-slider-prev.svg', rem(24));
+    color: $gray-700; // 페이지네이션 화살표
+}
+
+.icon-slider-next {
+    @include icon-mask('/assets/images/icons/icon-slider-next.svg', rem(24));
+    color: $gray-700; // 페이지네이션 화살표
+}
+
+.icon-nav-prev {
+    @include icon-mask('/assets/images/icons/icon-nav-prev.svg', rem(20));
+    color: $gray-700;
+}
+
+.icon-nav-next {
+    @include icon-mask('/assets/images/icons/icon-nav-next.svg', rem(20));
+    color: $gray-700;
+}
+
+.icon-slider-pause,
+.icon-slider-play {
+    @include icon-mask('/assets/images/icons/icon-slider-pause.svg', rem(24));
+    color: $gray-700; // 슬라이더 정어/재생 버튼
+}
+
+.icon-slider-play {
+    -webkit-mask-image: url('/assets/images/icons/icon-slider-play.svg');
+    mask-image: url('/assets/images/icons/icon-slider-play.svg');
+}
+
+.icon-slider-dash {
+    @include icon-mask('/assets/images/icons/icon-slider-dash.svg', rem(12));
+    height: rem(2);
+    color: $gray-300; // 페이지네이션 구분선
+}
+
+.icon-minus {
+    @include icon-mask('/assets/images/icons/icon-minus.svg', rem(14));
+    color: $gray-700; // 수량 조절 버튼
+}
+
+.icon-external-link {
+    @include icon-mask('/assets/images/icons/icon-external-link.svg', rem(20));
+    color: $gray-700;
+}
+
+.icon-chevron-down-fill {
+    @include icon-mask('/assets/images/icons/icon-chevron-down-fill.svg', rem(20));
+    color: $gray-700;
+}
+
+.icon-view-grid {
+    @include icon-mask('/assets/images/icons/icon-view-grid.svg', rem(24));
+    color: $gray-700;
+}
+
+.icon-view-list {
+    @include icon-mask('/assets/images/icons/icon-view-list.svg', rem(20));
+    width: rem(18);
+    height: rem(10);
+    color: $gray-700;
+}
+
+.icon-page-prev-end {
+    @include icon-mask('/assets/images/icons/icon-page-prev-end.svg', rem(20));
+    color: $gray-700;
+}
+
+.icon-page-prev {
+    @include icon-mask('/assets/images/icons/icon-page-prev.svg', rem(20));
+    color: $gray-700;
+}
+
+.icon-page-next {
+    @include icon-mask('/assets/images/icons/icon-page-next.svg', rem(20));
+    color: $gray-700;
+}
+
+.icon-page-next-end {
+    @include icon-mask('/assets/images/icons/icon-page-next-end.svg', rem(20));
+    color: $gray-700;
+}
+
+.icon-plus {
+    @include icon-mask('/assets/images/icons/icon-plus.svg', rem(14));
+    color: $gray-700; // 수량 조절 버튼
+}
+
+.icon-heart {
+    @include icon-mask('/assets/images/icons/icon-heart.svg', rem(14));
+    color: $gray-700; // 찜 버튼 (기본)
+
+    .btn-icon.active &,
+    &.active {
+        -webkit-mask-image: url('/assets/images/icons/icon-heart-active.svg');
+        mask-image: url('/assets/images/icons/icon-heart-active.svg');
+        color: $accent-base; // 활성 상태 (레드)
+    }
+}
+
+.icon-cart {
+    @include icon-mask('/assets/images/icons/icon-cart.svg', rem(16));
+    color: $gray-700; // 장바구니 버튼
+}
+
+.icon-thumbs-up {
+    @include icon-mask('/assets/images/icons/icon-thumbs-up.svg', rem(16));
+    color: $gray-700; // 추천 배지
+}
+
+.icon-snowflake {
+    @include icon-mask('/assets/images/icons/icon-snowflake.svg', rem(14));
+    color: $system-info; // 냉동 태그
+}
+
+.icon-thermometer {
+    @include icon-mask('/assets/images/icons/icon-thermometer.svg', rem(14));
+    color: $accent-base; // 상온/냉장 태그
+}
+
+.icon-smile {
+    @include icon-mask('/assets/images/icons/icon-smile.svg', rem(16));
+    color: $gray-700; // MD 추천 배지
+}
+
+.icon-tag {
+    @include icon-mask('/assets/images/icons/icon-promo.svg', rem(16));
+}
+
+.icon-sparkle {
+    @include icon-mask('/assets/images/icons/icon-relay.svg', rem(16));
+}
+
+.icon-time {
+    @include icon-mask('/assets/images/icons/icon-cs-clock.svg', rem(16));
+}
+
+.icon-menu-cart {
+    @include icon-mask('/assets/images/icons/icon-menu-cart.svg', rem(32));
+    color: $gray-700; // 우측 스티키 장바구니
+}
+
+.icon-top-arrow {
+    @include icon-mask('/assets/images/icons/icon-top-arrow.svg', rem(20));
+    color: $gray-700; // TOP 버튼
+}
+
+.icon-arrow-more {
+    @include icon-mask('/assets/images/icons/icon-arrow-more.svg', rem(20));
+    color: $gray-700; // 더보기 화살표
+}
+
+.icon-rank-down {
+    @include icon-mask('/assets/images/icons/icon-rank-down.svg', rem(10));
+    height: rem(6);
+    color: $system-info; // 랭킹 하락
+}
+
+.icon-rank-up {
+    @include icon-mask('/assets/images/icons/icon-rank-up.svg', rem(10));
+    height: rem(6);
+    color: $accent-base; // 랭킹 상승
+}
+
+.icon-rank-dash {
+    @include icon-mask('/assets/images/icons/icon-rank-dash.svg', rem(10));
+    height: rem(2);
+    color: $gray-300; // 랭킹 유지
+}
+
+.icon-chevron-down {
+    @include icon-mask('/assets/images/icons/icon-chevron-down.svg', rem(10));
+    height: rem(6);
+    color: $gray-700; // 아코디언/토글 화살표
+}
+
+.btn-toggle-rank {
+    &.active {
+        .icon-chevron-down {
+            color: $white;
+        }
+    }
+}
+
+.icon-brand-arrow {
+    @include icon-mask('/assets/images/icons/icon-brand-arrow.svg', rem(10));
+    height: rem(7);
+    color: $gray-700; // 브랜드관 더보기 화살표
+}
+
+.icon-arrow-right {
+    @include icon-mask('/assets/images/icons/icon-arrow-right.svg', rem(16));
+    color: $gray-700; // 우측 이동 화살표
+}
+
+.icon-folder {
+    @include icon-mask('/assets/images/icons/icon-folder.svg', rem(20));
+    color: $gray-700; // 자료실 아이콘
+}
+
+.icon-megaphone {
+    @include icon-mask('/assets/images/icons/icon-megaphone.svg', rem(20));
+    color: $gray-700; // 공지사항 아이콘
+}
+
+// 헤더 및 메뉴 아이콘
+.icon-info-circle {
+    @include icon-mask('/assets/images/icons/icon-info-circle.svg', rem(16));
+    color: $gray-300;
+}
+
+.icon-close-x {
+    @include icon-mask('/assets/images/icons/icon-close-x.svg', rem(12));
+    color: $gray-300;
+}
+
+.icon-search {
+    @include icon-mask('/assets/images/icons/icon-search.svg', rem(24));
+    color: $gray-700;
+}
+
+.icon-search-recent {
+    @include icon-mask('/assets/images/icons/icon-search-recent.svg', rem(11));
+    color: $white;
+}
+
+.icon-rank-dash-pop {
+    @include icon-mask('/assets/images/icons/icon-rank-dash-pop.svg', rem(16));
+    color: $gray-300;
+}
+
+.icon-rank-up-pop {
+    @include icon-mask('/assets/images/icons/icon-rank-up-pop.svg', rem(16));
+    color: $accent-base;
+}
+
+.icon-rank-down-pop {
+    @include icon-mask('/assets/images/icons/icon-rank-down-pop.svg', rem(16));
+    color: $system-info;
+}
+
+.icon-diagonal-arrow {
+    @include icon-mask('/assets/images/icons/icon-diagonal-arrow.svg', rem(20));
+    color: $gray-300;
+}
+
+.icon-header-cart {
+    @include icon-mask('/assets/images/icons/icon-header-cart.svg', rem(24));
+    color: $gray-700;
+}
+
+.icon-header-heart {
+    @include icon-mask('/assets/images/icons/icon-header-heart.svg', rem(24));
+    color: $gray-700;
+}
+
+.icon-header-mypage {
+    @include icon-mask('/assets/images/icons/icon-header-mypage.svg', rem(24));
+    color: $gray-700;
+}
+
+.icon-header-logout {
+    @include icon-mask('/assets/images/icons/icon-header-logout.svg', rem(24));
+    color: $gray-700;
+}
+
+.icon-bell {
+    @include icon-mask('/assets/images/icons/icon-bell.svg', rem(20));
+    color: $gray-700;
+}
+
+.icon-nav-menu {
+    @include icon-mask('/assets/images/icons/icon-nav-menu.svg', rem(24));
+    color: $white;
+}
+
+.icon-nav-close {
+    @include icon-mask('/assets/images/icons/icon-nav-close.svg', rem(24));
+    color: $white;
+}
+
+.icon-chevron-right-thin {
+    @include icon-mask('/assets/images/icons/icon-chevron-right-thin.svg', rem(20));
+    color: $gray-600;
+}
+
+.icon-temp-ambient-mini {
+    @include icon-mask('/assets/images/icons/icon-temp-ambient-mini.svg', rem(20));
+    color: $accent-base;
+}
+
+.icon-temp-frozen-mini {
+    @include icon-mask('/assets/images/icons/icon-temp-frozen-mini.svg', rem(20));
+    color: $system-info;
+}
+
+.icon-step-arrow {
+    @include icon-mask('/assets/images/icons/icon-step-arrow.svg', rem(14));
+    width: rem(9);
+    color: $gray-300;
+}
+
+.icon-close-thin {
+    @include icon-mask('/assets/images/icons/icon-close-thin.svg', rem(24));
+    color: $gray-700;
+}
+
+.icon-excel {
+    display: inline-block;
+    width: rem(20);
+    height: rem(20);
+    background: url('/assets/images/icons/icon-excel.svg') no-repeat center / contain;
+}
+
+.icon-upload {
+    @include icon-mask('/assets/images/icons/icon-upload.svg', rem(20));
+    color: $gray-700;
+}
+
+.icon-promo {
+    @include icon-mask('/assets/images/icons/icon-promo.svg', rem(16));
+    color: $accent-base;
+}
+
+.icon-relay {
+    @include icon-mask('/assets/images/icons/icon-relay.svg', rem(16));
+    color: $gray-300;
+}
+
+.icon-info-chevron {
+    @include icon-mask('/assets/images/icons/icon-info-chevron.svg', rem(20));
+    color: $gray-300;
+}
+
+.icon-trash {
+    @include icon-mask('/assets/images/icons/icon-trash.svg', rem(15));
+    width: rem(12);
+    color: $gray-700;
+}
+
+.icon-cart-empty {
+    @include icon-mask('/assets/images/icons/icon-cart-empty.svg', rem(32));
+    color: $gray-300;
+}
+
+.icon-info-circle-lg {
+    @include icon-mask('/assets/images/icons/icon-info-circle-lg.svg', rem(20));
+    color: $gray-700;
+}
+
+.icon-cs-manager {
+    @include icon-mask('/assets/images/icons/icon-cs-manager.svg', rem(24));
+    color: $gray-700;
+}
+
+.icon-cs-phone {
+    @include icon-mask('/assets/images/icons/icon-cs-phone.svg', rem(24));
+    color: $gray-700;
+}
+
+.icon-cs-clock {
+    @include icon-mask('/assets/images/icons/icon-cs-clock.svg', rem(24));
+    color: $gray-700;
+}
+
+.icon-edit {
+    @include icon-mask('/assets/images/icons/icon-edit.svg', rem(20));
+}
+
+.icon-star-badge {
+    @include icon-mask('/assets/images/icons/icon-star-badge.svg', rem(14));
+    width: rem(13);
+}
+
+.icon-info-circle-mypage {
+    @include icon-mask('/assets/images/icons/icon-info-circle-mypage.svg', rem(17));
+}
+
+.icon-arrow-right-mypage {
+    @include icon-mask('/assets/images/icons/icon-arrow-right-mypage.svg', rem(20));
+}
+
+.icon-chat-dots {
+    @include icon-mask('/assets/images/icons/icon-chat-dots.svg', rem(20));
+    color: $gray-300;
+}
+
+.icon-search-filter {
+    @include icon-mask('/assets/images/icons/icon-search-filter.svg', rem(20));
+    color: $gray-700;
+}
+
+.icon-download-arrow {
+    @include icon-mask('/assets/images/icons/icon-download-arrow.svg', rem(20));
+}
+
+// 하단 네비게이션 아이콘
+.icon-nav-category {
+    @include icon-mask('/assets/images/icons/nav/icon-nav-category.svg', rem(24));
+    color: inherit;
+}
+
+.icon-dropdown-fill {
+    @include icon-mask('/assets/images/icons/icon-dropdown-fill.svg', rem(20));
+    color: $gray-700;
+}
+
+.icon-bell {
+    @include icon-mask('/assets/images/icons/icon-bell.svg', rem(20));
+    color: $gray-700;
+}
+
+.icon-back {
+    @include icon-mask('/assets/images/icons/icon-back.svg', rem(24));
+    color: $gray-700;
+}
+
+.icon-search-clear {
+    // 서치 클리어는 마스크가 아니라 일반 배경으로 처리 (두 가지 색상이 들어가므로)
+    width: rem(16);
+    height: rem(16);
+    background: url('/assets/images/icons/icon-search-clear.svg') no-repeat center / contain;
+    mask: none;
+    -webkit-mask: none;
+}
+
+.icon-header-search {
+    @include icon-mask('/assets/images/icons/icon-header-search.svg', rem(24));
+    color: $gray-800;
+}
+
+.icon-close-x {
+    @include icon-mask('/assets/images/icons/icon-close-x.svg', rem(12));
+    color: $gray-300;
+}
+
+.icon-search-recent {
+    @include icon-mask('/assets/images/icons/icon-search-recent.svg', rem(11));
+    color: $white;
+}
+
+.icon-status-dash {
+    @include icon-mask('/assets/images/icons/icon-status-dash.svg', rem(16));
+    color: $gray-300;
+}
+
+.icon-status-up {
+    @include icon-mask('/assets/images/icons/icon-status-up.svg', rem(16));
+    color: $accent-base;
+}
+
+.icon-status-down {
+    @include icon-mask('/assets/images/icons/icon-status-down.svg', rem(16));
+    color: $system-info;
+}
+
+.icon-diagonal-arrow {
+    @include icon-mask('/assets/images/icons/icon-diagonal-arrow.svg', rem(20));
+    color: $gray-200;
+}
+
+.icon-info-outline {
+    @include icon-mask('/assets/images/icons/icon-info-outline.svg', rem(24));
+    width: rem(14);
+    height: rem(14);
+    color: inherit;
+}
+
+.icon-nav-barcode {
+    @include icon-mask('/assets/images/icons/nav/icon-nav-barcode.svg', rem(24));
+    color: inherit;
+}
+
+.icon-nav-my {
+    @include icon-mask('/assets/images/icons/nav/icon-nav-my.svg', rem(24));
+    color: inherit;
+}
+
+.icon-nav-search {
+    @include icon-mask('/assets/images/icons/nav/icon-nav-search.svg', rem(24));
+    color: inherit;
+}
+
+.icon-chevron-right-fill {
+    @include icon-mask('/assets/images/icons/icon-chevron-right-fill.svg', rem(20));
+    color: $gray-700;
+}

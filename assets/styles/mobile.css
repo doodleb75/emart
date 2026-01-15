@@ -204,10 +204,6 @@ body {
   height: 1.25rem;
 }
 
-.icon-invert {
-  width: 1.25rem;
-}
-
 .icon-mini {
   width: 0.75rem;
 }
@@ -761,6 +757,1135 @@ body.mobile-body {
   border: none;
 }
 
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.icon-slider-arrow,
+.icon-invert {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-slider-arrow.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-slider-arrow.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #ffffff;
+}
+
+.icon-slider-prev {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-slider-prev.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-slider-prev.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-slider-next {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-slider-next.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-slider-next.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-nav-prev {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-nav-prev.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-nav-prev.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-nav-next {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-nav-next.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-nav-next.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-slider-pause,
+.icon-slider-play {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-slider-pause.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-slider-pause.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-slider-play {
+  -webkit-mask-image: url("/assets/images/icons/icon-slider-play.svg");
+  mask-image: url("/assets/images/icons/icon-slider-play.svg");
+}
+
+.icon-slider-dash {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-slider-dash.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-slider-dash.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  height: 0.125rem;
+  color: #aaaaaa;
+}
+
+.icon-minus {
+  display: inline-block;
+  width: 0.875rem;
+  height: 0.875rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-minus.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-minus.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-external-link {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-external-link.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-external-link.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-chevron-down-fill {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-chevron-down-fill.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-chevron-down-fill.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-view-grid {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-view-grid.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-view-grid.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-view-list {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-view-list.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-view-list.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  width: 1.125rem;
+  height: 0.625rem;
+  color: #444444;
+}
+
+.icon-page-prev-end {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-page-prev-end.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-page-prev-end.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-page-prev {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-page-prev.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-page-prev.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-page-next {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-page-next.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-page-next.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-page-next-end {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-page-next-end.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-page-next-end.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-plus {
+  display: inline-block;
+  width: 0.875rem;
+  height: 0.875rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-plus.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-plus.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-heart {
+  display: inline-block;
+  width: 0.875rem;
+  height: 0.875rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-heart.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-heart.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+.btn-icon.active .icon-heart, .icon-heart.active {
+  -webkit-mask-image: url("/assets/images/icons/icon-heart-active.svg");
+  mask-image: url("/assets/images/icons/icon-heart-active.svg");
+  color: #ff5447;
+}
+
+.icon-cart {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-cart.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-cart.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-thumbs-up {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-thumbs-up.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-thumbs-up.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-snowflake {
+  display: inline-block;
+  width: 0.875rem;
+  height: 0.875rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-snowflake.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-snowflake.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #1f95ff;
+}
+
+.icon-thermometer {
+  display: inline-block;
+  width: 0.875rem;
+  height: 0.875rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-thermometer.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-thermometer.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #ff5447;
+}
+
+.icon-smile {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-smile.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-smile.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-tag {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-promo.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-promo.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.icon-sparkle {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-relay.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-relay.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.icon-time {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-cs-clock.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-cs-clock.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.icon-menu-cart {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-menu-cart.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-menu-cart.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-top-arrow {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-top-arrow.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-top-arrow.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-arrow-more {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-arrow-more.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-arrow-more.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-rank-down {
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-rank-down.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-rank-down.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  height: 0.375rem;
+  color: #1f95ff;
+}
+
+.icon-rank-up {
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-rank-up.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-rank-up.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  height: 0.375rem;
+  color: #ff5447;
+}
+
+.icon-rank-dash {
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-rank-dash.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-rank-dash.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  height: 0.125rem;
+  color: #aaaaaa;
+}
+
+.icon-chevron-down {
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-chevron-down.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-chevron-down.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  height: 0.375rem;
+  color: #444444;
+}
+
+.btn-toggle-rank.active .icon-chevron-down {
+  color: #ffffff;
+}
+
+.icon-brand-arrow {
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-brand-arrow.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-brand-arrow.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  height: 0.4375rem;
+  color: #444444;
+}
+
+.icon-arrow-right {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-arrow-right.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-arrow-right.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-folder {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-folder.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-folder.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-megaphone {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-megaphone.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-megaphone.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-info-circle {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-info-circle.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-info-circle.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #aaaaaa;
+}
+
+.icon-close-x {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-close-x.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-close-x.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #aaaaaa;
+}
+
+.icon-search {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-search.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-search.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-search-recent {
+  display: inline-block;
+  width: 0.6875rem;
+  height: 0.6875rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-search-recent.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-search-recent.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #ffffff;
+}
+
+.icon-rank-dash-pop {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-rank-dash-pop.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-rank-dash-pop.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #aaaaaa;
+}
+
+.icon-rank-up-pop {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-rank-up-pop.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-rank-up-pop.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #ff5447;
+}
+
+.icon-rank-down-pop {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-rank-down-pop.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-rank-down-pop.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #1f95ff;
+}
+
+.icon-diagonal-arrow {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-diagonal-arrow.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-diagonal-arrow.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #aaaaaa;
+}
+
+.icon-header-cart {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-header-cart.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-header-cart.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-header-heart {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-header-heart.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-header-heart.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-header-mypage {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-header-mypage.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-header-mypage.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-header-logout {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-header-logout.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-header-logout.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-bell {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-bell.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-bell.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-nav-menu {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-nav-menu.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-nav-menu.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #ffffff;
+}
+
+.icon-nav-close {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-nav-close.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-nav-close.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #ffffff;
+}
+
+.icon-chevron-right-thin {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-chevron-right-thin.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-chevron-right-thin.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #888888;
+}
+
+.icon-temp-ambient-mini {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-temp-ambient-mini.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-temp-ambient-mini.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #ff5447;
+}
+
+.icon-temp-frozen-mini {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-temp-frozen-mini.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-temp-frozen-mini.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #1f95ff;
+}
+
+.icon-step-arrow {
+  display: inline-block;
+  width: 0.875rem;
+  height: 0.875rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-step-arrow.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-step-arrow.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  width: 0.5625rem;
+  color: #aaaaaa;
+}
+
+.icon-close-thin {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-close-thin.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-close-thin.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-excel {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: url("/assets/images/icons/icon-excel.svg") no-repeat center/contain;
+}
+
+.icon-upload {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-upload.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-upload.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-promo {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-promo.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-promo.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #ff5447;
+}
+
+.icon-relay {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-relay.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-relay.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #aaaaaa;
+}
+
+.icon-info-chevron {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-info-chevron.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-info-chevron.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #aaaaaa;
+}
+
+.icon-trash {
+  display: inline-block;
+  width: 0.9375rem;
+  height: 0.9375rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-trash.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-trash.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  width: 0.75rem;
+  color: #444444;
+}
+
+.icon-cart-empty {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-cart-empty.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-cart-empty.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #aaaaaa;
+}
+
+.icon-info-circle-lg {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-info-circle-lg.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-info-circle-lg.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-cs-manager {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-cs-manager.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-cs-manager.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-cs-phone {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-cs-phone.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-cs-phone.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-cs-clock {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-cs-clock.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-cs-clock.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-edit {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-edit.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-edit.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.icon-star-badge {
+  display: inline-block;
+  width: 0.875rem;
+  height: 0.875rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-star-badge.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-star-badge.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  width: 0.8125rem;
+}
+
+.icon-info-circle-mypage {
+  display: inline-block;
+  width: 1.0625rem;
+  height: 1.0625rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-info-circle-mypage.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-info-circle-mypage.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.icon-arrow-right-mypage {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-arrow-right-mypage.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-arrow-right-mypage.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.icon-chat-dots {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-chat-dots.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-chat-dots.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #aaaaaa;
+}
+
+.icon-search-filter {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-search-filter.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-search-filter.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-download-arrow {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-download-arrow.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-download-arrow.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.icon-nav-category {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/nav/icon-nav-category.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/nav/icon-nav-category.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: inherit;
+}
+
+.icon-dropdown-fill {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-dropdown-fill.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-dropdown-fill.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-bell {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-bell.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-bell.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-back {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-back.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-back.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
+.icon-search-clear {
+  width: 1rem;
+  height: 1rem;
+  background: url("/assets/images/icons/icon-search-clear.svg") no-repeat center/contain;
+  mask: none;
+  -webkit-mask: none;
+}
+
+.icon-header-search {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-header-search.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-header-search.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #333333;
+}
+
+.icon-close-x {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-close-x.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-close-x.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #aaaaaa;
+}
+
+.icon-search-recent {
+  display: inline-block;
+  width: 0.6875rem;
+  height: 0.6875rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-search-recent.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-search-recent.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #ffffff;
+}
+
+.icon-status-dash {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-status-dash.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-status-dash.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #aaaaaa;
+}
+
+.icon-status-up {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-status-up.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-status-up.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #ff5447;
+}
+
+.icon-status-down {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-status-down.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-status-down.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #1f95ff;
+}
+
+.icon-diagonal-arrow {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-diagonal-arrow.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-diagonal-arrow.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #cccccc;
+}
+
+.icon-info-outline {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-info-outline.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-info-outline.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  width: 0.875rem;
+  height: 0.875rem;
+  color: inherit;
+}
+
+.icon-nav-barcode {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/nav/icon-nav-barcode.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/nav/icon-nav-barcode.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: inherit;
+}
+
+.icon-nav-my {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/nav/icon-nav-my.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/nav/icon-nav-my.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: inherit;
+}
+
+.icon-nav-search {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/nav/icon-nav-search.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/nav/icon-nav-search.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: inherit;
+}
+
+.icon-chevron-right-fill {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: currentColor;
+  -webkit-mask: url("/assets/images/icons/icon-chevron-right-fill.svg") no-repeat 50% 50%;
+  mask: url("/assets/images/icons/icon-chevron-right-fill.svg") no-repeat 50% 50%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: #444444;
+}
+
 .product-card {
   background-color: #ffffff;
   width: 100%;
@@ -1212,6 +2337,7 @@ body.mobile-body {
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  cursor: pointer;
 }
 .mobile-header .header-left .membership-info .badge-grade {
   background-color: #ffbb33;
@@ -1557,7 +2683,7 @@ body.mobile-body {
 }
 .mobile-header .search-container .search-column.recent-column .keyword-list li .keyword-wrap .icon-wrap {
   flex-shrink: 0;
-  background-color: #f4f4f4;
+  background-color: #cccccc;
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
@@ -1589,14 +2715,10 @@ body.mobile-body {
   border: none;
   padding: 0;
   cursor: pointer;
-  color: #aaaaaa;
+  color: #cccccc;
 }
-.mobile-header .search-container .search-column.recent-column .keyword-list li .recent-delete-btn svg {
-  width: 0.75rem;
-  height: 0.75rem;
-}
-.mobile-header .search-container .search-column.recent-column .keyword-list li .recent-delete-btn svg path {
-  fill: #aaaaaa;
+.mobile-header .search-container .search-column.recent-column .keyword-list li .recent-delete-btn .icon-close-x {
+  color: inherit;
 }
 .mobile-header .search-container .search-column.recent-column .keyword-list li .recent-delete-btn:hover svg path {
   fill: #FF5447;
@@ -1630,6 +2752,9 @@ body.mobile-body {
 }
 .mobile-header .search-container .search-column.popular-column .keyword-list {
   padding: 0 1.25rem 1.5rem;
+}
+.mobile-header .search-container .search-column.popular-column .keyword-list#rank-list-2 {
+  display: none;
 }
 .mobile-header .search-container .search-column.popular-column .keyword-list li {
   display: flex;
@@ -1737,6 +2862,7 @@ body.mobile-body {
   padding: 2rem 1rem 2rem;
   border-top: none;
   position: relative;
+  width: 100%;
 }
 .mobile-footer .footer-logo {
   margin-bottom: 1.25rem;
@@ -1784,6 +2910,12 @@ body.mobile-body {
 .mobile-footer .footer-links-grid .link-column a.bold {
   font-weight: 600;
 }
+.mobile-footer .footer-links-grid .link-column a .icon-diagonal-arrow {
+  width: 1rem;
+  height: 1rem;
+  color: #444444;
+  margin-left: 0.25rem;
+}
 .mobile-footer .footer-info-toggle {
   display: flex;
   align-items: center;
@@ -1804,12 +2936,11 @@ body.mobile-body {
 .mobile-footer .footer-info-toggle:active {
   background-color: rgb(229.5, 229.5, 229.5);
 }
-.mobile-footer .footer-info-toggle .icon-arrow {
+.mobile-footer .footer-info-toggle .icon-chevron-down {
   width: 1rem;
   height: 1rem;
   min-width: 1rem;
-  fill: none;
-  stroke: #cccccc;
+  color: #cccccc;
 }
 .mobile-footer .footer-details {
   display: none;
@@ -1840,7 +2971,7 @@ body.mobile-body {
   align-items: center;
   justify-content: center;
 }
-.mobile-footer .footer-details .info-row .icon-wrap svg {
+.mobile-footer .footer-details .info-row .icon-wrap .icon {
   width: 100%;
   height: 100%;
 }
@@ -1866,7 +2997,7 @@ body.mobile-body {
   align-items: center;
   justify-content: center;
 }
-.mobile-footer .footer-details .contact-large .icon-wrap svg {
+.mobile-footer .footer-details .contact-large .icon-wrap .icon {
   width: 100%;
   height: 100%;
 }
@@ -1887,6 +3018,13 @@ body.mobile-body {
   flex-direction: column;
   gap: 0.5rem;
   z-index: 900;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+.mobile-footer .floating-buttons.is-visible {
+  opacity: 1;
+  visibility: visible;
 }
 .mobile-footer .floating-buttons .btn-float {
   width: 2.5rem;
@@ -1913,7 +3051,10 @@ body.mobile-body {
 .mobile-footer .floating-buttons .btn-float.btn-cart:active {
   background-color: rgb(25.5, 25.5, 25.5);
 }
-.mobile-footer .floating-buttons .btn-float svg {
+.mobile-footer .floating-buttons .btn-float.btn-cart i {
+  color: #ffffff;
+}
+.mobile-footer .floating-buttons .btn-float .icon {
   width: 1.25rem;
   height: 1.25rem;
 }
@@ -1947,17 +3088,6 @@ body.mobile-body {
 .bottom-nav .nav-item:active {
   background-color: rgb(229.5, 229.5, 229.5);
 }
-.bottom-nav .nav-item .icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.bottom-nav .nav-item .icon svg {
-  width: 100%;
-  height: 100%;
-}
 .bottom-nav .nav-item .label {
   font-size: 0.625rem;
   font-weight: 600;
@@ -1966,21 +3096,17 @@ body.mobile-body {
   letter-spacing: -0.2px;
   white-space: nowrap;
 }
-.bottom-nav .nav-item.nav-center .eclub-logo-placeholder {
-  font-family: "Pretendard Variable", sans-serif;
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: #ffbb33;
-  letter-spacing: -0.05em;
+.bottom-nav .nav-item.nav-center .eclub-logo {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.bottom-nav .nav-item.active, .bottom-nav .nav-item:hover {
-  color: #444444;
+.bottom-nav .nav-item.nav-center .eclub-logo img {
+  width: 3.6875rem;
+  height: 1.5rem;
 }
-.bottom-nav .nav-item.active .icon svg, .bottom-nav .nav-item:hover .icon svg {
-  path: #444444;
+.bottom-nav .nav-item.active, .bottom-nav .nav-item:active {
+  color: #444444;
 }
 
 .main-page {
@@ -2115,10 +3241,6 @@ body.mobile-body {
 .weekly-ranking .ranking-nav .nav-btn:active {
   background-color: rgb(229.5, 229.5, 229.5);
 }
-.weekly-ranking .ranking-nav .nav-btn svg {
-  width: 1.5rem;
-  height: 1.5rem;
-}
 .weekly-ranking .ranking-nav .nav-btn:disabled {
   color: #aaaaaa;
   border-color: #aaaaaa;
@@ -2214,7 +3336,7 @@ body.mobile-body {
 .weekly-ranking .ranking-header .btn-toggle-rank:active {
   background-color: rgb(229.5, 229.5, 229.5);
 }
-.weekly-ranking .ranking-header .btn-toggle-rank svg {
+.weekly-ranking .ranking-header .btn-toggle-rank i {
   transition: transform 0.2s;
 }
 .weekly-ranking .ranking-header .btn-toggle-rank.active {
@@ -2222,7 +3344,7 @@ body.mobile-body {
   border-color: #444444;
   color: #ffffff;
 }
-.weekly-ranking .ranking-header .btn-toggle-rank.active svg {
+.weekly-ranking .ranking-header .btn-toggle-rank.active i {
   transform: rotate(180deg);
 }
 .weekly-ranking .ranking-item {
@@ -2250,6 +3372,12 @@ body.mobile-body {
 .weekly-ranking .ranking-item .btn-more {
   width: 100%;
 }
+.weekly-ranking .ranking-item .btn-more i {
+  transition: transform 0.2s;
+}
+.weekly-ranking .ranking-item.is-expanded .btn-more i {
+  transform: rotate(180deg);
+}
 .weekly-ranking .ranking-body {
   display: none;
 }
@@ -2264,7 +3392,7 @@ body.mobile-body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
   border: 1.5px solid #444444;
   background: #ffffff;
   border-radius: 0.125rem;
@@ -2281,6 +3409,14 @@ body.mobile-body {
   height: 1.25rem;
   fill: currentColor;
 }
+.btn-more i {
+  transition: transform 0.2s;
+}
+.btn-more.is-expanded i,
+.btn-more.is-expanded svg, .btn-more.is-all-shown i,
+.btn-more.is-all-shown svg {
+  transform: rotate(180deg);
+}
 .btn-more:hover {
   background-color: #f4f4f4;
 }
@@ -2289,7 +3425,6 @@ body.mobile-body {
   width: 100%;
   overflow: hidden;
   padding-left: 0;
-  padding-bottom: 2rem;
   border-bottom: 0.5rem solid #f4f4f4;
 }
 .mobile-main-slider .slider-track {
@@ -2400,74 +3535,69 @@ body.mobile-body {
   width: 1.25rem;
   height: 1.25rem;
 }
-.mobile-main-slider .slider-controller {
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.pagination-control {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.pagination-control .btn-control {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 6.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1rem;
-  color: #222222;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 0.875rem;
-}
-.mobile-main-slider .slider-controller > *:not(.page-count) {
-  width: 2rem !important;
-  height: 2rem !important;
-}
-.mobile-main-slider .slider-controller .page-count {
-  display: flex;
-  align-items: center;
-}
-.mobile-main-slider .slider-controller .page-count > *:not(.divider) {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem !important;
-  height: 2rem !important;
-}
-.mobile-main-slider .slider-controller button {
-  background: none;
+  background: transparent;
   border: none;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
-  width: 1.5rem;
-  height: 1.5rem;
-  color: #aaaaaa;
+  padding: 0;
+  transition: background-color 0.2s;
   -webkit-tap-highlight-color: transparent;
 }
-.mobile-main-slider .slider-controller button:active {
+.pagination-control .btn-control:active {
   background-color: rgb(229.5, 229.5, 229.5);
 }
-.mobile-main-slider .slider-controller button svg {
+.pagination-control .btn-control i {
   width: 1.25rem;
   height: 1.25rem;
-  fill: currentColor;
+  display: block;
 }
-.mobile-main-slider .slider-controller button svg path {
-  fill: #444444;
-}
-.mobile-main-slider .slider-controller button.active {
-  color: #222222;
-}
-.mobile-main-slider .slider-controller .page-count {
+.pagination-control .page-info {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
 }
-.mobile-main-slider .slider-controller .page-count .current {
-  color: #222222;
+.pagination-control .page-info .current-page {
+  width: 2.5rem;
+  text-align: center;
+  font-family: "Pretendard Variable", sans-serif;
   font-weight: 700;
+  font-size: 0.875rem;
+  color: #222222;
 }
-.mobile-main-slider .slider-controller .page-count .divider {
-  width: 0.75rem;
-  margin: 0 0.5rem;
-  height: 2px;
-  background-color: #aaaaaa;
+.pagination-control .page-info .divider {
+  width: 1.25rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.mobile-main-slider .slider-controller .page-count .total {
+.pagination-control .page-info .divider i {
+  color: #aaaaaa;
+}
+.pagination-control .page-info .total-page {
+  width: 2.5rem;
+  text-align: center;
+  font-family: "Pretendard Variable", sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
   color: #aaaaaa;
 }
 
@@ -2557,13 +3687,16 @@ body.mobile-body {
   text-overflow: ellipsis;
 }
 .brand-pavilion .btn-more.btn-brand-more {
-  width: 100%;
+  width: calc(100% - 32px);
   margin-top: 1rem;
 }
 
 .popcorn-banner-wrapper {
-  margin: 1rem 0;
+  margin: 1rem 0 0;
   overflow: hidden;
+}
+.popcorn-banner-wrapper .pagination-container {
+  padding: 0.625rem 0;
 }
 .popcorn-banner-wrapper .slider-track {
   display: flex;
@@ -2589,72 +3722,6 @@ body.mobile-body {
   height: 100%;
   object-fit: cover;
   display: block;
-}
-.popcorn-banner-wrapper .slider-controller {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #222222;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 0.875rem;
-}
-.popcorn-banner-wrapper .slider-controller > *:not(.page-count) {
-  width: 2rem !important;
-  height: 2rem !important;
-}
-.popcorn-banner-wrapper .slider-controller .page-count {
-  display: flex;
-  align-items: center;
-}
-.popcorn-banner-wrapper .slider-controller .page-count > *:not(.divider) {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem !important;
-  height: 2rem !important;
-}
-.popcorn-banner-wrapper .slider-controller button {
-  background: none;
-  border: none;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #aaaaaa;
-  -webkit-tap-highlight-color: transparent;
-}
-.popcorn-banner-wrapper .slider-controller button:active {
-  background-color: rgb(229.5, 229.5, 229.5);
-}
-.popcorn-banner-wrapper .slider-controller button svg {
-  width: 1.25rem;
-  height: 1.25rem;
-  fill: currentColor;
-}
-.popcorn-banner-wrapper .slider-controller button svg path {
-  fill: #444444;
-}
-.popcorn-banner-wrapper .slider-controller button.active {
-  color: #222222;
-}
-.popcorn-banner-wrapper .slider-controller .page-count {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.popcorn-banner-wrapper .slider-controller .page-count .current {
-  color: #222222;
-  font-weight: 700;
-}
-.popcorn-banner-wrapper .slider-controller .page-count .divider {
-  width: 0.625rem;
-  height: 2px;
-  background-color: #aaaaaa;
-}
-.popcorn-banner-wrapper .slider-controller .page-count .total {
-  color: #aaaaaa;
 }
 
 .app-download-page {
@@ -2740,37 +3807,6 @@ body.mobile-body {
   font-size: 0.875rem;
   color: #aaaaaa;
   line-height: 150%;
-}
-.app-download-page .btn-top {
-  position: fixed;
-  right: 1.25rem;
-  bottom: 5rem;
-  width: 3rem;
-  height: 3rem;
-  background: #ffffff;
-  border: 0.0625rem solid #444444;
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
-}
-.app-download-page .btn-top.is-visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-.app-download-page .btn-top:active {
-  transform: scale(0.9);
-}
-.app-download-page .btn-top svg {
-  width: 1.5rem;
-  height: 1.5rem;
 }
 .app-download-page .section-divider {
   width: 100%;
@@ -3131,9 +4167,6 @@ body.mobile-body {
   background-color: #ffbb33;
   color: #ffffff;
 }
-.app-download-page .floating-buttons .btn-float {
-  box-shadow: none !important;
-}
 
 @keyframes fadeInDown {
   from {
@@ -3189,10 +4222,6 @@ body.mobile-body {
 }
 .join-page .join-header .btn-back:hover {
   background: #f4f4f4;
-}
-.join-page .join-header .btn-back svg {
-  width: 1.5rem;
-  height: 1.5rem;
 }
 .join-page .join-header .header-title {
   font-size: 1.25rem;

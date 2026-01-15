@@ -7,29 +7,18 @@
                 </a>
             </h1>
             <div class="header-divider"></div>
-            <div class="membership-info" data-bs-toggle="offcanvas" data-bs-target="#userInfoOffcanvas" style="cursor: pointer;">
+            <div class="membership-info" data-bs-toggle="offcanvas" data-bs-target="#userInfoOffcanvas">
                 <span class="badge-grade">GOLD</span>
                 <span class="user-name">이 신선님</span>
                 <button class="btn-dropdown">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-  <g clip-path="url(#clip0_406_4144)">
-    <path d="M6.175 7.16016L10 10.9768L13.825 7.16016L15 8.33516L10 13.3352L5 8.33516L6.175 7.16016Z" fill="#444444"/>
-  </g>
-  <defs>
-    <clipPath id="clip0_406_4144">
-      <rect width="20" height="20" fill="white"/>
-    </clipPath>
-  </defs>
-</svg>
+                    <i class="icon icon-dropdown-fill"></i>
                 </button>
             </div>
         </div>
         <div class="header-right">
             <span class="point-count">16</span>
             <button class="btn-notifications">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9.99967 18.3333C10.9163 18.3333 11.6663 17.5833 11.6663 16.6666H8.33301C8.33301 17.5833 9.08301 18.3333 9.99967 18.3333ZM14.9997 13.3333V9.16665C14.9997 6.60831 13.6413 4.46665 11.2497 3.89998V3.33331C11.2497 2.64165 10.6913 2.08331 9.99967 2.08331C9.30801 2.08331 8.74967 2.64165 8.74967 3.33331V3.89998C6.36634 4.46665 4.99967 6.59998 4.99967 9.16665V13.3333L3.33301 15V15.8333H16.6663V15L14.9997 13.3333ZM13.333 14.1666H6.66634V9.16665C6.66634 7.09998 7.92467 5.41665 9.99967 5.41665C12.0747 5.41665 13.333 7.09998 13.333 9.16665V14.1666Z" fill="#444444"/>
-                </svg>
+                <i class="icon icon-bell"></i>
                 <span class="noti-dot"></span>
             </button>
         </div>
@@ -37,31 +26,15 @@
     <div class="search-container">
         <div class="search-header">
             <button type="button" class="btn-back-search">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <g clip-path="url(#clip0_453_1989)">
-    <path d="M21 11H6.83L10.41 7.41L9 6L3 12L9 18L10.41 16.59L6.83 13H21V11Z" fill="#444444"/>
-  </g>
-  <defs>
-    <clipPath id="clip0_453_1989">
-      <rect width="24" height="24" fill="white"/>
-    </clipPath>
-  </defs>
-</svg>
+                <i class="icon icon-back"></i>
             </button>
             <div class="search-input-box">
                 <input type="text" class="search-input" placeholder="원하시는 상품을 검색해보세요.">
-                <button type="button" class="btn-clear" style="display: none;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <circle cx="8" cy="8" r="8" fill="#CCCCCC"/>
-                        <path d="M11 5L5 11" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                        <path d="M5 5L11 11" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
+                <button type="button" class="btn-clear">
+                    <i class="icon icon-search-clear"></i>
                 </button>
                 <button class="btn-search-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <circle cx="11" cy="11" r="7" stroke="#333333" stroke-width="2"/>
-                        <path d="M16 16L21 21" stroke="#333333" stroke-width="2" stroke-linejoin="round"/>
-                    </svg>
+                    <i class="icon icon-header-search"></i>
                 </button>
             </div>
         </div>
@@ -76,85 +49,63 @@
                             <div class="column-header">
                                 <h3 class="title">최근검색어</h3>
                                 <button type="button" class="btn-delete-all">전체 삭제 
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-  <path d="M11.6667 1.175L10.4917 0L5.83333 4.65833L1.175 0L0 1.175L4.65833 5.83333L0 10.4917L1.175 11.6667L5.83333 7.00833L10.4917 11.6667L11.6667 10.4917L7.00833 5.83333L11.6667 1.175Z" fill="#AAAAAA"/>
-</svg>
+                                <i class="icon icon-close-x"></i>
                                 </button>
                             </div>
                             <ul class="keyword-list recent-list">
                                 <li>
                                     <div class="keyword-wrap">
                                         <span class="icon-wrap">
-                                            <svg class="icon-recent-search"  xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none">
-<path d="M9.65833 10.8333L6.46667 7.64167C5.8 8.075 5.01667 8.33333 4.16667 8.33333C1.86667 8.33333 0 6.46667 0 4.16667C0 1.86667 1.86667 0 4.16667 0C6.46667 0 8.33333 1.86667 8.33333 4.16667C8.33333 5.01667 8.075 5.8 7.64167 6.45833L10.8333 9.65833L9.65833 10.8333ZM6.66667 4.16667C6.66667 2.79167 5.54167 1.66667 4.16667 1.66667C2.79167 1.66667 1.66667 2.79167 1.66667 4.16667C1.66667 5.54167 2.79167 6.66667 4.16667 6.66667C5.54167 6.66667 6.66667 5.54167 6.66667 4.16667Z" fill="white"/>
-</svg>
+                                            <i class="icon icon-search-recent"></i>
                                         </span>
                                         <span class="keyword">두부</span>
                                     </div>
                                     <button class="recent-delete-btn">
-<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-  <path d="M11.6667 1.175L10.4917 0L5.83333 4.65833L1.175 0L0 1.175L4.65833 5.83333L0 10.4917L1.175 11.6667L5.83333 7.00833L10.4917 11.6667L11.6667 10.4917L7.00833 5.83333L11.6667 1.175Z" fill="#CCCCCC"/>
-</svg>
+<i class="icon icon-close-x"></i>
 </button>
                                 </li>
                                 <li>
                                     <div class="keyword-wrap">
                                         <span class="icon-wrap">
-                                            <svg class="icon-recent-search"  xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none">
-<path d="M9.65833 10.8333L6.46667 7.64167C5.8 8.075 5.01667 8.33333 4.16667 8.33333C1.86667 8.33333 0 6.46667 0 4.16667C0 1.86667 1.86667 0 4.16667 0C6.46667 0 8.33333 1.86667 8.33333 4.16667C8.33333 5.01667 8.075 5.8 7.64167 6.45833L10.8333 9.65833L9.65833 10.8333ZM6.66667 4.16667C6.66667 2.79167 5.54167 1.66667 4.16667 1.66667C2.79167 1.66667 1.66667 2.79167 1.66667 4.16667C1.66667 5.54167 2.79167 6.66667 4.16667 6.66667C5.54167 6.66667 6.66667 5.54167 6.66667 4.16667Z" fill="white"/>
-</svg>
+                                            <i class="icon icon-search-recent"></i>
                                         </span>
                                         <span class="keyword">햇반</span>
                                     </div>
                                     <button class="recent-delete-btn">
-<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-  <path d="M11.6667 1.175L10.4917 0L5.83333 4.65833L1.175 0L0 1.175L4.65833 5.83333L0 10.4917L1.175 11.6667L5.83333 7.00833L10.4917 11.6667L11.6667 10.4917L7.00833 5.83333L11.6667 1.175Z" fill="#CCCCCC"/>
-</svg>
+<i class="icon icon-close-x"></i>
 </button>
                                 </li>
                                 <li>
                                     <div class="keyword-wrap">
                                         <span class="icon-wrap">
-                                            <svg class="icon-recent-search"  xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none">
-<path d="M9.65833 10.8333L6.46667 7.64167C5.8 8.075 5.01667 8.33333 4.16667 8.33333C1.86667 8.33333 0 6.46667 0 4.16667C0 1.86667 1.86667 0 4.16667 0C6.46667 0 8.33333 1.86667 8.33333 4.16667C8.33333 5.01667 8.075 5.8 7.64167 6.45833L10.8333 9.65833L9.65833 10.8333ZM6.66667 4.16667C6.66667 2.79167 5.54167 1.66667 4.16667 1.66667C2.79167 1.66667 1.66667 2.79167 1.66667 4.16667C1.66667 5.54167 2.79167 6.66667 4.16667 6.66667C5.54167 6.66667 6.66667 5.54167 6.66667 4.16667Z" fill="white"/>
-</svg>
+                                            <i class="icon icon-search-recent"></i>
                                         </span>
                                         <span class="keyword">물</span>
                                     </div>
                                     <button class="recent-delete-btn">
-<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-  <path d="M11.6667 1.175L10.4917 0L5.83333 4.65833L1.175 0L0 1.175L4.65833 5.83333L0 10.4917L1.175 11.6667L5.83333 7.00833L10.4917 11.6667L11.6667 10.4917L7.00833 5.83333L11.6667 1.175Z" fill="#CCCCCC"/>
-</svg>
+<i class="icon icon-close-x"></i>
 </button>
                                 </li>
                                 <li>
                                     <div class="keyword-wrap">
                                         <span class="icon-wrap">
-                                            <svg class="icon-recent-search"  xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none">
-<path d="M9.65833 10.8333L6.46667 7.64167C5.8 8.075 5.01667 8.33333 4.16667 8.33333C1.86667 8.33333 0 6.46667 0 4.16667C0 1.86667 1.86667 0 4.16667 0C6.46667 0 8.33333 1.86667 8.33333 4.16667C8.33333 5.01667 8.075 5.8 7.64167 6.45833L10.8333 9.65833L9.65833 10.8333ZM6.66667 4.16667C6.66667 2.79167 5.54167 1.66667 4.16667 1.66667C2.79167 1.66667 1.66667 2.79167 1.66667 4.16667C1.66667 5.54167 2.79167 6.66667 4.16667 6.66667C5.54167 6.66667 6.66667 5.54167 6.66667 4.16667Z" fill="white"/>
-</svg>
+                                            <i class="icon icon-search-recent"></i>
                                         </span>
                                         <span class="keyword">과자</span>
                                     </div>
                                     <button class="recent-delete-btn">
-<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-  <path d="M11.6667 1.175L10.4917 0L5.83333 4.65833L1.175 0L0 1.175L4.65833 5.83333L0 10.4917L1.175 11.6667L5.83333 7.00833L10.4917 11.6667L11.6667 10.4917L7.00833 5.83333L11.6667 1.175Z" fill="#CCCCCC"/>
-</svg>
+<i class="icon icon-close-x"></i>
 </button>
                                 </li>
                                 <li>
                                     <div class="keyword-wrap">
                                         <span class="icon-wrap">
-                                            <svg class="icon-recent-search"  xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none">
-<path d="M9.65833 10.8333L6.46667 7.64167C5.8 8.075 5.01667 8.33333 4.16667 8.33333C1.86667 8.33333 0 6.46667 0 4.16667C0 1.86667 1.86667 0 4.16667 0C6.46667 0 8.33333 1.86667 8.33333 4.16667C8.33333 5.01667 8.075 5.8 7.64167 6.45833L10.8333 9.65833L9.65833 10.8333ZM6.66667 4.16667C6.66667 2.79167 5.54167 1.66667 4.16667 1.66667C2.79167 1.66667 1.66667 2.79167 1.66667 4.16667C1.66667 5.54167 2.79167 6.66667 4.16667 6.66667C5.54167 6.66667 6.66667 5.54167 6.66667 4.16667Z" fill="white"/>
-</svg>
+                                            <i class="icon icon-search-recent"></i>
                                         </span>
                                         <span class="keyword">라면</span>
                                     </div>
                                     <button class="recent-delete-btn">
-<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-  <path d="M11.6667 1.175L10.4917 0L5.83333 4.65833L1.175 0L0 1.175L4.65833 5.83333L0 10.4917L1.175 11.6667L5.83333 7.00833L10.4917 11.6667L11.6667 10.4917L7.00833 5.83333L11.6667 1.175Z" fill="#CCCCCC"/>
-</svg>
+<i class="icon icon-close-x"></i>
 </button>
                                 </li>
                             </ul>
@@ -175,72 +126,27 @@
                                 <li>
                                     <span class="rank">1</span>
                                     <span class="keyword">두부</span>
-                                    <svg class="status dash" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_654)">
-                                            <path d="M12.6666 8.66634H3.33325V7.33301H12.6666V8.66634Z" fill="#AAAAAA"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_210_654">
-                                            <rect width="20" height="20" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
+                                    <i class="icon icon-status-dash"></i>
                                 </li>
                                 <li>
                                     <span class="rank">2</span>
                                     <span class="keyword">햇반</span>
-                                    <svg class="status dash" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_654)">
-                                            <path d="M12.6666 8.66634H3.33325V7.33301H12.6666V8.66634Z" fill="#AAAAAA"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_210_654">
-                                            <rect width="20" height="20" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
+                                    <i class="icon icon-status-dash"></i>
                                 </li>
                                 <li>
                                     <span class="rank">3</span>
                                     <span class="keyword">물</span>
-                                    <svg class="status dash" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_654)">
-                                            <path d="M12.6666 8.66634H3.33325V7.33301H12.6666V8.66634Z" fill="#AAAAAA"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_210_654">
-                                            <rect width="20" height="20" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
+                                    <i class="icon icon-status-dash"></i>
                                 </li>
                                 <li>
                                     <span class="rank">4</span>
                                     <span class="keyword">과자</span>
-                                    <svg class="status dash" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_654)">
-                                            <path d="M12.6666 8.66634H3.33325V7.33301H12.6666V8.66634Z" fill="#AAAAAA"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_210_654">
-                                            <rect width="20" height="20" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
+                                    <i class="icon icon-status-dash"></i>
                                 </li>
                                 <li>
                                     <span class="rank">5</span>
                                     <span class="keyword">라면</span> 
-                                    <svg class="status up" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_661)">
-                                            <path d="M3.33325 7.99967H5.99992V11.9997H9.99992V7.99967H12.6666L7.99992 3.33301L3.33325 7.99967Z" fill="#FF5447"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_210_661">
-                                            <rect width="16" height="16" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
+                                    <i class="icon icon-status-up"></i>
                                 </li>
                                 <li>
                                     <span class="rank">6</span>
@@ -250,80 +156,36 @@
                                 <li>
                                     <span class="rank">7</span>
                                     <span class="keyword">삼양라면</span>
-                                    <svg class="status up" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_661)">
-                                            <path d="M3.33325 7.99967H5.99992V11.9997H9.99992V7.99967H12.6666L7.99992 3.33301L3.33325 7.99967Z" fill="#FF5447"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_210_661">
-                                            <rect width="16" height="16" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
+                                    <i class="icon icon-status-up"></i>
                                 </li>
                                 <li>
                                     <span class="rank">8</span>
                                     <span class="keyword">진라면</span>
-                                    <svg class="status down" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_688)">
-                                            <path d="M12.6666 8H9.99992V4H5.99992V8H3.33325L7.99992 12.6667L12.6666 8Z" fill="#1F95FF"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_210_688">
-                                            <rect width="16" height="16" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
+                                    <i class="icon icon-status-down"></i>
                                 </li>
                                 <li>
                                     <span class="rank">9</span>
                                     <span class="keyword">냉장</span>
-                                    <svg class="status down" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_688)">
-                                            <path d="M12.6666 8H9.99992V4H5.99992V8H3.33325L7.99992 12.6667L12.6666 8Z" fill="#1F95FF"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_210_688">
-                                            <rect width="16" height="16" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
+                                    <i class="icon icon-status-down"></i>
                                 </li>
                                 <li>
                                     <span class="rank">10</span>
                                     <span class="keyword">피존</span>
-                                    <svg class="status down" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_688)">
-                                            <path d="M12.6666 8H9.99992V4H5.99992V8H3.33325L7.99992 12.6667L12.6666 8Z" fill="#1F95FF"/>
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_210_688">
-                                            <rect width="16" height="16" fill="white"/>
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
+                                    <i class="icon icon-status-down"></i>
                                 </li>
                             </ol>
 
                             <!-- 11 ~ 20위 리스트 -->
-                            <ol class="keyword-list popular-list" id="rank-list-2" style="display: none;">
+                            <ol class="keyword-list popular-list" id="rank-list-2">
                                 <li>
                                     <span class="rank">11</span>
                                     <span class="keyword">커피믹스</span>
-                                    <svg class="status down" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_688)">
-                                            <path d="M12.6666 8H9.99992V4H5.99992V8H3.33325L7.99992 12.6667L12.6666 8Z" fill="#1F95FF"/>
-                                        </g>
-                                    </svg>
+                                    <i class="icon icon-status-down"></i>
                                 </li>
                                 <li>
                                     <span class="rank">12</span>
                                     <span class="keyword">휴지</span>
-                                    <svg class="status dash" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_654)">
-                                            <path d="M12.6666 8.66634H3.33325V7.33301H12.6666V8.66634Z" fill="#AAAAAA"/>
-                                        </g>
-                                    </svg>
+                                    <i class="icon icon-status-dash"></i>
                                 </li>
                                 <li>
                                     <span class="rank">13</span>
@@ -333,47 +195,27 @@
                                 <li>
                                     <span class="rank">14</span>
                                     <span class="keyword">물티슈</span>
-                                    <svg class="status up" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_661)">
-                                            <path d="M3.33325 7.99967H5.99992V11.9997H9.99992V7.99967H12.6666L7.99992 3.33301L3.33325 7.99967Z" fill="#FF5447"/>
-                                        </g>
-                                    </svg>
+                                    <i class="icon icon-status-up"></i>
                                 </li>
                                 <li>
                                     <span class="rank">15</span>
                                     <span class="keyword">계란</span>
-                                    <svg class="status dash" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_654)">
-                                            <path d="M12.6666 8.66634H3.33325V7.33301H12.6666V8.66634Z" fill="#AAAAAA"/>
-                                        </g>
-                                    </svg>
+                                    <i class="icon icon-status-dash"></i>
                                 </li>
                                 <li>
                                     <span class="rank">16</span>
                                     <span class="keyword">우유</span>
-                                    <svg class="status down" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_688)">
-                                            <path d="M12.6666 8H9.99992V4H5.99992V8H3.33325L7.99992 12.6667L12.6666 8Z" fill="#1F95FF"/>
-                                        </g>
-                                    </svg>
+                                    <i class="icon icon-status-down"></i>
                                 </li>
                                 <li>
                                     <span class="rank">17</span>
                                     <span class="keyword">콜라</span>
-                                    <svg class="status up" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_661)">
-                                            <path d="M3.33325 7.99967H5.99992V11.9997H9.99992V7.99967H12.6666L7.99992 3.33301L3.33325 7.99967Z" fill="#FF5447"/>
-                                        </g>
-                                    </svg>
+                                    <i class="icon icon-status-up"></i>
                                 </li>
                                 <li>
                                     <span class="rank">18</span>
                                     <span class="keyword">사이다</span>
-                                    <svg class="status dash" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_654)">
-                                            <path d="M12.6666 8.66634H3.33325V7.33301H12.6666V8.66634Z" fill="#AAAAAA"/>
-                                        </g>
-                                    </svg>
+                                    <i class="icon icon-status-dash"></i>
                                 </li>
                                 <li>
                                     <span class="rank">19</span>
@@ -383,11 +225,7 @@
                                 <li>
                                     <span class="rank">20</span>
                                     <span class="keyword">참치캔</span>
-                                    <svg class="status dash" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <g clip-path="url(#clip0_210_654)">
-                                            <path d="M12.6666 8.66634H3.33325V7.33301H12.6666V8.66634Z" fill="#AAAAAA"/>
-                                        </g>
-                                    </svg>
+                                    <i class="icon icon-status-dash"></i>
                                 </li>
                             </ol>
                         </div>
@@ -396,7 +234,7 @@
                     </div><!-- 검색 기본 화면 끝 -->
 
                 <!-- 자동완성 드롭다운 (JS 제어) -->
-                <div class="search-dropdown-autocomplete" style="display: none;">
+                <div class="search-dropdown-autocomplete">
                     <!-- 키워드 컬럼 -->
                     <div class="autocomplete-column keyword-column">
                         <ul class="autocomplete-list">
@@ -430,29 +268,11 @@
                         <div class="collection-list">
                             <a href="#" class="collection-item">
                                 단백질 모음전 
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-  <g clip-path="url(#clip0_215_1284)">
-    <path d="M4.1665 12.5003H5.83317V7.00866L15.4915 16.667L16.6665 15.492L7.00817 5.83366H12.4998V4.16699H4.1665V12.5003Z" fill="#CCCCCC"/>
-  </g>
-  <defs>
-    <clipPath id="clip0_215_1284">
-      <rect width="20" height="20" fill="white"/>
-    </clipPath>
-  </defs>
-</svg>
+                                <i class="icon icon-diagonal-arrow"></i>
                             </a>
                             <a href="#" class="collection-item">
                                 매일장보기 모음전 
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-  <g clip-path="url(#clip0_215_1284)">
-    <path d="M4.1665 12.5003H5.83317V7.00866L15.4915 16.667L16.6665 15.492L7.00817 5.83366H12.4998V4.16699H4.1665V12.5003Z" fill="#CCCCCC"/>
-  </g>
-  <defs>
-    <clipPath id="clip0_215_1284">
-      <rect width="20" height="20" fill="white"/>
-    </clipPath>
-  </defs>
-</svg>
+                                <i class="icon icon-diagonal-arrow"></i>
                             </a>
                         </div>
                     </div>
@@ -493,11 +313,7 @@
             </div>            
         </div>
         <div class="progress-info">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="16" x2="12" y2="12"></line>
-                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-            </svg>
+            <i class="icon icon-info-outline"></i>
             결제금액의 일부를 포인트로 돌려드려요.
         </div>
 
@@ -512,11 +328,7 @@
             <div class="stat-item">
                 <span class="label">
                     사용 가능 포인트
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                    </svg>
+                    <i class="icon icon-info-outline"></i>
                 </span>
                 <span class="value">999,687,079</span>
             </div>

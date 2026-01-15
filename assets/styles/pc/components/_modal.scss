@@ -110,10 +110,8 @@
         opacity: 1;
         cursor: pointer;
 
-        svg {
-            width: rem(11);
-            height: rem(11);
-            stroke: $gray-700;
+        .icon-close-x {
+            color: $gray-700;
         }
 
         &:hover {

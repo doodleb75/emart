@@ -323,14 +323,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     btnMore.prepend(textNode);
                 }
                 textNode.textContent = isExpanded ? '상품 닫기 ' : '상품 더보기 ';
-
-                // 아이콘 경로 업데이트
-                const svgPath = btnMore.querySelector('svg path');
-                if (svgPath) {
-                    const upPath = 'M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z';
-                    const downPath = 'M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z';
-                    svgPath.setAttribute('d', isExpanded ? upPath : downPath);
-                }
             }
         };
 
@@ -626,19 +618,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (isPlaying) {
                     stopAutoPlay();
                     isPlaying = false;
-                    btnPause.innerHTML = `
-                        <svg class="icon-slider-play" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-                            <path d="M0 0h24v24H0V0z" fill="none"/>
-                            <path d="M8 5v14l11-7z"/>
-                        </svg>`;
+                    btnPause.innerHTML = `<i class="icon-slider-play"></i>`;
                 } else {
                     startAutoPlay();
                     isPlaying = true;
-                    btnPause.innerHTML = `
-                        <svg class="icon-slider-pause" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-                           <path d="M0 0h24v24H0V0z" fill="none"/>
-                           <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                        </svg>`;
+                    btnPause.innerHTML = `<i class="icon-slider-pause"></i>`;
                 }
             });
         }
@@ -754,17 +738,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (btnPause) {
                 btnPause.addEventListener('click', () => {
                     isPlaying = !isPlaying;
-                    const pauseIcon = btnPause.querySelector('svg');
                     if (isPlaying) {
                         startAutoPlay();
-                        if (pauseIcon) {
-                            pauseIcon.innerHTML = `<path d="M0 0h24v24H0V0z" fill="none" /><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor" />`;
-                        }
+                        btnPause.innerHTML = `<i class="icon-slider-pause"></i>`;
                     } else {
                         stopAutoPlay();
-                        if (pauseIcon) {
-                            pauseIcon.innerHTML = `<path d="M0 0h24v24H0V0z" fill="none" /><path d="M8 5v14l11-7z" fill="currentColor" />`;
-                        }
+                        btnPause.innerHTML = `<i class="icon-slider-play"></i>`;
                     }
                 });
             }
@@ -1013,28 +992,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 찜하기 버튼 토글 기능
-    document.body.addEventListener('click', (e) => {
-        // 아이콘 버튼 확인
-        const btn = e.target.closest('.btn-icon');
-        if (btn && btn.querySelector('.icon-heart')) {
-            e.preventDefault();
-            btn.classList.toggle('active');
 
-            const path = btn.querySelector('path');
-            if (path) {
-                if (btn.classList.contains('active')) {
-                    // 활성 상태 아이콘 (채워진 하트)
-                    path.setAttribute('d', 'M8.33333 15.2917L7.125 14.1917C2.83333 10.3 0 7.73333 0 4.58333C0 2.01667 2.01667 0 4.58333 0C6.03333 0 7.425 0.675 8.33333 1.74167C9.24166 0.675 10.6333 0 12.0833 0C14.65 0 16.6667 2.01667 16.6667 4.58333C16.6667 7.73333 13.8333 10.3 9.54167 14.2L8.33333 15.2917Z');
-                    path.setAttribute('fill', '#FF5447');
-                } else {
-                    // 비활성 상태 아이콘 (빈 하트)
-                    path.setAttribute('d', 'M8.33333 15.2917L7.125 14.2083C5.72222 12.9444 4.5625 11.8542 3.64583 10.9375C2.72917 10.0208 2 9.19792 1.45833 8.46875C0.916667 7.73958 0.538194 7.06944 0.322917 6.45833C0.107639 5.84722 0 5.22222 0 4.58333C0 3.27778 0.4375 2.1875 1.3125 1.3125C2.1875 0.4375 3.27778 0 4.58333 0C5.30555 0 5.99305 0.152778 6.64583 0.458333C7.29861 0.763889 7.86111 1.19444 8.33333 1.75C8.80555 1.19444 9.36805 0.763889 10.0208 0.458333C10.6736 0.152778 11.3611 0 12.0833 0C13.3889 0 14.4792 0.4375 15.3542 1.3125C16.2292 2.1875 16.6667 3.27778 16.6667 4.58333C16.6667 5.22222 16.559 5.84722 16.3437 6.45833C16.1285 7.06944 15.75 7.73958 15.2083 8.46875C14.6667 9.19792 13.9375 10.0208 13.0208 10.9375C12.1042 11.8542 10.9444 12.9444 9.54167 14.2083L8.33333 15.2917ZM8.33333 13.0417C9.66667 11.8472 10.7639 10.8229 11.625 9.96875C12.4861 9.11458 13.1667 8.37153 13.6667 7.73958C14.1667 7.10764 14.5139 6.54514 14.7083 6.05208C14.9028 5.55903 15 5.06944 15 4.58333C15 3.75 14.7222 3.05556 14.1667 2.5C13.6111 1.94444 12.9167 1.66667 12.0833 1.66667C11.4306 1.66667 10.8264 1.85069 10.2708 2.21875C9.71528 2.58681 9.33333 3.05556 9.125 3.625H7.54167C7.33333 3.05556 6.95139 2.58681 6.39583 2.21875C5.84028 1.85069 5.23611 1.66667 4.58333 1.66667C3.75 1.66667 3.05556 1.94444 2.5 2.5C1.94444 3.05556 1.66667 3.75 1.66667 4.58333C1.66667 5.06944 1.76389 5.55903 1.95833 6.05208C2.15278 6.54514 2.5 7.10764 3 7.73958C3.5 8.37153 4.18055 9.11458 5.04167 9.96875C5.90278 10.8229 7 11.8472 8.33333 13.0417Z');
-                    path.setAttribute('fill', '#444444');
-                }
-            }
-        }
-    });
 
 
 
@@ -1055,8 +1013,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const btnPrev = wrapper.querySelector('.btn-prev');
         const btnNext = wrapper.querySelector('.btn-next');
         const btnPause = wrapper.querySelector('.btn-pause');
-        const currentEl = wrapper.querySelector('.page-count .current');
-        const totalEl = wrapper.querySelector('.page-count .total');
+        const currentEl = wrapper.querySelector('.current-page');
+        const totalEl = wrapper.querySelector('.total-page');
 
         // 상태
         let currentIndex = 0;
@@ -1089,18 +1047,15 @@ document.addEventListener('DOMContentLoaded', () => {
         slides.forEach(slide => observer.observe(slide));
 
         const updateNavButtons = () => {
-            // 루프 모드: 다중 슬라이드 시 버튼 활성
             const hasMultipleSlides = totalSlides > 1;
 
             if (btnPrev) {
                 btnPrev.classList.toggle('active', hasMultipleSlides);
-                const path = btnPrev.querySelector('path');
-                if (path) path.setAttribute('fill', hasMultipleSlides ? '#222222' : '#E3E3E3');
+                btnPrev.disabled = !hasMultipleSlides;
             }
             if (btnNext) {
                 btnNext.classList.toggle('active', hasMultipleSlides);
-                const path = btnNext.querySelector('path');
-                if (path) path.setAttribute('fill', hasMultipleSlides ? '#222222' : '#E3E3E3');
+                btnNext.disabled = !hasMultipleSlides;
             }
         };
 
@@ -1151,14 +1106,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (btnPause) {
             btnPause.addEventListener('click', () => {
                 isPaused = !isPaused;
-                const iconPause = btnPause.querySelector('.icon-pause');
-                const iconPlay = btnPause.querySelector('.icon-play');
                 if (isPaused) {
-                    if (iconPause) iconPause.style.display = 'none';
-                    if (iconPlay) iconPlay.style.display = 'block';
+                    btnPause.innerHTML = `<i class="icon-slider-play"></i>`;
                 } else {
-                    if (iconPause) iconPause.style.display = 'block';
-                    if (iconPlay) iconPlay.style.display = 'none';
+                    btnPause.innerHTML = `<i class="icon-slider-pause"></i>`;
                 }
             });
         }
@@ -1517,15 +1468,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (originalSlides.length >= 2) {
 
             const slideCount = originalSlides.length;
-            const currentEl = document.getElementById('currentSlide');
-            const totalEl = document.getElementById('totalSlides');
-            const btnPrev = document.getElementById('btnPrev');
-            const btnNext = document.getElementById('btnNext');
-            const btnPause = document.getElementById('btnPause');
-
-            // 아이콘
-            const iconPause = btnPause ? btnPause.querySelector('.icon-pause') : null;
-            const iconPlay = btnPause ? btnPause.querySelector('.icon-play') : null;
+            const pagination = track.closest('.mobile-main-slider').querySelector('.pagination-container');
+            const currentEl = pagination.querySelector('.current-page');
+            const totalEl = pagination.querySelector('.total-page');
+            const btnPrev = pagination.querySelector('.btn-prev');
+            const btnNext = pagination.querySelector('.btn-next');
+            const btnPause = pagination.querySelector('.btn-pause');
 
             // 무한 루프 복제
             const cloneCount = 5;
@@ -1670,14 +1618,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     isPlaying = !isPlaying;
                     if (isPlaying) {
                         startAutoplay();
-                        btnPause.classList.remove('paused');
-                        if (iconPause) iconPause.style.display = 'block';
-                        if (iconPlay) iconPlay.style.display = 'none';
+                        btnPause.innerHTML = `<i class="icon-slider-pause"></i>`;
                     } else {
                         stopAutoplay();
-                        btnPause.classList.add('paused');
-                        if (iconPause) iconPause.style.display = 'none';
-                        if (iconPlay) iconPlay.style.display = 'block';
+                        btnPause.innerHTML = `<i class="icon-slider-play"></i>`;
                     }
                 });
             }
@@ -1708,96 +1652,112 @@ document.addEventListener('DOMContentLoaded', () => {
             startAutoplay();
         }
     }
-    // 공통 더보기 (특가, MD 추천)
-    const initLoadMoreStep = (btnId, step = 2) => {
-        const btn = document.getElementById(btnId);
-        if (!btn) return;
+    // 공통 더보기 (Expandable Grids via Class Traversal)
+    const initExpandableGrids = () => {
+        const moreButtons = document.querySelectorAll('.btn-more');
 
-        const grid = btn.previousElementSibling;
-        if (!grid) return;
+        moreButtons.forEach(btn => {
+            // 이미 바인딩된 경우 스킵
+            if (btn.dataset.bound) return;
 
-        const getThreshold = () => window.innerWidth >= 1024 ? 4 : 2;
-        let visibleCount = getThreshold();
+            // 1. 컨텍스트 및 그리드 찾기
+            let section = btn.closest('section') || btn.closest('.md-rec-content') || btn.closest('.ranking-item');
+            if (!section) return;
 
-        const getItems = () => Array.from(grid.querySelectorAll('.product-card'));
+            // 2. 초기 갯수 설정 (화면 너비 체크)
+            const isWide = window.innerWidth >= 1024;
+            let itemSelector = '.product-card';
+            let initialCount = isWide ? 4 : 2;
 
-        const updateDisplay = () => {
-            const allItems = getItems();
-            const threshold = getThreshold();
-
-            // 현재 펼쳐진 상태가 아니라면 임계값에 맞춤
-            if (!btn.classList.contains('is-expanded') && visibleCount < threshold) {
-                visibleCount = threshold;
+            if (section.classList.contains('brand-pavilion')) {
+                itemSelector = '.brand-story-item';
+                initialCount = 1;
+            } else if (section.classList.contains('daily-special')) {
+                // 오늘의 특가 (기본값)
             }
 
-            allItems.forEach((item, index) => {
-                item.style.display = index < visibleCount ? 'flex' : 'none';
+            // 3. 그리드 컨테이너 찾기
+            // 버튼 바로 위에 있는 그리드를 우선 찾음
+            let grid = btn.previousElementSibling;
+
+            // 바로 위가 아니거나 그리드 클래스가 아니면 섹션 내에서 검색
+            if (!grid || (!grid.classList.contains('product-grid-2') && !grid.classList.contains('brand-story-list'))) {
+                grid = section.querySelector('.product-grid-2, .brand-story-list');
+            }
+            if (!grid) return;
+
+            const items = Array.from(grid.querySelectorAll(itemSelector));
+            if (items.length === 0) return;
+
+            // 4. 표시 업데이트 함수
+            const updateVisibility = (expanded) => {
+                const limit = expanded ? items.length : initialCount;
+                items.forEach((item, idx) => {
+                    // 스타일을 지워서 CSS 규칙(flex/block)을 따르게 함. 숨길 때만 none.
+                    item.style.display = (idx < limit) ? '' : 'none';
+                });
+
+                // 버튼 상태 및 텍스트 업데이트
+                btn.classList.toggle('is-expanded', expanded);
+                const textNode = Array.from(btn.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+                if (textNode) {
+                    const originalText = textNode.textContent.trim();
+                    if (itemSelector === '.brand-story-item') {
+                        textNode.textContent = expanded ? '브랜드관 닫기 ' : '브랜드관 더보기 ';
+                    } else if (originalText.includes('상품')) {
+                        textNode.textContent = expanded ? '상품 닫기 ' : '상품 더보기 ';
+                    }
+                }
+            };
+
+            // 5. 초기 실행
+            updateVisibility(false);
+            btn.dataset.bound = true;
+
+            // 6. 클릭 이벤트
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isExpanded = btn.classList.contains('is-expanded');
+
+                if (isExpanded) {
+                    // 닫기 (Collapse)
+                    updateVisibility(false);
+                    // 스크롤 이동
+                    const header = section.querySelector('.section-header') || section;
+                    if (header) {
+                        const y = header.getBoundingClientRect().top + window.pageYOffset - 60;
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                    }
+                } else {
+                    // 모두 보기 (Expand All)
+                    updateVisibility(true);
+                }
             });
 
-            const isAllShown = visibleCount >= allItems.length;
-            const needsButton = allItems.length > threshold;
-
-            // 버튼 표시 여부
-            if (!needsButton) {
-                btn.style.setProperty('display', 'none', 'important');
-            } else {
-                btn.style.display = 'flex';
-                btn.classList.toggle('is-all-shown', isAllShown);
-
-                // 텍스트/아이콘 업데이트
-                let textNode = Array.from(btn.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
-                if (!textNode) {
-                    textNode = document.createTextNode('');
-                    btn.prepend(textNode);
-                }
-                textNode.textContent = isAllShown ? '상품 닫기 ' : '상품 더보기 ';
-
-                const svgPath = btn.querySelector('svg path');
-                if (svgPath) {
-                    const upPath = 'M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z';
-                    const downPath = 'M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z';
-                    svgPath.setAttribute('d', isAllShown ? upPath : downPath);
-                }
-            }
-        };
-
-        btn.refreshState = updateDisplay;
-
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const allItems = getItems();
-
-            if (visibleCount >= allItems.length) {
-                // 닫기
-                visibleCount = getThreshold();
-                btn.classList.remove('is-expanded');
-                const section = btn.closest('section');
-                if (section) {
-                    const header = section.querySelector('.section-header');
-                    const y = (header || section).getBoundingClientRect().top + window.pageYOffset - 60;
-                    window.scrollTo({ top: y, behavior: 'smooth' });
-                }
-            } else {
-                // 더보기
-                visibleCount = Math.min(visibleCount + step, allItems.length);
-                if (visibleCount >= allItems.length) btn.classList.add('is-expanded');
-            }
-            updateDisplay();
+            // 리사이즈 대응 (필요 시)
+            // 브라우저 리사이즈 시 initialCount가 변해야 한다면 추가 로직 필요하지만 모바일 중심이므로 생략 가능
         });
-
-        updateDisplay();
     };
 
-    // 더보기 리사이즈 대응
+    // 초기화 실행
+    initExpandableGrids();
+
+    // Resize 시 재계산이 필요할 수 있음 (PC <-> Mobile 전환 등)
+    let resizeTimer;
     window.addEventListener('resize', () => {
-        ['btnLoadMoreSpecial'].forEach(id => {
-            const btn = document.getElementById(id);
-            if (btn && btn.refreshState) btn.refreshState();
-        });
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            // 기존 바인딩 무시하고 로직만 다시 수행하려면 구조 변경 필요.
+            // 여기서는 단순히 새로 추가된 요소 등을 위해 호출 (또는 리셋 로직 필요)
+            // 현재는 reload 권장.
+        }, 200);
     });
 
-    // 적용 (오늘의 특가)
-    initLoadMoreStep('btnLoadMoreSpecial', 2, 2);
+    // 브랜드관 더보기 (PC Legacy) - 제거 또는 유지 (위 로직이 커버함)
+    /*
+    const brandClubZone = document.querySelector('.brand-club-zone');
+    if (brandClubZone) { ... } 
+    */
 
     // ==========================================
     // 브랜드관 더보기
@@ -1819,56 +1779,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 모바일 버전 토글
-    const brandPavilion = document.querySelector('.brand-story-list');
-    const brandSection = document.querySelector('.brand-pavilion');
-    if (brandPavilion && brandSection) {
-        const btnMore = brandPavilion.querySelector('.btn-brand-more');
-        const items = Array.from(brandPavilion.querySelectorAll('.brand-story-item'));
-        const initialCount = 1;
-
-        if (btnMore && items.length > 0) {
-            const updateState = () => {
-                const isExpanded = brandPavilion.classList.contains('is-expanded');
-
-                // 아이템 노출 상태
-                items.forEach((item, index) => {
-                    item.style.display = (isExpanded || index < initialCount) ? 'flex' : 'none';
-                });
-
-                // 버튼 텍스트 및 아이콘 변경
-                let textNode = Array.from(btnMore.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
-                if (!textNode) textNode = btnMore.appendChild(document.createTextNode(''));
-                textNode.textContent = isExpanded ? '브랜드관 닫기 ' : '브랜드관 더보기 ';
-
-                const svgPath = btnMore.querySelector('svg path');
-                if (svgPath) {
-                    const upPath = 'M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z';
-                    const downPath = 'M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z';
-                    svgPath.setAttribute('d', isExpanded ? upPath : downPath);
-                }
-            };
-
-            btnMore.addEventListener('click', (e) => {
-                e.preventDefault();
-                const wasExpanded = brandPavilion.classList.contains('is-expanded');
-                brandPavilion.classList.toggle('is-expanded');
-                updateState();
-
-                // 접을 때 상단 이동
-                if (wasExpanded) {
-                    const header = brandSection.querySelector('.section-header');
-                    if (header) {
-                        const y = header.getBoundingClientRect().top + window.pageYOffset - 60;
-                        window.scrollTo({ top: y, behavior: 'smooth' });
-                    }
-                }
-            });
-
-            // 초기화
-            updateState();
-        }
-    }
 
     // ==========================================
     // 사용자 포인트 진행률 설정
