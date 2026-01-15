@@ -22,24 +22,24 @@ jobs:
           # assets/styles 폴더 내의 scss를 css로 컴파일
           sass assets/styles:assets/styles --no-source-map
 
-      - name: Path Correction for GitHub Pages (Comprehensive)
+      - name: Path Correction for GitHub Pages (Safe & Anti-Duplicate)
         run: |
-          # 1. HTML 및 JS 파일 내의 모든 루트 상대 경로(/)를 /emart/ 경로로 치환
-          # 대상: assets, components, pages, mobile 폴더
-          # 패턴 설명: 따옴표(', ")나 백틱(`), 혹은 href=/ src=/ 뒤에 오는 경로를 찾아 /emart/를 삽입합니다.
-          
+          # 1. HTML/JS 내의 주요 폴더 경로 치환
+          # 중복 방지를 위해 폴더명 앞에 /emart/가 없는 경우만 타겟팅합니다.
           find . -type f \( -name "*.html" -o -name "*.js" \) -not -path "*/node_modules/*" -not -path "*/.git/*" -exec sed -i \
-            "s|'/assets/|'/emart/assets/|g; s|\"/assets/|\"/emart/assets/|g; s|\`/assets/|\`/emart/assets/|g; \
-             s|'/components/|'/emart/components/|g; s|\"/components/|\"/emart/components/|g; s|\`/components/|\`/emart/components/|g; \
-             s|'/pages/|'/emart/pages/|g; s|\"/pages/|\"/emart/pages/|g; s|\`/pages/|\`/emart/pages/|g; \
-             s|'/mobile/|'/emart/mobile/|g; s|\"/mobile/|\"/emart/mobile/|g; s|\`/mobile/|\`/emart/mobile/|g; \
-             s|href=\"/|href=\"/emart/|g; s|src=\"/|src=\"/emart/|g" {} +
+            "s|'\/\(assets\|components\|pages\|mobile\)\/|'\/emart\/\1\/|g; \
+             s|\"\/\(assets\|components\|pages\|mobile\)\/|\"\/emart\/\1\/|g; \
+             s|\`\/\(assets\|components\|pages\|mobile\)\/|\`\/emart\/\1\/|g; \
+             s|href=\"\/\(assets\|components\|pages\|mobile\)\/|href=\"\/emart\/\1\/|g; \
+             s|src=\"\/\(assets\|components\|pages\|mobile\)\/|src=\"\/emart\/\1\/|g" {} +
 
-          # 2. CSS/SCSS 내의 url() 패턴 처리
-          # url('/assets/...') 또는 url(/assets/...) 형태를 모두 처리합니다.
-          find . -type f \( -name "*.css" -o -name "*.scss" -o -name "*.js" \) -not -path "*/node_modules/*" -not -path "*/.git/*" -exec sed -i \
-            "s|url(['\"]\{0,1\}\/assets/|url('/emart/assets/|g; \
-             s|url(['\"]\{0,1\}\/components/|url('/emart/components/|g" {} +
+          # 2. CSS/SCSS url() 경로 치환
+          find . -type f \( -name "*.css" -o -name "*.scss" \) -not -path "*/node_modules/*" -exec sed -i \
+            "s|url(['\"]\{0,1\}\/\(assets\|components\)\/|url('/emart/\1/|g" {} +
+
+          # 3. [핵심 안전장치] 이미 중복된 emart/emart 경로가 있다면 하나로 통합
+          # 이 단계가 emart/emart 문제를 직접적으로 해결합니다.
+          find . -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" -o -name "*.scss" \) -not -path "*/node_modules/*" -exec sed -i "s|/emart/emart/|/emart/|g" {} +
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
