@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>검색결과 - e-Club</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/styles/pc.css" rel="stylesheet">
+    <link href="/emart/assets/styles/pc.css" rel="stylesheet">
 </head>
 
 <body>
@@ -161,7 +161,7 @@
                         <div class="card-checkbox">
                             <custom-checkbox class="item-check"></custom-checkbox>
                         </div>
-                        <img src="/assets/images/products/md_product_1.png" alt="Product">
+                        <img src="/emart/assets/images/products/md_product_1.png" alt="Product">
                         <div class="badge-corner">
                             <i class="icon-smile"></i> MD 추천
                         </div>
@@ -216,7 +216,7 @@
                         <div class="card-checkbox">
                             <custom-checkbox class="item-check"></custom-checkbox>
                         </div>
-                        <img src="/assets/images/products/md_product_2.png" alt="Product">
+                        <img src="/emart/assets/images/products/md_product_2.png" alt="Product">
                         <div class="badge-corner">
                             <i class="icon-smile"></i> MD 추천
                         </div>
@@ -270,7 +270,7 @@
                         <div class="card-checkbox">
                             <custom-checkbox class="item-check"></custom-checkbox>
                         </div>
-                        <img src="/assets/images/products/md_product_3.png" alt="Product">
+                        <img src="/emart/assets/images/products/md_product_3.png" alt="Product">
                         <div class="status-overlay">
                             <p>곧 입고예정</p>
                             <button class="btn-substitute">대체상품보기</button>
@@ -327,7 +327,7 @@
                         <!-- <div class="card-checkbox">
                             <custom-checkbox class="item-check"></custom-checkbox>
                         </div> -->
-                        <img src="/assets/images/products/md_product_8.png" alt="Product">
+                        <img src="/emart/assets/images/products/md_product_8.png" alt="Product">
                         <div class="status-overlay">
                             <p>품절</p>
                             <button class="btn-substitute">대체상품보기</button>
@@ -426,7 +426,7 @@
                 })
                 .then(data => {
                     // Adjust relative paths for pages in subfolders
-                    if (window.location.pathname.includes('/pages/')) {
+                    if (window.location.pathname.includes('/emart/pages/')) {
                         data = data.replace(/src="assets\//g, 'src="../assets/');
                     }
                     document.getElementById(placeholderId).innerHTML = data;
@@ -440,16 +440,16 @@
                 .catch(error => console.error('Error loading component:', error));
         }
 
-        loadComponent('/components/header.component.txt', 'header-placeholder');
-        loadComponent('/components/footer.component.txt', 'footer-placeholder');
+        loadComponent('/emart/components/header.component.txt', 'header-placeholder');
+        loadComponent('/emart/components/footer.component.txt', 'footer-placeholder');
     </script>
 
-    <script src="/assets/js/main.js"></script>
-    <script src="/assets/js/components/favorites.js"></script>
-    <script src="/assets/js/components/quantity-control.js"></script>
-    <script src="/assets/js/pages/search_result.js"></script>
-    <script src="/assets/js/components/view-toggle.js"></script>
-    <script src="/assets/js/components/checkbox.js"></script>
+    <script src="/emart/assets/js/main.js"></script>
+    <script src="/emart/assets/js/components/favorites.js"></script>
+    <script src="/emart/assets/js/components/quantity-control.js"></script>
+    <script src="/emart/assets/js/pages/search_result.js"></script>
+    <script src="/emart/assets/js/components/view-toggle.js"></script>
+    <script src="/emart/assets/js/components/checkbox.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

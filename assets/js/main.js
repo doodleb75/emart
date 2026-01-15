@@ -2073,7 +2073,7 @@ async function initZoomControl() {
     // 줌 적용 로직 (PC용 화면인 경우에만 적용)
     const applyZoom = () => {
         // 모바일 경로(/mobile/)가 포함되지 않은 경우를 PC 화면으로 판별
-        const isPCPage = !window.location.pathname.includes('/mobile/');
+        const isPCPage = !window.location.pathname.includes('/emart/mobile/');
         document.body.style.zoom = isPCPage ? currentZoom : 1;
 
         // GNB 너비 재계산 호출
