@@ -49,8 +49,8 @@
 }
 
 .icon-slider-play {
-    -webkit-mask-image: url('/emart/assets/images/icons/icon-slider-play.svg');
-    mask-image: url('/emart/assets/images/icons/icon-slider-play.svg');
+    -webkit-mask-image: url('/assets/images/icons/icon-slider-play.svg');
+    mask-image: url('/assets/images/icons/icon-slider-play.svg');
 }
 
 .icon-slider-dash {
@@ -117,8 +117,8 @@
 
     .btn-icon.active &,
     &.active {
-        -webkit-mask-image: url('/emart/assets/images/icons/icon-heart-active.svg');
-        mask-image: url('/emart/assets/images/icons/icon-heart-active.svg');
+        -webkit-mask-image: url('/assets/images/icons/icon-heart-active.svg');
+        mask-image: url('/assets/images/icons/icon-heart-active.svg');
         color: $accent-base; // 활성 상태 (레드)
     }
 }
@@ -334,7 +334,7 @@
     display: inline-block;
     width: rem(20);
     height: rem(20);
-    background: url('/emart/assets/images/icons/icon-excel.svg') no-repeat center / contain;
+    background: url('/assets/images/icons/icon-excel.svg') no-repeat center / contain;
 }
 
 .icon-upload {
@@ -444,7 +444,7 @@
     // 서치 클리어는 마스크가 아니라 일반 배경으로 처리 (두 가지 색상이 들어가므로)
     width: rem(16);
     height: rem(16);
-    background: url('/emart/assets/images/icons/icon-search-clear.svg') no-repeat center / contain;
+    background: url('/assets/images/icons/icon-search-clear.svg') no-repeat center / contain;
     mask: none;
     -webkit-mask: none;
 }
