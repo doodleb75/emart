@@ -4871,6 +4871,7 @@ body.modal-open .summary-sidebar {
 }
 .search-result-page .search-top-area .search-control-row .right-col .view-toggles .btn-toggle.active {
   color: #222222;
+  background: #f4f4f4;
 }
 .search-result-page .search-top-area .search-control-row .right-col .view-toggles .btn-toggle svg {
   width: 1.5rem;
