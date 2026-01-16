@@ -3709,8 +3709,7 @@ body.mobile-body {
 .popcorn-banner-wrapper .slider-track {
   display: flex;
   width: 100%;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  overflow: hidden;
   scrollbar-width: none;
 }
 .popcorn-banner-wrapper .slider-track::-webkit-scrollbar {
@@ -3719,7 +3718,6 @@ body.mobile-body {
 .popcorn-banner-wrapper .slide-item.banner-popcorn {
   flex: 0 0 100%;
   max-width: 100%;
-  scroll-snap-align: start;
   background-color: #FFDE00;
   overflow: hidden;
   position: relative;

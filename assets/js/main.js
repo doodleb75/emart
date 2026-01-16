@@ -307,207 +307,295 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // 메인 배너 슬라이더 기능
-    const mainCarouselEl = document.getElementById('eclubMainSlider');
-    if (mainCarouselEl) {
-        const track = mainCarouselEl.querySelector('.carousel-inner');
-        const btnPrev = document.querySelector('.btn-prev');
-        const btnNext = document.querySelector('.btn-next');
-        const btnPause = document.querySelector('.btn-pause');
-        const currentPageEl = document.querySelector('.current-page');
-        const totalPageEl = document.querySelector('.total-page');
+    // ==========================================
+    // 통합 메인 슬라이더 (Unified Main Slider)
+    // ==========================================
+    class UnifiedMainSlider {
+        constructor(rootElement, options = {}) {
+            this.root = rootElement;
+            if (!this.root) return;
 
-        // 상태 변수 초기화
-        const initialCards = Array.from(track.querySelectorAll('.slider-card'));
-        const totalItems = initialCards.length;
-        let currentIndex = 1;
-        let isPlaying = true;
-        let isAnimating = false;
-        let autoPlayInterval;
+            this.options = {
+                trackSelector: '.carousel-inner',
+                itemSelector: '.slider-card',
+                btnPrevSelector: '.btn-prev',
+                btnNextSelector: '.btn-next',
+                btnPauseSelector: '.btn-pause',
+                pageCurrentSelector: '.current-page',
+                pageTotalSelector: '.total-page',
+                contentWidth: 1360, // 0이면 Full Width
+                gap: 24,            // 기본 Gap
+                autoPlayInterval: 3000,
+                transitionTime: 500,
+                isMobile: false,
+                ...options
+            };
 
-        // 슬라이더 설정
-        const checkInterval = 3000;
-        const transitionTime = 500;
-        const contentWidth = 1360; // 콘텐츠 너비
-        const gap = 24; // 간격
+            this.track = this.root.querySelector(this.options.trackSelector);
+            // ID 셀렉터 지원
+            if (!this.track && this.options.trackSelector.startsWith('#')) {
+                this.track = document.getElementById(this.options.trackSelector.substring(1));
+            }
 
-        // 동적 상태 값
-        let baseOffset = 0;
-        let cardWidth = 0;
-        let prependCount = 0;
+            if (!this.track) return;
 
-        function initSlider() {
-            if (!track || initialCards.length === 0) return;
+            this.initialCards = Array.from(this.track.querySelectorAll(this.options.itemSelector));
+            if (this.initialCards.length === 0) return;
+
+            this.totalItems = this.initialCards.length;
+            this.currentIndex = 0; // 0-based index for logic
+            this.isPlaying = true;
+            this.isAnimating = false;
+            this.timer = null;
+
+            this.cardWidth = 0;
+            this.gap = this.options.gap;
+            this.baseOffset = 0;
+            this.prependCount = 0;
+
+            // UI 요소
+            this.btnPrev = this.root.querySelector(this.options.btnPrevSelector);
+            this.btnNext = this.root.querySelector(this.options.btnNextSelector);
+            this.btnPause = this.root.querySelector(this.options.btnPauseSelector);
+            this.pageCurrent = this.root.querySelector(this.options.pageCurrentSelector);
+            this.pageTotal = this.root.querySelector(this.options.pageTotalSelector);
+
+            if (!this.btnPrev && this.options.isMobile) {
+                // 모바일의 경우 pagination-container 내부에 있을 수 있음
+                const pagination = this.root.querySelector('.pagination-container');
+                if (pagination) {
+                    this.btnPrev = pagination.querySelector(this.options.btnPrevSelector);
+                    this.btnNext = pagination.querySelector(this.options.btnNextSelector);
+                    this.btnPause = pagination.querySelector(this.options.btnPauseSelector);
+                    this.pageCurrent = pagination.querySelector(this.options.pageCurrentSelector);
+                    this.pageTotal = pagination.querySelector(this.options.pageTotalSelector);
+                }
+            }
+
+            this.init();
+        }
+
+        init() {
+            this.initSlider();
+            this.updatePagination();
+            this.bindEvents();
+
+            if (this.isPlaying) this.startAutoPlay();
+
+            window.addEventListener('resize', () => {
+                this.initSlider(); // 리사이즈 시 재계산
+            });
+        }
+
+        measureGap() {
+            // CSS Gap 측정 시도 (모바일 등)
+            const style = window.getComputedStyle(this.track);
+            const gap = parseFloat(style.columnGap) || parseFloat(style.gap);
+            if (!isNaN(gap) && gap > 0) {
+                this.gap = gap;
+            }
+        }
+
+        initSlider() {
+            if (!this.track) return;
+
+            this.measureGap();
 
             // 카드 크기 측정
-            const tempCard = initialCards[0];
-            const computedStyle = window.getComputedStyle(tempCard);
-            cardWidth = tempCard.offsetWidth || 440;
-            if (cardWidth === 0) cardWidth = 437.33;
+            const tempCard = this.initialCards[0];
+            // display flex, clones 상황에서도 정확한 원본 사이즈 측정을 위해 스타일 임시 초기화 필요할 수 있으나,
+            // 보통 offsetWidth로 충분
+            this.cardWidth = tempCard.offsetWidth || (this.options.isMobile ? window.innerWidth : 440);
 
-            const fullItemWidth = cardWidth + gap;
+            // 모바일 Full Width인 경우 (padding 제외)
+            if (this.options.isMobile) {
+                // 모바일 카드 너비 보정 (여백이 있는 경우)
+                // 만약 카드가 100%가 아니라면 offsetWidth가 정확함.
+            }
 
-            // 시작 위치 계산
-            const windowWidth = Math.max(window.innerWidth, contentWidth);
-            let gridStartX = (windowWidth - contentWidth) / 2;
-            if (gridStartX < 0) gridStartX = 0;
+            const fullItemWidth = this.cardWidth + this.gap;
 
-            // 필요 복제본 수 계산
-            const neededLeft = Math.ceil(gridStartX / fullItemWidth) + 2;
-            const neededRight = Math.ceil((windowWidth - (gridStartX + contentWidth)) / fullItemWidth) + 2;
+            // 시작 위치(gridStartX) 계산
+            const windowWidth = Math.max(window.innerWidth, this.options.contentWidth);
+            let gridStartX = 0;
 
-            // 슬라이더 트랙 초기화
-            track.innerHTML = '';
+            if (this.options.contentWidth > 0 && !this.options.isMobile) {
+                gridStartX = (windowWidth - this.options.contentWidth) / 2;
+                if (gridStartX < 0) gridStartX = 0;
+            } else if (this.options.isMobile) {
+                // 모바일은 track의 padding-left 등을 고려하거나, 중앙 정렬 필요시 계산
+                // 현재 디자인은 좌측 정렬 + padding
+                const trackStyle = window.getComputedStyle(this.track);
+                const pl = parseFloat(trackStyle.paddingLeft);
+                if (!isNaN(pl)) gridStartX = pl;
+            }
 
-            // 요소 복제 함수
+            // 복제 개수 계산
+            let neededLeft = 2;
+            let neededRight = 2;
+
+            if (!this.options.isMobile) {
+                neededLeft = Math.ceil(gridStartX / fullItemWidth) + 2;
+                neededRight = Math.ceil((windowWidth - (gridStartX + this.options.contentWidth)) / fullItemWidth) + 2;
+            } else {
+                // 모바일은 양옆 2개씩이면 충분
+                neededLeft = 2;
+                neededRight = 2;
+            }
+
+            // 트랙 초기화 및 복제
+            this.track.innerHTML = '';
+
             const appendClone = (item) => {
                 const clone = item.cloneNode(true);
                 clone.classList.add('cloned');
-                track.appendChild(clone);
+                clone.removeAttribute('id');
+                this.track.appendChild(clone);
             };
 
-            prependCount = neededLeft;
+            this.prependCount = neededLeft;
 
-            // 좌측 영역 채우기
-            for (let i = 0; i < neededLeft; i++) {
-                let index = (totalItems - 1 - (i % totalItems));
-            }
-
-            const fragment = document.createDocumentFragment();
-
-            // 앞쪽 복제본 추가
+            // 앞쪽 복제
             for (let i = neededLeft; i > 0; i--) {
-                let index = (totalItems - (i % totalItems)) % totalItems;
-                appendClone(initialCards[index]);
+                const index = (this.totalItems - (i % this.totalItems)) % this.totalItems;
+                appendClone(this.initialCards[index]);
             }
 
-            // 원본 항목 추가
-            initialCards.forEach(card => {
-                track.appendChild(card);
-            });
+            // 원본
+            this.initialCards.forEach(card => this.track.appendChild(card));
 
-            // 뒤쪽 복제본 추가
+            // 뒤쪽 복제
             for (let i = 0; i < neededRight; i++) {
-                let index = i % totalItems;
-                appendClone(initialCards[index]);
+                const index = i % this.totalItems;
+                appendClone(this.initialCards[index]);
             }
 
-            // 초기 위치 설정
-            baseOffset = gridStartX - (prependCount * fullItemWidth);
+            // 초기 위치 적용
+            this.baseOffset = gridStartX - (this.prependCount * fullItemWidth);
 
-            track.style.transition = 'none';
-            track.style.transform = `translateX(${baseOffset}px)`;
+            this.track.style.display = 'flex'; // Flex 강제
+            this.track.style.flexWrap = 'nowrap';
+            this.track.style.gap = `${this.gap}px`;
+            this.track.style.overflow = 'hidden'; // 레이아웃 이탈 방지
 
-            if (totalPageEl) totalPageEl.textContent = String(totalItems).padStart(2, '0');
-            updatePagination();
+            this.track.style.transition = 'none';
+            this.track.style.transform = `translateX(${this.baseOffset}px)`;
+
+            if (this.pageTotal) this.pageTotal.textContent = String(this.totalItems).padStart(2, '0');
         }
 
-        // 초기화
-        initSlider();
-        window.addEventListener('resize', () => {
-            initSlider();
-        });
+        moveNext() {
+            if (this.isAnimating) return;
+            this.isAnimating = true;
 
+            this.currentIndex++;
+            const fullItemWidth = this.cardWidth + this.gap;
 
-        // 자동 재생 시작
-        function startAutoPlay() {
-            stopAutoPlay();
-            autoPlayInterval = setInterval(() => {
-                if (!isAnimating) moveNext();
-            }, checkInterval);
-        }
+            this.track.style.transition = `transform ${this.options.transitionTime}ms ease-in-out`;
+            this.track.style.transform = `translateX(${this.baseOffset - (this.currentIndex * fullItemWidth)}px)`;
 
-        // 자동 재생 정지
-        function stopAutoPlay() {
-            clearInterval(autoPlayInterval);
-        }
-
-        if (isPlaying) startAutoPlay();
-
-
-        // 다음 슬라이드 이동
-        function moveNext() {
-            if (!track || isAnimating) return;
-            isAnimating = true;
-
-            const fullItemWidth = cardWidth + gap;
-
-            track.style.transition = `transform ${transitionTime}ms ease-in-out`;
-            track.style.transform = `translateX(${baseOffset - fullItemWidth}px)`;
-
-            track.addEventListener('transitionend', function () {
-                track.style.transition = 'none';
-
-                // 첫 번째 항목 뒤로 이동
-                const first = track.firstElementChild;
-                track.appendChild(first);
-
-                // 위치 재설정
-                track.style.transform = `translateX(${baseOffset}px)`;
-
-                updateCurrentIndex(true);
-                isAnimating = false;
-            }, { once: true });
-        }
-
-        // 이전 슬라이드 이동
-        function movePrev() {
-            if (!track || isAnimating) return;
-            isAnimating = true;
-
-            const fullItemWidth = cardWidth + gap;
-
-            // 마지막 항목 앞으로 이동
-            const last = track.lastElementChild;
-            track.insertBefore(last, track.firstElementChild);
-
-            // 위치 조정
-            track.style.transition = 'none';
-            track.style.transform = `translateX(${baseOffset - fullItemWidth}px)`;
-
-            // 강제 리플로우 (애니메이션 초기화)
-            void track.offsetWidth;
-
-            // 슬라이드 애니메이션
-            track.style.transition = `transform ${transitionTime}ms ease-in-out`;
-            track.style.transform = `translateX(${baseOffset}px)`;
-
-            track.addEventListener('transitionend', function () {
-                updateCurrentIndex(false);
-                isAnimating = false;
-            }, { once: true });
-        }
-
-        function updateCurrentIndex(isNext) {
-            if (isNext) {
-                currentIndex = currentIndex >= totalItems ? 1 : currentIndex + 1;
-            } else {
-                currentIndex = currentIndex <= 1 ? totalItems : currentIndex - 1;
-            }
-            updatePagination();
-        }
-
-        function updatePagination() {
-            if (currentPageEl) currentPageEl.textContent = String(currentIndex).padStart(2, '0');
-        }
-
-        // 이벤트 리스너 등록
-        if (btnNext) btnNext.addEventListener('click', () => { stopAutoPlay(); moveNext(); if (isPlaying) startAutoPlay(); });
-        if (btnPrev) btnPrev.addEventListener('click', () => { stopAutoPlay(); movePrev(); if (isPlaying) startAutoPlay(); });
-
-        if (btnPause) {
-            btnPause.addEventListener('click', () => {
-                if (isPlaying) {
-                    stopAutoPlay();
-                    isPlaying = false;
-                    btnPause.innerHTML = `<i class="icon-slider-play"></i>`;
-                } else {
-                    startAutoPlay();
-                    isPlaying = true;
-                    btnPause.innerHTML = `<i class="icon-slider-pause"></i>`;
+            const handleTransitionEnd = () => {
+                if (this.currentIndex >= this.totalItems) {
+                    this.currentIndex = 0;
+                    this.track.style.transition = 'none';
+                    void this.track.offsetWidth; // 브라우저에 transition: none 적용 강제
+                    this.track.style.transform = `translateX(${this.baseOffset}px)`;
+                    void this.track.offsetWidth; // 위치 변경 완료 강제
                 }
-            });
+                this.updatePagination();
+                this.isAnimating = false;
+                this.track.removeEventListener('transitionend', handleTransitionEnd);
+            };
+
+            this.track.addEventListener('transitionend', handleTransitionEnd);
         }
+
+        movePrev() {
+            if (this.isAnimating) return;
+            this.isAnimating = true;
+
+            this.currentIndex--;
+            const fullItemWidth = this.cardWidth + this.gap;
+
+            this.track.style.transition = `transform ${this.options.transitionTime}ms ease-in-out`;
+            this.track.style.transform = `translateX(${this.baseOffset - (this.currentIndex * fullItemWidth)}px)`;
+
+            const handleTransitionEnd = () => {
+                if (this.currentIndex < 0) {
+                    this.currentIndex = this.totalItems - 1;
+                    this.track.style.transition = 'none';
+                    void this.track.offsetWidth; // 브라우저에 transition: none 적용 강제
+                    this.track.style.transform = `translateX(${this.baseOffset - (this.currentIndex * fullItemWidth)}px)`;
+                    void this.track.offsetWidth; // 위치 변경 완료 강제
+                }
+                this.updatePagination();
+                this.isAnimating = false;
+                this.track.removeEventListener('transitionend', handleTransitionEnd);
+            };
+
+            this.track.addEventListener('transitionend', handleTransitionEnd);
+        }
+
+        updatePagination() {
+            if (this.pageCurrent) {
+                this.pageCurrent.textContent = String(this.currentIndex + 1).padStart(2, '0');
+            }
+        }
+
+        bindEvents() {
+            if (this.btnNext) this.btnNext.addEventListener('click', () => {
+                this.stopAutoPlay();
+                this.moveNext();
+                if (this.isPlaying) this.startAutoPlay();
+            });
+
+            if (this.btnPrev) this.btnPrev.addEventListener('click', () => {
+                this.stopAutoPlay();
+                this.movePrev();
+                if (this.isPlaying) this.startAutoPlay();
+            });
+
+            if (this.btnPause) {
+                this.btnPause.addEventListener('click', () => {
+                    if (this.isPlaying) {
+                        this.stopAutoPlay();
+                        this.isPlaying = false;
+                        this.btnPause.innerHTML = `<i class="icon-slider-play"></i>`;
+                    } else {
+                        this.startAutoPlay();
+                        this.isPlaying = true;
+                        this.btnPause.innerHTML = `<i class="icon-slider-pause"></i>`;
+                    }
+                });
+            }
+        }
+
+        startAutoPlay() {
+            this.stopAutoPlay();
+            this.timer = setInterval(() => {
+                if (!this.isAnimating) this.moveNext();
+            }, this.options.autoPlayInterval);
+        }
+
+        stopAutoPlay() {
+            if (this.timer) clearInterval(this.timer);
+        }
+
+        resetPosition() {
+            // 리사이즈 시 위치만 리셋하는 헬퍼
+            const fullItemWidth = this.cardWidth + this.gap;
+            this.track.style.transform = `translateX(${this.baseOffset}px)`;
+        }
+    }
+
+    // 메인 배너 슬라이더 초기화 (PC)
+    const pcSliderEl = document.getElementById('eclubMainSlider');
+    if (pcSliderEl) {
+        new UnifiedMainSlider(pcSliderEl, {
+            trackSelector: '.carousel-inner',
+            contentWidth: 1360,
+            gap: 24
+        });
     }
     // ==========================================
     // 주간 랭킹 슬라이더 기능
@@ -878,134 +966,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // ==========================================
-    // 모바일 스크롤 슬라이더
-    // ==========================================
-    const initMobileScrollSlider = (wrapperSelector, trackSelector, autoPlay = true) => {
-        const wrapper = document.querySelector(wrapperSelector);
-        if (!wrapper) return;
-
-        const track = wrapper.querySelector(trackSelector);
-        if (!track) return;
-
-        const slides = track.querySelectorAll('.slide-item');
-        if (slides.length === 0) return;
-
-        // 컨트롤 요소
-        const btnPrev = wrapper.querySelector('.btn-prev');
-        const btnNext = wrapper.querySelector('.btn-next');
-        const btnPause = wrapper.querySelector('.btn-pause');
-        const currentEl = wrapper.querySelector('.current-page');
-        const totalEl = wrapper.querySelector('.total-page');
-
-        // 상태
-        let currentIndex = 0;
-        const totalSlides = slides.length;
-        let isPaused = false;
-        let autoPlayInterval;
-
-        // 페이지네이션 초기화
-        if (totalEl) totalEl.textContent = String(totalSlides).padStart(2, '0');
-
-        // 활성 슬라이드 감지
-        const observerOptions = {
-            root: track,
-            threshold: 0.5
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const index = Array.from(slides).indexOf(entry.target);
-                    if (index !== -1) {
-                        currentIndex = index;
-                        if (currentEl) currentEl.textContent = String(currentIndex + 1).padStart(2, '0');
-                        updateNavButtons();
-                    }
-                }
-            });
-        }, observerOptions);
-
-        slides.forEach(slide => observer.observe(slide));
-
-        const updateNavButtons = () => {
-            const hasMultipleSlides = totalSlides > 1;
-
-            if (btnPrev) {
-                btnPrev.classList.toggle('active', hasMultipleSlides);
-                btnPrev.disabled = !hasMultipleSlides;
-            }
-            if (btnNext) {
-                btnNext.classList.toggle('active', hasMultipleSlides);
-                btnNext.disabled = !hasMultipleSlides;
-            }
-        };
-
-        const scrollToSlide = (index) => {
-            if (index < 0 || index >= totalSlides) return;
-            const target = slides[index];
-            const targetLeft = target.offsetLeft;
-            track.scrollTo({ left: targetLeft, behavior: 'smooth' });
-        };
-
-        if (btnPrev) btnPrev.addEventListener('click', () => {
-            let nextIndex = currentIndex - 1;
-            if (nextIndex < 0) nextIndex = totalSlides - 1; // 마지막으로 이동
-            stopAutoPlayIfNeeded();
-            scrollToSlide(nextIndex);
-        });
-
-        if (btnNext) btnNext.addEventListener('click', () => {
-            let nextIndex = currentIndex + 1;
-            if (nextIndex >= totalSlides) nextIndex = 0; // 처음으로 이동
-            stopAutoPlayIfNeeded();
-            scrollToSlide(nextIndex);
-        });
-
-        // 자동 재생 로직
-        const startAutoPlay = () => {
-            if (!autoPlay) return;
-            stopAutoPlay();
-            autoPlayInterval = setInterval(() => {
-                if (isPaused) return;
-
-                let nextIndex = currentIndex + 1;
-                if (nextIndex >= totalSlides) nextIndex = 0;
-
-                scrollToSlide(nextIndex);
-            }, 3000);
-        };
-
-        const stopAutoPlay = () => {
-            clearInterval(autoPlayInterval);
-        };
-
-        const stopAutoPlayIfNeeded = () => {
-            stopAutoPlay();
-            startAutoPlay();
-        };
-
-        if (btnPause) {
-            btnPause.addEventListener('click', () => {
-                isPaused = !isPaused;
-                if (isPaused) {
-                    btnPause.innerHTML = `<i class="icon-slider-play"></i>`;
-                } else {
-                    btnPause.innerHTML = `<i class="icon-slider-pause"></i>`;
-                }
-            });
-        }
-
-        if (autoPlay) startAutoPlay();
-
-        // 터치 시 자동 재생 일시 정지
-        track.addEventListener('touchstart', () => stopAutoPlay());
-        track.addEventListener('touchend', () => startAutoPlay());
-    };
 
     // 로직 초기화
-    // initMobileScrollSlider('.mobile-main-slider', '#mobileMainTrack'); // 메인 슬라이더는 하단 전용 로직 사용을 위해 중복 초기화 제거
-    initMobileScrollSlider('.popcorn-banner-wrapper', '#popcornBannerTrack');
+    // 팝콘 배너 (UnifiedMainSlider 적용)
+    const popcornBannerEl = document.querySelector('.popcorn-banner-wrapper');
+    if (popcornBannerEl) {
+        new UnifiedMainSlider(popcornBannerEl, {
+            trackSelector: '#popcornBannerTrack',
+            itemSelector: '.slide-item',
+            isMobile: true,
+            gap: 0,
+            autoPlayInterval: 3000
+        });
+    }
     initOffcanvasDrag();
 
     // 동적 오프캔버스 감지
@@ -1340,565 +1313,377 @@ document.addEventListener('headerLoaded', initSearchDropdown);
 if (document.querySelector('.search-container')) {
     initSearchDropdown();
 }
-// 모바일 슬라이더
-document.addEventListener('DOMContentLoaded', () => {
-    const track = document.getElementById('mobileMainTrack');
-
-    // 모바일 슬라이더 초기화
-    if (track) {
-        let originalSlides = Array.from(track.querySelectorAll('.slide-item'));
-        if (originalSlides.length >= 2) {
-
-            const slideCount = originalSlides.length;
-            const pagination = track.closest('.mobile-main-slider').querySelector('.pagination-container');
-            const currentEl = pagination.querySelector('.current-page');
-            const totalEl = pagination.querySelector('.total-page');
-            const btnPrev = pagination.querySelector('.btn-prev');
-            const btnNext = pagination.querySelector('.btn-next');
-            const btnPause = pagination.querySelector('.btn-pause');
-
-            // 무한 루프 복제
-            const cloneCount = 5;
-            const firstClones = [];
-            const lastClones = [];
-
-            // 슬라이드 복제
-            for (let i = 0; i < cloneCount; i++) {
-                firstClones.push(originalSlides[i % slideCount].cloneNode(true));
-                let index = (slideCount - 1 - (i % slideCount));
-                lastClones.push(originalSlides[index].cloneNode(true));
-            }
-
-            // 뒤쪽 복제본 앞 추가
-            lastClones.forEach(clone => {
-                clone.classList.add('clone-last');
-                track.insertBefore(clone, track.firstElementChild);
-            });
-
-            // 앞쪽 복제본 뒤 추가
-            firstClones.forEach(clone => {
-                clone.classList.add('clone-first');
-                track.appendChild(clone);
-            });
-
-            // 슬라이드 리스트 갱신
-            const allSlides = Array.from(track.querySelectorAll('.slide-item'));
-
-            // 초기 상태
-            if (totalEl) totalEl.textContent = slideCount.toString().padStart(2, '0');
-
-            let isPlaying = true;
-            let autoplayInterval;
-            const autoplayDelay = 3000;
-
-            // 치수 계산 (Calculate dimensions)
-            const getMetrics = () => {
-                if (allSlides.length < 2) return { slideWidth: 0, gap: 0, fullWidth: 0 };
-                const fullWidth = allSlides[1].offsetLeft - allSlides[0].offsetLeft; // 정적인 요소 간격 측정 (Static distance)
-                const slideWidth = allSlides[cloneCount].offsetWidth;
-                const gap = fullWidth - slideWidth;
-                return { slideWidth, gap, fullWidth };
-            };
-
-            // 스크롤 위치 초기화 (Initialize scroll position)
-            const initPosition = () => {
-                const { fullWidth } = getMetrics();
-                if (fullWidth <= 0) return;
-                // margin-left 방식에서는 padding이 없으므로 scrollLeft는 정확히 인덱스 배수 (With margin-left, no padding, so scrollLeft is index multiple)
-                track.scrollLeft = Math.round(fullWidth * cloneCount);
-            };
-
-            // 레이아웃 대기
-            setTimeout(initPosition, 100);
-
-            let isJumping = false;
-
-            // 페이지 번호만 갱신 (Update pagination index only)
-            const updatePagination = () => {
-                const { fullWidth } = getMetrics();
-                if (fullWidth <= 0) return;
-                const scrollLeft = track.scrollLeft;
-                const rawIndex = Math.round(scrollLeft / fullWidth);
-
-                let displayIndex = (rawIndex - cloneCount) % slideCount;
-                if (displayIndex < 0) displayIndex += slideCount;
-                displayIndex += 1;
-
-                if (currentEl) currentEl.textContent = displayIndex.toString().padStart(2, '0');
-            };
-
-            // 루프 위치 보정 (Loop positioning correction)
-            const checkLoop = () => {
-                if (isJumping) return;
-                const { fullWidth } = getMetrics();
-                if (fullWidth <= 0) return;
-
-                const scrollLeft = track.scrollLeft;
-                const rawIndex = Math.round(scrollLeft / fullWidth);
-
-                // 실제 슬라이드 범위를 벗어났을 때만 보정 (Jump only when out of original range)
-                if (rawIndex < cloneCount) {
-                    isJumping = true;
-                    const newPos = Math.round((slideCount + rawIndex) * fullWidth);
-                    track.style.scrollSnapType = 'none';
-                    track.scrollTo({ left: newPos, behavior: 'instant' });
-                    requestAnimationFrame(() => {
-                        track.style.scrollSnapType = '';
-                        isJumping = false;
-                    });
-                } else if (rawIndex >= slideCount + cloneCount) {
-                    isJumping = true;
-                    const newPos = Math.round((rawIndex - slideCount) * fullWidth);
-                    track.style.scrollSnapType = 'none';
-                    track.scrollTo({ left: newPos, behavior: 'instant' });
-                    requestAnimationFrame(() => {
-                        track.style.scrollSnapType = '';
-                        isJumping = false;
-                    });
-                }
-            };
-
-            track.addEventListener('scroll', () => {
-                updatePagination(); // 스크롤 중에는 번호만 변경
-            }, { passive: true });
-
-            track.addEventListener('scrollend', () => {
-                checkLoop(); // 스크롤이 끝난 뒤에 위치 보정
-            });
-
-            // 네비게이션
-            const nextSlide = () => {
-                const { fullWidth } = getMetrics();
-                track.scrollBy({ left: fullWidth, behavior: 'smooth' });
-            };
-
-            const prevSlide = () => {
-                const { fullWidth } = getMetrics();
-                track.scrollBy({ left: -fullWidth, behavior: 'smooth' });
-            };
-
-            // 이벤트 리스너
-            if (btnNext) {
-                btnNext.addEventListener('click', () => {
-                    stopAutoplay();
-                    nextSlide();
-                    if (isPlaying) startAutoplay();
-                });
-            }
-
-            if (btnPrev) {
-                btnPrev.addEventListener('click', () => {
-                    stopAutoplay();
-                    prevSlide();
-                    if (isPlaying) startAutoplay();
-                });
-            }
-
-            // 자동재생
-            const startAutoplay = () => {
-                stopAutoplay();
-                autoplayInterval = setInterval(nextSlide, autoplayDelay);
-            };
-
-            const stopAutoplay = () => {
-                clearInterval(autoplayInterval);
-            };
-
-            if (btnPause) {
-                btnPause.addEventListener('click', (e) => {
-                    e.stopPropagation(); // 버블링 방지
-                    isPlaying = !isPlaying;
-                    if (isPlaying) {
-                        startAutoplay();
-                        btnPause.innerHTML = `<i class="icon-slider-pause"></i>`;
-                    } else {
-                        stopAutoplay();
-                        btnPause.innerHTML = `<i class="icon-slider-play"></i>`;
-                    }
-                });
-            }
-
-            // 반응형
-            window.addEventListener('resize', () => {
-                const { fullWidth } = getMetrics();
-                if (fullWidth === 0) return;
-
-                // 인덱스 재계산
-                const index = Math.round(track.scrollLeft / fullWidth);
-                track.scrollTo({ left: index * fullWidth, behavior: 'instant' });
-            });
-
-            // 모바일 MD 추천 탭
-            const mdTabMenu = document.getElementById('mdTabMenu');
-            if (mdTabMenu) {
-                const mdTabs = mdTabMenu.querySelectorAll('.tab-btn');
-                mdTabs.forEach(tab => {
-                    tab.addEventListener('click', () => {
-                        mdTabs.forEach(t => t.classList.remove('active'));
-                        tab.classList.add('active');
-                    });
-                });
-            }
-
-            // 시작
-            startAutoplay();
-        }
-    }
-    // 공통 더보기 (Expandable Grids via Class Traversal)
-    const initExpandableGrids = () => {
-        const moreButtons = document.querySelectorAll('.btn-more');
-
-        moreButtons.forEach(btn => {
-            // 이미 바인딩된 경우 스킵
-            if (btn.dataset.bound) return;
-
-            // 1. 컨텍스트 및 그리드 찾기
-            let section = btn.closest('section') || btn.closest('.md-rec-content') || btn.closest('.ranking-item');
-            if (!section) return;
-
-            // 2. 초기 갯수 설정 (화면 너비 체크)
-            const isWide = window.innerWidth >= 1024;
-            let itemSelector = '.product-card';
-            let initialCount = isWide ? 4 : 2;
-
-            if (section.classList.contains('brand-pavilion')) {
-                itemSelector = '.brand-story-item';
-                initialCount = 1;
-            } else if (section.classList.contains('daily-special')) {
-                // 오늘의 특가 (기본값)
-            }
-
-            // 3. 그리드 컨테이너 찾기
-            // 버튼 바로 위에 있는 그리드를 우선 찾음
-            let grid = btn.previousElementSibling;
-
-            // 바로 위가 아니거나 그리드 클래스가 아니면 섹션 내에서 검색
-            if (!grid || (!grid.classList.contains('product-grid-2') && !grid.classList.contains('brand-story-list'))) {
-                grid = section.querySelector('.product-grid-2, .brand-story-list');
-            }
-            if (!grid) return;
-
-            const items = Array.from(grid.querySelectorAll(itemSelector));
-            if (items.length === 0) return;
-
-            // 4. 표시 업데이트 함수
-            const updateVisibility = (expanded) => {
-                const limit = expanded ? items.length : initialCount;
-                items.forEach((item, idx) => {
-                    // 스타일을 지워서 CSS 규칙(flex/block)을 따르게 함. 숨길 때만 none.
-                    item.style.display = (idx < limit) ? '' : 'none';
-                });
-
-                // 버튼 상태 및 텍스트 업데이트
-                btn.classList.toggle('is-expanded', expanded);
-                const textNode = Array.from(btn.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
-                if (textNode) {
-                    const originalText = textNode.textContent.trim();
-                    if (itemSelector === '.brand-story-item') {
-                        textNode.textContent = expanded ? '브랜드관 닫기 ' : '브랜드관 더보기 ';
-                    } else if (originalText.includes('상품')) {
-                        textNode.textContent = expanded ? '상품 닫기 ' : '상품 더보기 ';
-                    }
-                }
-            };
-
-            // 5. 초기 실행
-            updateVisibility(false);
-            btn.dataset.bound = true;
-
-            // 6. 클릭 이벤트
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const isExpanded = btn.classList.contains('is-expanded');
-
-                if (isExpanded) {
-                    // 닫기 (Collapse)
-                    updateVisibility(false);
-                    // 스크롤 이동
-                    const header = section.querySelector('.section-header') || section;
-                    if (header) {
-                        const y = header.getBoundingClientRect().top + window.pageYOffset - 60;
-                        window.scrollTo({ top: y, behavior: 'smooth' });
-                    }
-                } else {
-                    // 모두 보기 (Expand All)
-                    updateVisibility(true);
-                }
-            });
-
-            // 리사이즈 대응 (필요 시)
-            // 브라우저 리사이즈 시 initialCount가 변해야 한다면 추가 로직 필요하지만 모바일 중심이므로 생략 가능
+// 모바일 메인 슬라이더 초기화 (Mobile)
+// 기존 스크롤 로직 대신 UnifiedMainSlider 사용
+const mobileTrack = document.getElementById('mobileMainTrack');
+if (mobileTrack) {
+    // 모바일은 wrapper를 root로 사용 (pagination-container가 sibling이므로)
+    const mobileRoot = mobileTrack.closest('.mobile-main-slider');
+    if (mobileRoot) {
+        new UnifiedMainSlider(mobileRoot, {
+            trackSelector: '#mobileMainTrack',
+            itemSelector: '.slide-item',
+            contentWidth: 0, // Full Width
+            isMobile: true,
+            gap: 20 // 모바일 CSS Gap (필요시 조정)
         });
-    };
+    }
+}
+// 공통 더보기 (Expandable Grids via Class Traversal)
+const initExpandableGrids = () => {
+    const moreButtons = document.querySelectorAll('.btn-more');
 
-    // 초기화 실행
-    initExpandableGrids();
+    moreButtons.forEach(btn => {
+        // 이미 바인딩된 경우 스킵
+        if (btn.dataset.bound) return;
 
-    // Resize 시 재계산이 필요할 수 있음 (PC <-> Mobile 전환 등)
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            // 기존 바인딩 무시하고 로직만 다시 수행하려면 구조 변경 필요.
-            // 여기서는 단순히 새로 추가된 요소 등을 위해 호출 (또는 리셋 로직 필요)
-            // 현재는 reload 권장.
-        }, 200);
+        // 1. 컨텍스트 및 그리드 찾기
+        let section = btn.closest('section') || btn.closest('.md-rec-content') || btn.closest('.ranking-item');
+        if (!section) return;
+
+        // 2. 초기 갯수 설정 (화면 너비 체크)
+        const isWide = window.innerWidth >= 1024;
+        let itemSelector = '.product-card';
+        let initialCount = isWide ? 4 : 2;
+
+        if (section.classList.contains('brand-pavilion')) {
+            itemSelector = '.brand-story-item';
+            initialCount = 1;
+        } else if (section.classList.contains('daily-special')) {
+            // 오늘의 특가 (기본값)
+        }
+
+        // 3. 그리드 컨테이너 찾기
+        // 버튼 바로 위에 있는 그리드를 우선 찾음
+        let grid = btn.previousElementSibling;
+
+        // 바로 위가 아니거나 그리드 클래스가 아니면 섹션 내에서 검색
+        if (!grid || (!grid.classList.contains('product-grid-2') && !grid.classList.contains('brand-story-list'))) {
+            grid = section.querySelector('.product-grid-2, .brand-story-list');
+        }
+        if (!grid) return;
+
+        const items = Array.from(grid.querySelectorAll(itemSelector));
+        if (items.length === 0) return;
+
+        // 4. 표시 업데이트 함수
+        const updateVisibility = (expanded) => {
+            const limit = expanded ? items.length : initialCount;
+            items.forEach((item, idx) => {
+                // 스타일을 지워서 CSS 규칙(flex/block)을 따르게 함. 숨길 때만 none.
+                item.style.display = (idx < limit) ? '' : 'none';
+            });
+
+            // 버튼 상태 및 텍스트 업데이트
+            btn.classList.toggle('is-expanded', expanded);
+            const textNode = Array.from(btn.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+            if (textNode) {
+                const originalText = textNode.textContent.trim();
+                if (itemSelector === '.brand-story-item') {
+                    textNode.textContent = expanded ? '브랜드관 닫기 ' : '브랜드관 더보기 ';
+                } else if (originalText.includes('상품')) {
+                    textNode.textContent = expanded ? '상품 닫기 ' : '상품 더보기 ';
+                }
+            }
+        };
+
+        // 5. 초기 실행
+        updateVisibility(false);
+        btn.dataset.bound = true;
+
+        // 6. 클릭 이벤트
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isExpanded = btn.classList.contains('is-expanded');
+
+            if (isExpanded) {
+                // 닫기 (Collapse)
+                updateVisibility(false);
+                // 스크롤 이동
+                const header = section.querySelector('.section-header') || section;
+                if (header) {
+                    const y = header.getBoundingClientRect().top + window.pageYOffset - 60;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+            } else {
+                // 모두 보기 (Expand All)
+                updateVisibility(true);
+            }
+        });
+
+        // 리사이즈 대응 (필요 시)
+        // 브라우저 리사이즈 시 initialCount가 변해야 한다면 추가 로직 필요하지만 모바일 중심이므로 생략 가능
     });
+};
 
-    // 브랜드관 더보기 (PC Legacy) - 제거 또는 유지 (위 로직이 커버함)
-    /*
-    const brandClubZone = document.querySelector('.brand-club-zone');
-    if (brandClubZone) { ... } 
-    */
+// 초기화 실행
+initExpandableGrids();
 
-    // ==========================================
-    // 브랜드관 더보기
-    // ==========================================
-    // PC 버전 토글
-    const brandClubZone = document.querySelector('.brand-club-zone');
-    if (brandClubZone) {
-        const btnMore = brandClubZone.querySelector('.btn-brand-more');
-        const span = btnMore?.querySelector('span');
+// Resize 시 재계산이 필요할 수 있음 (PC <-> Mobile 전환 등)
+let resizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        // 기존 바인딩 무시하고 로직만 다시 수행하려면 구조 변경 필요.
+        // 여기서는 단순히 새로 추가된 요소 등을 위해 호출 (또는 리셋 로직 필요)
+        // 현재는 reload 권장.
+    }, 200);
+});
 
-        if (btnMore) {
-            btnMore.addEventListener('click', function () {
-                // 확장 클래스 토글
-                const isExpanded = brandClubZone.classList.toggle('is-expanded');
-                if (span) {
-                    span.textContent = isExpanded ? '브랜드관 닫기' : '브랜드관 더보기';
-                }
+// 브랜드관 더보기 (PC Legacy) - 제거 또는 유지 (위 로직이 커버함)
+/*
+const brandClubZone = document.querySelector('.brand-club-zone');
+if (brandClubZone) { ... } 
+*/
+
+// ==========================================
+// 브랜드관 더보기
+// ==========================================
+// PC 버전 토글
+const brandClubZone = document.querySelector('.brand-club-zone');
+if (brandClubZone) {
+    const btnMore = brandClubZone.querySelector('.btn-brand-more');
+    const span = btnMore?.querySelector('span');
+
+    if (btnMore) {
+        btnMore.addEventListener('click', function () {
+            // 확장 클래스 토글
+            const isExpanded = brandClubZone.classList.toggle('is-expanded');
+            if (span) {
+                span.textContent = isExpanded ? '브랜드관 닫기' : '브랜드관 더보기';
+            }
+        });
+    }
+}
+
+
+// ==========================================
+// 사용자 포인트 진행률 설정
+// ==========================================
+window.setUserPointProgress = function (percentage) {
+    const fillEl = document.getElementById("userPointFill");
+    if (fillEl) {
+        // 0~100 사이 값 제한
+        const safePercent = Math.max(0, Math.min(100, percentage));
+        fillEl.style.width = safePercent + "%";
+    }
+};
+
+// 테스트용 초기 실행
+// 10%
+if (window.setUserPointProgress) window.setUserPointProgress(60);
+
+// ==========================================
+// 카테고리 전체보기 오버레이
+// ==========================================
+
+const initCategoryMenu = () => {
+    const categoryLink = document.querySelector('.category-link');
+    const categoryOverlay = document.querySelector('.category-overlay');
+    const categoryCloseBtn = document.querySelector('.btn-category-close');
+
+    if (categoryLink && categoryOverlay) {
+        // 토글
+        categoryLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            categoryOverlay.classList.toggle('active');
+        });
+
+        // 닫기
+        if (categoryCloseBtn) {
+            categoryCloseBtn.addEventListener('click', () => {
+                categoryOverlay.classList.remove('active');
             });
         }
-    }
 
+        // 영역 외 클릭 시 닫기
+        document.addEventListener('click', (e) => {
+            if (!categoryLink.contains(e.target) && !categoryOverlay.contains(e.target)) {
+                categoryOverlay.classList.remove('active');
+            }
+        });
 
-    // ==========================================
-    // 사용자 포인트 진행률 설정
-    // ==========================================
-    window.setUserPointProgress = function (percentage) {
-        const fillEl = document.getElementById("userPointFill");
-        if (fillEl) {
-            // 0~100 사이 값 제한
-            const safePercent = Math.max(0, Math.min(100, percentage));
-            fillEl.style.width = safePercent + "%";
+        // 상단 카테고리/브랜드 탭 전환
+        const topTabs = categoryOverlay.querySelectorAll('.category-tabs .tab-btn');
+        if (topTabs.length > 0) {
+            topTabs.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    topTabs.forEach(t => t.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
         }
-    };
 
-    // 테스트용 초기 실행
-    // 10%
-    if (window.setUserPointProgress) window.setUserPointProgress(60);
+        // 탭 기능
+        const sidebarItems = categoryOverlay.querySelectorAll('.category-sidebar li');
+        const detailContents = categoryOverlay.querySelectorAll('.category-detail');
 
-    // ==========================================
-    // 카테고리 전체보기 오버레이
-    // ==========================================
+        sidebarItems.forEach(item => {
+            const switchTab = () => {
+                // 탭 활성화
+                sidebarItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
 
-    const initCategoryMenu = () => {
-        const categoryLink = document.querySelector('.category-link');
-        const categoryOverlay = document.querySelector('.category-overlay');
-        const categoryCloseBtn = document.querySelector('.btn-category-close');
+                // 컨텐츠 활성화
+                const targetId = item.dataset.target;
+                detailContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === targetId) {
+                        content.classList.add('active');
+                    }
+                });
+            };
 
-        if (categoryLink && categoryOverlay) {
-            // 토글
-            categoryLink.addEventListener('click', (e) => {
+            item.addEventListener('mouseenter', switchTab);
+            item.addEventListener('click', switchTab);
+        });
+    }
+};
+
+// 헤더 로드 완료 시 실행
+document.addEventListener('headerLoaded', initCategoryMenu);
+if (document.querySelector('.category-link')) {
+    initCategoryMenu();
+}
+
+
+
+
+// 수량 마이너스 버튼 클릭 시 최소 수량(1) 경고 및 장바구니 삭제 유도 모달
+document.addEventListener('click', (e) => {
+    const minusBtn = e.target.closest('.qty-box button:first-of-type');
+    if (minusBtn) {
+        const qtyBox = minusBtn.closest('.qty-box');
+        const input = qtyBox?.querySelector('input');
+        if (input) {
+            const currentVal = parseInt(input.value, 10) || 0;
+            const isInCart = qtyBox.dataset.inCart === 'true';
+
+            // 장바구니 담긴 상태에서 1 -> 0 시도 시 모달 표시
+            if (currentVal === 1 && isInCart) {
                 e.preventDefault();
-                categoryOverlay.classList.toggle('active');
-            });
+                e.stopImmediatePropagation(); // quantity-control.js 실행 차단
 
-            // 닫기
-            if (categoryCloseBtn) {
-                categoryCloseBtn.addEventListener('click', () => {
-                    categoryOverlay.classList.remove('active');
-                });
-            }
+                const modalEl = document.getElementById('cartWarningModal');
+                if (modalEl) {
+                    // 위치 계산 오류 방지
+                    if (modalEl.parentElement !== document.body) {
+                        document.body.appendChild(modalEl);
+                    }
 
-            // 영역 외 클릭 시 닫기
-            document.addEventListener('click', (e) => {
-                if (!categoryLink.contains(e.target) && !categoryOverlay.contains(e.target)) {
-                    categoryOverlay.classList.remove('active');
+                    // 모달 옵션 및 생성
+                    const modal = bootstrap.Modal.getOrCreateInstance(modalEl, {
+                        backdrop: false,
+                        keyboard: true
+                    });
+
+                    // 현재 카드의 장바구니 버튼 또는 클릭한 마이너스 버튼 기준
+                    const cardControl = minusBtn.closest('.card-control') || minusBtn.closest('.product-card');
+                    const cartBtn = cardControl?.querySelector('.icon-cart')?.closest('button') || cardControl?.querySelector('.btn-cart');
+
+                    positionLayerPopup(cartBtn || minusBtn, modalEl, { align: 'right' });
+                    modal.show(cartBtn || minusBtn); // 트리거 전달하여 포커스 관리 개선
                 }
-            });
-
-            // 상단 카테고리/브랜드 탭 전환
-            const topTabs = categoryOverlay.querySelectorAll('.category-tabs .tab-btn');
-            if (topTabs.length > 0) {
-                topTabs.forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        topTabs.forEach(t => t.classList.remove('active'));
-                        btn.classList.add('active');
-                    });
-                });
+            } else if (currentVal === 0) {
+                // 최소 수량 알림
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                if (window.Toast) {
+                    const toastTarget = qtyBox.closest('.card-control') || qtyBox;
+                    window.Toast.show('warning', '최소 수량은 1입니다.', toastTarget, { width: 'match', align: 'left' });
+                }
             }
-
-            // 탭 기능
-            const sidebarItems = categoryOverlay.querySelectorAll('.category-sidebar li');
-            const detailContents = categoryOverlay.querySelectorAll('.category-detail');
-
-            sidebarItems.forEach(item => {
-                const switchTab = () => {
-                    // 탭 활성화
-                    sidebarItems.forEach(i => i.classList.remove('active'));
-                    item.classList.add('active');
-
-                    // 컨텐츠 활성화
-                    const targetId = item.dataset.target;
-                    detailContents.forEach(content => {
-                        content.classList.remove('active');
-                        if (content.id === targetId) {
-                            content.classList.add('active');
-                        }
-                    });
-                };
-
-                item.addEventListener('mouseenter', switchTab);
-                item.addEventListener('click', switchTab);
-            });
         }
-    };
-
-    // 헤더 로드 완료 시 실행
-    document.addEventListener('headerLoaded', initCategoryMenu);
-    if (document.querySelector('.category-link')) {
-        initCategoryMenu();
     }
+}, true);
 
+// 장바구니 버튼 클릭 시 수량 설정
+document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-icon');
+    const cartBtn = (btn && btn.querySelector('.icon-cart')) ? btn : e.target.closest('.btn-cart');
 
+    if (cartBtn) {
+        // 인접한 qty-box 탐색
+        const container = cartBtn.closest('.card-control') || cartBtn.closest('.product-card') || cartBtn.parentElement;
+        const qtyBox = container.querySelector('.qty-box');
 
-
-    // 수량 마이너스 버튼 클릭 시 최소 수량(1) 경고 및 장바구니 삭제 유도 모달
-    document.addEventListener('click', (e) => {
-        const minusBtn = e.target.closest('.qty-box button:first-of-type');
-        if (minusBtn) {
-            const qtyBox = minusBtn.closest('.qty-box');
-            const input = qtyBox?.querySelector('input');
+        if (qtyBox) {
+            e.preventDefault();
+            const input = qtyBox.querySelector('input');
             if (input) {
                 const currentVal = parseInt(input.value, 10) || 0;
-                const isInCart = qtyBox.dataset.inCart === 'true';
+                if (currentVal === 0) {
+                    input.value = 1; // 0일 경우 1로 설정
+                }
+                qtyBox.dataset.inCart = 'true'; // 장바구니 상태 저장
 
-                // 장바구니 담긴 상태에서 1 -> 0 시도 시 모달 표시
-                if (currentVal === 1 && isInCart) {
-                    e.preventDefault();
-                    e.stopImmediatePropagation(); // quantity-control.js 실행 차단
-
-                    const modalEl = document.getElementById('cartWarningModal');
-                    if (modalEl) {
-                        // 위치 계산 오류 방지
-                        if (modalEl.parentElement !== document.body) {
-                            document.body.appendChild(modalEl);
-                        }
-
-                        // 모달 옵션 및 생성
-                        const modal = bootstrap.Modal.getOrCreateInstance(modalEl, {
-                            backdrop: false,
-                            keyboard: true
-                        });
-
-                        // 현재 카드의 장바구니 버튼 또는 클릭한 마이너스 버튼 기준
-                        const cardControl = minusBtn.closest('.card-control') || minusBtn.closest('.product-card');
-                        const cartBtn = cardControl?.querySelector('.icon-cart')?.closest('button') || cardControl?.querySelector('.btn-cart');
-
-                        positionLayerPopup(cartBtn || minusBtn, modalEl, { align: 'right' });
-                        modal.show(cartBtn || minusBtn); // 트리거 전달하여 포커스 관리 개선
-                    }
-                } else if (currentVal === 0) {
-                    // 최소 수량 알림
-                    e.preventDefault();
-                    e.stopImmediatePropagation();
-                    if (window.Toast) {
-                        const toastTarget = qtyBox.closest('.card-control') || qtyBox;
-                        window.Toast.show('warning', '최소 수량은 1입니다.', toastTarget, { width: 'match', align: 'left' });
-                    }
+                // 장바구니 토스트 표시
+                if (window.Toast) {
+                    const toastTarget = cartBtn.closest('.card-control') || cartBtn;
+                    const finalQty = input.value;
+                    window.Toast.show('success', `장바구니에 ${finalQty}개가 담겼습니다.`, toastTarget, { width: 'match', align: 'left' });
                 }
             }
         }
-    }, true);
+    }
+}, true);
 
-    // 장바구니 버튼 클릭 시 수량 설정
+// ==========================================
+// 공통 드롭다운 토글
+// ==========================================
+const initDropdowns = () => {
     document.addEventListener('click', (e) => {
-        const btn = e.target.closest('.btn-icon');
-        const cartBtn = (btn && btn.querySelector('.icon-cart')) ? btn : e.target.closest('.btn-cart');
+        const trigger = e.target.closest('.dropdown-wrapper .select-wrap');
+        const wrapper = trigger?.closest('.dropdown-wrapper');
 
-        if (cartBtn) {
-            // 인접한 qty-box 탐색
-            const container = cartBtn.closest('.card-control') || cartBtn.closest('.product-card') || cartBtn.parentElement;
-            const qtyBox = container.querySelector('.qty-box');
+        // 드롭다운 토글
+        if (trigger && wrapper) {
+            e.preventDefault();
+            e.stopPropagation();
 
-            if (qtyBox) {
-                e.preventDefault();
-                const input = qtyBox.querySelector('input');
-                if (input) {
-                    const currentVal = parseInt(input.value, 10) || 0;
-                    if (currentVal === 0) {
-                        input.value = 1; // 0일 경우 1로 설정
-                    }
-                    qtyBox.dataset.inCart = 'true'; // 장바구니 상태 저장
+            // 타 드롭다운 닫기
+            document.querySelectorAll('.dropdown-wrapper.active').forEach(w => {
+                if (w !== wrapper) w.classList.remove('active');
+            });
 
-                    // 장바구니 토스트 표시
-                    if (window.Toast) {
-                        const toastTarget = cartBtn.closest('.card-control') || cartBtn;
-                        const finalQty = input.value;
-                        window.Toast.show('success', `장바구니에 ${finalQty}개가 담겼습니다.`, toastTarget, { width: 'match', align: 'left' });
-                    }
-                }
-            }
+            wrapper.classList.toggle('active');
+        } else {
+            // 외부 클릭 시 전체 닫기
+            document.querySelectorAll('.dropdown-wrapper.active').forEach(w => {
+                w.classList.remove('active');
+            });
         }
-    }, true);
 
-    // ==========================================
-    // 공통 드롭다운 토글
-    // ==========================================
-    const initDropdowns = () => {
-        document.addEventListener('click', (e) => {
-            const trigger = e.target.closest('.dropdown-wrapper .select-wrap');
-            const wrapper = trigger?.closest('.dropdown-wrapper');
+        // 옵션 선택
+        const option = e.target.closest('.dropdown-wrapper .dropdown-options li');
+        if (option) {
+            const wrap = option.closest('.dropdown-wrapper');
+            const selectedVal = wrap?.querySelector('.selected-value');
+            const allOptions = wrap?.querySelectorAll('.dropdown-options li');
 
-            // 드롭다운 토글
-            if (trigger && wrapper) {
-                e.preventDefault();
-                e.stopPropagation();
-
-                // 타 드롭다운 닫기
-                document.querySelectorAll('.dropdown-wrapper.active').forEach(w => {
-                    if (w !== wrapper) w.classList.remove('active');
-                });
-
-                wrapper.classList.toggle('active');
-            } else {
-                // 외부 클릭 시 전체 닫기
-                document.querySelectorAll('.dropdown-wrapper.active').forEach(w => {
-                    w.classList.remove('active');
-                });
+            if (selectedVal) {
+                selectedVal.textContent = option.textContent;
             }
 
-            // 옵션 선택
-            const option = e.target.closest('.dropdown-wrapper .dropdown-options li');
-            if (option) {
-                const wrap = option.closest('.dropdown-wrapper');
-                const selectedVal = wrap?.querySelector('.selected-value');
-                const allOptions = wrap?.querySelectorAll('.dropdown-options li');
+            allOptions?.forEach(opt => opt.classList.remove('active'));
+            option.classList.add('active');
+            wrap?.classList.remove('active');
 
-                if (selectedVal) {
-                    selectedVal.textContent = option.textContent;
+            // 커스텀 이벤트 발생
+            const event = new CustomEvent('dropdownChange', {
+                detail: {
+                    value: option.dataset.value || option.textContent,
+                    text: option.textContent
                 }
+            });
+            wrap?.dispatchEvent(event);
+        }
+    });
+};
 
-                allOptions?.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-                wrap?.classList.remove('active');
+initDropdowns();
 
-                // 커스텀 이벤트 발생
-                const event = new CustomEvent('dropdownChange', {
-                    detail: {
-                        value: option.dataset.value || option.textContent,
-                        text: option.textContent
-                    }
-                });
-                wrap?.dispatchEvent(event);
-            }
-        });
-    };
 
-    initDropdowns();
-
-});
 
 // ==========================================
 // 모달 독점 표시
