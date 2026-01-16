@@ -616,6 +616,14 @@
                         &:hover .keyword {
                             text-decoration: underline;
                         }
+
+
+                        &>:nth-child(3) {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: rem(40) !important;
+                        }
                     }
                 }
             }

@@ -125,14 +125,15 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             btnLoadMore.style.display = 'flex';
             const btnText = btnLoadMore.querySelector('span') || btnLoadMore.firstChild;
+            const btnIcon = btnLoadMore.querySelector('i');
             if (isExpanded) {
                 if (btnText.nodeType === 3) btnLoadMore.firstChild.textContent = '상품 닫기 ';
                 else btnText.textContent = '상품 닫기';
-                btnLoadMore.querySelector('svg').style.transform = 'rotate(180deg)';
+                if (btnIcon) btnIcon.style.transform = 'rotate(180deg)';
             } else {
                 if (btnText.nodeType === 3) btnLoadMore.firstChild.textContent = '상품 더보기 ';
                 else btnText.textContent = '상품 더보기';
-                btnLoadMore.querySelector('svg').style.transform = 'rotate(0deg)';
+                if (btnIcon) btnIcon.style.transform = 'rotate(0deg)';
             }
         }
     };
