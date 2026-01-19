@@ -3288,10 +3288,6 @@ body.mobile-body {
   min-width: 100%;
   flex-shrink: 0;
   box-sizing: border-box;
-  height: 0;
-  overflow: hidden;
-}
-.weekly-ranking .ranking-list.current {
   height: auto;
   overflow: visible;
 }
@@ -3433,13 +3429,18 @@ body.mobile-body {
   padding-left: 0;
   border-bottom: 0.5rem solid #f4f4f4;
 }
+.mobile-main-slider .slider-viewport {
+  margin-left: 1.125rem;
+  overflow: hidden;
+}
 .mobile-main-slider .slider-track {
   display: flex;
   gap: 0.5rem;
-  margin-left: 1rem;
   padding-left: 0;
   padding-right: 1.5rem;
-  overflow-x: auto;
+  margin-left: 0;
+  width: max-content;
+  overflow-x: visible;
   scroll-snap-type: x mandatory;
   scroll-padding-left: 0;
   scroll-padding-right: 1.5rem;
@@ -3450,7 +3451,7 @@ body.mobile-body {
   display: none;
 }
 .mobile-main-slider .slide-item {
-  flex: 0 0 calc(100vw - 2.5rem);
+  flex: 0 0 calc(100vw - 2.625rem);
   scroll-snap-align: start;
   border-radius: 0.125rem;
   overflow: hidden;
@@ -3708,16 +3709,16 @@ body.mobile-body {
 }
 .popcorn-banner-wrapper .slider-track {
   display: flex;
-  width: 100%;
-  overflow: hidden;
+  width: max-content;
   scrollbar-width: none;
 }
 .popcorn-banner-wrapper .slider-track::-webkit-scrollbar {
   display: none;
 }
 .popcorn-banner-wrapper .slide-item.banner-popcorn {
-  flex: 0 0 100%;
-  max-width: 100%;
+  flex: 0 0 100vw;
+  width: 100vw;
+  max-width: none;
   background-color: #FFDE00;
   overflow: hidden;
   position: relative;

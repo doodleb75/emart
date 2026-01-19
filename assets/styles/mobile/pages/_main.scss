@@ -205,16 +205,8 @@
         min-width: 100%;
         flex-shrink: 0;
         box-sizing: border-box;
-
-        // 비활성 슬라이드 숨김 (Hide inactive slides to prevent height issues)
-        height: 0;
-        overflow: hidden;
-
-        // 활성 슬라이드 표시 (Show active slide)
-        &.current {
-            height: auto;
-            overflow: visible;
-        }
+        height: auto;
+        overflow: visible;
     }
 
     .ranking-header {
@@ -378,22 +370,25 @@
 // 모바일 메인 슬라이더 (Mobile Main Slider)
 .mobile-main-slider {
     width: 100%;
-    // margin-bottom: rem(24);
     overflow: hidden;
-    padding-left: 0; // 내부 트랙으로 패딩 이동 (Move padding to track)
-    // margin-left: rem(16);
-    // padding-bottom: rem(32);
+    padding-left: 0;
     border-bottom: 0.5rem solid $gray-50;
+
+    .slider-viewport {
+        margin-left: rem(18); // 18px 여백 시작 지점
+        overflow: hidden; // 18px 왼쪽으로 나가는 클론 슬라이드 완벽 차단
+    }
 
     .slider-track {
         display: flex;
         gap: rem(8);
-        margin-left: rem(16); // 왼쪽 여백 유지 및 클리핑 마스크 효과 (Maintain left margin and clipping mask effect)
-        padding-left: 0;
-        padding-right: rem(24); // 끝부분 여백 (End margin)
-        overflow-x: auto;
+        padding-left: 0; // 뷰포트가 18px에서 시작하므로 트랙 패딩은 0
+        padding-right: rem(24);
+        margin-left: 0;
+        width: max-content;
+        overflow-x: visible; // 뷰포트에서 클리핑하므로 트랙은 노출
         scroll-snap-type: x mandatory;
-        scroll-padding-left: 0; // 마진으로 시작점을 제어하므로 스냅 패딩은 0 (Snap padding is 0 as start point is controlled by margin)
+        scroll-padding-left: 0;
         scroll-padding-right: rem(24);
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
@@ -404,7 +399,7 @@
     }
 
     .slide-item {
-        flex: 0 0 calc(100vw - rem(40)); // 우측 24px 여백 확보 (Secure 24px right margin)
+        flex: 0 0 calc(100vw - rem(18 + 8 + 16)); // 18px(좌) + 8px(간격) + 16px(우측 노출)
         scroll-snap-align: start;
         border-radius: rem(2);
         overflow: hidden;
@@ -702,8 +697,7 @@
 
     .slider-track {
         display: flex;
-        width: 100%;
-        overflow: hidden;
+        width: max-content;
         scrollbar-width: none;
 
         &::-webkit-scrollbar {
@@ -712,8 +706,9 @@
     }
 
     .slide-item.banner-popcorn {
-        flex: 0 0 100%;
-        max-width: 100%;
+        flex: 0 0 100vw;
+        width: 100vw;
+        max-width: none;
         background-color: #FFDE00;
         overflow: hidden;
         position: relative;
