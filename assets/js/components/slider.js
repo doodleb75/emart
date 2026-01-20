@@ -23,6 +23,20 @@ window.UnifiedMainSlider = class UnifiedMainSlider {
             ...options
         };
 
+        // 덮어쓰기: HTML 마크업의 data 속성을 통해 개별 제어 가능 (data-interval, data-autoplay 등)
+        if (this.root.dataset.interval) {
+            this.options.autoPlayInterval = parseInt(this.root.dataset.interval, 10);
+        }
+        if (this.root.dataset.autoplay) {
+            this.options.autoPlay = this.root.dataset.autoplay !== 'false';
+        }
+        if (this.root.dataset.transition) {
+            this.options.transitionTime = parseInt(this.root.dataset.transition, 10);
+        }
+        if (this.root.dataset.gap) {
+            this.options.gap = parseInt(this.root.dataset.gap, 10);
+        }
+
         this.track = this.root.querySelector(this.options.trackSelector);
         // ID 셀렉터 지원
         if (!this.track && this.options.trackSelector.startsWith('#')) {
