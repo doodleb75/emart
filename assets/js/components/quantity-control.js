@@ -1,6 +1,4 @@
-// 수량 조절 기능 (Quantity Control)
-// 요소가 동적으로 추가되어도 별도 초기화 없이 동작하도록 개선
-
+// 수량 조절 기능 
 document.addEventListener('click', (e) => {
     // 수량 조절 버튼 클릭 확인
     const btn = e.target.closest('.qty-box button');
