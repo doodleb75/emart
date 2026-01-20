@@ -1,4 +1,4 @@
-// 수량 조절 기능 (Quantity Control) - Event Delegation 방식
+// 수량 조절 기능 (Quantity Control)
 // 요소가 동적으로 추가되어도 별도 초기화 없이 동작하도록 개선
 
 document.addEventListener('click', (e) => {
@@ -50,11 +50,3 @@ document.addEventListener('input', (e) => {
     }
 });
 
-/**
- * [Deprecated] 수량 조절 초기화 함수
- * 이벤트 위임 방식으로 변경되어 더 이상 호출할 필요가 없으나,
- * 기존 코드(search_result.js 등)와의 호환성을 위해 빈 함수로 유지.
- */
-function initQuantityControl(container) {
-    // No operation needed
-}

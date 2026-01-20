@@ -77,10 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     prepareMockData();
 
-    // 초기 수량 조절 초기화
-    if (typeof initQuantityControl === 'function') {
-        initQuantityControl(grid);
-    }
 
     // 상품 리스트 실시간 조회
     const getProductItems = () => Array.from(grid.querySelectorAll('.product-card'));
@@ -222,10 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         items.forEach(item => grid.appendChild(item));
 
-        // 수량 조절 재초기화 
-        if (typeof initQuantityControl === 'function') {
-            initQuantityControl(grid);
-        }
 
         updateDisplay();
     };
@@ -341,10 +333,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. 수량 조절 초기화
-    if (typeof initQuantityControl === 'function') {
-        initQuantityControl(grid);
-    }
 
 
 
