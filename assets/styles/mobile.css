@@ -2949,14 +2949,19 @@ body.mobile-body {
   color: #cccccc;
 }
 .mobile-footer .footer-details {
-  display: none;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease-in-out, margin-bottom 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
   font-size: 0.75rem;
   color: #888888;
   line-height: 1.25rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
 }
 .mobile-footer .footer-details.active {
-  display: block;
+  height: auto;
+  margin-bottom: 1.5rem;
+  opacity: 1;
 }
 .mobile-footer .footer-details .info-row {
   display: flex;

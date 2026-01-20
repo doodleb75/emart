@@ -98,14 +98,19 @@
 
     // 사업자 상세 정보
     .footer-details {
-        display: none; // 기본 숨김 (Hidden by default)
+        height: 0;
+        overflow: hidden;
+        transition: height 0.3s ease-in-out, margin-bottom 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        opacity: 0;
         font-size: rem(12);
         color: $gray-600;
         line-height: rem(20);
-        margin-bottom: rem(24);
+        margin-bottom: 0;
 
         &.active {
-            display: block; // active 시 표시 (Show when active)
+            height: auto;
+            margin-bottom: rem(24);
+            opacity: 1;
         }
 
         // 상세 정보 행
