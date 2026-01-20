@@ -13,7 +13,7 @@ class CustomCheckbox extends HTMLElement {
     }
 
     render() {
-        // 중복 렌더링 방지하되 참조는 갱신 (Don't re-render HTML, but update references)
+        // 이미 렌더링 된 경우 참조만 갱신
         if (!this.querySelector('.custom-checkbox-wrap')) {
             const labelText = this.getAttribute('label') || '';
             const isChecked = this.hasAttribute('checked');
@@ -21,6 +21,10 @@ class CustomCheckbox extends HTMLElement {
 
             // 고유 ID 생성
             const uniqueId = `checkbox_${Math.random().toString(36).substr(2, 9)}`;
+
+            // 색상 상수 (SCSS 변수 매핑 필요 시 CSS Custom Property 사용 권장)
+            // #1f95ff -> Primary Blue
+            // #CCCCCC -> Gray 300
 
             this.innerHTML = `
                 <label class="custom-checkbox-wrap">
@@ -57,7 +61,7 @@ class CustomCheckbox extends HTMLElement {
             // 초기 아이콘 상태 설정
             this.updateIconState(this.input.checked);
 
-            // 입력 변경 이벤트 감지 (instance property를 사용하여 클론 시에도 재연결 보장)
+            // 입력 변경 이벤트 감지
             if (!this._hasListener) {
                 this.input.addEventListener('change', (e) => {
                     const checked = this.input.checked;
@@ -66,7 +70,7 @@ class CustomCheckbox extends HTMLElement {
                     this.updateIconState(checked);
                 });
 
-                // 클릭 이벤트가 상위 a 태그 등으로 전파되는 것 방지
+                // 상위 전파 방지
                 this.input.addEventListener('click', (e) => {
                     e.stopPropagation();
                 });
@@ -76,7 +80,7 @@ class CustomCheckbox extends HTMLElement {
         }
     }
 
-    // 아이콘 토글 함수
+    // 아이콘 표시 상태 업데이트
     updateIconState(isChecked) {
         if (!this.uncheckedIcon || !this.checkedIcon) return;
 
@@ -99,11 +103,10 @@ class CustomCheckbox extends HTMLElement {
         } else {
             this.removeAttribute('checked');
         }
-        // 속성 변경 감지 트리거
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        // 이른 호출 대응 (Ensure references exist)
+        // 요소 참조 확보
         if (!this.input) this.render();
         if (!this.input) return;
 
@@ -126,5 +129,5 @@ class CustomCheckbox extends HTMLElement {
     }
 }
 
-// Custom Element 등록
+// 커스텀 엘리먼트 등록
 customElements.define('custom-checkbox', CustomCheckbox);

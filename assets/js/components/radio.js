@@ -12,13 +12,16 @@ class CustomRadio extends HTMLElement {
     }
 
     render() {
-        // 중복 렌더링 방지 (Prevent double rendering)
+        // 이미 렌더링 된 경우 참조만 갱신
         if (this.querySelector('.custom-radio-wrap')) return;
 
         const labelText = this.getAttribute('label') || '';
         const isChecked = this.hasAttribute('checked');
         const name = this.getAttribute('name') || '';
         const value = this.getAttribute('value') || '';
+
+        // 아이콘 색상은 CSS가 아닌 SVG 내부 fill 속성으로 처리됨
+        // #1F95FF -> Primary Blue, #CCCCCC -> Gray 300
 
         this.innerHTML = `
             <label class="custom-radio-wrap">
@@ -55,13 +58,13 @@ class CustomRadio extends HTMLElement {
         this.uncheckedIcon = this.querySelector('.unchecked-icon');
         this.checkedIcon = this.querySelector('.checked-icon');
 
-        // 초기 상태 반영 (Apply initial state)
+        // 초기 상태 반영
         this.updateIconState(this.input.checked);
 
         this.input.addEventListener('change', (e) => {
             const checked = e.target.checked;
 
-            // 라디오 버튼은 같은 name을 가진 다른 버튼들의 상태도 갱신해야 함 (Radio should update others with same name)
+            // 동일 name을 가진 다른 라디오 버튼 상태 갱신
             if (checked && name) {
                 const radios = document.querySelectorAll(`custom-radio[name="${name}"]`);
                 radios.forEach(radio => {
