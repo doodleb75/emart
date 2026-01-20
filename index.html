@@ -7,6 +7,9 @@
     <title>e-Club</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/styles/pc.css" rel="stylesheet">
+    <!-- Color Thief for adaptive background colors -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+
 </head>
 
 <body>
@@ -19,7 +22,7 @@
 
         <!-- 메인 슬라이더 -->
         <section class="main-slider-wrapper">
-            <div id="eclubMainSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+            <div id="eclubMainSlider" class="carousel slide" data-interval="3000">
                 <div class="carousel-inner slider-track">
                     <!-- 슬라이더 아이템 1 -->
                     <a href="#" class="slider-card card-coffee">
@@ -2965,7 +2968,7 @@
         </section>
 
         <!-- 이클럽 주간 랭킹 -->
-        <section class="section-wrapper weekly-ranking">
+        <section class="section-wrapper weekly-ranking" data-interval="6000">
             <div class="section-container">
                 <header class="section-header d-flex justify-content-between align-items-end">
                     <div class="section-title-group">
@@ -3021,7 +3024,7 @@
                                         <!-- 상품 1 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_relax.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_relax.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="badge-corner">
                                                     <i class="icon-thumbs-up"></i> 강력 추천
@@ -3072,7 +3075,7 @@
                                         <!-- 상품 2 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_bonterra_white.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_bonterra_white.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="delivery-tags">
                                                     <span class="tag tag-ambient"><i class="icon-thermometer"></i>
@@ -3120,7 +3123,7 @@
                                         <!-- 상품 3 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_bonterra_red.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_bonterra_red.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="badge-corner">
                                                     <i class="icon-smile"></i> MD 추천
@@ -3170,7 +3173,7 @@
                                         <!-- 상품 4 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_kendall.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_kendall.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="delivery-tags">
                                                     <span class="tag tag-ambient"><i class="icon-thermometer"></i>
@@ -3220,7 +3223,7 @@
                                         <!-- 상품 5 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_relax.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_relax.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="badge-corner">
                                                     <i class="icon-thumbs-up"></i> 강력 추천
@@ -3271,7 +3274,7 @@
                                         <!-- 상품 6 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_bonterra_white.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_bonterra_white.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="delivery-tags">
                                                     <span class="tag tag-ambient"><i class="icon-thermometer"></i>
@@ -3319,7 +3322,7 @@
                                         <!-- 상품 7 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_bonterra_red.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_bonterra_red.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="badge-corner">
                                                     <i class="icon-smile"></i> MD 추천
@@ -3372,7 +3375,7 @@
                                         <!-- 상품 8 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_kendall.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_kendall.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="delivery-tags">
                                                     <span class="tag tag-ambient"><i class="icon-thermometer"></i>
@@ -3451,7 +3454,7 @@
                                         <!-- 상품 1 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_relax.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_relax.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="badge-corner">
                                                     <i class="icon-thumbs-up"></i> 강력 추천
@@ -3502,7 +3505,7 @@
                                         <!-- 상품 2 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_bonterra_white.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_bonterra_white.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="delivery-tags">
                                                     <span class="tag tag-ambient"><i class="icon-thermometer"></i>
@@ -3550,7 +3553,7 @@
                                         <!-- 상품 3 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_bonterra_red.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_bonterra_red.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="badge-corner">
                                                     <i class="icon-smile"></i> MD 추천
@@ -3603,7 +3606,7 @@
                                         <!-- 상품 4 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_kendall.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_kendall.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="delivery-tags">
                                                     <span class="tag tag-ambient"><i class="icon-thermometer"></i>
@@ -3682,7 +3685,7 @@
                                         <!-- 상품 1 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_relax.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_relax.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="badge-corner">
                                                     <i class="icon-thumbs-up"></i> 강력 추천
@@ -3733,7 +3736,7 @@
                                         <!-- 상품 2 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_bonterra_white.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_bonterra_white.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="delivery-tags">
                                                     <span class="tag tag-ambient"><i class="icon-thermometer"></i>
@@ -3781,7 +3784,7 @@
                                         <!-- 상품 3 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_bonterra_red.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_bonterra_red.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="badge-corner">
                                                     <i class="icon-smile"></i> MD 추천
@@ -3834,7 +3837,7 @@
                                         <!-- 상품 4 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_kendall.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_kendall.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="delivery-tags">
                                                     <span class="tag tag-ambient"><i class="icon-thermometer"></i>
@@ -3913,7 +3916,7 @@
                                         <!-- 상품 1 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_relax.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_relax.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="badge-corner">
                                                     <i class="icon-thumbs-up"></i> 강력 추천
@@ -3964,7 +3967,7 @@
                                         <!-- 상품 2 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_bonterra_white.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_bonterra_white.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="delivery-tags">
                                                     <span class="tag tag-ambient"><i class="icon-thermometer"></i>
@@ -4012,7 +4015,7 @@
                                         <!-- 상품 3 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_bonterra_red.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_bonterra_red.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="badge-corner">
                                                     <i class="icon-smile"></i> MD 추천
@@ -4065,7 +4068,7 @@
                                         <!-- 상품 4 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_kendall.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_kendall.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="delivery-tags">
                                                     <span class="tag tag-ambient"><i class="icon-thermometer"></i>
@@ -4144,7 +4147,7 @@
                                         <!-- 상품 1 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_relax.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_relax.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="badge-corner">
                                                     <i class="icon-thumbs-up"></i> 강력 추천
@@ -4195,7 +4198,7 @@
                                         <!-- 상품 2 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_bonterra_white.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_bonterra_white.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="delivery-tags">
                                                     <span class="tag tag-ambient"><i class="icon-thermometer"></i>
@@ -4243,7 +4246,7 @@
                                         <!-- 상품 3 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_bonterra_red.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_bonterra_red.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="badge-corner">
                                                     <i class="icon-smile"></i> MD 추천
@@ -4296,7 +4299,7 @@
                                         <!-- 상품 4 -->
                                         <article class="product-card">
                                             <a href="#" class="card-thumb">
-                                                <img src="/assets/images/products/wine_kendall.png" alt="Product"
+                                                <img src="/assets/images/weekly/wine_kendall.png" alt="Product"
                                                     onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                                                 <div class="delivery-tags">
                                                     <span class="tag tag-ambient"><i class="icon-thermometer"></i>
@@ -4407,7 +4410,7 @@
                     <!-- 브랜드 1 -->
                     <article class="brand-card">
                         <div class="card-img">
-                            <img src="/assets/images/e-club/e-club-thumb1.png" alt="동천수"
+                            <img src="/assets/images/brand/brand-thumb01.png" alt="동천수"
                                 onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                         </div>
                         <div class="text-group">
@@ -4422,7 +4425,7 @@
                     <!-- 브랜드 2 -->
                     <article class="brand-card">
                         <div class="card-img">
-                            <img src="/assets/images/e-club/e-club-thumb2.png" alt="몽베스트"
+                            <img src="/assets/images/brand/brand-thumb02.png" alt="몽베스트"
                                 onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                         </div>
                         <div class="text-group">
@@ -4437,7 +4440,7 @@
                     <!-- 브랜드 3 -->
                     <article class="brand-card">
                         <div class="card-img">
-                            <img src="/assets/images/e-club/e-club-thumb3.png" alt="리엘산업"
+                            <img src="/assets/images/brand/brand-thumb03.png" alt="리엘산업"
                                 onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                         </div>
                         <div class="text-group">
@@ -4452,7 +4455,7 @@
                     <!-- 브랜드 4 -->
                     <article class="brand-card">
                         <div class="card-img">
-                            <img src="/assets/images/e-club/e-club-thumb4.png" alt="던킨도너츠"
+                            <img src="/assets/images/brand/brand-thumb04.png" alt="던킨도너츠"
                                 onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                         </div>
                         <div class="text-group">
@@ -4468,7 +4471,7 @@
                     <!-- 브랜드 5 -->
                     <article class="brand-card">
                         <div class="card-img">
-                            <img src="/assets/images/e-club/e-club-thumb1.png" alt="동천수"
+                            <img src="/assets/images/brand/brand-thumb01.png" alt="동천수"
                                 onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                         </div>
                         <div class="text-group">
@@ -4483,7 +4486,7 @@
                     <!-- 브랜드 6 -->
                     <article class="brand-card">
                         <div class="card-img">
-                            <img src="/assets/images/e-club/e-club-thumb2.png" alt="몽베스트"
+                            <img src="/assets/images/brand/brand-thumb02.png" alt="몽베스트"
                                 onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                         </div>
                         <div class="text-group">
@@ -4498,7 +4501,7 @@
                     <!-- 브랜드 7 -->
                     <article class="brand-card">
                         <div class="card-img">
-                            <img src="/assets/images/e-club/e-club-thumb3.png" alt="리엘산업"
+                            <img src="/assets/images/brand/brand-thumb03.png" alt="리엘산업"
                                 onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                         </div>
                         <div class="text-group">
@@ -4513,7 +4516,7 @@
                     <!-- 브랜드 8 -->
                     <article class="brand-card">
                         <div class="card-img">
-                            <img src="/assets/images/e-club/e-club-thumb4.png" alt="던킨도너츠"
+                            <img src="/assets/images/brand/brand-thumb04.png" alt="던킨도너츠"
                                 onerror="this.src='https://placehold.co/150x150/F4F4F4/CCCCCC?text=Actz'">
                         </div>
                         <div class="text-group">
@@ -4604,6 +4607,8 @@
         <script src="/assets/js/components/quantity-control.js"></script>
         <script src="/assets/js/components/checkbox.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Slider Color Adaptive Script -->
+        <script src="/assets/js/components/slider-color.js"></script>
 </body>
 
 </html>
